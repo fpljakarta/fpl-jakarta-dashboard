@@ -1,17 +1,84 @@
 {
-  "generated_at": null,
+  "generated_at": "2026-08-06T09:50:56.065563+00:00",
   "current_gameweek": null,
   "next_gameweek": 1,
-  "next_deadline": null,
+  "next_deadline": "2026-08-21T17:30:00Z",
   "leagues": {
-    "high_stakes": { "id": 325153, "name": "High Stakes" },
-    "main": { "id": 401272, "name": "Main league" }
+    "high_stakes": {
+      "id": 325153,
+      "name": "High Stakes"
+    },
+    "main": {
+      "id": 401272,
+      "name": "Main league"
+    }
   },
   "motm_motw_source_league": "main",
   "standings": {
     "high_stakes": [],
     "main": []
   },
-  "motm": [],
+  "motm": [
+    {
+      "month": "August",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "September",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "October",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "November",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "December",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "January",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "February",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "March",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "April",
+      "manager": null,
+      "team": null,
+      "points": null
+    },
+    {
+      "month": "May",
+      "manager": null,
+      "team": null,
+      "points": null
+    }
+  ],
   "motw": []
 }
