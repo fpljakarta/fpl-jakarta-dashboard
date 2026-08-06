@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a1f1a;
+    --bg-elevated: #0f2921;
+    --line: #1e4438;
+    --floodlight: #f3f6ee;
+    --muted: #8caf9f;
+    --muted-dim: #5c7c70;
+    --lime: #d4ff3d;
+    --lime-dim: #a7cc2e;
+    --up: #6ee7a0;
+    --down: #ff6b5b;
+    --gold: #f0b429;
+    --radius: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% -10%, #163d31 0%, transparent 45%),
+      radial-gradient(circle at 100% 0%, #12281f 0%, transparent 40%),
+      var(--bg);
+    color: var(--floodlight);
+    font-family: 'Inter', sans-serif;
+    padding: 0 0 80px;
+  }
+
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- live ticker ---------- */
+  .ticker{
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-elevated);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 9px 0;
+  }
+  .ticker-track{
+    display: inline-flex;
+    gap: 40px;
+    animation: scroll 26s linear infinite;
+    padding-left: 100%;
+  }
+  @keyframes scroll{ to{ transform: translateX(-100%); } }
+  .ticker-item{ font-family:'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--muted); display:inline-flex; align-items:center; gap:8px;}
+  .live-dot{ width:6px; height:6px; border-radius:50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); animation: pulse 1.4s ease-in-out infinite; flex-shrink:0;}
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .ticker-item b{ color: var(--floodlight); font-weight:600; }
+  .up-txt{ color: var(--up); } .down-txt{ color: var(--down); }
+
+  /* ---------- header ---------- */
+  header{ padding: 56px 0 40px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--lime-dim); margin: 0 0 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width: 22px; height: 1px; background: var(--lime-dim); }
+  h1{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size: clamp(48px, 9vw, 88px);
+    line-height: .92;
+    letter-spacing: .01em;
+    margin: 0 0 16px;
+    text-transform: uppercase;
+  }
+  h1 span{ color: var(--lime); }
+  header p.lede{ color: var(--muted); font-size: 16px; max-width: 480px; line-height:1.5; margin:0; }
+
+  /* ---------- countdown ---------- */
+  .countdown{
+    margin-top: 34px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .countdown-left .gw-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+    color: var(--lime-dim); margin-bottom:6px; display:flex; align-items:center; gap:8px;
+  }
+  .countdown-left .gw-date{ font-size:14px; color: var(--muted); }
+  .countdown-mid{ display:flex; gap: 22px; }
+  .cd-unit{ text-align:center; min-width:52px; }
+  .cd-unit .num{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:28px; color: var(--floodlight); line-height:1; }
+  .cd-unit .lab{ font-size:10px; letter-spacing:.1em; text-transform:uppercase; color: var(--muted-dim); margin-top:5px; }
+  .cd-sep{ font-family:'IBM Plex Mono', monospace; font-size:22px; color: var(--muted-dim); align-self:flex-start; margin-top:2px; }
+  .signup-btn{
+    font-family:'Inter'; font-weight:700; font-size:14px; color: #0a1f1a;
+    background: var(--lime); border:none; border-radius:999px; padding:13px 26px;
+    text-decoration:none; white-space:nowrap; transition: filter .15s ease, transform .15s ease;
+    box-shadow: 0 0 24px -6px rgba(212,255,61,.5);
+  }
+  .signup-btn:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+  @media (max-width:560px){
+    .countdown{ flex-direction:column; align-items:stretch; }
+    .countdown-mid{ justify-content:center; }
+    .signup-btn{ text-align:center; }
+  }
+
+  /* ---------- section shell ---------- */
+  section{ margin-top: 64px; }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:20px; gap: 16px; flex-wrap:wrap;}
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing:.1em; text-transform:uppercase; color: var(--muted-dim);
+    display:flex; align-items:center; gap: 10px;
+  }
+  .section-label b{ color: var(--floodlight); font-weight:600; letter-spacing:.03em; }
+  .section-note{ color: var(--muted); font-size: 13.5px; }
+
+  .toggle{ display:inline-flex; background: var(--bg-elevated); border:1px solid var(--line); border-radius:999px; padding:3px; }
+  .toggle button{
+    font-family:'Inter'; font-weight:600; font-size:13px; color: var(--muted);
+    background:none; border:none; padding:7px 16px; border-radius:999px; cursor:pointer;
+  }
+  .toggle button.active{ background: var(--lime); color:#0a1f1a; }
+
+  /* ---------- standings table ---------- */
+  .table-card{ background: var(--bg-elevated); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden; }
+  .empty-card{
+    background: var(--bg-elevated); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 40px 24px; text-align:center;
+  }
+  .empty-card .t{ font-weight:600; font-size:15px; margin-bottom:6px; }
+  .empty-card .s{ color: var(--muted); font-size:13.5px; }
+  .row{
+    display:grid; grid-template-columns: 44px 1fr auto auto;
+    align-items:center; gap: 14px; padding: 13px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .row:last-child{ border-bottom:none; }
+  .row.top{ background: linear-gradient(90deg, #1c3d2f 0%, transparent 70%); }
+  .rank{ font-family:'IBM Plex Mono', monospace; font-size:15px; color: var(--muted); }
+  .rank.gold{ color: var(--gold); font-weight:600; }
+  .manager{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .manager .name{ font-weight:600; font-size:14.5px; color: var(--floodlight); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .manager .team{ font-size:12.5px; color: var(--muted-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .delta{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; display:flex; align-items:center; gap:3px; justify-content:flex-end; width:44px; }
+  .delta.up{ color: var(--up); } .delta.down{ color: var(--down); } .delta.flat{ color: var(--muted-dim); }
+  .pts{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:16px; color: var(--floodlight); text-align:right; min-width: 48px; }
+  .pts small{ display:block; font-weight:400; font-size:10.5px; color: var(--muted-dim); text-align:right; letter-spacing:.05em;}
+
+  /* ---------- MOTM trophy strip ---------- */
+  .motm-grid{ display:grid; grid-template-columns: repeat(6,1fr); gap:10px; }
+  @media (max-width:640px){ .motm-grid{ grid-template-columns: repeat(3,1fr);} }
+  .motm-card{
+    background: var(--bg-elevated); border:1px solid var(--line); border-radius:10px;
+    padding: 14px 12px; text-align:center; position:relative;
+  }
+  .motm-card.won{ border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset, 0 0 22px -6px rgba(240,180,41,.35); }
+  .motm-month{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color: var(--muted-dim); margin-bottom:8px;}
+  .motm-card.won .motm-month{ color: var(--gold); }
+  .motm-trophy{ font-size:18px; margin-bottom:6px; opacity:.25; }
+  .motm-card.won .motm-trophy{ opacity:1; }
+  .motm-name{ font-size:12px; font-weight:600; color: var(--floodlight); }
+  .motm-card:not(.won) .motm-name{ color: var(--muted-dim); font-weight:400; }
+
+  /* ---------- MOTW spotlight ---------- */
+  .spotlight{
+    background: linear-gradient(135deg, #16362a 0%, var(--bg-elevated) 60%);
+    border:1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    position:relative; overflow:hidden;
+  }
+  .spotlight::after{
+    content:''; position:absolute; right:-40px; top:-40px; width:180px; height:180px;
+    background: radial-gradient(circle, rgba(212,255,61,.16), transparent 70%);
+  }
+  .spotlight-left .gw-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--lime-dim); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:8px;}
+  .spotlight-left .name{ font-family:'Anton'; font-size: 30px; text-transform:uppercase; margin:0 0 4px; letter-spacing:.01em;}
+  .spotlight-left .team{ color: var(--muted); font-size:14px; }
+  .spotlight-right{ text-align:right; z-index:1; }
+  .spotlight-right .score{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:44px; color: var(--lime); line-height:1;}
+  .spotlight-right .score-label{ font-size:11.5px; color: var(--muted-dim); letter-spacing:.05em; text-transform:uppercase; margin-top:4px;}
+  .past-weeks{ display:flex; gap:8px; margin-top:12px; overflow-x:auto; padding-bottom:4px;}
+  .week-chip{ flex-shrink:0; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--muted); background: var(--bg-elevated); border:1px solid var(--line); border-radius:8px; padding:7px 11px; white-space:nowrap;}
+  .week-chip b{ color: var(--floodlight); }
+
+  /* ---------- cup ---------- */
+  .cup-card{
+    background: var(--bg-elevated); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 26px; display:flex; align-items:center; gap: 26px; flex-wrap:wrap;
+  }
+  .cup-text .tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; color: var(--gold); letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px; }
+  .cup-text p{ margin:0; color: var(--muted); font-size:14px; line-height:1.5;}
+
+  footer{ margin-top:70px; padding-top:24px; border-top:1px solid var(--line); color: var(--muted-dim); font-size:12.5px; }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track" id="ticker-track">
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta</span>
+      <span class="ticker-item">Standings, monthly and weekly winners update every hour</span>
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta</span>
+      <span class="ticker-item">Standings, monthly and weekly winners update every hour</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <p class="eyebrow" id="season-tag">Season 2026/27</p>
+      <h1>FPL <span>Jakarta</span></h1>
+      <p class="lede">Live standings, monthly winners and weekly high scores — pulled straight from the official FPL API, every hour.</p>
+
+      <div class="countdown">
+        <div class="countdown-left">
+          <div class="gw-tag"><span class="live-dot"></span> <span id="deadline-gw">Gameweek 1</span> deadline</div>
+          <div class="gw-date" id="deadline-date">Saturday 22 August, 00:30 Jakarta time</div>
+        </div>
+        <div class="countdown-mid">
+          <div class="cd-unit"><div class="num" id="cd-days">—</div><div class="lab">Days</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="num" id="cd-hours">—</div><div class="lab">Hours</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><div class="num" id="cd-mins">—</div><div class="lab">Mins</div></div>
+        </div>
+        <a class="signup-btn" href="https://forms.gle/zCkGBrJAWw6TfzVWA" target="_blank" rel="noopener">Sign up →</a>
+      </div>
+    </header>
+
+    <!-- STANDINGS -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>Standings</b></div>
+        <div class="toggle" id="league-toggle">
+          <button data-league="high_stakes" class="active">High Stakes</button>
+          <button data-league="main">Main league</button>
+        </div>
+      </div>
+      <div id="standings-mount"></div>
+    </section>
+
+    <!-- MOTM -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">02 &nbsp;<b>Manager of the month</b></div>
+        <div class="section-note">From FPL's own monthly rankings</div>
+      </div>
+      <div class="motm-grid" id="motm-mount"></div>
+    </section>
+
+    <!-- MOTW -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">03 &nbsp;<b>Manager of the week</b></div>
+        <div class="section-note">Highest net score, all 38 gameweeks</div>
+      </div>
+      <div id="motw-mount"></div>
+    </section>
+
+    <!-- CUP -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">04 &nbsp;<b>The cup</b></div>
+        <div class="section-note">Updated by hand — FPL doesn't publish knockouts</div>
+      </div>
+      <div class="cup-card">
+        <div class="cup-text">
+          <div class="tag">Format TBD</div>
+          <p>Knockout bracket and draw to be confirmed by the organisers once signups close.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer-note">
+      Standings and monthly winners come from the official Fantasy Premier League data. Entrant contact details and payment receipts are never published on this page.<br>
+      Main league ID 401272 · High Stakes league ID 325153
+    </footer>
+  </div>
+
+<script>
+const FALLBACK_DEADLINE = "2026-08-21T17:30:00Z"; // 22 Aug 00:30 Jakarta time
+const MONTH_ORDER = ["August","September","October","November","December","January","February","March","April","May"];
+
+let state = {
+  data: null,
+  activeLeague: "high_stakes",
+};
+
+async function loadData(){
+  try{
+    const res = await fetch('data.json', { cache: 'no-store' });
+    state.data = await res.json();
+  }catch(e){
+    console.error('Could not load data.json', e);
+    state.data = null;
+  }
+  renderAll();
+  startCountdown();
+}
+
+function renderAll(){
+  renderStandings();
+  renderMotm();
+  renderMotw();
+  renderFooter();
+}
+
+function renderStandings(){
+  const mount = document.getElementById('standings-mount');
+  const league = state.data?.standings?.[state.activeLeague] || [];
+
+  if(!league.length){
+    mount.innerHTML = `
+      <div class="empty-card">
+        <div class="t">No entries yet</div>
+        <div class="s">Standings appear here once the season kicks off.</div>
+      </div>`;
+    return;
+  }
+
+  const rows = league.map((r, i) => {
+    let deltaHtml = '<span class="delta flat">—</span>';
+    if(r.last_rank && r.last_rank > 0){
+      const diff = r.last_rank - r.rank;
+      if(diff > 0) deltaHtml = `<span class="delta up">▲ ${diff}</span>`;
+      else if(diff < 0) deltaHtml = `<span class="delta down">▼ ${Math.abs(diff)}</span>`;
+    }
+    return `
+      <div class="row ${i === 0 ? 'top' : ''}">
+        <div class="rank ${i === 0 ? 'gold' : ''}">${r.rank}</div>
+        <div class="manager"><span class="name">${escapeHtml(r.manager)}</span><span class="team">${escapeHtml(r.team)}</span></div>
+        ${deltaHtml}
+        <div class="pts">${r.total}<small>OVERALL</small></div>
+      </div>`;
+  }).join('');
+
+  mount.innerHTML = `<div class="table-card">${rows}</div>`;
+}
+
+function renderMotm(){
+  const mount = document.getElementById('motm-mount');
+  const data = state.data?.motm || [];
+  const byMonth = Object.fromEntries(data.map(m => [m.month, m]));
+
+  mount.innerHTML = MONTH_ORDER.map(month => {
+    const m = byMonth[month];
+    const won = m && m.manager;
+    return `
+      <div class="motm-card ${won ? 'won' : ''}">
+        <div class="motm-month">${month.slice(0,3)}</div>
+        <div class="motm-trophy">🏆</div>
+        <div class="motm-name">${won ? escapeHtml(m.manager) : 'Not played yet'}</div>
+      </div>`;
+  }).join('');
+}
+
+function renderMotw(){
+  const mount = document.getElementById('motw-mount');
+  const weeks = state.data?.motw || [];
+
+  if(!weeks.length){
+    mount.innerHTML = `
+      <div class="empty-card">
+        <div class="t">No gameweeks played yet</div>
+        <div class="s">The weekly high score appears here once GW1 finishes.</div>
+      </div>`;
+    return;
+  }
+
+  const latest = weeks[weeks.length - 1];
+  const past = weeks.slice(0, -1).slice(-6).reverse();
+
+  mount.innerHTML = `
+    <div class="spotlight">
+      <div class="spotlight-left">
+        <div class="gw-label"><span class="live-dot"></span> Gameweek ${latest.gw}</div>
+        <p class="name">${escapeHtml(latest.manager)}</p>
+        <p class="team">${escapeHtml(latest.team)}</p>
+      </div>
+      <div class="spotlight-right">
+        <div class="score">${latest.points}</div>
+        <div class="score-label">points this GW</div>
+      </div>
+    </div>
+    ${past.length ? `<div class="past-weeks">${past.map(w => `<div class="week-chip">GW${w.gw} <b>${escapeHtml(w.manager)} — ${w.points}</b></div>`).join('')}</div>` : ''}
+  `;
+}
+
+function renderFooter(){
+  const el = document.getElementById('footer-note');
+  const genAt = state.data?.generated_at;
+  if(!genAt) return;
+  const dt = new Date(genAt);
+  const formatted = dt.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  el.innerHTML += `<br>Standings last updated ${formatted} Jakarta time.`;
+}
+
+function startCountdown(){
+  const iso = state.data?.next_deadline || FALLBACK_DEADLINE;
+  const gw = state.data?.next_gameweek || 1;
+  const target = new Date(iso);
+
+  document.getElementById('deadline-gw').textContent = `Gameweek ${gw}`;
+  document.getElementById('deadline-date').textContent =
+    target.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + ' Jakarta time';
+
+  function tick(){
+    const diff = target.getTime() - Date.now();
+    const d = Math.max(0, Math.floor(diff / (1000*60*60*24)));
+    const h = Math.max(0, Math.floor((diff / (1000*60*60)) % 24));
+    const m = Math.max(0, Math.floor((diff / (1000*60)) % 60));
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 30000);
+}
+
+function escapeHtml(str){
+  return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.getElementById('league-toggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-league]');
+  if(!btn) return;
+  state.activeLeague = btn.dataset.league;
+  document.querySelectorAll('#league-toggle button').forEach(b => b.classList.toggle('active', b === btn));
+  renderStandings();
+});
+
+loadData();
+</script>
+</body>
+</html>
