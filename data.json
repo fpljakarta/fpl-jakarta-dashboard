@@ -1,0 +1,17 @@
+{
+  "generated_at": null,
+  "current_gameweek": null,
+  "next_gameweek": 1,
+  "next_deadline": null,
+  "leagues": {
+    "high_stakes": { "id": 325153, "name": "High Stakes" },
+    "main": { "id": 401272, "name": "Main league" }
+  },
+  "motm_motw_source_league": "main",
+  "standings": {
+    "high_stakes": [],
+    "main": []
+  },
+  "motm": [],
+  "motw": []
+}
