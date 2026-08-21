@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-21T16:04:03.311157+00:00",
-  "current_gameweek": null,
-  "next_gameweek": 1,
-  "next_deadline": "2026-08-21T17:30:00Z",
+  "generated_at": "2026-08-21T18:01:43.360797+00:00",
+  "current_gameweek": 1,
+  "next_gameweek": 2,
+  "next_deadline": "2026-08-28T17:30:00Z",
   "leagues": {
     "high_stakes": {
       "id": 325153,
