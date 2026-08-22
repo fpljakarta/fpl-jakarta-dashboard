@@ -165,9 +165,9 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a href="/">Home</a>
-      <a href="/live">Live Gameweek</a>
-      <a href="/prices" class="active">Price Changes</a>
+      <a href="index.html">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="prices.html" class="active">Price Changes</a>
       <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
     </div>
   </nav>
@@ -219,14 +219,40 @@
 <script>
 let priceData = null;
 
-async function load(){
+// A deployed copy of this page is only as fresh as the host's last build, but
+// the data files are refreshed in the repo every few minutes. So ask GitHub for
+// the repo copy as well as the deployed one and keep whichever was generated
+// later. If GitHub is unreachable the deployed copy is still used, and if the
+// deploy is stale the repo copy carries the page.
+const REPO_DATA = 'https://raw.githubusercontent.com/fpljakarta/fpl-jakarta-dashboard/main/';
+
+async function grabJson(url, timeoutMs){
+  const stop = new AbortController();
+  const timer = setTimeout(() => stop.abort(), timeoutMs || 8000);
   try{
-    const res = await fetch('prices.json', { cache: 'no-store' });
-    priceData = await res.json();
-  }catch(e){
-    console.error('Could not load prices.json', e);
-    priceData = null;
+    const res = await fetch(url, { cache: 'no-store', signal: stop.signal });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
   }
+}
+
+async function loadJson(name){
+  const [local, remote] = await Promise.all([
+    grabJson(name).catch(() => null),
+    // Never let a slow or blocked GitHub hold up the page: the deployed copy
+    // is good enough if the repo copy does not answer quickly.
+    grabJson(REPO_DATA + name, 5000).catch(() => null),
+  ]);
+  if(!local) return remote;
+  if(!remote) return local;
+  return (remote.generated_at || '') > (local.generated_at || '') ? remote : local;
+}
+
+async function load(){
+  priceData = await loadJson('prices.json');
+  if(!priceData) console.error('Could not load prices.json');
   renderLog();
   renderMovers();
   renderMomentum();
