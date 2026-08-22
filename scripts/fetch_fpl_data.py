@@ -7,8 +7,8 @@ Pulls the season-long picture for FPL Jakarta from the official
                from that league's own members
   prices.json  price changes and transfer momentum for the price page
 
-Every commit here triggers a Netlify rebuild, and rebuilds cost credits, so
-neither file is written unless its contents actually changed. The timestamp is
+Every commit here triggers a rebuild of the site, so neither file is written
+unless its contents actually changed. The timestamp is
 ignored when comparing, otherwise the file would differ on every single run and
 rebuild the site hourly to change one line nobody reads. Between gameweeks,
 when nothing moves, this writes nothing and the site is not rebuilt at all.

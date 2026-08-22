@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FPL Jakarta</title>
+<link rel="canonical" href="https://fpljakarta.github.io/fpl-jakarta-dashboard/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -225,9 +226,9 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <a href="/" class="active">Home</a>
-      <a href="/live">Live Gameweek</a>
-      <a href="/prices">Price Changes</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="prices.html">Price Changes</a>
       <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
     </div>
   </nav>
@@ -312,14 +313,40 @@ let state = {
   activeLeague: "high_stakes",
 };
 
-async function loadData(){
+// A deployed copy of this page is only as fresh as the host's last build, but
+// the data files are refreshed in the repo every few minutes. So ask GitHub for
+// the repo copy as well as the deployed one and keep whichever was generated
+// later. If GitHub is unreachable the deployed copy is still used, and if the
+// deploy is stale the repo copy carries the page.
+const REPO_DATA = 'https://raw.githubusercontent.com/fpljakarta/fpl-jakarta-dashboard/main/';
+
+async function grabJson(url, timeoutMs){
+  const stop = new AbortController();
+  const timer = setTimeout(() => stop.abort(), timeoutMs || 8000);
   try{
-    const res = await fetch('data.json', { cache: 'no-store' });
-    state.data = await res.json();
-  }catch(e){
-    console.error('Could not load data.json', e);
-    state.data = null;
+    const res = await fetch(url, { cache: 'no-store', signal: stop.signal });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
   }
+}
+
+async function loadJson(name){
+  const [local, remote] = await Promise.all([
+    grabJson(name).catch(() => null),
+    // Never let a slow or blocked GitHub hold up the page: the deployed copy
+    // is good enough if the repo copy does not answer quickly.
+    grabJson(REPO_DATA + name, 5000).catch(() => null),
+  ]);
+  if(!local) return remote;
+  if(!remote) return local;
+  return (remote.generated_at || '') > (local.generated_at || '') ? remote : local;
+}
+
+async function loadData(){
+  state.data = await loadJson('data.json');
+  if(!state.data) console.error('Could not load data.json');
   renderAll();
   startCountdown();
 }
