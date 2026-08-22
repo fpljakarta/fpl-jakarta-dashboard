@@ -35,5 +35,5 @@ jobs:
           git config user.name "fpl-jakarta-bot"
           git config user.email "actions@users.noreply.github.com"
           git add data.json
-          git diff --staged --quiet || git commit -m "Refresh FPL data [skip ci]"
+          git diff --staged --quiet || git commit -m "Refresh FPL data"
           git push
