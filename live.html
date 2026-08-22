@@ -35,7 +35,7 @@
     padding: 0 0 80px;
   }
 
-  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  .wrap{ max-width: 1040px; margin: 0 auto; padding: 0 24px; }
 
   /* ---------- live ticker ---------- */
   .ticker{
@@ -61,7 +61,7 @@
   /* ---------- nav tabs ---------- */
   .nav{ border-bottom: 1px solid var(--line); background: var(--bg-elevated); }
   .nav-inner{
-    max-width: 880px; margin: 0 auto; padding: 0 24px;
+    max-width: 1040px; margin: 0 auto; padding: 0 24px;
     display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
   }
   .nav-inner::-webkit-scrollbar{ display: none; }
@@ -219,14 +219,14 @@
 
   /* ---------- live page additions ---------- */
   .live-head-row{
-    display:grid; grid-template-columns: 46px 1fr 52px 92px 56px 62px 24px;
+    display:grid; grid-template-columns: 50px 1fr 40px 84px 60px 60px 96px 24px;
     gap:10px; align-items:center;
     padding: 10px 16px; border-bottom:1px solid var(--line);
     font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
     color: var(--muted-dim); font-weight:700;
   }
   .live-row{
-    display:grid; grid-template-columns: 46px 1fr 52px 92px 56px 62px 24px;
+    display:grid; grid-template-columns: 50px 1fr 40px 84px 60px 60px 96px 24px;
     gap:10px; align-items:center;
     padding: 13px 16px; border-bottom:1px solid var(--line);
     cursor:pointer; transition: background .15s ease;
@@ -242,6 +242,31 @@
   .chev{ color:var(--muted-dim); font-size:11px; text-align:center; transition: transform .18s ease; }
   .live-row.open .chev{ transform: rotate(180deg); }
   .hit-tag{ color:var(--down); font-size:10.5px; font-family:'IBM Plex Mono',monospace; }
+
+  /* Anything modelled rather than reported gets the same muted sub-line, so a
+     forecast never wears the same weight as a confirmed number. */
+  .sub{
+    display:block; font-family:'IBM Plex Mono',monospace; font-weight:400;
+    font-size:10.5px; color:var(--muted-dim); letter-spacing:.03em; margin-top:2px;
+  }
+  .sub.up{ color: var(--up); }
+  .sub.down{ color: var(--down); }
+  .live-row .gwpts, .live-row .totpts{ line-height:1.15; }
+  .live-row .orcell{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-align:right;
+    color: var(--muted); line-height:1.15;
+  }
+  .live-row .orcell b{ color: var(--floodlight); font-weight:600; font-size:13px; }
+  .rank .move{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:10px;
+    letter-spacing:.02em; margin-top:1px;
+  }
+  .rank .move.up{ color: var(--up); } .rank .move.down{ color: var(--down); }
+  .proj-legend{
+    display:flex; gap:14px; flex-wrap:wrap; margin:14px 0 0;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-dim);
+  }
+  .proj-legend b{ color: var(--muted); font-weight:500; }
   .chip-tag{
     display:inline-block; margin-left:6px; padding:1px 6px; border-radius:5px;
     background:rgba(212,255,61,.15); color:var(--lime); border:1px solid var(--lime-dim);
@@ -283,9 +308,30 @@
   .pcard.bench{ opacity:.5; }
   .badge{ font-size:9.5px; }
 
-  @media (max-width: 620px){
-    .live-head-row, .live-row{ grid-template-columns: 34px 1fr 44px 50px 56px 20px; }
-    .live-head-row .h-cap, .live-row .cap-cell{ display:none; }
+  /* A card that is coming on, going off, or carrying bonus that has not landed
+     yet is outlined rather than recoloured, so the pitch still reads at a
+     glance as points. */
+  .pcard.sub-in{ border-color: var(--up); opacity:1; }
+  .pcard.sub-out{ border-color: var(--down); opacity:.55; }
+  .pcard .flag{
+    font-family:'IBM Plex Mono',monospace; font-size:9px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; padding:3px 0;
+  }
+  .pcard .flag.in{ background: rgba(110,231,160,.18); color: var(--up); }
+  .pcard .flag.out{ background: rgba(255,107,91,.16); color: var(--down); }
+  .pcard .pp .bonus{ color: var(--gold); font-size:11px; font-weight:600; }
+
+  @media (max-width: 700px){
+    /* Captain and overall rank are the first to go: on a phone the name needs
+       the room more than they do. */
+    .live-head-row, .live-row{
+      grid-template-columns: 30px 1fr 26px 46px 46px 16px;
+      gap: 8px; padding-left: 12px; padding-right: 12px;
+    }
+    .live-head-row .h-cap, .live-row .cap-cell,
+    .live-head-row .h-or, .live-row .orcell{ display:none; }
+    .wrap{ padding: 0 14px; }
+    .live-row .gwpts, .live-row .totpts{ font-size:15px; }
     .pitch{ grid-template-columns: repeat(auto-fill, minmax(80px,1fr)); }
   }
 </style>
@@ -305,6 +351,9 @@
     <div class="nav-inner">
       <a href="index.html">Home</a>
       <a href="live.html" class="active">Live Gameweek</a>
+      <a href="ownership.html">Ownership</a>
+      <a href="compare.html">Compare</a>
+      <a href="awards.html">Awards</a>
       <a href="prices.html">Price Changes</a>
       <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
     </div>
@@ -327,58 +376,29 @@
       </div>
       <p class="section-note" id="fixture-note">Loading&hellip;</p>
       <div class="table-card" id="live-mount"></div>
+      <p class="proj-legend">
+        <span><b>47</b> confirmed by FPL</span>
+        <span><b>→ 49</b> projected, with pending bonus and auto-subs</span>
+        <span><b>▲2</b> places that projection would move you</span>
+        <span><b>~91,120</b> estimated live overall rank</span>
+      </p>
       <p class="section-note" style="margin-top:14px;">
         Tap any manager to open their squad. Effective ownership is measured inside
         FPL Jakarta, not globally &mdash; a captain counts twice, so figures above 100%
-        are normal. Automatic substitutions and bonus points settle only after every
-        match has finished.
+        are normal. The projected figures apply the bonus each fixture's BPS table
+        implies, the substitutions FPL's rules imply, and the vice-captain taking
+        over from a captain who did not play. FPL only makes substitutions once
+        every match has finished, so until then those are predictions, and the
+        overall rank beside them is an estimate rather than an official figure.
       </p>
     </section>
 
     <p class="section-note" id="stamp" style="margin-top:34px;"></p>
   </div>
 
+<script src="assets/site.js"></script>
 <script>
 let state = { data:null, activeLeague:"high_stakes", open:null };
-
-function esc(s){
-  return String(s ?? "").replace(/[&<>"']/g, c => (
-    {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
-  ));
-}
-
-const CHIPS = { bboost:"BB", "3xc":"TC", freehit:"FH", wildcard:"WC", manager:"AM" };
-
-// A deployed copy of this page is only as fresh as the host's last build, but
-// the data files are refreshed in the repo every few minutes. So ask GitHub for
-// the repo copy as well as the deployed one and keep whichever was generated
-// later. If GitHub is unreachable the deployed copy is still used, and if the
-// deploy is stale the repo copy carries the page.
-const REPO_DATA = 'https://raw.githubusercontent.com/fpljakarta/fpl-jakarta-dashboard/main/';
-
-async function grabJson(url, timeoutMs){
-  const stop = new AbortController();
-  const timer = setTimeout(() => stop.abort(), timeoutMs || 8000);
-  try{
-    const res = await fetch(url, { cache: 'no-store', signal: stop.signal });
-    if(!res.ok) throw new Error('HTTP ' + res.status);
-    return await res.json();
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-async function loadJson(name){
-  const [local, remote] = await Promise.all([
-    grabJson(name).catch(() => null),
-    // Never let a slow or blocked GitHub hold up the page: the deployed copy
-    // is good enough if the repo copy does not answer quickly.
-    grabJson(REPO_DATA + name, 5000).catch(() => null),
-  ]);
-  if(!local) return remote;
-  if(!remote) return local;
-  return (remote.generated_at || '') > (local.generated_at || '') ? remote : local;
-}
 
 async function load(){
   state.data = await loadJson('live.json');
@@ -399,14 +419,12 @@ function render(){
     const f = d.fixtures;
     note.textContent = f.started === 0
       ? `${f.total} fixtures this gameweek. None have kicked off yet.`
-      : `${f.finished} of ${f.total} fixtures finished.` + (d.data_checked ? ' Scores are final.' : ' Bonus points still to settle.');
+      : `${f.finished} of ${f.total} fixtures finished.` + (d.data_checked
+          ? ' Scores are final.'
+          : ' Bonus and substitutions still to settle, so the projected column can still move.');
   } else { note.textContent = ''; }
 
-  const stamp = document.getElementById('stamp');
-  stamp.textContent = d?.generated_at
-    ? 'Last updated ' + new Date(d.generated_at).toLocaleString('en-GB',
-        { dateStyle:'medium', timeStyle:'short', timeZone:'Asia/Jakarta' }) + ' Jakarta time.'
-    : '';
+  document.getElementById('stamp').textContent = stampText(d?.generated_at);
 
   if(!managers.length){
     mount.innerHTML = `<div class="empty-card">
@@ -419,7 +437,8 @@ function render(){
   let html = `<div class="live-head-row">
     <div>Pos</div><div>Manager</div><div style="text-align:center">Yet</div>
     <div class="h-cap">Captain</div>
-    <div style="text-align:right">GW</div><div style="text-align:right">Total</div><div></div>
+    <div style="text-align:right">GW</div><div style="text-align:right">Total</div>
+    <div class="h-or" style="text-align:right">Overall</div><div></div>
   </div>`;
 
   managers.forEach(m => {
@@ -428,13 +447,30 @@ function render(){
     const chip = CHIPS[m.chip] ? `<span class="chip-tag">${CHIPS[m.chip]}</span>` : '';
     const hit = m.hit ? ` <span class="hit-tag">-${m.hit}</span>` : '';
 
+    // Where the projection differs from the confirmed figure, it goes on a
+    // quieter second line rather than replacing the number people came for.
+    const gwProj = m.gw_projected != null && m.gw_projected !== m.gw_points
+      ? `<span class="sub ${m.gw_projected > m.gw_points ? 'up' : 'down'}">→ ${m.gw_projected}</span>`
+      : '';
+    const totProj = m.total_projected != null && m.total_projected !== m.total
+      ? `<span class="sub ${m.total_projected > m.total ? 'up' : 'down'}">→ ${m.total_projected}</span>`
+      : '';
+
+    // The position a manager would hold if every pending bonus and predicted
+    // substitution landed.
+    const shift = m.projected_rank != null ? m.live_rank - m.projected_rank : 0;
+    const move = shift
+      ? `<span class="move ${shift > 0 ? 'up' : 'down'}">${shift > 0 ? '▲' : '▼'}${Math.abs(shift)}</span>`
+      : '';
+
     html += `<div class="live-row ${isOpen?'open':''}" data-entry="${m.entry}">
-      <div class="rank ${m.live_rank===1?'gold':''}">${m.live_rank}</div>
+      <div class="rank ${m.live_rank===1?'gold':''}">${m.live_rank}${move}</div>
       <div class="manager"><span class="name">${esc(m.team)}${chip}</span><span class="team">${esc(m.manager)}</span></div>
       <div class="yet ${m.yet_to_play===0?'none':''}">${m.yet_to_play}</div>
       <div class="cap cap-cell">${esc(capName)}<small>${m.played}/${m.of} played</small></div>
-      <div class="gwpts">${m.gw_points}${hit}</div>
-      <div class="totpts">${m.total}</div>
+      <div class="gwpts">${m.gw_points}${hit}${gwProj}</div>
+      <div class="totpts">${m.total}${totProj}</div>
+      <div class="orcell">${overallCell(m)}</div>
       <div class="chev">▼</div>
     </div>`;
 
@@ -452,25 +488,51 @@ function render(){
   });
 }
 
+/* The overall rank cell: the confirmed figure, with the live estimate under
+   it. The estimate is never given the emphasis of the real one. */
+function overallCell(m){
+  const bits = [];
+  if(m.or_official) bits.push(`<b>${commas(m.or_official)}</b>`);
+  if(m.or_live){
+    bits.push(`<span class="sub est" title="Estimated from a sample of managers across the whole game — not an official figure">~${commas(m.or_live)} live</span>`);
+  }
+  return bits.length ? bits.join('') : '—';
+}
+
 function squadHtml(m, lg, d){
   const starters = m.picks.filter(p => !p.benched).sort((a,b) => a.slot - b.slot);
   const bench    = m.picks.filter(p =>  p.benched).sort((a,b) => a.slot - b.slot);
+  const subIn  = new Set(m.subbed_in || []);
+  const subOut = new Set(m.subbed_out || []);
 
   const card = p => {
     const info = d.players?.[p.id] || {};
     const eo = lg.eo?.[p.id];
-    const pts = (info.points || 0) * (p.mult || 1);
-    const badge = p.captain ? ' <span class="badge">Ⓒ</span>'
-                : p.vice    ? ' <span class="badge">Ⓥ</span>' : '';
+    const pending = d.bonus?.[p.id] || 0;
+    // The armband may have moved to the vice, in which case he is the one
+    // being doubled, whatever the multiplier FPL recorded at deadline.
+    const mult = p.id === m.captain ? (m.chip === '3xc' ? 3 : 2) : (p.benched ? 0 : 1);
+    const pts = (info.points || 0) * mult;
+    const badge = p.id === m.captain ? ' <span class="badge">Ⓒ</span>'
+                : p.vice             ? ' <span class="badge">Ⓥ</span>' : '';
     const status = info.finished ? 'done' : (info.started ? 'playing' : '');
     const mark = info.finished ? '✓' : (info.started ? '●' : '○');
-    return `<div class="pcard ${status} ${p.benched?'bench':''}">
+    const flag = subIn.has(p.id)  ? '<div class="flag in">Coming on</div>'
+               : subOut.has(p.id) ? '<div class="flag out">Auto-sub</div>' : '';
+    return `<div class="pcard ${status} ${p.benched && !subIn.has(p.id) ? 'bench' : ''}
+        ${subIn.has(p.id) ? 'sub-in' : ''} ${subOut.has(p.id) ? 'sub-out' : ''}">
       <div class="pn">${esc(info.name || '—')}${badge}</div>
       <div class="pt">${esc(info.team||'')} · ${esc(info.pos||'')} ${mark}</div>
+      ${flag}
       <div class="peo ${eo>=100?'hot':''}">${eo!=null?eo.toFixed(1)+'%':'—'}</div>
-      <div class="pp">${pts}</div>
+      <div class="pp">${pts}${pending ? ` <span class="bonus">+${pending * (mult || 1)}</span>` : ''}</div>
     </div>`;
   };
+
+  const swing = [];
+  if(m.pending_bonus) swing.push(`<span class="meta-pill">Bonus to come <b style="color:var(--gold)">+${m.pending_bonus}</b></span>`);
+  if(m.sub_gain) swing.push(`<span class="meta-pill">Auto-subs <b class="${m.sub_gain > 0 ? 'up-txt' : 'down-txt'}">${signed(m.sub_gain)}</b></span>`);
+  if(m.captain_changed) swing.push(`<span class="meta-pill">Armband <b>moved to vice</b></span>`);
 
   return `<div class="squad">
     <div class="squad-meta">
@@ -479,11 +541,14 @@ function squadHtml(m, lg, d){
       <span class="meta-pill">Transfers <b>${m.transfers}</b></span>
       ${m.hit ? `<span class="meta-pill">Hit <b style="color:var(--down)">-${m.hit}</b></span>` : ''}
       <span class="meta-pill">Yet to play <b>${m.yet_to_play}</b></span>
-      ${m.chip ? `<span class="meta-pill">Chip <b>${esc(m.chip)}</b></span>` : ''}
+      <span class="meta-pill">Bench <b>${m.bench_points ?? 0}</b></span>
+      ${m.chip ? `<span class="meta-pill">Chip <b>${esc(CHIP_LONG[m.chip] || m.chip)}</b></span>` : ''}
+      ${swing.join('')}
     </div>
     <div class="squad-line">Starting XI</div>
     <div class="pitch">${starters.map(card).join('')}</div>
-    ${bench.length ? `<div class="squad-line">Bench &mdash; not counted</div>
+    ${bench.length ? `<div class="squad-line">Bench &mdash; ${
+        m.chip === 'bboost' ? 'all counting' : 'not counted unless substituted on'}</div>
       <div class="pitch">${bench.map(card).join('')}</div>` : ''}
   </div>`;
 }

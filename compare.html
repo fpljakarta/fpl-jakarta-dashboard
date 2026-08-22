@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta — Compare Managers</title>
+<link rel="canonical" href="https://fpljakarta.github.io/fpl-jakarta-dashboard/compare.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .pickers{ display:grid; grid-template-columns: 1fr auto 1fr; gap:14px; align-items:center; }
+  @media (max-width:640px){ .pickers{ grid-template-columns:1fr; } .pickers .vs{ text-align:center; } }
+  .vs{
+    font-family:'Anton', sans-serif; font-size:20px; color: var(--muted-dim);
+    text-transform:uppercase; letter-spacing:.04em;
+  }
+
+  .scoreline{
+    margin-top:18px; background: linear-gradient(135deg, #16362a 0%, var(--bg-elevated) 60%);
+    border:1px solid var(--line); border-radius: var(--radius); padding: 24px 26px;
+    display:grid; grid-template-columns: 1fr auto 1fr; gap:18px; align-items:center;
+    position:relative; overflow:hidden;
+  }
+  .scoreline::after{
+    content:''; position:absolute; right:-40px; top:-40px; width:180px; height:180px;
+    background: radial-gradient(circle, rgba(212,255,61,.14), transparent 70%);
+  }
+  .side{ min-width:0; z-index:1; }
+  .side.right{ text-align:right; }
+  .side .nm{
+    font-family:'Anton', sans-serif; font-size:22px; text-transform:uppercase;
+    letter-spacing:.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .side .mg{ color: var(--muted); font-size:13px; margin-top:2px; }
+  .side .sc{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:40px;
+    color: var(--lime); line-height:1; margin-top:12px;
+  }
+  .side .proj{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--muted-dim); margin-top:6px;
+  }
+  .swing{ text-align:center; z-index:1; }
+  .swing .lab{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.12em;
+    text-transform:uppercase; color: var(--muted-dim); margin-bottom:6px;
+  }
+  .swing .val{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:26px; }
+  .swing .val.pos{ color: var(--up); } .swing .val.neg{ color: var(--down); }
+  .swing .val.flat{ color: var(--muted-dim); }
+
+  .cols{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; margin-top:20px; }
+  @media (max-width:820px){ .cols{ grid-template-columns:1fr; } }
+  .col{
+    background: var(--bg-elevated); border:1px solid var(--line);
+    border-radius: var(--radius); overflow:hidden;
+  }
+  .col-head{
+    padding:13px 16px; border-bottom:1px solid var(--line);
+    font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+    color: var(--muted-dim); font-weight:700;
+    display:flex; justify-content:space-between; align-items:baseline; gap:8px;
+  }
+  .col-head b{ font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0; }
+  .col.a .col-head{ color: var(--lime-dim); }
+  .col.b .col-head{ color: var(--gold); }
+  .col-row{
+    display:grid; grid-template-columns: 1fr auto; gap:10px; align-items:center;
+    padding:10px 16px; border-bottom:1px solid rgba(30,68,56,.55);
+  }
+  .col-row:last-child{ border-bottom:none; }
+  .col-row .pn{ font-size:13.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .col-row .pm{ font-size:11px; color:var(--muted-dim); font-family:'IBM Plex Mono', monospace; }
+  .col-row .pv{ font-family:'IBM Plex Mono', monospace; font-size:14px; font-weight:600; }
+  .col-row.bench{ opacity:.5; }
+  .col-row .badge{ font-size:10px; color: var(--lime); }
+  .col-empty{ padding:22px 16px; color: var(--muted-dim); font-size:13px; text-align:center; }
+
+  .yet{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-dim); }
+  .metarow{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Head to head</span>
+      <span class="ticker-item">Shared players cancel out; the differentials decide it</span>
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Head to head</span>
+      <span class="ticker-item">Shared players cancel out; the differentials decide it</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="ownership.html">Ownership</a>
+      <a href="compare.html" class="active">Compare</a>
+      <a href="awards.html">Awards</a>
+      <a href="prices.html">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+    </div>
+  </nav>
+
+  <div class="wrap wide">
+    <header>
+      <p class="eyebrow" id="gw-tag">Head to head</p>
+      <h1>Com<span>pare</span></h1>
+      <p class="lede">Put any two managers side by side. The players they share cancel out
+        &mdash; what is left is the ground each one can actually gain, and how much of it
+        is still to play.</p>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>Pick two</b></div>
+        <div class="toggle" id="league-toggle">
+          <button data-league="high_stakes" class="active">High Stakes</button>
+          <button data-league="main">Main league</button>
+        </div>
+      </div>
+
+      <div class="pickers">
+        <select class="field" id="pick-a"></select>
+        <span class="vs">vs</span>
+        <select class="field" id="pick-b"></select>
+      </div>
+
+      <div id="compare-mount"></div>
+    </section>
+
+    <p class="section-note" id="stamp" style="margin-top:34px;"></p>
+
+    <footer>
+      Points shown are the official live figures. Where a projection differs &mdash;
+      pending bonus, a predicted substitution, an armband that has moved to the
+      vice-captain &mdash; it is noted under each score.
+    </footer>
+  </div>
+
+<script src="assets/site.js"></script>
+<script>
+let state = { data:null, league:'high_stakes', a:null, b:null };
+
+async function load(){
+  state.data = await loadJson('live.json');
+  render();
+}
+
+function managers(){
+  return state.data?.leagues?.[state.league]?.managers || [];
+}
+
+function fillPickers(){
+  const list = managers();
+  const options = list.map(m =>
+    `<option value="${m.entry}">${esc(m.team)} — ${esc(m.manager)}</option>`).join('');
+
+  // Default to the top two, which is the comparison most people want first.
+  if(!list.some(m => m.entry === state.a)) state.a = list[0]?.entry ?? null;
+  if(!list.some(m => m.entry === state.b) || state.b === state.a){
+    state.b = (list.find(m => m.entry !== state.a) || {}).entry ?? null;
+  }
+
+  const a = document.getElementById('pick-a');
+  const b = document.getElementById('pick-b');
+  a.innerHTML = options; b.innerHTML = options;
+  a.value = state.a ?? ''; b.value = state.b ?? '';
+}
+
+function render(){
+  const d = state.data;
+  const mount = document.getElementById('compare-mount');
+
+  document.getElementById('gw-tag').textContent =
+    d ? ((d.gw_name || ('Gameweek ' + d.gameweek)) + ' · ' +
+         (d.leagues?.[state.league]?.name || '')) : 'Head to head';
+  document.getElementById('stamp').textContent = stampText(d?.generated_at);
+
+  if(!managers().length){
+    mount.innerHTML = `<div class="empty-card" style="margin-top:18px;">
+      <div class="t">Nothing to compare yet</div>
+      <div class="s">Squads appear here once the gameweek deadline passes.</div>
+    </div>`;
+    return;
+  }
+
+  fillPickers();
+  const A = managers().find(m => m.entry === state.a);
+  const B = managers().find(m => m.entry === state.b);
+  if(!A || !B){ mount.innerHTML = ''; return; }
+
+  mount.innerHTML = scoreline(A, B) + squads(A, B);
+}
+
+/* What a pick is worth to its manager right now, armband included. */
+function value(m, pick){
+  const info = state.data.players?.[pick.id] || {};
+  const mult = pick.id === m.captain ? (m.chip === '3xc' ? 3 : 2) : 1;
+  return pick.benched ? 0 : (info.points || 0) * mult;
+}
+
+function scoreline(A, B){
+  const gap = A.gw_points - B.gw_points;
+  const projGap = (A.gw_projected ?? A.gw_points) - (B.gw_projected ?? B.gw_points);
+  const tone = gap > 0 ? 'pos' : gap < 0 ? 'neg' : 'flat';
+
+  const proj = m => {
+    const bits = [];
+    if(m.pending_bonus) bits.push(`+${m.pending_bonus} bonus`);
+    if(m.sub_gain) bits.push(`${signed(m.sub_gain)} subs`);
+    if(m.captain_changed) bits.push('armband moved');
+    return bits.length ? `projected ${m.gw_projected} · ${bits.join(' · ')}` : '';
+  };
+
+  return `<div class="scoreline">
+    <div class="side">
+      <div class="nm">${esc(A.team)}</div>
+      <div class="mg">${esc(A.manager)}</div>
+      <div class="sc">${A.gw_points}</div>
+      <div class="proj">${esc(proj(A))}</div>
+    </div>
+    <div class="swing">
+      <div class="lab">Gap</div>
+      <div class="val ${tone}">${signed(gap)}</div>
+      <div class="lab" style="margin-top:10px;">Projected</div>
+      <div class="val ${projGap > 0 ? 'pos' : projGap < 0 ? 'neg' : 'flat'}"
+           style="font-size:17px;">${signed(projGap)}</div>
+    </div>
+    <div class="side right">
+      <div class="nm">${esc(B.team)}</div>
+      <div class="mg">${esc(B.manager)}</div>
+      <div class="sc">${B.gw_points}</div>
+      <div class="proj">${esc(proj(B))}</div>
+    </div>
+  </div>
+  <div class="metarow">
+    <span class="meta-pill">${esc(A.team)} yet to play <b>${A.yet_to_play}</b></span>
+    <span class="meta-pill">${esc(B.team)} yet to play <b>${B.yet_to_play}</b></span>
+    <span class="meta-pill">Total <b>${commas(A.total)}</b> v <b>${commas(B.total)}</b></span>
+    ${A.chip ? `<span class="meta-pill">${esc(A.team)} <b>${esc(CHIP_LONG[A.chip] || A.chip)}</b></span>` : ''}
+    ${B.chip ? `<span class="meta-pill">${esc(B.team)} <b>${esc(CHIP_LONG[B.chip] || B.chip)}</b></span>` : ''}
+  </div>`;
+}
+
+function squads(A, B){
+  const ofA = new Map(A.picks.map(p => [p.id, p]));
+  const ofB = new Map(B.picks.map(p => [p.id, p]));
+
+  const onlyA = A.picks.filter(p => !ofB.has(p.id));
+  const onlyB = B.picks.filter(p => !ofA.has(p.id));
+  const shared = A.picks.filter(p => ofB.has(p.id));
+
+  // A shared player still swings the tie if only one of them captains or
+  // benches him, so the middle column carries each side's figure.
+  const sharedSwing = shared.reduce(
+    (sum, p) => sum + value(A, p) - value(B, ofB.get(p.id)), 0);
+  const swingA = onlyA.reduce((s, p) => s + value(A, p), 0);
+  const swingB = onlyB.reduce((s, p) => s + value(B, p), 0);
+
+  const row = (m, pick, other) => {
+    const info = state.data.players?.[pick.id] || {};
+    const mark = info.finished ? '✓' : (info.started ? '●' : '○');
+    const cap = pick.id === m.captain ? ' <span class="badge">Ⓒ</span>' : '';
+    const v = value(m, pick);
+    const paired = other
+      ? `<span class="pv" style="color:var(--muted)">${value(other.m, other.pick)}</span>` : '';
+    return `<div class="col-row ${pick.benched ? 'bench' : ''}">
+      <div style="min-width:0">
+        <div class="pn">${esc(info.name || '—')}${cap}</div>
+        <div class="pm">${esc(info.team || '')} · ${esc(info.pos || '')} ${mark}${
+          pick.benched ? ' · bench' : ''}</div>
+      </div>
+      <div style="display:flex; gap:12px; align-items:baseline;">
+        <span class="pv">${v}</span>${paired}
+      </div>
+    </div>`;
+  };
+
+  const column = (cls, title, total, picks, render) => `<div class="col ${cls}">
+    <div class="col-head"><span>${title}</span><b>${signed(total)}</b></div>
+    ${picks.length ? picks.map(render).join('')
+      : '<div class="col-empty">Nothing here — identical picks.</div>'}
+  </div>`;
+
+  return `<div class="cols">
+    ${column('a', `Only ${esc(A.team)}`, swingA,
+      onlyA.sort((x, y) => x.slot - y.slot), p => row(A, p))}
+    ${column('', 'Both', sharedSwing,
+      shared.sort((x, y) => x.slot - y.slot),
+      p => row(A, p, { m: B, pick: ofB.get(p.id) }))}
+    ${column('b', `Only ${esc(B.team)}`, swingB,
+      onlyB.sort((x, y) => x.slot - y.slot), p => row(B, p))}
+  </div>
+  <p class="section-note" style="margin-top:14px;">
+    Each outer column is that manager's own haul from players the other does not
+    have. The middle column is the <em>net</em> between them — ${esc(A.team)}'s
+    figure first, ${esc(B.team)}'s second — because a player they both own still
+    separates them if only one of them captained or benched him.
+    ${signed(swingA)} − ${signed(swingB)} ${sharedSwing >= 0 ? '+' : '−'}
+    ${Math.abs(sharedSwing)} = ${signed(swingA - swingB + sharedSwing)} before hits.
+  </p>`;
+}
+
+wireLeagueToggle(document.getElementById('league-toggle'), league => {
+  state.league = league;
+  state.a = state.b = null;
+  render();
+});
+
+document.getElementById('pick-a').addEventListener('change', e => {
+  state.a = Number(e.target.value);
+  if(state.a === state.b) state.b = (managers().find(m => m.entry !== state.a) || {}).entry;
+  render();
+});
+document.getElementById('pick-b').addEventListener('change', e => {
+  state.b = Number(e.target.value);
+  if(state.a === state.b) state.a = (managers().find(m => m.entry !== state.b) || {}).entry;
+  render();
+});
+
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>

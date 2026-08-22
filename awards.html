@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta — Awards of the Week</title>
+<link rel="canonical" href="https://fpljakarta.github.io/fpl-jakarta-dashboard/awards.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .awards-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; }
+  @media (max-width: 720px){ .awards-grid{ grid-template-columns: 1fr; } }
+
+  .award{
+    border:1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 20px; position:relative; overflow:hidden;
+    background: var(--bg-elevated);
+  }
+  /* Good news leans lime, bad news leans red, and the wash sits behind the
+     text rather than tinting it. */
+  .award.good{
+    border-color: rgba(110,231,160,.4);
+    background: linear-gradient(135deg, rgba(110,231,160,.10) 0%, var(--bg-elevated) 62%);
+  }
+  .award.bad{
+    border-color: rgba(255,107,91,.4);
+    background: linear-gradient(135deg, rgba(255,107,91,.10) 0%, var(--bg-elevated) 62%);
+  }
+  .award.unwon{ border-style: dashed; border-color: var(--line); background: var(--bg-elevated); }
+
+  .award-top{ display:flex; align-items:center; gap:14px; }
+  .award-icon{
+    width:44px; height:44px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    border:1.5px solid var(--line); color: var(--muted);
+  }
+  .award.good .award-icon{ border-color: rgba(110,231,160,.55); color: var(--up); }
+  .award.bad  .award-icon{ border-color: rgba(255,107,91,.55); color: var(--down); }
+  .award-icon svg{ width:20px; height:20px; }
+
+  .award-title{ font-weight:700; font-size:16.5px; letter-spacing:.01em; }
+  .award-sub{ color: var(--muted); font-size:13px; margin-top:2px; line-height:1.35; }
+
+  .award-winner{
+    margin-top:15px; background: rgba(0,0,0,.28); border:1px solid var(--line);
+    border-radius:999px; padding:10px 16px;
+    display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+  }
+  .award-winner .who{ font-weight:600; font-size:14px; }
+  .award-winner .team{ color: var(--muted-dim); font-size:13px; }
+  .award-winner .val{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:14px;
+    margin-left:auto; white-space:nowrap;
+  }
+  .award.good .award-winner .val{ color: var(--up); }
+  .award.bad  .award-winner .val{ color: var(--down); }
+  .award-note{
+    margin-top:9px; color: var(--muted-dim); font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .award.unwon .award-winner{ color: var(--muted-dim); font-size:13.5px; justify-content:center; }
+
+  .controls{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center; }
+  .gw-picker{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .gw-picker .lab{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color: var(--muted-dim);
+  }
+  .provisional{
+    display:inline-flex; align-items:center; gap:8px; margin-top:16px;
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--lime-dim);
+    letter-spacing:.05em; text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Awards of the Week</span>
+      <span class="ticker-item">Winners settle once every match has finished</span>
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Awards of the Week</span>
+      <span class="ticker-item">Winners settle once every match has finished</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="ownership.html">Ownership</a>
+      <a href="compare.html">Compare</a>
+      <a href="awards.html" class="active">Awards</a>
+      <a href="prices.html">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+    </div>
+  </nav>
+
+  <div class="wrap wide">
+    <header>
+      <p class="eyebrow" id="gw-tag">Awards</p>
+      <h1>Awards of the <span>Week</span></h1>
+      <p class="lede">Twelve trophies handed out every gameweek, in both leagues &mdash;
+        the highest score, the worst captain, the points left rotting on the bench,
+        and the differential nobody else dared.</p>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>This week's winners</b></div>
+        <div class="toggle" id="league-toggle">
+          <button data-league="high_stakes" class="active">High Stakes</button>
+          <button data-league="main">Main league</button>
+        </div>
+      </div>
+
+      <div class="controls" style="margin-bottom:20px;">
+        <div class="gw-picker">
+          <span class="lab">Gameweek</span>
+          <div class="chips" id="gw-chips"></div>
+        </div>
+      </div>
+
+      <div id="awards-mount"></div>
+      <p class="provisional" id="provisional"></p>
+    </section>
+
+    <p class="section-note" id="stamp" style="margin-top:34px;"></p>
+
+    <footer>
+      Awards are worked out from the official FPL API, in-league. While a gameweek
+      is still being played the winners move with the scores &mdash; substitutions and
+      bonus points only settle once every match has finished, and a trophy can change
+      hands until then.
+    </footer>
+  </div>
+
+<script src="assets/site.js"></script>
+<script>
+let state = { data:null, league:'high_stakes', gw:null };
+
+/* Outline glyphs in the same spirit as the rest of the site: one stroke
+   weight, no fills, sized by the button around them. */
+const ICONS = {
+  star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l2.6 5.8 6.4.7-4.8 4.3 1.3 6.2L12 17l-5.5 3 1.3-6.2L3 9.5l6.4-.7z"/></svg>',
+  layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>',
+  chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 5-7"/><path d="M3 21h18"/></svg>',
+  trophy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 01-8 0z"/><path d="M8 5H5v2a3 3 0 003 3M16 5h3v2a3 3 0 01-3 3"/><path d="M12 13v4M9 21h6M10 21c0-2 1-4 2-4s2 2 2 4"/></svg>',
+};
+
+async function load(){
+  state.data = await loadJson('awards.json');
+  if(!state.data){
+    document.getElementById('awards-mount').innerHTML = `<div class="empty-card">
+      <div class="t">No awards yet</div>
+      <div class="s">Trophies appear once the first gameweek deadline has passed.</div>
+    </div>`;
+    return;
+  }
+  if(state.gw === null) state.gw = state.data.current_gw;
+  render();
+}
+
+function weekKeys(){
+  return Object.keys(state.data.gameweeks || {})
+    .map(Number).sort((a,b) => b - a);
+}
+
+function render(){
+  const d = state.data;
+  const weeks = weekKeys();
+  if(!weeks.includes(state.gw)) state.gw = weeks[0];
+
+  document.getElementById('gw-chips').innerHTML = weeks.map(gw =>
+    `<button class="chip ${gw === state.gw ? 'active' : ''}" data-gw="${gw}">GW${gw}</button>`
+  ).join('');
+
+  const week = d.gameweeks[String(state.gw)];
+  const lg = week?.leagues?.[state.league];
+  const cards = lg?.awards || [];
+
+  document.getElementById('gw-tag').textContent =
+    (week?.name || ('Gameweek ' + state.gw)) + ' · ' + (lg?.name || '');
+
+  const prov = document.getElementById('provisional');
+  if(week && !week.final){
+    prov.innerHTML = '<span class="live-dot"></span> Provisional &mdash; '
+      + 'this gameweek is still being played, so these can still change.';
+  } else {
+    prov.textContent = '';
+  }
+
+  document.getElementById('stamp').textContent = stampText(d.generated_at);
+
+  const mount = document.getElementById('awards-mount');
+  if(!cards.length){
+    mount.innerHTML = `<div class="empty-card">
+      <div class="t">Nothing to award yet</div>
+      <div class="s">Squads have not been picked for this gameweek.</div>
+    </div>`;
+    return;
+  }
+
+  mount.innerHTML = '<div class="awards-grid">' + cards.map(card).join('') + '</div>';
+}
+
+function card(a){
+  const won = !!a.manager;
+  const tone = won ? a.tone : 'unwon';
+  const winner = won
+    ? `<div class="award-winner">
+         <span class="who">${esc(a.manager)}</span>
+         <span class="team">${esc(a.team)}</span>
+         <span class="val">${esc(a.value ?? '')}</span>
+       </div>`
+    : `<div class="award-winner">Not awarded this week</div>`;
+
+  return `<div class="award ${tone}">
+    <div class="award-top">
+      <div class="award-icon">${ICONS[a.icon] || ICONS.trophy}</div>
+      <div>
+        <div class="award-title">${esc(a.title)}</div>
+        <div class="award-sub">${esc(a.subtitle)}</div>
+      </div>
+    </div>
+    ${winner}
+    ${won && a.note ? `<div class="award-note">${esc(a.note)}</div>` : ''}
+  </div>`;
+}
+
+wireLeagueToggle(document.getElementById('league-toggle'), league => {
+  state.league = league;
+  render();
+});
+
+document.getElementById('gw-chips').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  state.gw = Number(btn.dataset.gw);
+  render();
+});
+
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>

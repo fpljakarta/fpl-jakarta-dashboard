@@ -1,6 +1,7 @@
 """
 Builds the live gameweek picture for FPL Jakarta from the official
-(unauthenticated) FPL API, and writes it to live.json at the repo root.
+(unauthenticated) FPL API, and writes it to live.json and awards.json at the
+repo root.
 
 For every manager in both leagues this collects:
   - their starting XI and bench for the current gameweek
@@ -13,30 +14,53 @@ It also computes LEAGUE effective ownership: how heavily each footballer is
 owned inside FPL Jakarta, counting captaincy twice. This is deliberately
 different from the global ownership figure livefpl shows - inside a mini
 league, what matters is who is differential against your rivals, not against
-the world.
+the world. Both numbers are published, so the pages can show them side by
+side.
+
+Two scores are published for every manager. The OFFICIAL one is what FPL has
+confirmed. The PROJECTED one adds the bonus points the BPS table implies, the
+automatic substitutions the rules imply, and the vice-captain taking over from
+a captain who did not play. The first is a fact and the second is a forecast,
+so they are kept as separate numbers rather than blended into one. The
+arithmetic behind them lives in live_calc.py and is tested by
+test_live_calc.py.
+
+Also published: an estimate of each manager's live overall rank. FPL does not
+expose one - league and overall ranks only move once a gameweek is finalised -
+so it is worked out by sampling managers from across the global game, scoring
+their squads the same way, and reading our own totals off the resulting curve.
+It is an estimate, is labelled as one everywhere it appears, and is absent
+rather than wrong if the sampling fails. Nothing is taken from livefpl.
 
 Run by .github/workflows/refresh-live.yml. The workflow polls often, but this
-script only asks it to publish at moments that are worth a rebuild: shortly
-before a fixture kicks off, at its half time, and when it finishes. Every
-publish rebuilds the site, so publishing on a timer instead of on match events
-costs a build for no visible benefit. On a day with no
-football this writes nothing at all.
+script only asks it to publish when there is something worth publishing:
+shortly before a fixture kicks off, at half time, at full time, and every few
+minutes while a match is actually being played. On a day with no football this
+writes nothing at all.
+
 Season-long standings, manager of the month and manager of the week are
 handled separately by fetch_fpl_data.py and are not touched here.
 
-Known limitations, both deliberate:
-  - Automatic substitutions are not applied. FPL only makes subs once every
-    match in the gameweek has finished, so any live sub shown anywhere is a
-    prediction. Bench points are displayed but not counted.
-  - Provisional bonus points are not included. Bonus lands after each match
-    is marked finished, so scores firm up through the day.
+Known limitation, deliberate: automatic substitutions shown during a gameweek
+are predictions. FPL only makes them once every match has finished, so no
+source can do better than predict until then.
 """
 
 import json
 import os
 import time
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+
+from live_calc import (
+    captain_counts,
+    estimate_rank,
+    ownership_counts,
+    provisional_bonus,
+    score_squad,
+    weekly_awards,
+)
+from live_calc import build_rank_curve as make_rank_curve
 
 BASE = "https://fantasy.premierleague.com/api"
 
@@ -62,6 +86,28 @@ PRE_MATCH_WINDOW = 20
 # fires on the next poll instead, a little into the second half.
 HALF_TIME_MINUTE = 45
 
+# While a match is actually being played, republish on this cadence even
+# without a milestone. Provisional bonus moves continuously as BPS changes, so
+# without this the projected scores would sit still for a whole half.
+LIVE_REFRESH_MINUTES = 5
+
+# The overall-rank curve costs about a hundred requests to rebuild, so it is
+# reused between publishes for this long. Scores drift slowly enough across
+# eleven million managers that a curve a few minutes old is still a good read.
+RANK_CURVE_MAX_AGE_MINUTES = 15
+
+# FPL's global "Overall" league. Sampling it at these depths gives a spread of
+# scores from the very top of the game down to the tail, which is what the
+# score-to-rank curve is interpolated from. Ranks past the field size are
+# dropped rather than fetched.
+SAMPLE_RANKS = [
+    1, 3, 10, 30, 100, 300, 1_000, 3_000, 10_000, 30_000, 100_000,
+    300_000, 700_000, 1_500_000, 3_000_000, 5_000_000, 7_000_000, 9_000_000,
+]
+OVERALL_LEAGUE = 314
+STANDINGS_PAGE_SIZE = 50
+SAMPLES_PER_PAGE = 5
+
 
 def set_output(name, value):
     """Hand a value back to the workflow step that ran us."""
@@ -72,10 +118,9 @@ def set_output(name, value):
     print(f"::publish::{name}={value}")
 
 
-def load_previous():
-    """The live.json already in the repo, which carries what we last published."""
+def load_json_file(path):
     try:
-        with open("live.json", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             return json.load(f)
     except (OSError, ValueError):
         return None
@@ -111,6 +156,24 @@ def due_milestones(fixtures, already, now):
     return due
 
 
+def match_in_progress(fixtures):
+    return any(fx.get("started") and not (fx.get("finished") or
+               fx.get("finished_provisional")) for fx in fixtures)
+
+
+def minutes_since(stamp, now):
+    """Minutes between an ISO timestamp and now, or None if unreadable."""
+    if not stamp:
+        return None
+    try:
+        then = datetime.fromisoformat(stamp)
+    except ValueError:
+        return None
+    if then.tzinfo is None:
+        then = then.replace(tzinfo=timezone.utc)
+    return (now - then).total_seconds() / 60
+
+
 def fetch_json(url, retries=3, delay=3):
     last_err = None
     for _ in range(retries):
@@ -122,6 +185,15 @@ def fetch_json(url, retries=3, delay=3):
             last_err = e
             time.sleep(delay)
     raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+
+
+def try_fetch(url):
+    """Fetch that returns None instead of raising, for optional extras."""
+    try:
+        return fetch_json(url, retries=2, delay=2)
+    except RuntimeError as e:
+        print(f"  skipped: {e}")
+        return None
 
 
 def current_gameweek(bootstrap):
@@ -174,6 +246,11 @@ def build_player_index(bootstrap, live, fixtures):
         has_started = any(f in started for f in fixture_ids)
         has_finished = bool(fixture_ids) and all(f in finished for f in fixture_ids)
 
+        try:
+            owned = float(el.get("selected_by_percent") or 0)
+        except ValueError:
+            owned = 0.0
+
         players[pid] = {
             "name": el["web_name"],
             "team": teams.get(el["team"], ""),
@@ -182,68 +259,80 @@ def build_player_index(bootstrap, live, fixtures):
             "minutes": (stat.get("stats") or {}).get("minutes", 0),
             "started": has_started,
             "finished": has_finished,
+            # Global ownership, so the ownership page can set what FPL Jakarta
+            # does against what the rest of the world does.
+            "owned": round(owned, 1),
+            "cost": round((el.get("now_cost") or 0) / 10, 1),
         }
     return players
 
 
-def collect_managers(rows, gw, players, cache):
+def score_entry(picks_data, players, bonus):
+    """Both scores, the squad, and everything the pages need, for one entry."""
+    hist = picks_data.get("entry_history") or {}
+    chip = picks_data.get("active_chip")
+    bench_boost = chip == "bboost"
+
+    picks = []
+    for p in picks_data.get("picks", []):
+        picks.append({
+            "id": p["element"],
+            "slot": p["position"],
+            "mult": p["multiplier"],
+            "captain": bool(p.get("is_captain")),
+            "vice": bool(p.get("is_vice_captain")),
+            "benched": not (p["position"] <= 11 or bench_boost),
+        })
+
+    scored = score_squad(picks, players, bonus=bonus,
+                         bench_boost=bench_boost, chip=chip)
+
+    counted = [p for p in picks if not p["benched"]]
+    played = sum(1 for p in counted if (players.get(p["id"]) or {}).get("finished"))
+
+    return {
+        "picks": picks,
+        "scored": scored,
+        "chip": chip,
+        "hit": hist.get("event_transfers_cost", 0),
+        "transfers": hist.get("event_transfers", 0),
+        "value": round(hist.get("value", 0) / 10, 1),
+        "bank": round(hist.get("bank", 0) / 10, 1),
+        "played": played,
+        "yet_to_play": len(counted) - played,
+        "of": len(counted),
+    }
+
+
+def picks_for(entry, gw, cache):
+    """Fetch and cache one entry's picks, or None if they have none."""
+    if entry not in cache:
+        try:
+            cache[entry] = fetch_json(f"{BASE}/entry/{entry}/event/{gw}/picks/")
+        except RuntimeError:
+            # A manager who joined late may have no picks for this gameweek.
+            cache[entry] = None
+        time.sleep(REQUEST_PAUSE)
+    return cache[entry]
+
+
+def collect_managers(rows, gw, players, bonus, cache):
     """Fetch each manager's picks and work out their live gameweek score."""
     managers = []
     for row in rows:
         entry = row["entry"]
-
-        if entry not in cache:
-            try:
-                cache[entry] = fetch_json(f"{BASE}/entry/{entry}/event/{gw}/picks/")
-            except RuntimeError:
-                # A manager who joined late may have no picks for this gameweek.
-                cache[entry] = None
-            time.sleep(REQUEST_PAUSE)
-
-        picks_data = cache[entry]
+        picks_data = picks_for(entry, gw, cache)
         if not picks_data:
             continue
 
-        hist = picks_data.get("entry_history") or {}
-        chip = picks_data.get("active_chip")
-        bench_boost = chip == "bboost"
+        s = score_entry(picks_data, players, bonus)
+        scored = s["scored"]
+        hit = s["hit"]
 
-        gw_points = 0
-        yet_to_play = 0
-        played = 0
-        counted = 0
-        captain_id = vice_id = None
-        picks = []
-
-        for p in picks_data.get("picks", []):
-            pid = p["element"]
-            info = players.get(pid, {})
-            mult = p["multiplier"]
-            on_pitch = p["position"] <= 11 or bench_boost
-
-            if p.get("is_captain"):
-                captain_id = pid
-            if p.get("is_vice_captain"):
-                vice_id = pid
-
-            if on_pitch:
-                counted += 1
-                gw_points += info.get("points", 0) * mult
-                if info.get("finished"):
-                    played += 1
-                else:
-                    yet_to_play += 1
-
-            picks.append({
-                "id": pid,
-                "slot": p["position"],
-                "mult": mult,
-                "captain": bool(p.get("is_captain")),
-                "vice": bool(p.get("is_vice_captain")),
-                "benched": not on_pitch,
-            })
-
-        hit = hist.get("event_transfers_cost", 0)
+        # `total` in the standings tracks live points but `rank` does not, so
+        # subtracting this gameweek's score is the reliable way back to where
+        # the manager stood before it started.
+        pre_gw = (row["total"] or 0) - (row.get("event_total") or 0)
 
         managers.append({
             "entry": entry,
@@ -251,19 +340,28 @@ def collect_managers(rows, gw, players, cache):
             "team": row["entry_name"],
             "rank": row["rank"],
             "last_rank": row.get("last_rank", 0),
-            "total": row["total"],
-            "gw_points": gw_points - hit,
+            "pre_gw_total": pre_gw,
+            "total": pre_gw + scored["official"] - hit,
+            "total_projected": pre_gw + scored["projected"] - hit,
+            "gw_points": scored["official"] - hit,
+            "gw_projected": scored["projected"] - hit,
+            "pending_bonus": scored["pending_bonus"],
+            "sub_gain": scored["sub_gain"],
+            "subbed_in": scored["subbed_in"],
+            "subbed_out": scored["subbed_out"],
             "hit": hit,
-            "transfers": hist.get("event_transfers", 0),
-            "chip": chip,
-            "captain": captain_id,
-            "vice": vice_id,
-            "yet_to_play": yet_to_play,
-            "played": played,
-            "of": counted,
-            "value": round(hist.get("value", 0) / 10, 1),
-            "bank": round(hist.get("bank", 0) / 10, 1),
-            "picks": picks,
+            "transfers": s["transfers"],
+            "chip": s["chip"],
+            "captain": scored["captain"],
+            "captain_changed": scored["captain_changed"],
+            "vice": next((p["id"] for p in s["picks"] if p["vice"]), None),
+            "bench_points": scored["bench_points"],
+            "yet_to_play": s["yet_to_play"],
+            "played": s["played"],
+            "of": s["of"],
+            "value": s["value"],
+            "bank": s["bank"],
+            "picks": s["picks"],
         })
 
     return managers
@@ -286,18 +384,135 @@ def effective_ownership(managers):
     return {pid: round(v * 100 / n, 1) for pid, v in totals.items()}
 
 
+# --------------------------------------------------------------------------
+# live overall rank
+# --------------------------------------------------------------------------
+
+def choose_sample_entries(total_players):
+    """
+    Pick managers spread across the whole global field.
+
+    One request to the Overall league returns fifty managers at a known depth,
+    so a handful of requests at geometrically spaced depths covers the game
+    from the champion down to the tail. Depths past the end of the field are
+    dropped, and a page that will not load is simply skipped: a thinner curve
+    is still a usable curve.
+    """
+    sample = []
+    seen = set()
+    for target in SAMPLE_RANKS:
+        if total_players and target > total_players:
+            break
+        page = max(1, (target + STANDINGS_PAGE_SIZE - 1) // STANDINGS_PAGE_SIZE)
+        data = try_fetch(
+            f"{BASE}/leagues-classic/{OVERALL_LEAGUE}/standings/"
+            f"?page_standings={page}"
+        )
+        time.sleep(REQUEST_PAUSE)
+        results = ((data or {}).get("standings") or {}).get("results") or []
+        for row in results[:SAMPLES_PER_PAGE]:
+            entry = row.get("entry")
+            if not entry or entry in seen:
+                continue
+            seen.add(entry)
+            sample.append({
+                "entry": entry,
+                "rank": row.get("rank") or target,
+                "pre_gw_total": (row.get("total") or 0) - (row.get("event_total") or 0),
+            })
+    return sample
+
+
+def build_rank_curve(sample, gw, players, bonus, cache):
+    """
+    Score every sampled manager the same way we score our own, then turn the
+    result into a score-to-rank curve.
+
+    Sampled managers are scored with the same projection our own leagues get,
+    so the two sides of the comparison are made of the same thing. A manager
+    whose picks will not load is left out.
+    """
+    points = []
+    for s in sample:
+        picks_data = picks_for(s["entry"], gw, cache)
+        if not picks_data:
+            continue
+        scored = score_entry(picks_data, players, bonus)
+        total = (s["pre_gw_total"] + scored["scored"]["projected"] - scored["hit"])
+        points.append((total, s["rank"]))
+    return make_rank_curve(points)
+
+
+def overall_ranks(entries, previous, gw, data_checked):
+    """
+    Each manager's confirmed overall rank, refreshed once a gameweek.
+
+    FPL only moves overall rank when a gameweek is finalised, so this is worth
+    one request per manager per gameweek and no more. The cached copy travels
+    inside live.json.
+    """
+    cached = previous or {}
+    fresh = (cached.get("gw") == gw and cached.get("checked") == data_checked)
+    if fresh and cached.get("ranks"):
+        return cached
+
+    ranks = dict(cached.get("ranks") or {})
+    for entry in entries:
+        data = try_fetch(f"{BASE}/entry/{entry}/")
+        time.sleep(REQUEST_PAUSE)
+        if data and data.get("summary_overall_rank"):
+            ranks[str(entry)] = data["summary_overall_rank"]
+    return {"gw": gw, "checked": data_checked, "ranks": ranks}
+
+
+# --------------------------------------------------------------------------
+# awards
+# --------------------------------------------------------------------------
+
+def store_awards(path, gw, gw_name, final, leagues, players, now):
+    """
+    Fold this gameweek's awards into the archive, leaving past weeks alone.
+
+    The current week is recomputed on every publish because it is still
+    moving. Weeks already written keep whatever they finished with.
+    """
+    archive = load_json_file(path) or {}
+    weeks = archive.get("gameweeks") or {}
+
+    weeks[str(gw)] = {
+        "gw": gw,
+        "name": gw_name,
+        "final": final,
+        "leagues": {
+            key: {
+                "name": lg["name"],
+                "awards": weekly_awards(
+                    lg["managers"], players, ownership=ownership_counts(lg["managers"])
+                ),
+            }
+            for key, lg in leagues.items()
+        },
+    }
+
+    return {
+        "generated_at": now.isoformat(timespec="seconds"),
+        "current_gw": gw,
+        "gameweeks": weeks,
+    }
+
+
 def main():
     now = datetime.now(timezone.utc)
     forced = os.environ.get("FORCE_PUBLISH", "").lower() in ("1", "true", "yes")
 
     # Deciding whether to publish costs two requests. Only if the answer is yes
-    # do we go on to fetch every manager's picks, which costs sixty more.
+    # do we go on to fetch every manager's picks, which costs far more.
     bootstrap = fetch_json(f"{BASE}/bootstrap-static/")
     ev = current_gameweek(bootstrap)
     gw = ev["id"]
     fixtures = fetch_json(f"{BASE}/fixtures/?event={gw}")
 
-    previous = load_previous()
+    previous = load_json_file("live.json")
     same_gw = previous is not None and previous.get("gameweek") == gw
     already = dict((previous.get("published") or {}) if same_gw else {})
 
@@ -312,6 +527,14 @@ def main():
     due = due_milestones(fixtures, already, now)
     reasons += [f"fixture {fid} {kind}" for fid, kind in due]
 
+    # Bonus points move continuously while a match is on, so a live match is
+    # reason enough on its own once the last publish has aged out.
+    in_play = match_in_progress(fixtures)
+    if in_play and same_gw:
+        age = minutes_since((previous or {}).get("generated_at"), now)
+        if age is None or age >= LIVE_REFRESH_MINUTES:
+            reasons.append(f"match in play, last publish {age and round(age)}m ago")
+
     if not reasons:
         upcoming = [f for f in fixtures if not f.get("started")]
         print(f"GW{gw}: nothing to publish - "
@@ -325,6 +548,9 @@ def main():
 
     live = fetch_json(f"{BASE}/event/{gw}/live/")
     players = build_player_index(bootstrap, live, fixtures)
+    bonus = provisional_bonus(fixtures, live["elements"])
+    if bonus:
+        print(f"GW{gw}: {len(bonus)} players carrying provisional bonus.")
 
     kicked_off = sum(1 for f in fixtures if f.get("started"))
     done = sum(1 for f in fixtures if f.get("finished"))
@@ -335,18 +561,64 @@ def main():
 
     for key, cfg in LEAGUES.items():
         rows, name = fetch_standings(cfg["id"])
-        managers = collect_managers(rows, gw, players, picks_cache)
-        managers.sort(key=lambda m: (-m["gw_points"], m["rank"]))
-        for i, m in enumerate(managers, start=1):
-            m["live_rank"] = i
+        managers = collect_managers(rows, gw, players, bonus, picks_cache)
 
+        # Two orderings: what the table shows now, and what it would show if
+        # every pending bonus and substitution landed as predicted.
+        by_official = sorted(managers, key=lambda m: (-m["gw_points"], m["rank"]))
+        for i, m in enumerate(by_official, start=1):
+            m["live_rank"] = i
+        by_projected = sorted(managers, key=lambda m: (-m["gw_projected"], m["rank"]))
+        for i, m in enumerate(by_projected, start=1):
+            m["projected_rank"] = i
+
+        for m in managers:
+            baseline = m["last_rank"] or m["rank"]
+            m["rank_change"] = baseline - m["live_rank"]
+
+        managers = by_official
         out_leagues[key] = {
             "id": cfg["id"],
             "name": cfg["name"],
             "full_name": name,
             "managers": managers,
             "eo": effective_ownership(managers),
+            "owners": ownership_counts(managers),
+            "captains": captain_counts(managers),
         }
+
+    # The overall-rank curve is the expensive part, so it is rebuilt only when
+    # the cached one has aged out. Everything about it degrades to absent
+    # rather than wrong.
+    cached_curve = (previous or {}).get("or_curve") if same_gw else None
+    curve_age = minutes_since((cached_curve or {}).get("built_at"), now)
+    total_players = bootstrap.get("total_players") or 0
+
+    if cached_curve and curve_age is not None and curve_age < RANK_CURVE_MAX_AGE_MINUTES:
+        curve = [tuple(p) for p in cached_curve.get("points") or []]
+        curve_meta = cached_curve
+        print(f"GW{gw}: reusing the rank curve, {round(curve_age)}m old.")
+    else:
+        sample = choose_sample_entries(total_players)
+        curve = build_rank_curve(sample, gw, players, bonus, picks_cache)
+        curve_meta = {
+            "built_at": now.isoformat(timespec="seconds"),
+            "points": [list(p) for p in curve],
+            "samples": len(curve),
+            "total_players": total_players,
+        }
+        print(f"GW{gw}: rank curve built from {len(curve)} sampled managers.")
+
+    official_or = overall_ranks(
+        sorted({m["entry"] for lg in out_leagues.values() for m in lg["managers"]}),
+        (previous or {}).get("official_or") if same_gw else None,
+        gw, bool(ev.get("data_checked")),
+    )
+
+    for lg in out_leagues.values():
+        for m in lg["managers"]:
+            m["or_official"] = official_or["ranks"].get(str(m["entry"]))
+            m["or_live"] = estimate_rank(curve, m["total_projected"], total_players)
 
     # Only ship the footballers somebody in the league actually owns.
     used = set()
@@ -366,8 +638,14 @@ def main():
         "finished": bool(ev.get("finished")),
         "data_checked": bool(ev.get("data_checked")),
         "fixtures": {"total": len(fixtures), "started": kicked_off, "finished": done},
+        "average": ev.get("average_entry_score"),
+        "highest": ev.get("highest_score"),
+        "total_players": total_players,
         "players": {str(pid): players[pid] for pid in used if pid in players},
+        "bonus": {str(pid): v for pid, v in bonus.items() if pid in used},
         "leagues": out_leagues,
+        "or_curve": curve_meta,
+        "official_or": official_or,
         # What we have already published this gameweek, so the next run knows
         # which moments are spent. This travels with the committed file.
         "published": already,
@@ -375,6 +653,13 @@ def main():
 
     with open("live.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, separators=(",", ":"))
+
+    awards = store_awards(
+        "awards.json", gw, payload["gw_name"], payload["data_checked"],
+        out_leagues, players, now,
+    )
+    with open("awards.json", "w", encoding="utf-8") as f:
+        json.dump(awards, f, separators=(",", ":"))
 
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
