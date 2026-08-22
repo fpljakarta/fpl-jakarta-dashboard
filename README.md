@@ -27,13 +27,21 @@ site, everything lives under the `/fpl-jakarta-dashboard/` path — so all
 internal links must be relative (`live.html`, not `/live`). A root-absolute link
 resolves to `fpljakarta.github.io/` and 404s.
 
-The Netlify mirror at https://fpljkt.netlify.app is optional. Its free tier bills
-build minutes, and a commit every ten minutes during a gameweek exhausts a
-month of them, after which the deploy freezes on stale data. Two things keep
-that from mattering:
+The Netlify mirror at https://fpljkt.netlify.app is optional, and automatic
+builds are switched off there. Netlify's free tier bills build minutes, and a
+commit every ten minutes during a gameweek exhausts a month of them, after
+which the deploy freezes. That no longer matters, because each page reads its
+data file from the deployed copy *and* from `raw.githubusercontent.com` and
+uses whichever `generated_at` is later — so a deploy that never rebuilds still
+shows current numbers, and a slow or unreachable GitHub (5s timeout) falls back
+to the deployed copy.
 
-- `netlify.toml` skips the build for commits that only touch the data files.
-- Each page reads its data file from the deployed copy *and* from
-  `raw.githubusercontent.com`, and uses whichever `generated_at` is later. So a
-  frozen deploy still shows current numbers, and a slow or unreachable GitHub
-  (5s timeout) falls back to the deployed copy.
+The mirror therefore only needs a new deploy when the HTML itself changes, and
+that deploy should be a file upload rather than a build, which costs no build
+minutes:
+
+    npx netlify-cli login
+    npx netlify-cli deploy --prod --dir=. --site fpljkt
+
+`netlify.toml` is there for the case where automatic builds are ever switched
+back on: it skips the build for commits that only touch the data files.
