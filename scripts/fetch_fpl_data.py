@@ -1,17 +1,30 @@
 """
-Pulls live data for FPL Jakarta from the official (unauthenticated) FPL API:
-  - league standings (both leagues)
-  - manager of the month (from FPL's own monthly phases)
-  - manager of the week, all played gameweeks (net of transfer hits)
+Pulls the season-long picture for FPL Jakarta from the official
+(unauthenticated) FPL API and writes two files at the repo root:
 
-Writes the result to data.json at the repo root. Run hourly by
-.github/workflows/refresh.yml. The cup is not published by FPL's API and is
+  data.json    league standings for both leagues, plus manager of the month
+               and manager of the week worked out separately for each league
+               from that league's own members
+  prices.json  price changes and transfer momentum for the price page
+
+Every commit here triggers a Netlify rebuild, and rebuilds cost credits, so
+neither file is written unless its contents actually changed. The timestamp is
+ignored when comparing, otherwise the file would differ on every single run and
+rebuild the site hourly to change one line nobody reads. Between gameweeks,
+when nothing moves, this writes nothing and the site is not rebuilt at all.
+
+Prices are refreshed at most once a day for the same reason: transfer counts
+tick up continuously, so writing them every hour would cost a rebuild an hour
+for figures that only matter once a day, when FPL applies price changes.
+
+Run hourly by .github/workflows/refresh.yml. The live gameweek view is handled
+separately by fetch_live_data.py. The cup is not published by FPL's API and is
 maintained by hand, so it is not touched here.
 """
 
 import json
+import os
 import time
-import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
@@ -22,12 +35,27 @@ LEAGUES = {
     "main": {"id": 401272, "name": "Main league"},
 }
 
-# Manager of the month / week are computed from this league's members, since
-# everyone in the group is in the main league. Switch to "high_stakes" if that
-# ever changes.
-MOTM_MOTW_SOURCE = "main"
-
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; fpl-jakarta-dashboard/1.0)"}
+
+POSITIONS = {1: "GKP", 2: "DEF", 3: "MID", 4: "FWD"}
+
+# How many past price changes to keep on the price page.
+CHANGE_LOG_LIMIT = 120
+
+# How many players to show in each transfer momentum column.
+MOMENTUM_SIZE = 15
+
+# Courtesy pause between manager requests so we are not hammering the API.
+REQUEST_PAUSE = 0.25
+
+
+def set_output(name, value):
+    """Hand a value back to the workflow step that ran us."""
+    path = os.environ.get("GITHUB_OUTPUT")
+    if path:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(f"{name}={value}\n")
+    print(f"::publish::{name}={value}")
 
 
 def fetch_json(url, retries=3, delay=3):
@@ -41,6 +69,23 @@ def fetch_json(url, retries=3, delay=3):
             last_err = e
             time.sleep(delay)
     raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+
+
+def load_json(path):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+def content_changed(path, payload):
+    """True if this file would differ from what is on disk, timestamp aside."""
+    old = load_json(path)
+    if old is None:
+        return True
+    strip = lambda d: {k: v for k, v in d.items() if k != "generated_at"}
+    return strip(old) != strip(payload)
 
 
 def fetch_standings(league_id):
@@ -60,38 +105,17 @@ def fetch_history(entry_id):
     return fetch_json(f"{BASE}/entry/{entry_id}/history/")
 
 
-def main():
-    bootstrap = fetch_json(f"{BASE}/bootstrap-static/")
-    events = bootstrap.get("events", [])
-    phases = [p for p in bootstrap.get("phases", []) if p.get("name") != "Overall"]
+def winners_for(entries, phases, histories):
+    """
+    Manager of the month and manager of the week among these entries only, so
+    each league is judged against its own members rather than the whole group.
+    Scores are net of transfer hits.
+    """
+    per_gw_best, per_phase_totals = {}, {}
 
-    next_event = next((e for e in events if e.get("is_next")), None)
-    current_event = next((e for e in events if e.get("is_current")), None)
-
-    standings = {}
-    for key, cfg in LEAGUES.items():
-        results = fetch_standings(cfg["id"])
-        standings[key] = [
-            {
-                "rank": r["rank"],
-                "last_rank": r["last_rank"],
-                "manager": r["player_name"],
-                "team": r["entry_name"],
-                "entry_id": r["entry"],
-                "total": r["total"],
-                "event_total": r["event_total"],
-            }
-            for r in results
-        ]
-
-    source_entries = standings.get(MOTM_MOTW_SOURCE, [])
-    per_gw_best = {}
-    per_phase_totals = {}
-
-    for entry in source_entries:
-        try:
-            hist = fetch_history(entry["entry_id"])
-        except Exception:
+    for entry in entries:
+        hist = histories.get(entry["entry_id"])
+        if not hist:
             continue
 
         for gw in hist.get("current", []):
@@ -114,7 +138,7 @@ def main():
 
     motw = [per_gw_best[gw] for gw in sorted(per_gw_best)]
 
-    entry_lookup = {e["entry_id"]: e for e in source_entries}
+    lookup = {e["entry_id"]: e for e in entries}
     motm = []
     for phase in phases:
         bucket = per_phase_totals.get(phase["name"], {})
@@ -122,31 +146,172 @@ def main():
             motm.append({"month": phase["name"], "manager": None, "team": None, "points": None})
             continue
         winner_id = max(bucket, key=bucket.get)
-        winner = entry_lookup.get(winner_id, {})
-        motm.append(
-            {
-                "month": phase["name"],
-                "manager": winner.get("manager"),
-                "team": winner.get("team"),
-                "points": bucket[winner_id],
-            }
-        )
+        winner = lookup.get(winner_id, {})
+        motm.append({
+            "month": phase["name"],
+            "manager": winner.get("manager"),
+            "team": winner.get("team"),
+            "points": bucket[winner_id],
+        })
 
-    output = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+    return motm, motw
+
+
+def build_prices(bootstrap, previous, now):
+    """
+    The price page's data. Returns None when there is nothing new worth
+    writing, so a quiet run does not cost a rebuild.
+
+    FPL only tells us a player's current price and how far it has moved since
+    the season started, never when it moved. So we keep our own log: every time
+    a price differs from the one we recorded last, that change is dated and
+    added. The log is what makes this a price *changes* page rather than a
+    price list.
+    """
+    today = now.date().isoformat()
+    teams = {t["id"]: t["short_name"] for t in bootstrap["teams"]}
+    elements = bootstrap["elements"]
+
+    seen_before = (previous or {}).get("prices") or {}
+
+    observed = []
+    for el in elements:
+        was = seen_before.get(str(el["id"]))
+        if was is None or was == el["now_cost"]:
+            continue
+        observed.append({
+            "date": today,
+            "name": el["web_name"],
+            "team": teams.get(el["team"], ""),
+            "pos": POSITIONS.get(el["element_type"], ""),
+            "from": round(was / 10, 1),
+            "to": round(el["now_cost"] / 10, 1),
+        })
+
+    # Refresh when a price actually moved, or once a day so the momentum
+    # figures do not go stale. Otherwise leave the file alone.
+    already_today = (previous or {}).get("snapshot_date") == today
+    if previous and not observed and already_today:
+        return None
+
+    def describe(el, extra=None):
+        row = {
+            "name": el["web_name"],
+            "team": teams.get(el["team"], ""),
+            "pos": POSITIONS.get(el["element_type"], ""),
+            "price": round(el["now_cost"] / 10, 1),
+        }
+        if extra:
+            row.update(extra)
+        return row
+
+    moved = [e for e in elements if e["cost_change_start"]]
+    risers = sorted(moved, key=lambda e: -e["cost_change_start"])
+    fallers = sorted(moved, key=lambda e: e["cost_change_start"])
+
+    def net(el):
+        return el["transfers_in_event"] - el["transfers_out_event"]
+
+    by_net = sorted(elements, key=net)
+
+    log = observed + ((previous or {}).get("log") or [])
+
+    return {
+        "generated_at": now.isoformat(timespec="seconds"),
+        "snapshot_date": today,
+        "season_started": bool(moved),
+        "risers": [
+            describe(e, {"change": round(e["cost_change_start"] / 10, 1)})
+            for e in risers if e["cost_change_start"] > 0
+        ][:MOMENTUM_SIZE],
+        "fallers": [
+            describe(e, {"change": round(e["cost_change_start"] / 10, 1)})
+            for e in fallers if e["cost_change_start"] < 0
+        ][:MOMENTUM_SIZE],
+        "momentum_in": [
+            describe(e, {"net": net(e)}) for e in reversed(by_net[-MOMENTUM_SIZE:])
+        ],
+        "momentum_out": [
+            describe(e, {"net": net(e)}) for e in by_net[:MOMENTUM_SIZE]
+        ],
+        "log": log[:CHANGE_LOG_LIMIT],
+        # Baseline for spotting the next move. Not for display.
+        "prices": {str(e["id"]): e["now_cost"] for e in elements},
+    }
+
+
+def main():
+    now = datetime.now(timezone.utc)
+
+    bootstrap = fetch_json(f"{BASE}/bootstrap-static/")
+    events = bootstrap.get("events", [])
+    phases = [p for p in bootstrap.get("phases", []) if p.get("name") != "Overall"]
+
+    next_event = next((e for e in events if e.get("is_next")), None)
+    current_event = next((e for e in events if e.get("is_current")), None)
+
+    standings = {}
+    for key, cfg in LEAGUES.items():
+        standings[key] = [
+            {
+                "rank": r["rank"],
+                "last_rank": r["last_rank"],
+                "manager": r["player_name"],
+                "team": r["entry_name"],
+                "entry_id": r["entry"],
+                "total": r["total"],
+                "event_total": r["event_total"],
+            }
+            for r in fetch_standings(cfg["id"])
+        ]
+
+    # One history per manager, shared between the leagues. Anyone in both is
+    # only fetched once.
+    everyone = {e["entry_id"] for rows in standings.values() for e in rows}
+    histories = {}
+    for entry_id in sorted(everyone):
+        try:
+            histories[entry_id] = fetch_history(entry_id)
+        except Exception:  # noqa: BLE001 - one bad manager should not stop the run
+            continue
+        time.sleep(REQUEST_PAUSE)
+
+    motm, motw = {}, {}
+    for key, rows in standings.items():
+        motm[key], motw[key] = winners_for(rows, phases, histories)
+
+    data = {
+        "generated_at": now.isoformat(timespec="seconds"),
         "current_gameweek": current_event["id"] if current_event else None,
         "next_gameweek": next_event["id"] if next_event else None,
         "next_deadline": next_event["deadline_time"] if next_event else None,
         "leagues": {k: {"id": v["id"], "name": v["name"]} for k, v in LEAGUES.items()},
-        "motm_motw_source_league": MOTM_MOTW_SOURCE,
         "standings": standings,
         "motm": motm,
         "motw": motw,
     }
 
-    with open("data.json", "w") as f:
-        json.dump(output, f, indent=2)
-        f.write("\n")
+    wrote = []
+
+    if content_changed("data.json", data):
+        with open("data.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+            f.write("\n")
+        wrote.append("data.json")
+
+    prices = build_prices(bootstrap, load_json("prices.json"), now)
+    if prices and content_changed("prices.json", prices):
+        with open("prices.json", "w", encoding="utf-8") as f:
+            json.dump(prices, f, separators=(",", ":"))
+        wrote.append("prices.json")
+
+    if wrote:
+        print(f"Updated {', '.join(wrote)} - publishing.")
+        set_output("publish", "true")
+    else:
+        print("Standings, winners and prices all unchanged - nothing to publish, "
+              "leaving the files untouched so the site is not rebuilt.")
+        set_output("publish", "false")
 
 
 if __name__ == "__main__":

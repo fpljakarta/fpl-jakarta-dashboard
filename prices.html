@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta — Price Changes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a1f1a;
+    --bg-elevated: #0f2921;
+    --line: #1e4438;
+    --floodlight: #f3f6ee;
+    --muted: #8caf9f;
+    --muted-dim: #5c7c70;
+    --lime: #d4ff3d;
+    --lime-dim: #a7cc2e;
+    --up: #6ee7a0;
+    --down: #ff6b5b;
+    --gold: #f0b429;
+    --radius: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% -10%, #163d31 0%, transparent 45%),
+      radial-gradient(circle at 100% 0%, #12281f 0%, transparent 40%),
+      var(--bg);
+    color: var(--floodlight);
+    font-family: 'Inter', sans-serif;
+    padding: 0 0 80px;
+  }
+
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- live ticker ---------- */
+  .ticker{
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-elevated);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 9px 0;
+  }
+  .ticker-track{
+    display: inline-flex;
+    gap: 40px;
+    animation: scroll 13s linear infinite;
+    padding-left: 100%;
+  }
+  @keyframes scroll{ to{ transform: translateX(-100%); } }
+  .ticker-item{ font-family:'IBM Plex Mono', monospace; font-size: 12.5px; color: var(--muted); display:inline-flex; align-items:center; gap:8px;}
+  .live-dot{ width:6px; height:6px; border-radius:50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); animation: pulse 1.4s ease-in-out infinite; flex-shrink:0;}
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .ticker-item b{ color: var(--floodlight); font-weight:600; }
+
+  /* ---------- nav tabs ---------- */
+  .nav{ border-bottom: 1px solid var(--line); background: var(--bg-elevated); }
+  .nav-inner{
+    max-width: 880px; margin: 0 auto; padding: 0 24px;
+    display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar{ display: none; }
+  .nav-inner a{
+    font-family:'Inter'; font-weight: 600; font-size: 13.5px;
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+    padding: 14px 16px; border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .nav-inner a:hover{ color: var(--floodlight); }
+  .nav-inner a.active{ color: var(--lime); border-bottom-color: var(--lime); }
+  .nav-inner a .ext{ font-size: 10px; opacity: .55; margin-left: 3px; }
+
+  /* ---------- header ---------- */
+  header{ padding: 56px 0 40px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--lime-dim); margin: 0 0 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width: 22px; height: 1px; background: var(--lime-dim); }
+  h1{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size: clamp(48px, 9vw, 88px);
+    line-height: .92;
+    letter-spacing: .01em;
+    margin: 0 0 16px;
+    text-transform: uppercase;
+  }
+  h1 span{ color: var(--lime); }
+  header p.lede{ color: var(--muted); font-size: 16px; max-width: 560px; line-height:1.5; margin:0; }
+
+  /* ---------- sections ---------- */
+  section{ margin-top: 56px; }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:20px; gap: 16px; flex-wrap:wrap;}
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px; letter-spacing:.1em; text-transform:uppercase; color: var(--muted-dim);
+    display:flex; align-items:center; gap: 10px;
+  }
+  .section-label b{ color: var(--floodlight); font-weight:600; letter-spacing:.03em; }
+  .section-note{ color: var(--muted); font-size: 13.5px; }
+
+  .cols{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width:640px){ .cols{ grid-template-columns: 1fr; } }
+
+  .card{ background: var(--bg-elevated); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden; }
+  .card-head{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em;
+    text-transform:uppercase; color: var(--muted-dim);
+    padding: 13px 18px; border-bottom:1px solid var(--line);
+    display:flex; align-items:center; gap:8px;
+  }
+  .card-head.up{ color: var(--up); } .card-head.down{ color: var(--down); }
+
+  .prow{
+    display:grid; grid-template-columns: 1fr auto auto;
+    align-items:center; gap: 12px; padding: 11px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .prow:last-child{ border-bottom:none; }
+  .who{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .who .name{ font-weight:600; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .who .meta{ font-size:11.5px; color: var(--muted-dim); font-family:'IBM Plex Mono', monospace; }
+  .price{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:14.5px; }
+  .delta{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; min-width:56px; text-align:right; }
+  .delta.up{ color: var(--up); } .delta.down{ color: var(--down); }
+
+  .empty-card{
+    background: var(--bg-elevated); border:1px solid var(--line); border-radius: var(--radius);
+    padding: 40px 24px; text-align:center;
+  }
+  .empty-card .t{ font-weight:600; font-size:15px; margin-bottom:6px; }
+  .empty-card .s{ color: var(--muted); font-size:13.5px; max-width:420px; margin:0 auto; line-height:1.5; }
+
+  .log-row{
+    display:grid; grid-template-columns: 82px 1fr auto;
+    align-items:center; gap:12px; padding: 11px 18px; border-bottom:1px solid var(--line);
+  }
+  .log-row:last-child{ border-bottom:none; }
+  .log-date{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--muted-dim); }
+
+  .note{
+    margin-top:14px; color: var(--muted-dim); font-size:12.5px; line-height:1.55;
+  }
+  .note a{ color: var(--lime-dim); }
+
+  footer{ margin-top:70px; padding-top:24px; border-top:1px solid var(--line); color: var(--muted-dim); font-size:12.5px; }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Prices</span>
+      <span class="ticker-item">FPL applies price changes overnight, around 08:30 Jakarta time</span>
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Prices</span>
+      <span class="ticker-item">FPL applies price changes overnight, around 08:30 Jakarta time</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/">Home</a>
+      <a href="/live">Live Gameweek</a>
+      <a href="/prices" class="active">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header>
+      <p class="eyebrow" id="stamp">Price changes</p>
+      <h1>Price <span>Changes</span></h1>
+      <p class="lede">Who has risen and fallen this season, and who the rest of the world is buying and selling right now. Transfer momentum is the clearest sign of which way a price is about to move.</p>
+    </header>
+
+    <!-- RECENT CHANGES -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>Recent changes</b></div>
+        <div class="section-note">Logged here as they happen</div>
+      </div>
+      <div id="log-mount"></div>
+    </section>
+
+    <!-- SEASON MOVERS -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">02 &nbsp;<b>Season movers</b></div>
+        <div class="section-note">Total movement since the season opened</div>
+      </div>
+      <div id="movers-mount"></div>
+    </section>
+
+    <!-- MOMENTUM -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">03 &nbsp;<b>Transfer momentum</b></div>
+        <div class="section-note">Net transfers this gameweek</div>
+      </div>
+      <div id="momentum-mount"></div>
+      <p class="note">
+        A player bought heavily enough will rise; sold heavily enough, they fall. FPL does not publish
+        the thresholds, so treat this as a strong hint rather than a prediction. For genuine predictions,
+        <a href="https://www.livefpl.net/prices" target="_blank" rel="noopener">livefpl.net/prices</a> models them properly.
+      </p>
+    </section>
+
+    <footer id="footer-note">
+      Prices come from the official Fantasy Premier League data.
+    </footer>
+  </div>
+
+<script>
+let priceData = null;
+
+async function load(){
+  try{
+    const res = await fetch('prices.json', { cache: 'no-store' });
+    priceData = await res.json();
+  }catch(e){
+    console.error('Could not load prices.json', e);
+    priceData = null;
+  }
+  renderLog();
+  renderMovers();
+  renderMomentum();
+  renderStamp();
+}
+
+function escapeHtml(str){
+  return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function money(n){ return '£' + Number(n).toFixed(1) + 'm'; }
+
+function emptyCard(title, sub){
+  return `<div class="empty-card"><div class="t">${escapeHtml(title)}</div><div class="s">${escapeHtml(sub)}</div></div>`;
+}
+
+function playerRow(p, deltaHtml){
+  return `
+    <div class="prow">
+      <div class="who">
+        <span class="name">${escapeHtml(p.name)}</span>
+        <span class="meta">${escapeHtml(p.team)} &middot; ${escapeHtml(p.pos)}</span>
+      </div>
+      <div class="price">${money(p.price)}</div>
+      ${deltaHtml}
+    </div>`;
+}
+
+function renderLog(){
+  const mount = document.getElementById('log-mount');
+  const log = priceData?.log || [];
+
+  if(!log.length){
+    mount.innerHTML = emptyCard(
+      'No price changes recorded yet',
+      'FPL has not moved any prices since this page started watching. Changes are logged here the moment they happen, usually overnight.');
+    return;
+  }
+
+  const rows = log.slice(0, 40).map(c => {
+    const up = c.to > c.from;
+    return `
+      <div class="log-row">
+        <div class="log-date">${escapeHtml(c.date)}</div>
+        <div class="who">
+          <span class="name">${escapeHtml(c.name)}</span>
+          <span class="meta">${escapeHtml(c.team)} &middot; ${escapeHtml(c.pos)}</span>
+        </div>
+        <div class="delta ${up ? 'up' : 'down'}">${up ? '▲' : '▼'} ${money(c.to)}</div>
+      </div>`;
+  }).join('');
+
+  mount.innerHTML = `<div class="card">${rows}</div>`;
+}
+
+function renderMovers(){
+  const mount = document.getElementById('movers-mount');
+  const risers = priceData?.risers || [];
+  const fallers = priceData?.fallers || [];
+
+  if(!risers.length && !fallers.length){
+    mount.innerHTML = emptyCard(
+      'Nothing has moved yet this season',
+      'Every player is still at their starting price. This fills up once FPL begins applying changes.');
+    return;
+  }
+
+  const list = (arr, dir) => arr.length
+    ? arr.map(p => playerRow(p, `<div class="delta ${dir}">${dir === 'up' ? '+' : ''}${Number(p.change).toFixed(1)}</div>`)).join('')
+    : `<div class="prow"><div class="who"><span class="meta">None yet</span></div><div></div><div></div></div>`;
+
+  mount.innerHTML = `
+    <div class="cols">
+      <div class="card">
+        <div class="card-head up">▲ Risen the most</div>
+        ${list(risers, 'up')}
+      </div>
+      <div class="card">
+        <div class="card-head down">▼ Fallen the most</div>
+        ${list(fallers, 'down')}
+      </div>
+    </div>`;
+}
+
+function renderMomentum(){
+  const mount = document.getElementById('momentum-mount');
+  const ins = priceData?.momentum_in || [];
+  const outs = priceData?.momentum_out || [];
+
+  if(!ins.length && !outs.length){
+    mount.innerHTML = emptyCard('No transfer data yet', 'This appears once the gameweek is under way.');
+    return;
+  }
+
+  const fmt = n => (n > 0 ? '+' : '') + Number(n).toLocaleString('en-GB');
+  const list = (arr, dir) => arr
+    .map(p => playerRow(p, `<div class="delta ${dir}">${fmt(p.net)}</div>`)).join('');
+
+  mount.innerHTML = `
+    <div class="cols">
+      <div class="card">
+        <div class="card-head up">▲ Bought the most</div>
+        ${list(ins, 'up')}
+      </div>
+      <div class="card">
+        <div class="card-head down">▼ Sold the most</div>
+        ${list(outs, 'down')}
+      </div>
+    </div>`;
+}
+
+function renderStamp(){
+  const at = priceData?.generated_at;
+  if(!at) return;
+  const dt = new Date(at);
+  const formatted = dt.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  document.getElementById('stamp').textContent = `Updated ${formatted} Jakarta time`;
+  document.getElementById('footer-note').innerHTML += `<br>Last checked ${formatted} Jakarta time.`;
+}
+
+load();
+</script>
+</body>
+</html>

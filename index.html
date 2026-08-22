@@ -57,6 +57,23 @@
   .ticker-item b{ color: var(--floodlight); font-weight:600; }
   .up-txt{ color: var(--up); } .down-txt{ color: var(--down); } .flat{ color: var(--muted-dim); }
 
+  /* ---------- nav tabs ---------- */
+  .nav{ border-bottom: 1px solid var(--line); background: var(--bg-elevated); }
+  .nav-inner{
+    max-width: 880px; margin: 0 auto; padding: 0 24px;
+    display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar{ display: none; }
+  .nav-inner a{
+    font-family:'Inter'; font-weight: 600; font-size: 13.5px;
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+    padding: 14px 16px; border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .nav-inner a:hover{ color: var(--floodlight); }
+  .nav-inner a.active{ color: var(--lime); border-bottom-color: var(--lime); }
+  .nav-inner a .ext{ font-size: 10px; opacity: .55; margin-left: 3px; }
+
   /* ---------- header ---------- */
   header{ padding: 56px 0 40px; }
   .eyebrow{
@@ -206,6 +223,15 @@
     <div class="ticker-track" id="ticker-track"></div>
   </div>
 
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="active">Home</a>
+      <a href="/live">Live Gameweek</a>
+      <a href="/prices">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+    </div>
+  </nav>
+
   <div class="wrap">
     <header>
       <p class="eyebrow" id="season-tag">Season 2026/27</p>
@@ -224,7 +250,7 @@
           <div class="cd-sep">:</div>
           <div class="cd-unit"><div class="num" id="cd-mins">—</div><div class="lab">Mins</div></div>
         </div>
-        <a class="signup-btn" href="https://forms.gle/zCkGBrJAWw6TfzVWA" target="_blank" rel="noopener">Sign up →</a>
+        <a class="signup-btn" href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">FPL Advice →</a>
       </div>
     </header>
 
@@ -244,7 +270,7 @@
     <section>
       <div class="section-head">
         <div class="section-label">02 &nbsp;<b>Manager of the month</b></div>
-        <div class="section-note">From FPL's own monthly rankings</div>
+        <div class="section-note">Best month in the selected league</div>
       </div>
       <div class="motm-grid" id="motm-mount"></div>
     </section>
@@ -253,7 +279,7 @@
     <section>
       <div class="section-head">
         <div class="section-label">03 &nbsp;<b>Manager of the week</b></div>
-        <div class="section-note">Highest net score, all 38 gameweeks</div>
+        <div class="section-note">Highest net score in the selected league</div>
       </div>
       <div id="motw-mount"></div>
     </section>
@@ -264,12 +290,7 @@
         <div class="section-label">04 &nbsp;<b>The cup</b></div>
         <div class="section-note">Updated by hand — FPL doesn't publish knockouts</div>
       </div>
-      <div class="cup-card">
-        <div class="cup-text">
-          <div class="tag">Format TBD</div>
-          <p>Knockout bracket and draw to be confirmed by the organisers once signups close.</p>
-        </div>
-      </div>
+      <div id="cup-mount"></div>
     </section>
 
     <footer id="footer-note">
@@ -283,7 +304,7 @@ const FALLBACK_DEADLINE = "2026-08-21T17:30:00Z"; // 22 Aug 00:30 Jakarta time
 // Ticker scroll speed in pixels per second. The strip's length changes with
 // the number of managers, so the animation duration is derived from its width
 // rather than fixed, keeping the pace identical in both leagues.
-const TICKER_PX_PER_SEC = 45;
+const TICKER_PX_PER_SEC = 90;
 const MONTH_ORDER = ["August","September","October","November","December","January","February","March","April","May"];
 
 let state = {
@@ -308,7 +329,30 @@ function renderAll(){
   renderStandings();
   renderMotm();
   renderMotw();
+  renderCup();
   renderFooter();
+}
+
+// Every section that follows the High Stakes / Main league toggle.
+function renderLeagueSections(){
+  renderTicker();
+  renderStandings();
+  renderMotm();
+  renderMotw();
+  renderCup();
+}
+
+// The month and week winners used to be one list covering the main league
+// only. They are now keyed by league. Accept either shape so that a data.json
+// written by the old script cannot blank the page.
+function forActiveLeague(block){
+  if(!block) return [];
+  return Array.isArray(block) ? block : (block[state.activeLeague] || []);
+}
+
+function activeLeagueName(){
+  return state.data?.leagues?.[state.activeLeague]?.name
+      || (state.activeLeague === 'high_stakes' ? 'High Stakes' : 'Main league');
 }
 
 function renderTicker(){
@@ -382,7 +426,7 @@ function renderStandings(){
 
 function renderMotm(){
   const mount = document.getElementById('motm-mount');
-  const data = state.data?.motm || [];
+  const data = forActiveLeague(state.data?.motm);
   const byMonth = Object.fromEntries(data.map(m => [m.month, m]));
 
   mount.innerHTML = MONTH_ORDER.map(month => {
@@ -399,7 +443,7 @@ function renderMotm(){
 
 function renderMotw(){
   const mount = document.getElementById('motw-mount');
-  const weeks = state.data?.motw || [];
+  const weeks = forActiveLeague(state.data?.motw);
 
   if(!weeks.length){
     mount.innerHTML = `
@@ -427,6 +471,20 @@ function renderMotw(){
     </div>
     ${past.length ? `<div class="past-weeks">${past.map(w => `<div class="week-chip">GW${w.gw} <b>${escapeHtml(w.manager)} — ${w.points}</b></div>`).join('')}</div>` : ''}
   `;
+}
+
+function renderCup(){
+  // FPL publishes no knockout data, so this is a placeholder until the
+  // organisers confirm a format. It still follows the toggle so the page is
+  // consistent about which league you are looking at.
+  const name = activeLeagueName();
+  document.getElementById('cup-mount').innerHTML = `
+    <div class="cup-card">
+      <div class="cup-text">
+        <div class="tag">${escapeHtml(name)} &middot; format TBD</div>
+        <p>The ${escapeHtml(name)} knockout bracket and draw are still to be confirmed by the organisers.</p>
+      </div>
+    </div>`;
 }
 
 function renderFooter(){
@@ -469,8 +527,7 @@ document.getElementById('league-toggle').addEventListener('click', (e) => {
   if(!btn) return;
   state.activeLeague = btn.dataset.league;
   document.querySelectorAll('#league-toggle button').forEach(b => b.classList.toggle('active', b === btn));
-  renderTicker();
-  renderStandings();
+  renderLeagueSections();
 });
 
 loadData();

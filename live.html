@@ -47,7 +47,7 @@
   .ticker-track{
     display: inline-flex;
     gap: 40px;
-    animation: scroll 26s linear infinite;
+    animation: scroll 13s linear infinite;
     padding-left: 100%;
   }
   @keyframes scroll{ to{ transform: translateX(-100%); } }
@@ -56,6 +56,23 @@
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
   .ticker-item b{ color: var(--floodlight); font-weight:600; }
   .up-txt{ color: var(--up); } .down-txt{ color: var(--down); }
+
+  /* ---------- nav tabs ---------- */
+  .nav{ border-bottom: 1px solid var(--line); background: var(--bg-elevated); }
+  .nav-inner{
+    max-width: 880px; margin: 0 auto; padding: 0 24px;
+    display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar{ display: none; }
+  .nav-inner a{
+    font-family:'Inter'; font-weight: 600; font-size: 13.5px;
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+    padding: 14px 16px; border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .nav-inner a:hover{ color: var(--floodlight); }
+  .nav-inner a.active{ color: var(--lime); border-bottom-color: var(--lime); }
+  .nav-inner a .ext{ font-size: 10px; opacity: .55; margin-left: 3px; }
 
   /* ---------- header ---------- */
   header{ padding: 56px 0 40px; }
@@ -277,17 +294,26 @@
   <div class="ticker">
     <div class="ticker-track">
       <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Live</span>
-      <span class="ticker-item">Live scores and squads refresh every 15 minutes</span>
+      <span class="ticker-item">Scores update at kick-off, half time and full time</span>
       <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Live</span>
-      <span class="ticker-item">Live scores and squads refresh every 15 minutes</span>
+      <span class="ticker-item">Scores update at kick-off, half time and full time</span>
     </div>
   </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/">Home</a>
+      <a href="/live" class="active">Live Gameweek</a>
+      <a href="/prices">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+    </div>
+  </nav>
 
   <div class="wrap">
     <header>
       <p class="eyebrow" id="gw-tag">Live gameweek</p>
       <h1>Live <span>Gameweek</span></h1>
-      <p class="lede">Every manager's squad as it happens &mdash; who is captaining what, who has players left to play, and how heavily owned each pick is inside our league. <a href="index.html" style="color:var(--lime);">&larr; Back to the season table</a></p>
+      <p class="lede">Every manager's squad as it happens &mdash; who is captaining what, who has players left to play, and how heavily owned each pick is inside our league.</p>
     </header>
 
     <section>
