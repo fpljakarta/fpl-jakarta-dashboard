@@ -2,7 +2,9 @@ name: Refresh live gameweek
 
 on:
   schedule:
-    - cron: '*/15 * * * *'   # every 15 minutes
+    # Polls often and cheaply. The script decides whether the moment is worth
+    # publishing, and only a publish commits, which is what triggers a rebuild.
+    - cron: '*/10 * * * *'
   workflow_dispatch: {}
   push:
     branches: [main]
@@ -28,9 +30,15 @@ jobs:
           python-version: '3.11'
 
       - name: Fetch live gameweek data
+        id: fetch
+        env:
+          # A manual run or a change to the code always publishes, so there is
+          # a way to force a refresh without waiting for a match.
+          FORCE_PUBLISH: ${{ github.event_name != 'schedule' }}
         run: python scripts/fetch_live_data.py
 
       - name: Commit live.json if it changed
+        if: steps.fetch.outputs.publish == 'true'
         run: |
           git config user.name "fpl-jakarta-bot"
           git config user.email "actions@users.noreply.github.com"

@@ -15,7 +15,12 @@ different from the global ownership figure livefpl shows - inside a mini
 league, what matters is who is differential against your rivals, not against
 the world.
 
-Run every 15 minutes by .github/workflows/refresh-live.yml.
+Run by .github/workflows/refresh-live.yml. The workflow polls often, but this
+script only asks it to publish at moments that are worth a rebuild: shortly
+before a fixture kicks off, at its half time, and when it finishes. Every
+publish triggers a Netlify build, so publishing on a timer instead of on match
+events burns the site's build credits for no visible benefit. On a day with no
+football this writes nothing at all.
 Season-long standings, manager of the month and manager of the week are
 handled separately by fetch_fpl_data.py and are not touched here.
 
@@ -28,6 +33,7 @@ Known limitations, both deliberate:
 """
 
 import json
+import os
 import time
 import urllib.request
 from datetime import datetime, timezone
@@ -45,6 +51,64 @@ POSITIONS = {1: "GKP", 2: "DEF", 3: "MID", 4: "FWD"}
 
 # Courtesy pause between manager requests so we are not hammering the API.
 REQUEST_PAUSE = 0.25
+
+# How close to kick-off the pre-match publish fires, in minutes. Scheduled
+# GitHub Actions runs are often several minutes late, so this is deliberately
+# wider than the polling interval.
+PRE_MATCH_WINDOW = 20
+
+# FPL holds a fixture's `minutes` at 45 for the duration of the interval, so
+# any poll during the break sees this. If a run is missed the half-time publish
+# fires on the next poll instead, a little into the second half.
+HALF_TIME_MINUTE = 45
+
+
+def set_output(name, value):
+    """Hand a value back to the workflow step that ran us."""
+    path = os.environ.get("GITHUB_OUTPUT")
+    if path:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(f"{name}={value}\n")
+    print(f"::publish::{name}={value}")
+
+
+def load_previous():
+    """The live.json already in the repo, which carries what we last published."""
+    try:
+        with open("live.json", encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return None
+
+
+def due_milestones(fixtures, already, now):
+    """
+    Publish-worthy moments that have arrived and have not been published yet.
+    Each fixture can contribute three: pre-match, half time and full time.
+    """
+    due = []
+    for fx in fixtures:
+        fid = str(fx["id"])
+        done = set(already.get(fid, []))
+        started = bool(fx.get("started"))
+        over = bool(fx.get("finished") or fx.get("finished_provisional"))
+        minutes = fx.get("minutes") or 0
+        kickoff = fx.get("kickoff_time")
+
+        # Once a match is under way the pre-match moment has passed for good,
+        # so it can never fire retrospectively.
+        if "pre" not in done and not started and kickoff:
+            ko = datetime.fromisoformat(kickoff.replace("Z", "+00:00"))
+            lead = (ko - now).total_seconds() / 60
+            if 0 <= lead <= PRE_MATCH_WINDOW:
+                due.append((fid, "pre"))
+
+        if "ht" not in done and started and not over and minutes >= HALF_TIME_MINUTE:
+            due.append((fid, "ht"))
+
+        if "ft" not in done and over:
+            due.append((fid, "ft"))
+    return due
 
 
 def fetch_json(url, retries=3, delay=3):
@@ -223,12 +287,43 @@ def effective_ownership(managers):
 
 
 def main():
+    now = datetime.now(timezone.utc)
+    forced = os.environ.get("FORCE_PUBLISH", "").lower() in ("1", "true", "yes")
+
+    # Deciding whether to publish costs two requests. Only if the answer is yes
+    # do we go on to fetch every manager's picks, which costs sixty more.
     bootstrap = fetch_json(f"{BASE}/bootstrap-static/")
     ev = current_gameweek(bootstrap)
     gw = ev["id"]
+    fixtures = fetch_json(f"{BASE}/fixtures/?event={gw}")
+
+    previous = load_previous()
+    same_gw = previous is not None and previous.get("gameweek") == gw
+    already = dict((previous.get("published") or {}) if same_gw else {})
+
+    reasons = []
+    if previous is None:
+        reasons.append("no live.json yet")
+    elif not same_gw:
+        reasons.append(f"gameweek changed {previous.get('gameweek')} -> {gw}")
+    if forced:
+        reasons.append("manual run or code change")
+
+    due = due_milestones(fixtures, already, now)
+    reasons += [f"fixture {fid} {kind}" for fid, kind in due]
+
+    if not reasons:
+        upcoming = [f for f in fixtures if not f.get("started")]
+        print(f"GW{gw}: nothing to publish - "
+              f"{sum(1 for f in fixtures if f.get('finished') or f.get('finished_provisional'))}"
+              f"/{len(fixtures)} fixtures done, {len(upcoming)} still to come. "
+              f"Skipping the manager fetch and leaving live.json untouched.")
+        set_output("publish", "false")
+        return
+
+    print(f"GW{gw}: publishing because {'; '.join(reasons)}.")
 
     live = fetch_json(f"{BASE}/event/{gw}/live/")
-    fixtures = fetch_json(f"{BASE}/fixtures/?event={gw}")
     players = build_player_index(bootstrap, live, fixtures)
 
     kicked_off = sum(1 for f in fixtures if f.get("started"))
@@ -259,8 +354,13 @@ def main():
         for m in lg["managers"]:
             used.update(p["id"] for p in m["picks"])
 
+    for fid, kind in due:
+        already.setdefault(fid, [])
+        if kind not in already[fid]:
+            already[fid].append(kind)
+
     payload = {
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": now.isoformat(timespec="seconds"),
         "gameweek": gw,
         "gw_name": ev.get("name", f"Gameweek {gw}"),
         "finished": bool(ev.get("finished")),
@@ -268,6 +368,9 @@ def main():
         "fixtures": {"total": len(fixtures), "started": kicked_off, "finished": done},
         "players": {str(pid): players[pid] for pid in used if pid in players},
         "leagues": out_leagues,
+        # What we have already published this gameweek, so the next run knows
+        # which moments are spent. This travels with the committed file.
+        "published": already,
     }
 
     with open("live.json", "w", encoding="utf-8") as f:
@@ -276,6 +379,7 @@ def main():
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
           f"({len(picks_cache)} unique), {done}/{len(fixtures)} fixtures finished.")
+    set_output("publish", "true")
 
 
 if __name__ == "__main__":
