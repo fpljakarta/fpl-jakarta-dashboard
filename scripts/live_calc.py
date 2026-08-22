@@ -66,6 +66,21 @@ def bonus_from_bps(bps_rows):
     return awards
 
 
+def is_over(fixture):
+    """
+    Whether a fixture is done being played.
+
+    FPL marks a match `finished_provisional` as soon as it ends, and only sets
+    `finished` once the data has been checked, which can be hours later. For
+    everything here -- substitutions, players yet to play, how many matches are
+    done -- provisional is over. Keeping that judgment in one place is
+    deliberate: when the fixture counter alone disagreed, the page spent an
+    evening announcing "0 of 10 fixtures finished" with six of them long since
+    over.
+    """
+    return bool(fixture.get("finished") or fixture.get("finished_provisional"))
+
+
 def fixtures_with_official_bonus(live_elements):
     """
     Fixture ids whose bonus FPL has already added to the live totals.
@@ -262,6 +277,30 @@ def score_squad(picks, players, bonus=None, bench_boost=False, chip=None,
 # --------------------------------------------------------------------------
 # overall rank estimate
 # --------------------------------------------------------------------------
+
+def sample_pages(ranks, total_players, page_size=50):
+    """
+    The standings pages to fetch, given the overall ranks worth sampling.
+
+    A page holds fifty managers, so several ranks near the top land on the same
+    one: 1, 3, 10 and 30 are all page 1. Asking for it four times costs four
+    requests and returns the same fifty people, which is how the first run of
+    this came back with a curve barely half as thick as intended. Deduplicating
+    here spends those requests further down the field instead.
+
+    Pages past the end of the field are dropped -- they return nothing.
+    """
+    last = (total_players + page_size - 1) // page_size if total_players else None
+    pages = set()
+    for rank in ranks:
+        if rank < 1:
+            continue
+        page = (rank + page_size - 1) // page_size
+        if last and page > last:
+            continue
+        pages.add(page)
+    return sorted(pages)
+
 
 def build_rank_curve(samples):
     """
