@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FPL Jakarta</title>
+<title>FPL Jakarta — Live Gameweek</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -47,7 +47,7 @@
   .ticker-track{
     display: inline-flex;
     gap: 40px;
-    animation: scroll 26s linear infinite; /* duration overridden per render, see renderTicker() */
+    animation: scroll 26s linear infinite;
     padding-left: 100%;
   }
   @keyframes scroll{ to{ transform: translateX(-100%); } }
@@ -55,7 +55,7 @@
   .live-dot{ width:6px; height:6px; border-radius:50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); animation: pulse 1.4s ease-in-out infinite; flex-shrink:0;}
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
   .ticker-item b{ color: var(--floodlight); font-weight:600; }
-  .up-txt{ color: var(--up); } .down-txt{ color: var(--down); } .flat{ color: var(--muted-dim); }
+  .up-txt{ color: var(--up); } .down-txt{ color: var(--down); }
 
   /* ---------- header ---------- */
   header{ padding: 56px 0 40px; }
@@ -198,282 +198,256 @@
   .cup-text p{ margin:0; color: var(--muted); font-size:14px; line-height:1.5;}
 
   footer{ margin-top:70px; padding-top:24px; border-top:1px solid var(--line); color: var(--muted-dim); font-size:12.5px; }
+
+  /* ---------- live page additions ---------- */
+  .live-head-row{
+    display:grid; grid-template-columns: 46px 1fr 52px 92px 56px 62px 24px;
+    gap:10px; align-items:center;
+    padding: 10px 16px; border-bottom:1px solid var(--line);
+    font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+    color: var(--muted-dim); font-weight:700;
+  }
+  .live-row{
+    display:grid; grid-template-columns: 46px 1fr 52px 92px 56px 62px 24px;
+    gap:10px; align-items:center;
+    padding: 13px 16px; border-bottom:1px solid var(--line);
+    cursor:pointer; transition: background .15s ease;
+  }
+  .live-row:hover{ background: rgba(212,255,61,.045); }
+  .live-row.open{ background: rgba(212,255,61,.07); }
+  .live-row .cap{ font-size:13px; font-weight:600; line-height:1.25; }
+  .live-row .cap small{ display:block; color:var(--muted-dim); font-weight:500; font-size:11px; }
+  .live-row .yet{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); text-align:center; }
+  .live-row .yet.none{ color: var(--muted-dim); }
+  .live-row .gwpts{ font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:600; text-align:right; }
+  .live-row .totpts{ font-family:'IBM Plex Mono',monospace; font-size:16px; font-weight:700; text-align:right; color:var(--lime); }
+  .chev{ color:var(--muted-dim); font-size:11px; text-align:center; transition: transform .18s ease; }
+  .live-row.open .chev{ transform: rotate(180deg); }
+  .hit-tag{ color:var(--down); font-size:10.5px; font-family:'IBM Plex Mono',monospace; }
+  .chip-tag{
+    display:inline-block; margin-left:6px; padding:1px 6px; border-radius:5px;
+    background:rgba(212,255,61,.15); color:var(--lime); border:1px solid var(--lime-dim);
+    font-size:9.5px; font-weight:700; letter-spacing:.06em; vertical-align:middle;
+  }
+
+  .squad{ padding: 4px 16px 20px; border-bottom:1px solid var(--line); background: rgba(0,0,0,.16); }
+  .squad-meta{
+    display:flex; flex-wrap:wrap; gap:8px; margin: 12px 0 16px;
+    font-family:'IBM Plex Mono',monospace; font-size:11px;
+  }
+  .meta-pill{
+    padding:4px 9px; border-radius:6px; border:1px solid var(--line);
+    color:var(--muted); background:var(--bg-elevated);
+  }
+  .meta-pill b{ color:var(--floodlight); font-weight:600; }
+  .squad-line{ font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-dim); margin:14px 0 8px; font-weight:700; }
+  .pitch{ display:grid; grid-template-columns: repeat(auto-fill, minmax(94px,1fr)); gap:8px; }
+  .pcard{
+    border:1px solid var(--line); border-radius:10px; overflow:hidden;
+    background: var(--bg-elevated); text-align:center;
+  }
+  .pcard.playing{ border-color: var(--lime-dim); }
+  .pcard.done{ opacity:.72; }
+  .pcard .pn{
+    font-size:11.5px; font-weight:600; padding:7px 5px 5px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .pcard .pt{ font-size:9.5px; color:var(--muted-dim); padding-bottom:6px; font-family:'IBM Plex Mono',monospace; }
+  .pcard .peo{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+    padding:3px 0; background:rgba(110,231,160,.14); color:var(--up);
+  }
+  .pcard .peo.hot{ background:rgba(240,180,41,.18); color:var(--gold); }
+  .pcard .pp{
+    font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700;
+    padding:6px 0; background:rgba(0,0,0,.25);
+  }
+  .pcard.bench{ opacity:.5; }
+  .badge{ font-size:9.5px; }
+
+  @media (max-width: 620px){
+    .live-head-row, .live-row{ grid-template-columns: 34px 1fr 44px 50px 56px 20px; }
+    .live-head-row .h-cap, .live-row .cap-cell{ display:none; }
+    .pitch{ grid-template-columns: repeat(auto-fill, minmax(80px,1fr)); }
+  }
 </style>
 </head>
 <body>
 
   <div class="ticker">
-    <div class="ticker-track" id="ticker-track"></div>
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Live</span>
+      <span class="ticker-item">Live scores and squads refresh every 15 minutes</span>
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Live</span>
+      <span class="ticker-item">Live scores and squads refresh every 15 minutes</span>
+    </div>
   </div>
 
   <div class="wrap">
     <header>
-      <p class="eyebrow" id="season-tag">Season 2026/27</p>
-      <h1>FPL <span>Jakarta</span></h1>
-      <p class="lede">Welcome to the official FPL Jakarta dashboard - Live standings, monthly winners and weekly high scores shown here. <a href="live.html" style="color:var(--lime);">Live gameweek &rarr;</a></p>
-
-      <div class="countdown">
-        <div class="countdown-left">
-          <div class="gw-tag"><span class="live-dot"></span> <span id="deadline-gw">Gameweek 1</span> deadline</div>
-          <div class="gw-date" id="deadline-date">Saturday 22 August, 00:30 Jakarta time</div>
-        </div>
-        <div class="countdown-mid">
-          <div class="cd-unit"><div class="num" id="cd-days">—</div><div class="lab">Days</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="num" id="cd-hours">—</div><div class="lab">Hours</div></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-unit"><div class="num" id="cd-mins">—</div><div class="lab">Mins</div></div>
-        </div>
-        <a class="signup-btn" href="https://forms.gle/zCkGBrJAWw6TfzVWA" target="_blank" rel="noopener">Sign up →</a>
-      </div>
+      <p class="eyebrow" id="gw-tag">Live gameweek</p>
+      <h1>Live <span>Gameweek</span></h1>
+      <p class="lede">Every manager's squad as it happens &mdash; who is captaining what, who has players left to play, and how heavily owned each pick is inside our league. <a href="index.html" style="color:var(--lime);">&larr; Back to the season table</a></p>
     </header>
 
-    <!-- STANDINGS -->
     <section>
       <div class="section-head">
-        <div class="section-label">01 &nbsp;<b>Standings</b></div>
+        <div class="section-label">01 &nbsp;<b>Live table</b></div>
         <div class="toggle" id="league-toggle">
           <button data-league="high_stakes" class="active">High Stakes</button>
           <button data-league="main">Main league</button>
         </div>
       </div>
-      <div id="standings-mount"></div>
+      <p class="section-note" id="fixture-note">Loading&hellip;</p>
+      <div class="table-card" id="live-mount"></div>
+      <p class="section-note" style="margin-top:14px;">
+        Tap any manager to open their squad. Effective ownership is measured inside
+        FPL Jakarta, not globally &mdash; a captain counts twice, so figures above 100%
+        are normal. Automatic substitutions and bonus points settle only after every
+        match has finished.
+      </p>
     </section>
 
-    <!-- MOTM -->
-    <section>
-      <div class="section-head">
-        <div class="section-label">02 &nbsp;<b>Manager of the month</b></div>
-        <div class="section-note">From FPL's own monthly rankings</div>
-      </div>
-      <div class="motm-grid" id="motm-mount"></div>
-    </section>
-
-    <!-- MOTW -->
-    <section>
-      <div class="section-head">
-        <div class="section-label">03 &nbsp;<b>Manager of the week</b></div>
-        <div class="section-note">Highest net score, all 38 gameweeks</div>
-      </div>
-      <div id="motw-mount"></div>
-    </section>
-
-    <!-- CUP -->
-    <section>
-      <div class="section-head">
-        <div class="section-label">04 &nbsp;<b>The cup</b></div>
-        <div class="section-note">Updated by hand — FPL doesn't publish knockouts</div>
-      </div>
-      <div class="cup-card">
-        <div class="cup-text">
-          <div class="tag">Format TBD</div>
-          <p>Knockout bracket and draw to be confirmed by the organisers once signups close.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer id="footer-note">
-      Standings and monthly winners come from the official Fantasy Premier League data.<br>
-      Main league ID 401272 · High Stakes league ID 325153
-    </footer>
+    <p class="section-note" id="stamp" style="margin-top:34px;"></p>
   </div>
 
 <script>
-const FALLBACK_DEADLINE = "2026-08-21T17:30:00Z"; // 22 Aug 00:30 Jakarta time
-// Ticker scroll speed in pixels per second. The strip's length changes with
-// the number of managers, so the animation duration is derived from its width
-// rather than fixed, keeping the pace identical in both leagues.
-const TICKER_PX_PER_SEC = 45;
-const MONTH_ORDER = ["August","September","October","November","December","January","February","March","April","May"];
+let state = { data:null, activeLeague:"high_stakes", open:null };
 
-let state = {
-  data: null,
-  activeLeague: "high_stakes",
-};
+function esc(s){
+  return String(s ?? "").replace(/[&<>"']/g, c => (
+    {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]
+  ));
+}
 
-async function loadData(){
+const CHIPS = { bboost:"BB", "3xc":"TC", freehit:"FH", wildcard:"WC", manager:"AM" };
+
+async function load(){
   try{
-    const res = await fetch('data.json', { cache: 'no-store' });
+    const res = await fetch('live.json', { cache:'no-store' });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
     state.data = await res.json();
   }catch(e){
-    console.error('Could not load data.json', e);
+    console.error('Could not load live.json', e);
     state.data = null;
   }
-  renderAll();
-  startCountdown();
+  render();
 }
 
-function renderAll(){
-  renderTicker();
-  renderStandings();
-  renderMotm();
-  renderMotw();
-  renderFooter();
-}
+function render(){
+  const mount = document.getElementById('live-mount');
+  const d = state.data;
+  const lg = d?.leagues?.[state.activeLeague];
+  const managers = lg?.managers || [];
 
-function renderTicker(){
-  const track = document.getElementById('ticker-track');
-  const brand = '<span class="ticker-item"><span class="live-dot"></span> FPL Jakarta</span>';
-  const league = state.data?.standings?.[state.activeLeague] || [];
+  document.getElementById('gw-tag').textContent = d ? (d.gw_name || ('Gameweek ' + d.gameweek)) : 'Live gameweek';
 
-  if(!league.length){
-    const fallback = brand + '<span class="ticker-item">Standings update every hour</span>';
-    track.innerHTML = fallback + fallback;
-    paceTicker(track);
+  const note = document.getElementById('fixture-note');
+  if(d?.fixtures){
+    const f = d.fixtures;
+    note.textContent = f.started === 0
+      ? `${f.total} fixtures this gameweek. None have kicked off yet.`
+      : `${f.finished} of ${f.total} fixtures finished.` + (d.data_checked ? ' Scores are final.' : ' Bonus points still to settle.');
+  } else { note.textContent = ''; }
+
+  const stamp = document.getElementById('stamp');
+  stamp.textContent = d?.generated_at
+    ? 'Last updated ' + new Date(d.generated_at).toLocaleString('en-GB',
+        { dateStyle:'medium', timeStyle:'short', timeZone:'Asia/Jakarta' }) + ' Jakarta time.'
+    : '';
+
+  if(!managers.length){
+    mount.innerHTML = `<div class="empty-card">
+      <div class="t">Nothing live yet</div>
+      <div class="s">Squads appear here once the gameweek deadline passes.</div>
+    </div>`;
     return;
   }
 
-  const items = [...league].sort((a, b) => a.rank - b.rank).map(r => {
-    let move = '<span class="flat">\u2014</span>';
-    if(r.last_rank && r.last_rank > 0){
-      const diff = r.last_rank - r.rank;
-      if(diff > 0) move = `<span class="up-txt">\u25b2${diff}</span>`;
-      else if(diff < 0) move = `<span class="down-txt">\u25bc${Math.abs(diff)}</span>`;
-    }
-    return `<span class="ticker-item"><b>${escapeHtml(r.team)}</b> ${escapeHtml(r.manager)} ${move}</span>`;
-  }).join('');
+  let html = `<div class="live-head-row">
+    <div>Pos</div><div>Manager</div><div style="text-align:center">Yet</div>
+    <div class="h-cap">Captain</div>
+    <div style="text-align:right">GW</div><div style="text-align:right">Total</div><div></div>
+  </div>`;
 
-  // Duplicated: the CSS animation translates -100%, so one full run must be
-  // followed by an identical run for the loop to be seamless.
-  const run = brand + items;
-  track.innerHTML = run + run;
-  paceTicker(track);
+  managers.forEach(m => {
+    const isOpen = state.open === m.entry;
+    const capName = d.players?.[m.captain]?.name || '—';
+    const chip = CHIPS[m.chip] ? `<span class="chip-tag">${CHIPS[m.chip]}</span>` : '';
+    const hit = m.hit ? ` <span class="hit-tag">-${m.hit}</span>` : '';
+
+    html += `<div class="live-row ${isOpen?'open':''}" data-entry="${m.entry}">
+      <div class="rank ${m.live_rank===1?'gold':''}">${m.live_rank}</div>
+      <div class="manager"><span class="name">${esc(m.team)}${chip}</span><span class="team">${esc(m.manager)}</span></div>
+      <div class="yet ${m.yet_to_play===0?'none':''}">${m.yet_to_play}</div>
+      <div class="cap cap-cell">${esc(capName)}<small>${m.played}/${m.of} played</small></div>
+      <div class="gwpts">${m.gw_points}${hit}</div>
+      <div class="totpts">${m.total}</div>
+      <div class="chev">▼</div>
+    </div>`;
+
+    if(isOpen) html += squadHtml(m, lg, d);
+  });
+
+  mount.innerHTML = html;
+
+  mount.querySelectorAll('.live-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const id = Number(row.dataset.entry);
+      state.open = state.open === id ? null : id;
+      render();
+    });
+  });
 }
 
-// Match the animation length to how much content there is, so a long league
-// and a short one scroll past at the same readable speed.
-function paceTicker(track){
-  const travel = track.scrollWidth;
-  if(!travel) return;
-  track.style.animationDuration = Math.round(travel / TICKER_PX_PER_SEC) + 's';
-}
+function squadHtml(m, lg, d){
+  const starters = m.picks.filter(p => !p.benched).sort((a,b) => a.slot - b.slot);
+  const bench    = m.picks.filter(p =>  p.benched).sort((a,b) => a.slot - b.slot);
 
-function renderStandings(){
-  const mount = document.getElementById('standings-mount');
-  const league = state.data?.standings?.[state.activeLeague] || [];
+  const card = p => {
+    const info = d.players?.[p.id] || {};
+    const eo = lg.eo?.[p.id];
+    const pts = (info.points || 0) * (p.mult || 1);
+    const badge = p.captain ? ' <span class="badge">Ⓒ</span>'
+                : p.vice    ? ' <span class="badge">Ⓥ</span>' : '';
+    const status = info.finished ? 'done' : (info.started ? 'playing' : '');
+    const mark = info.finished ? '✓' : (info.started ? '●' : '○');
+    return `<div class="pcard ${status} ${p.benched?'bench':''}">
+      <div class="pn">${esc(info.name || '—')}${badge}</div>
+      <div class="pt">${esc(info.team||'')} · ${esc(info.pos||'')} ${mark}</div>
+      <div class="peo ${eo>=100?'hot':''}">${eo!=null?eo.toFixed(1)+'%':'—'}</div>
+      <div class="pp">${pts}</div>
+    </div>`;
+  };
 
-  if(!league.length){
-    mount.innerHTML = `
-      <div class="empty-card">
-        <div class="t">No entries yet</div>
-        <div class="s">Standings appear here once the season kicks off.</div>
-      </div>`;
-    return;
-  }
-
-  const rows = league.map((r, i) => {
-    let deltaHtml = '<span class="delta flat">—</span>';
-    if(r.last_rank && r.last_rank > 0){
-      const diff = r.last_rank - r.rank;
-      if(diff > 0) deltaHtml = `<span class="delta up">▲ ${diff}</span>`;
-      else if(diff < 0) deltaHtml = `<span class="delta down">▼ ${Math.abs(diff)}</span>`;
-    }
-    return `
-      <div class="row ${i === 0 ? 'top' : ''}">
-        <div class="rank ${i === 0 ? 'gold' : ''}">${r.rank}</div>
-        <div class="manager"><span class="name">${escapeHtml(r.manager)}</span><span class="team">${escapeHtml(r.team)}</span></div>
-        ${deltaHtml}
-        <div class="pts">${r.total}<small>OVERALL</small></div>
-      </div>`;
-  }).join('');
-
-  mount.innerHTML = `<div class="table-card">${rows}</div>`;
-}
-
-function renderMotm(){
-  const mount = document.getElementById('motm-mount');
-  const data = state.data?.motm || [];
-  const byMonth = Object.fromEntries(data.map(m => [m.month, m]));
-
-  mount.innerHTML = MONTH_ORDER.map(month => {
-    const m = byMonth[month];
-    const won = m && m.manager;
-    return `
-      <div class="motm-card ${won ? 'won' : ''}">
-        <div class="motm-month">${month.slice(0,3)}</div>
-        <div class="motm-trophy">🏆</div>
-        <div class="motm-name">${won ? escapeHtml(m.manager) : 'Not played yet'}</div>
-      </div>`;
-  }).join('');
-}
-
-function renderMotw(){
-  const mount = document.getElementById('motw-mount');
-  const weeks = state.data?.motw || [];
-
-  if(!weeks.length){
-    mount.innerHTML = `
-      <div class="empty-card">
-        <div class="t">No gameweeks played yet</div>
-        <div class="s">The weekly high score appears here once GW1 finishes.</div>
-      </div>`;
-    return;
-  }
-
-  const latest = weeks[weeks.length - 1];
-  const past = weeks.slice(0, -1).slice(-6).reverse();
-
-  mount.innerHTML = `
-    <div class="spotlight">
-      <div class="spotlight-left">
-        <div class="gw-label"><span class="live-dot"></span> Gameweek ${latest.gw}</div>
-        <p class="name">${escapeHtml(latest.manager)}</p>
-        <p class="team">${escapeHtml(latest.team)}</p>
-      </div>
-      <div class="spotlight-right">
-        <div class="score">${latest.points}</div>
-        <div class="score-label">points this GW</div>
-      </div>
+  return `<div class="squad">
+    <div class="squad-meta">
+      <span class="meta-pill">Squad value <b>£${m.value}m</b></span>
+      <span class="meta-pill">Bank <b>£${m.bank}m</b></span>
+      <span class="meta-pill">Transfers <b>${m.transfers}</b></span>
+      ${m.hit ? `<span class="meta-pill">Hit <b style="color:var(--down)">-${m.hit}</b></span>` : ''}
+      <span class="meta-pill">Yet to play <b>${m.yet_to_play}</b></span>
+      ${m.chip ? `<span class="meta-pill">Chip <b>${esc(m.chip)}</b></span>` : ''}
     </div>
-    ${past.length ? `<div class="past-weeks">${past.map(w => `<div class="week-chip">GW${w.gw} <b>${escapeHtml(w.manager)} — ${w.points}</b></div>`).join('')}</div>` : ''}
-  `;
+    <div class="squad-line">Starting XI</div>
+    <div class="pitch">${starters.map(card).join('')}</div>
+    ${bench.length ? `<div class="squad-line">Bench &mdash; not counted</div>
+      <div class="pitch">${bench.map(card).join('')}</div>` : ''}
+  </div>`;
 }
 
-function renderFooter(){
-  const el = document.getElementById('footer-note');
-  const genAt = state.data?.generated_at;
-  if(!genAt) return;
-  const dt = new Date(genAt);
-  const formatted = dt.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-  el.innerHTML += `<br>Standings last updated ${formatted} Jakarta time.`;
-}
-
-function startCountdown(){
-  const iso = state.data?.next_deadline || FALLBACK_DEADLINE;
-  const gw = state.data?.next_gameweek || 1;
-  const target = new Date(iso);
-
-  document.getElementById('deadline-gw').textContent = `Gameweek ${gw}`;
-  document.getElementById('deadline-date').textContent =
-    target.toLocaleString('en-GB', { timeZone: 'Asia/Jakarta', weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) + ' Jakarta time';
-
-  function tick(){
-    const diff = target.getTime() - Date.now();
-    const d = Math.max(0, Math.floor(diff / (1000*60*60*24)));
-    const h = Math.max(0, Math.floor((diff / (1000*60*60)) % 24));
-    const m = Math.max(0, Math.floor((diff / (1000*60)) % 60));
-    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
-  }
-  tick();
-  setInterval(tick, 30000);
-}
-
-function escapeHtml(str){
-  return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-document.getElementById('league-toggle').addEventListener('click', (e) => {
-  const btn = e.target.closest('button[data-league]');
+document.getElementById('league-toggle').addEventListener('click', e => {
+  const btn = e.target.closest('button');
   if(!btn) return;
+  document.querySelectorAll('#league-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
   state.activeLeague = btn.dataset.league;
-  document.querySelectorAll('#league-toggle button').forEach(b => b.classList.toggle('active', b === btn));
-  renderTicker();
-  renderStandings();
+  state.open = null;
+  render();
 });
 
-loadData();
+load();
+setInterval(load, 120000);
 </script>
 </body>
 </html>

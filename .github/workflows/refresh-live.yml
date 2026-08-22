@@ -1,0 +1,41 @@
+name: Refresh live gameweek
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 minutes
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fetch_live_data.py'
+      - '.github/workflows/refresh-live.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-live-data
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch live gameweek data
+        run: python scripts/fetch_live_data.py
+
+      - name: Commit live.json if it changed
+        run: |
+          git config user.name "fpl-jakarta-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add live.json
+          git diff --staged --quiet || git commit -m "Refresh live gameweek"
+          # The hourly job may have pushed while we were fetching.
+          git pull --rebase --autostash origin main
+          git push
