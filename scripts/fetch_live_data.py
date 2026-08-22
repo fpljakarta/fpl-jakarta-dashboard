@@ -108,7 +108,7 @@ SAMPLE_RANKS = [
 ]
 OVERALL_LEAGUE = 314
 STANDINGS_PAGE_SIZE = 50
-SAMPLES_PER_PAGE = 8
+SAMPLES_PER_PAGE = 5
 
 
 def set_output(name, value):
@@ -422,11 +422,10 @@ def choose_sample_entries(total_players):
             continue
         empty = 0
 
-        # Spread the picks across the page rather than taking the first few,
-        # so the sample is not fifty consecutive managers on near-identical
-        # scores.
-        step = max(1, len(results) // SAMPLES_PER_PAGE)
-        for row in results[::step][:SAMPLES_PER_PAGE]:
+        # Take the top of each page. Spreading the picks across it was tried
+        # and measurably worsened the estimate, so this stays as it was until
+        # there is evidence for changing it.
+        for row in results[:SAMPLES_PER_PAGE]:
             entry = row.get("entry")
             if not entry or entry in seen:
                 continue
@@ -617,13 +616,21 @@ def main():
     else:
         sample = choose_sample_entries(total_players)
         curve = build_rank_curve(sample, gw, players, bonus, picks_cache)
+        # A flat run -- several scores sharing one rank -- distorts every
+        # estimate that interpolates across it, so it is worth seeing in the
+        # log rather than discovering from a bad number on the page.
+        ranks = [r for _, r in curve]
+        flat = len(ranks) - len(set(ranks))
         curve_meta = {
             "built_at": now.isoformat(timespec="seconds"),
             "points": [list(p) for p in curve],
             "samples": len(curve),
+            "sampled_entries": len(sample),
+            "flat_runs": flat,
             "total_players": total_players,
         }
-        print(f"GW{gw}: rank curve built from {len(curve)} sampled managers.")
+        print(f"GW{gw}: rank curve from {len(sample)} sampled managers -> "
+              f"{len(curve)} points, {flat} sharing a rank.")
 
     official_or = overall_ranks(
         sorted({m["entry"] for lg in out_leagues.values() for m in lg["managers"]}),
