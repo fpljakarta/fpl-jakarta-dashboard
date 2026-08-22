@@ -1,0 +1,46 @@
+name: Tests
+
+# The scoring arithmetic -- bonus ties, substitution legality, the rank curve,
+# award selection -- is pure and has no network or clock, so it can be proved
+# before anything reaches the site. This runs on every pull request, and on
+# pushes to main that touch the scripts.
+#
+# Data commits do not touch scripts/, so the five-minute refresh during a
+# gameweek never triggers this.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/test.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run the scoring tests
+        run: python -m unittest discover -s scripts -p 'test_*.py' -v
+
+      # Cheap insurance against a broken data file reaching the pages, which
+      # read these directly and would simply render empty.
+      - name: Check the committed data files parse
+        run: |
+          for f in data.json live.json awards.json prices.json; do
+            python -c "import json,sys; json.load(open('$f')); print('$f ok')"
+          done
