@@ -2,9 +2,12 @@
 
 Live site: **https://fpljakarta.github.io/fpl-jakarta-dashboard/**
 
-A static site — no build step, no framework. Four pages at the repo root
-(`index.html`, `live.html`, `prices.html`, `signup.html`) and three data files
-(`data.json`, `live.json`, `prices.json`) written by the scripts in `scripts/`.
+A static site — no build step, no framework. Seven pages at the repo root
+(`index.html`, `live.html`, `ownership.html`, `compare.html`, `awards.html`,
+`prices.html`, `signup.html`), four data files (`data.json`, `live.json`,
+`awards.json`, `prices.json`) written by the scripts in `scripts/`, and a
+shared shell in `assets/` that the pages added after the first three use
+instead of carrying a fifth copy of the same CSS.
 
 ## Where the data comes from
 
@@ -14,10 +17,65 @@ Both scripts read the official, unauthenticated Fantasy Premier League API at
 | Script | Writes | Run by | Cadence |
 | --- | --- | --- | --- |
 | `scripts/fetch_fpl_data.py` | `data.json`, `prices.json` | `.github/workflows/refresh.yml` | hourly |
-| `scripts/fetch_live_data.py` | `live.json` | `.github/workflows/refresh-live.yml` | every 10 minutes |
+| `scripts/fetch_live_data.py` | `live.json`, `awards.json` | `.github/workflows/refresh-live.yml` | every 5 minutes |
 
 Neither script writes a file unless its contents actually changed, so quiet
-periods produce no commits at all.
+periods produce no commits at all. The live script polls every five minutes but
+only publishes at moments worth publishing: shortly before a kick-off, at half
+time, at full time, and every five minutes while a match is actually being
+played. On a day with no football it writes nothing.
+
+## Two scores, and why
+
+Every manager carries an **official** score and a **projected** one.
+
+The official score is what FPL has confirmed. The projected score adds three
+things the rules make inevitable but FPL has not applied yet:
+
+- **provisional bonus**, worked out from each fixture's BPS table (3/2/1, with
+  FPL's tie rules), and only for fixtures whose bonus has not been published —
+  once it has, it is already inside the official total and adding ours would
+  count it twice;
+- **automatic substitutions**, following the real rules: bench order, a keeper
+  only ever replaced by the other keeper, and a legal formation at the end of
+  it;
+- **the armband moving to the vice-captain** when the captain's match finishes
+  without him appearing.
+
+They are kept as two numbers rather than blended into one, because the first is
+a fact and the second is a forecast. FPL only makes substitutions once every
+match in the gameweek has finished, so until then nothing — here or anywhere —
+can do better than predict them.
+
+## The live overall rank is an estimate
+
+FPL publishes no live overall rank; league and overall ranks only move once a
+gameweek is finalised. The figure marked `~` on the live page is therefore
+computed, not reported:
+
+1. sample managers from across the global Overall league (id 314) at
+   geometrically spaced depths, from the champion down to the tail;
+2. score each sampled squad exactly the way our own are scored, so both sides
+   of the comparison are made of the same thing;
+3. pair the sampled scores against the sampled ranks to get a score-to-rank
+   curve, and read our own totals off it, interpolating on log rank because
+   rank thins out geometrically rather than evenly.
+
+It is labelled as an estimate everywhere it appears, and it is absent rather
+than wrong if the sampling fails. It costs roughly a hundred requests, so the
+curve is reused for fifteen minutes before being rebuilt. The confirmed
+overall rank sits beside it, refreshed once a gameweek.
+
+## Tests
+
+The arithmetic that is easy to get subtly wrong — bonus ties, substitution
+legality, the rank curve, award selection — lives in `scripts/live_calc.py`
+as pure functions, apart from the fetching, and is tested without a network:
+
+    python -m unittest discover -s scripts -p 'test_*.py'
+
+The live workflow runs them whenever that code changes, but not on the
+five-minute schedule.
 
 ## Hosting
 

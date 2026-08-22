@@ -4,12 +4,16 @@ on:
   schedule:
     # Polls often and cheaply. The script decides whether the moment is worth
     # publishing, and only a publish commits, which is what triggers a rebuild.
-    - cron: '*/10 * * * *'
+    # Five minutes is the cadence provisional bonus needs to actually look
+    # live; on a day with no football the script publishes nothing at all, so
+    # the extra polls cost a few seconds of runner time and no commits.
+    - cron: '*/5 * * * *'
   workflow_dispatch: {}
   push:
     branches: [main]
     paths:
       - 'scripts/fetch_live_data.py'
+      - 'scripts/live_calc.py'
       - '.github/workflows/refresh-live.yml'
 
 permissions:
@@ -29,6 +33,14 @@ jobs:
         with:
           python-version: '3.11'
 
+      # The bonus, substitution and award arithmetic is pure and testable, so
+      # it is tested whenever it changes. Skipped on the schedule, where it
+      # would just burn a few seconds every five minutes to re-prove code that
+      # has not moved.
+      - name: Test the scoring arithmetic
+        if: github.event_name != 'schedule'
+        run: python -m unittest discover -s scripts -p 'test_*.py' -v
+
       - name: Fetch live gameweek data
         id: fetch
         env:
@@ -37,12 +49,12 @@ jobs:
           FORCE_PUBLISH: ${{ github.event_name != 'schedule' }}
         run: python scripts/fetch_live_data.py
 
-      - name: Commit live.json if it changed
+      - name: Commit live data if it changed
         if: steps.fetch.outputs.publish == 'true'
         run: |
           git config user.name "fpl-jakarta-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add live.json
+          git add live.json awards.json
           git diff --staged --quiet || git commit -m "Refresh live gameweek"
           # The hourly job may have pushed while we were fetching.
           git pull --rebase --autostash origin main

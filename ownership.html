@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta — Ownership</title>
+<link rel="canonical" href="https://fpljakarta.github.io/fpl-jakarta-dashboard/ownership.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .own-head, .own-row{
+    display:grid;
+    grid-template-columns: 1fr 46px 64px 58px 56px 66px 62px 22px;
+    gap:10px; align-items:center; padding: 12px 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .own-head{
+    font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+    color: var(--muted-dim); font-weight:700; user-select:none;
+  }
+  .own-head span{ cursor:pointer; white-space:nowrap; }
+  .own-head span:hover{ color: var(--muted); }
+  .own-head span.sorted{ color: var(--lime); }
+  .own-row{ cursor:pointer; transition: background .15s ease; }
+  .own-row:hover{ background: rgba(212,255,61,.045); }
+  .own-row.open{ background: rgba(212,255,61,.07); }
+  .own-row:last-child{ border-bottom:none; }
+
+  .pname{ min-width:0; }
+  .pname .n{ font-weight:600; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .pname .m{ font-size:11.5px; color: var(--muted-dim); font-family:'IBM Plex Mono', monospace; }
+  .num{ font-family:'IBM Plex Mono', monospace; font-size:13.5px; text-align:right; }
+  .num.pts{ font-weight:600; color: var(--floodlight); }
+  .num.eo{ font-weight:600; color: var(--lime); }
+  .num.dim{ color: var(--muted); }
+  .num.delta.pos{ color: var(--up); }
+  .num.delta.neg{ color: var(--down); }
+  .chev{ color:var(--muted-dim); font-size:11px; text-align:center; transition: transform .18s ease; }
+  .own-row.open .chev{ transform: rotate(180deg); }
+
+  .owners{
+    padding: 4px 16px 18px; border-bottom:1px solid var(--line);
+    background: rgba(0,0,0,.16);
+  }
+  .owners-line{
+    font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted-dim); margin:12px 0 9px; font-weight:700;
+  }
+  .owner-tags{ display:flex; flex-wrap:wrap; gap:7px; }
+  .owner-tag{
+    font-size:12px; padding:5px 10px; border-radius:7px;
+    border:1px solid var(--line); background: var(--bg-elevated); color: var(--muted);
+  }
+  .owner-tag b{ color: var(--floodlight); font-weight:600; }
+  .owner-tag.cap{ border-color: var(--lime-dim); color: var(--lime); }
+  .owner-tag.bench{ opacity:.5; }
+  .owners-none{ color: var(--muted-dim); font-size:13px; }
+
+  .filters{ display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center; margin-bottom:18px; }
+  .search-wrap{ flex:1; min-width:200px; max-width:280px; }
+
+  .legend{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-bottom:18px;
+  }
+  @media (max-width:640px){ .legend{ grid-template-columns:1fr; } }
+  .legend-card{
+    border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+    background: var(--bg-elevated);
+  }
+  .legend-card .k{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color: var(--lime-dim); margin-bottom:5px;
+  }
+  .legend-card .v{ font-size:12.5px; color: var(--muted); line-height:1.45; }
+
+  @media (max-width: 720px){
+    .own-head, .own-row{ grid-template-columns: 1fr 42px 60px 52px 22px; }
+    .h-cap, .h-global, .h-delta, .c-cap, .c-global, .c-delta{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Ownership</span>
+      <span class="ticker-item">Who the league backs, and who it leaves alone</span>
+      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Ownership</span>
+      <span class="ticker-item">Who the league backs, and who it leaves alone</span>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="ownership.html" class="active">Ownership</a>
+      <a href="compare.html">Compare</a>
+      <a href="awards.html">Awards</a>
+      <a href="prices.html">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+    </div>
+  </nav>
+
+  <div class="wrap wide">
+    <header>
+      <p class="eyebrow" id="gw-tag">Ownership</p>
+      <h1>Owner<span>ship</span></h1>
+      <p class="lede">Every footballer somebody in FPL Jakarta is fielding, ranked by how
+        heavily the league backs him &mdash; and set against how heavily the rest of the
+        world does. Tap a player to see exactly who owns him.</p>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>The board</b></div>
+        <div class="toggle" id="league-toggle">
+          <button data-league="high_stakes" class="active">High Stakes</button>
+          <button data-league="main">Main league</button>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-card">
+          <div class="k">League EO</div>
+          <div class="v">Share of the league fielding him, with a captaincy counted twice.
+            Above 100% is normal.</div>
+        </div>
+        <div class="legend-card">
+          <div class="k">Global</div>
+          <div class="v">Selected by this share of every FPL manager in the world, as FPL
+            reports it.</div>
+        </div>
+        <div class="legend-card">
+          <div class="k">Edge</div>
+          <div class="v">League EO minus global. A big positive means the league is far
+            heavier on him than the world is.</div>
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="chips" id="group-chips">
+          <button class="chip active" data-group="all">All</button>
+          <button class="chip" data-group="template">Template &middot; EO 50%+</button>
+          <button class="chip" data-group="middle">Middle</button>
+          <button class="chip" data-group="differential">Differential &middot; EO 10%-</button>
+        </div>
+        <div class="search-wrap">
+          <input class="field" id="search" type="search" placeholder="Search player or club" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="table-card" id="own-mount"></div>
+      <p class="section-note" style="margin-top:14px;" id="count-note"></p>
+    </section>
+
+    <p class="section-note" id="stamp" style="margin-top:34px;"></p>
+
+    <footer>
+      Effective ownership is measured inside FPL Jakarta, not globally. Bench players do
+      not count towards it unless their manager has played a Bench Boost, which is the
+      same rule the live table uses.
+    </footer>
+  </div>
+
+<script src="assets/site.js"></script>
+<script>
+let state = {
+  data:null, league:'high_stakes', group:'all', query:'',
+  sort:'eo', dir:-1, open:null,
+};
+
+const COLUMNS = {
+  name:'Player', points:'Pts', eo:'EO', owners:'Own', captains:'Capt',
+  global:'Global', edge:'Edge',
+};
+
+async function load(){
+  state.data = await loadJson('live.json');
+  render();
+}
+
+/* One row per footballer somebody in this league is fielding, with everything
+   the table and the sorter need already worked out. */
+function rows(){
+  const d = state.data;
+  const lg = d?.leagues?.[state.league];
+  if(!lg) return [];
+
+  const eo = lg.eo || {};
+  const owners = lg.owners || {};
+  const captains = lg.captains || {};
+  const n = (lg.managers || []).length || 1;
+
+  return Object.keys(owners).map(pid => {
+    const info = d.players?.[pid] || {};
+    const leagueEo = eo[pid] ?? 0;
+    // Global ownership only exists once the fetcher has run against the FPL
+    // API. Absent is not the same as nobody owning him, so it stays null and
+    // the edge against it goes unshown rather than being invented.
+    const global = typeof info.owned === 'number' ? info.owned : null;
+    return {
+      id: Number(pid),
+      name: info.name || '—',
+      team: info.team || '',
+      pos: info.pos || '',
+      points: info.points ?? 0,
+      eo: leagueEo,
+      owners: owners[pid] ?? 0,
+      ownersPct: (owners[pid] ?? 0) * 100 / n,
+      captains: captains[pid] ?? 0,
+      global,
+      edge: global === null ? null : Math.round((leagueEo - global) * 10) / 10,
+    };
+  });
+}
+
+function visible(){
+  let list = rows();
+
+  if(state.group === 'template') list = list.filter(r => r.eo >= 50);
+  else if(state.group === 'differential') list = list.filter(r => r.eo <= 10);
+  else if(state.group === 'middle') list = list.filter(r => r.eo > 10 && r.eo < 50);
+
+  const q = state.query.trim().toLowerCase();
+  if(q) list = list.filter(r =>
+    r.name.toLowerCase().includes(q) || r.team.toLowerCase().includes(q));
+
+  const key = state.sort;
+  list.sort((a, b) => {
+    const av = a[key], bv = b[key];
+    const aUnknown = av === null || av === undefined;
+    const bUnknown = bv === null || bv === undefined;
+    // An unknown value sinks to the bottom whichever way the column points,
+    // rather than poisoning the comparison with NaN.
+    if(aUnknown !== bUnknown) return aUnknown ? 1 : -1;
+
+    const cmp = aUnknown ? 0
+      : typeof av === 'string' ? av.localeCompare(bv)
+      : av - bv;
+    // A stable second key keeps rows from jumping about when the first ties.
+    return cmp * state.dir || b.points - a.points || a.name.localeCompare(b.name);
+  });
+  return list;
+}
+
+function render(){
+  const d = state.data;
+  const mount = document.getElementById('own-mount');
+
+  document.getElementById('gw-tag').textContent =
+    d ? ((d.gw_name || ('Gameweek ' + d.gameweek)) + ' · ' +
+         (d.leagues?.[state.league]?.name || '')) : 'Ownership';
+  document.getElementById('stamp').textContent = stampText(d?.generated_at);
+
+  const list = visible();
+  if(!list.length){
+    mount.innerHTML = `<div class="empty-card">
+      <div class="t">${d ? 'Nothing matches' : 'Nothing live yet'}</div>
+      <div class="s">${d ? 'Try a different filter or search.'
+        : 'Ownership appears once the gameweek deadline passes.'}</div>
+    </div>`;
+    document.getElementById('count-note').textContent = '';
+    return;
+  }
+
+  const head = Object.entries(COLUMNS).map(([key, label]) => {
+    const cls = [
+      key === 'name' ? '' : 'num',
+      key === 'captains' ? 'h-cap' : '',
+      key === 'global' ? 'h-global' : '',
+      key === 'edge' ? 'h-delta' : '',
+      state.sort === key ? 'sorted' : '',
+    ].filter(Boolean).join(' ');
+    const arrow = state.sort === key ? (state.dir === -1 ? ' ↓' : ' ↑') : '';
+    return `<span class="${cls}" data-sort="${key}">${label}${arrow}</span>`;
+  }).join('');
+
+  let html = `<div class="own-head">${head}<span></span></div>`;
+
+  list.forEach(r => {
+    const open = state.open === r.id;
+    html += `<div class="own-row ${open ? 'open' : ''}" data-id="${r.id}">
+      <div class="pname">
+        <div class="n">${esc(r.name)}</div>
+        <div class="m">${esc(r.team)} · ${esc(r.pos)}</div>
+      </div>
+      <div class="num pts">${r.points}</div>
+      <div class="num eo">${r.eo.toFixed(1)}%</div>
+      <div class="num dim">${r.owners}<span style="color:var(--muted-dim)">/${
+        (state.data.leagues[state.league].managers || []).length}</span></div>
+      <div class="num dim c-cap">${r.captains || '—'}</div>
+      <div class="num dim c-global">${r.global === null ? '—' : r.global.toFixed(1) + '%'}</div>
+      <div class="num delta c-delta ${r.edge > 0 ? 'pos' : r.edge < 0 ? 'neg' : ''}">${
+        r.edge === null ? '—' : signed(Math.round(r.edge))}</div>
+      <div class="chev">▼</div>
+    </div>`;
+    if(open) html += ownersHtml(r.id);
+  });
+
+  mount.innerHTML = html;
+  document.getElementById('count-note').textContent =
+    `${list.length} player${list.length === 1 ? '' : 's'} shown.`;
+
+  mount.querySelectorAll('.own-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const id = Number(row.dataset.id);
+      state.open = state.open === id ? null : id;
+      render();
+    });
+  });
+  mount.querySelectorAll('.own-head span[data-sort]').forEach(cell => {
+    cell.addEventListener('click', e => {
+      e.stopPropagation();
+      const key = cell.dataset.sort;
+      // Same column again flips direction; a new column starts descending,
+      // except the name which reads better A-Z.
+      if(state.sort === key) state.dir = -state.dir;
+      else { state.sort = key; state.dir = key === 'name' ? 1 : -1; }
+      render();
+    });
+  });
+}
+
+function ownersHtml(pid){
+  const lg = state.data.leagues[state.league];
+  const fielding = [], benched = [];
+
+  (lg.managers || []).forEach(m => {
+    const pick = (m.picks || []).find(p => p.id === pid);
+    if(!pick) return;
+    const tag = {
+      team: m.team, manager: m.manager,
+      captain: pick.captain, benched: pick.benched,
+    };
+    (pick.benched ? benched : fielding).push(tag);
+  });
+
+  const tag = t => `<span class="owner-tag ${t.captain ? 'cap' : ''} ${t.benched ? 'bench' : ''}">
+      <b>${esc(t.team)}</b> · ${esc(t.manager)}${t.captain ? ' Ⓒ' : ''}</span>`;
+
+  return `<div class="owners">
+    <div class="owners-line">Fielding him &mdash; ${fielding.length}</div>
+    ${fielding.length
+      ? `<div class="owner-tags">${fielding.map(tag).join('')}</div>`
+      : '<div class="owners-none">Nobody has him in their eleven.</div>'}
+    ${benched.length ? `<div class="owners-line">On the bench &mdash; ${benched.length}</div>
+      <div class="owner-tags">${benched.map(tag).join('')}</div>` : ''}
+  </div>`;
+}
+
+wireLeagueToggle(document.getElementById('league-toggle'), league => {
+  state.league = league;
+  state.open = null;
+  render();
+});
+
+document.getElementById('group-chips').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  document.querySelectorAll('#group-chips .chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.group = btn.dataset.group;
+  state.open = null;
+  render();
+});
+
+document.getElementById('search').addEventListener('input', e => {
+  state.query = e.target.value;
+  state.open = null;
+  render();
+});
+
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>
