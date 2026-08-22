@@ -1,0 +1,14 @@
+# GitHub Pages is the home of this site:
+#   https://fpljakarta.github.io/fpl-jakarta-dashboard/
+# Netlify is kept as a mirror. Its free tier bills build minutes, and the data
+# files are committed every few minutes during a gameweek, which was enough to
+# exhaust a month of credits. The pages now read their data straight from the
+# repo at runtime, so a data-only commit does not need a rebuild here.
+
+[build]
+  publish = "."
+  # Netlify skips the build when this command exits 0. git diff --quiet exits 0
+  # when nothing outside the data files changed, so only real site changes
+  # trigger a build. On the first build CACHED_COMMIT_REF is unset, the command
+  # fails, and Netlify builds - which is what we want.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude)*.json'"

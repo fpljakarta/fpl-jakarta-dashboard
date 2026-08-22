@@ -18,8 +18,8 @@ the world.
 Run by .github/workflows/refresh-live.yml. The workflow polls often, but this
 script only asks it to publish at moments that are worth a rebuild: shortly
 before a fixture kicks off, at its half time, and when it finishes. Every
-publish triggers a Netlify build, so publishing on a timer instead of on match
-events burns the site's build credits for no visible benefit. On a day with no
+publish rebuilds the site, so publishing on a timer instead of on match events
+costs a build for no visible benefit. On a day with no
 football this writes nothing at all.
 Season-long standings, manager of the month and manager of the week are
 handled separately by fetch_fpl_data.py and are not touched here.
