@@ -18,9 +18,11 @@ from live_calc import (
     captain_counts,
     estimate_rank,
     fixtures_with_official_bonus,
+    is_over,
     ownership_counts,
     predict_autosubs,
     provisional_bonus,
+    sample_pages,
     score_squad,
     weekly_awards,
 )
@@ -96,6 +98,24 @@ class TestBonus(unittest.TestCase):
             bonus_from_bps([{"element": 1, "value": 40}, {"nope": True}]),
             {1: 3},
         )
+
+
+class TestFixtureOver(unittest.TestCase):
+    def test_a_provisionally_finished_match_is_over(self):
+        # This is the one that bit: FPL sets finished_provisional the moment a
+        # match ends and `finished` only after the data check, so a counter
+        # reading `finished` alone called six completed matches unfinished.
+        self.assertTrue(is_over({"finished": False, "finished_provisional": True}))
+
+    def test_a_checked_match_is_over(self):
+        self.assertTrue(is_over({"finished": True, "finished_provisional": True}))
+
+    def test_a_match_in_play_is_not_over(self):
+        self.assertFalse(is_over({"started": True, "finished": False,
+                                  "finished_provisional": False}))
+
+    def test_a_match_that_has_not_kicked_off_is_not_over(self):
+        self.assertFalse(is_over({}))
 
 
 class TestOfficialBonusDetection(unittest.TestCase):
@@ -309,6 +329,43 @@ class TestRankCurve(unittest.TestCase):
     def test_shared_scores_collapse_to_the_better_rank(self):
         curve = build_rank_curve([(70, 5), (70, 900), (60, 4000)])
         self.assertEqual(dict(curve)[70], 5)
+
+
+class TestSamplePages(unittest.TestCase):
+    # The depths the fetcher actually samples the global field at.
+    RANKS = [1, 3, 10, 30, 100, 300, 1_000, 3_000, 10_000, 30_000, 100_000,
+             300_000, 700_000, 1_500_000, 3_000_000, 5_000_000, 7_000_000,
+             9_000_000]
+
+    def test_ranks_map_to_their_page(self):
+        self.assertEqual(sample_pages([1, 50, 51, 100], 1_000_000), [1, 2])
+
+    def test_ranks_sharing_a_page_are_asked_for_once(self):
+        # The first version asked for page 1 four times over -- ranks 1, 3, 10
+        # and 30 all live on it -- and threw three of the four responses away,
+        # which is what left the curve half as thick as intended.
+        pages = sample_pages(self.RANKS, 9_299_773)
+        self.assertEqual(len(pages), len(set(pages)))
+        self.assertEqual(pages.count(1), 1)
+
+    def test_every_page_is_reachable_within_the_field(self):
+        total = 9_299_773
+        pages = sample_pages(self.RANKS, total)
+        self.assertTrue(all(1 <= p <= (total // 50) + 1 for p in pages))
+
+    def test_pages_past_the_end_of_the_field_are_dropped(self):
+        # A field of 1,000 has twenty pages; nothing deeper is worth a request.
+        self.assertEqual(sample_pages([1, 500, 900, 50_000], 1_000), [1, 10, 18])
+
+    def test_no_field_size_keeps_everything(self):
+        self.assertEqual(sample_pages([1, 50_000], 0), [1, 1000])
+
+    def test_pages_come_back_in_order_without_duplicates(self):
+        pages = sample_pages([9_000_000, 1, 300, 1, 300], 9_299_773)
+        self.assertEqual(pages, sorted(set(pages)))
+
+    def test_nonsense_ranks_are_ignored(self):
+        self.assertEqual(sample_pages([0, -5, 100], 1_000_000), [2])
 
 
 class TestAwards(unittest.TestCase):

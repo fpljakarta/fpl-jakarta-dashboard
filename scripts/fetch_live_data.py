@@ -56,7 +56,9 @@ from live_calc import (
     captain_counts,
     estimate_rank,
     ownership_counts,
+    is_over,
     provisional_bonus,
+    sample_pages,
     score_squad,
     weekly_awards,
 )
@@ -106,7 +108,7 @@ SAMPLE_RANKS = [
 ]
 OVERALL_LEAGUE = 314
 STANDINGS_PAGE_SIZE = 50
-SAMPLES_PER_PAGE = 5
+SAMPLES_PER_PAGE = 8
 
 
 def set_output(name, value):
@@ -136,7 +138,7 @@ def due_milestones(fixtures, already, now):
         fid = str(fx["id"])
         done = set(already.get(fid, []))
         started = bool(fx.get("started"))
-        over = bool(fx.get("finished") or fx.get("finished_provisional"))
+        over = is_over(fx)
         minutes = fx.get("minutes") or 0
         kickoff = fx.get("kickoff_time")
 
@@ -157,8 +159,7 @@ def due_milestones(fixtures, already, now):
 
 
 def match_in_progress(fixtures):
-    return any(fx.get("started") and not (fx.get("finished") or
-               fx.get("finished_provisional")) for fx in fixtures)
+    return any(fx.get("started") and not is_over(fx) for fx in fixtures)
 
 
 def minutes_since(stamp, now):
@@ -231,7 +232,7 @@ def build_player_index(bootstrap, live, fixtures):
     for fx in fixtures:
         if fx.get("started"):
             started.add(fx["id"])
-        if fx.get("finished") or fx.get("finished_provisional"):
+        if is_over(fx):
             finished.add(fx["id"])
 
     live_by_id = {el["id"]: el for el in live["elements"]}
@@ -394,30 +395,45 @@ def choose_sample_entries(total_players):
 
     One request to the Overall league returns fifty managers at a known depth,
     so a handful of requests at geometrically spaced depths covers the game
-    from the champion down to the tail. Depths past the end of the field are
-    dropped, and a page that will not load is simply skipped: a thinner curve
-    is still a usable curve.
+    from the champion down to the tail. `sample_pages` works out which pages
+    those depths actually mean, without asking for the same one twice.
+
+    A page that will not load, or that comes back empty because the field ends
+    sooner than the field size implied, is simply skipped: a thinner curve is
+    still a usable curve.
     """
     sample = []
     seen = set()
-    for target in SAMPLE_RANKS:
-        if total_players and target > total_players:
-            break
-        page = max(1, (target + STANDINGS_PAGE_SIZE - 1) // STANDINGS_PAGE_SIZE)
+    empty = 0
+    for page in sample_pages(SAMPLE_RANKS, total_players, STANDINGS_PAGE_SIZE):
         data = try_fetch(
             f"{BASE}/leagues-classic/{OVERALL_LEAGUE}/standings/"
             f"?page_standings={page}"
         )
         time.sleep(REQUEST_PAUSE)
         results = ((data or {}).get("standings") or {}).get("results") or []
-        for row in results[:SAMPLES_PER_PAGE]:
+        if not results:
+            # The deepest pages are where standings run out. Once a couple in
+            # a row come back empty there is nothing further down to find, so
+            # stop paying for the requests.
+            empty += 1
+            if empty >= 2:
+                break
+            continue
+        empty = 0
+
+        # Spread the picks across the page rather than taking the first few,
+        # so the sample is not fifty consecutive managers on near-identical
+        # scores.
+        step = max(1, len(results) // SAMPLES_PER_PAGE)
+        for row in results[::step][:SAMPLES_PER_PAGE]:
             entry = row.get("entry")
             if not entry or entry in seen:
                 continue
             seen.add(entry)
             sample.append({
                 "entry": entry,
-                "rank": row.get("rank") or target,
+                "rank": row.get("rank") or (page * STANDINGS_PAGE_SIZE),
                 "pre_gw_total": (row.get("total") or 0) - (row.get("event_total") or 0),
             })
     return sample
@@ -538,7 +554,7 @@ def main():
     if not reasons:
         upcoming = [f for f in fixtures if not f.get("started")]
         print(f"GW{gw}: nothing to publish - "
-              f"{sum(1 for f in fixtures if f.get('finished') or f.get('finished_provisional'))}"
+              f"{sum(1 for f in fixtures if is_over(f))}"
               f"/{len(fixtures)} fixtures done, {len(upcoming)} still to come. "
               f"Skipping the manager fetch and leaving live.json untouched.")
         set_output("publish", "false")
@@ -553,7 +569,7 @@ def main():
         print(f"GW{gw}: {len(bonus)} players carrying provisional bonus.")
 
     kicked_off = sum(1 for f in fixtures if f.get("started"))
-    done = sum(1 for f in fixtures if f.get("finished"))
+    done = sum(1 for f in fixtures if is_over(f))
 
     # Shared across leagues so anyone in both is only fetched once.
     picks_cache = {}
