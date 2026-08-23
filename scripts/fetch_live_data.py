@@ -386,15 +386,16 @@ def collect_managers(rows, gw, players, bonus, cache):
     return managers
 
 
-def build_fixture_cards(fixtures, bootstrap, fielded):
+def build_fixture_cards(fixtures, bootstrap, fielded_by_league):
     """
     The gameweek's matches as the home page shows them: score, who scored, the
     bonus, and how much of FPL Jakarta is on the pitch.
 
-    `fielded` is the set of footballers somebody in either league has in their
-    eleven. Counting how many of them are in a match is what turns a fixture
-    list into something about this league rather than about the Premier League
-    in general.
+    `fielded_by_league` maps each league to the footballers somebody in it has
+    in their eleven. Counting how many of them are in a match is what turns a
+    fixture list into something about this league rather than about the Premier
+    League in general, and it is counted per league so the page can follow its
+    High Stakes / Main league switch rather than lumping the two together.
     """
     teams = {t["id"]: t["short_name"] for t in bootstrap["teams"]}
     names = {el["id"]: el["web_name"] for el in bootstrap["elements"]}
@@ -425,7 +426,8 @@ def build_fixture_cards(fixtures, bootstrap, fielded):
             "status": fixture_status(fx),
             "scorers": {"home": scorer_list(home_goals), "away": scorer_list(away_goals)},
             "bonus": bonus,
-            "owned": sum(1 for pid in fielded if team_of.get(pid) in sides),
+            "owned": {key: sum(1 for pid in fielded if team_of.get(pid) in sides)
+                      for key, fielded in fielded_by_league.items()},
         })
     return cards
 
@@ -705,11 +707,13 @@ def main():
             m["or_official"] = official_or["ranks"].get(str(m["entry"]))
             m["or_live"] = estimate_rank(curve, m["total_projected"], total_players)
 
-    # Whoever is actually on a pitch for somebody in this league, which is
-    # what the fixture list counts.
-    fielded = {p["id"] for lg in out_leagues.values() for m in lg["managers"]
-               for p in m["picks"] if not p["benched"]}
-    fixture_cards = build_fixture_cards(fixtures, bootstrap, fielded)
+    # Whoever is actually on a pitch for somebody in each league, which is what
+    # the fixture list counts.
+    fielded_by_league = {
+        key: {p["id"] for m in lg["managers"] for p in m["picks"] if not p["benched"]}
+        for key, lg in out_leagues.items()
+    }
+    fixture_cards = build_fixture_cards(fixtures, bootstrap, fielded_by_league)
 
     # Only ship the footballers somebody in the league actually owns.
     used = set()
