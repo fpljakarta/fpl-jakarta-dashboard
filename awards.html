@@ -77,12 +77,7 @@
 <body>
 
   <div class="ticker">
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Awards of the Week</span>
-      <span class="ticker-item">Winners settle once every match has finished</span>
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Awards of the Week</span>
-      <span class="ticker-item">Winners settle once every match has finished</span>
-    </div>
+    <div class="ticker-track" id="ticker-track"></div>
   </div>
 
   <nav class="nav">
@@ -192,6 +187,7 @@ function render(){
   }
 
   document.getElementById('stamp').textContent = stampText(d.generated_at);
+  awardsTicker(week, lg, cards);
 
   const mount = document.getElementById('awards-mount');
   if(!cards.length){
@@ -203,6 +199,27 @@ function render(){
   }
 
   mount.innerHTML = '<div class="awards-grid">' + cards.map(card).join('') + '</div>';
+}
+
+/* Who won what, so the trophies read without opening the page. */
+function awardsTicker(week, lg, cards){
+  const track = document.getElementById('ticker-track');
+  const won = (cards || []).filter(c => c.manager);
+  if(!won.length){
+    renderTicker(track, 'FPL Jakarta — Awards of the Week',
+      [tickerItem('Trophies appear once the gameweek is under way')]);
+    return;
+  }
+
+  const head = [tickerItem(
+    `<b>${esc(week?.name || '')}</b> · ${esc(lg?.name || '')}` +
+    (week && !week.final ? ' · provisional' : ''))];
+
+  const items = won.map(c => tickerItem(
+    `<b>${esc(c.title)}</b> ${esc(c.manager)} ` +
+    `<span class="${c.tone === 'bad' ? 'down-txt' : 'up-txt'}">${esc(c.value ?? '')}</span>`));
+
+  renderTicker(track, 'FPL Jakarta — Awards of the Week', head.concat(items));
 }
 
 function card(a){

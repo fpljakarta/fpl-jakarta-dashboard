@@ -339,12 +339,7 @@
 <body>
 
   <div class="ticker">
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Live</span>
-      <span class="ticker-item">Scores update at kick-off, half time and full time</span>
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Live</span>
-      <span class="ticker-item">Scores update at kick-off, half time and full time</span>
-    </div>
+    <div class="ticker-track" id="ticker-track"></div>
   </div>
 
   <nav class="nav">
@@ -425,6 +420,7 @@ function render(){
   } else { note.textContent = ''; }
 
   document.getElementById('stamp').textContent = stampText(d?.generated_at);
+  liveTicker(d, lg);
 
   if(!managers.length){
     mount.innerHTML = `<div class="empty-card">
@@ -497,6 +493,35 @@ function overallCell(m){
     bits.push(`<span class="sub est" title="Estimated from a sample of managers across the whole game — not an official figure">~${commas(m.or_live)} live</span>`);
   }
   return bits.length ? bits.join('') : '—';
+}
+
+/* Every manager's live score and how much football they have left, which is
+   the thing worth glancing at without scrolling the table. */
+function liveTicker(d, lg){
+  const track = document.getElementById('ticker-track');
+  const managers = lg?.managers || [];
+  if(!managers.length){
+    renderTicker(track, 'FPL Jakarta — Live', [
+      tickerItem('Squads appear once the deadline passes'),
+    ]);
+    return;
+  }
+
+  const f = d.fixtures || {};
+  const head = [tickerItem(
+    `<b>${f.finished ?? 0}/${f.total ?? 0}</b> fixtures done` +
+    (d.data_checked ? ' · scores final' : ' · bonus still to settle'))];
+
+  const rows = managers.map(m => {
+    const left = m.yet_to_play
+      ? ` <span class="up-txt">${m.yet_to_play} left</span>`
+      : ' <span style="opacity:.55">done</span>';
+    const proj = (m.gw_projected != null && m.gw_projected !== m.gw_points)
+      ? ` <span class="${m.gw_projected > m.gw_points ? 'up-txt' : 'down-txt'}">→${m.gw_projected}</span>` : '';
+    return tickerItem(`<b>${esc(m.team)}</b> ${m.gw_points}${proj}${left}`);
+  });
+
+  renderTicker(track, 'FPL Jakarta — Live', head.concat(rows));
 }
 
 function squadHtml(m, lg, d){

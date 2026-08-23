@@ -56,6 +56,7 @@
   .live-dot{ width:6px; height:6px; border-radius:50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); animation: pulse 1.4s ease-in-out infinite; flex-shrink:0;}
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
   .ticker-item b{ color: var(--floodlight); font-weight:600; }
+  .up-txt{ color: var(--up); } .down-txt{ color: var(--down); }
 
   /* ---------- nav tabs ---------- */
   .nav{ border-bottom: 1px solid var(--line); background: var(--bg-elevated); }
@@ -156,12 +157,7 @@
 <body>
 
   <div class="ticker">
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Prices</span>
-      <span class="ticker-item">FPL applies price changes overnight, around 08:30 Jakarta time</span>
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Prices</span>
-      <span class="ticker-item">FPL applies price changes overnight, around 08:30 Jakarta time</span>
-    </div>
+    <div class="ticker-track" id="ticker-track"></div>
   </div>
 
   <nav class="nav">
@@ -219,6 +215,7 @@
     </footer>
   </div>
 
+<script src="assets/site.js"></script>
 <script>
 let priceData = null;
 
@@ -227,32 +224,6 @@ let priceData = null;
 // the repo copy as well as the deployed one and keep whichever was generated
 // later. If GitHub is unreachable the deployed copy is still used, and if the
 // deploy is stale the repo copy carries the page.
-const REPO_DATA = 'https://raw.githubusercontent.com/fpljakarta/fpl-jakarta-dashboard/main/';
-
-async function grabJson(url, timeoutMs){
-  const stop = new AbortController();
-  const timer = setTimeout(() => stop.abort(), timeoutMs || 8000);
-  try{
-    const res = await fetch(url, { cache: 'no-store', signal: stop.signal });
-    if(!res.ok) throw new Error('HTTP ' + res.status);
-    return await res.json();
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-async function loadJson(name){
-  const [local, remote] = await Promise.all([
-    grabJson(name).catch(() => null),
-    // Never let a slow or blocked GitHub hold up the page: the deployed copy
-    // is good enough if the repo copy does not answer quickly.
-    grabJson(REPO_DATA + name, 5000).catch(() => null),
-  ]);
-  if(!local) return remote;
-  if(!remote) return local;
-  return (remote.generated_at || '') > (local.generated_at || '') ? remote : local;
-}
-
 async function load(){
   priceData = await loadJson('prices.json');
   if(!priceData) console.error('Could not load prices.json');
@@ -260,6 +231,7 @@ async function load(){
   renderMovers();
   renderMomentum();
   renderStamp();
+  pricesTicker();
 }
 
 function escapeHtml(str){
@@ -267,6 +239,38 @@ function escapeHtml(str){
 }
 
 function money(n){ return '£' + Number(n).toFixed(1) + 'm'; }
+
+/* Who the world is buying and selling hardest -- the clearest sign of which
+   way a price is about to move, which is what this page is for. */
+function pricesTicker(){
+  const track = document.getElementById('ticker-track');
+  const inbound = priceData?.momentum_in || [];
+  const outbound = priceData?.momentum_out || [];
+  const log = priceData?.log || [];
+
+  if(!inbound.length && !outbound.length){
+    renderTicker(track, 'FPL Jakarta — Prices',
+      [tickerItem('Transfer momentum appears once the season is under way')]);
+    return;
+  }
+
+  const num = n => Number(n).toLocaleString('en-GB');
+  const items = [];
+
+  if(log.length){
+    const up = log.filter(c => c.to > c.from).length;
+    items.push(tickerItem(
+      `<b>${log.length}</b> price change${log.length === 1 ? '' : 's'} logged · ` +
+      `<span class="up-txt">${up} up</span> <span class="down-txt">${log.length - up} down</span>`));
+  }
+
+  inbound.slice(0, 8).forEach(p => items.push(tickerItem(
+    `<b>${escapeHtml(p.name)}</b> <span class="up-txt">+${num(p.net)}</span>`)));
+  outbound.slice(0, 8).forEach(p => items.push(tickerItem(
+    `<b>${escapeHtml(p.name)}</b> <span class="down-txt">${num(p.net)}</span>`)));
+
+  renderTicker(track, 'FPL Jakarta — Prices', items);
+}
 
 function emptyCard(title, sub){
   return `<div class="empty-card"><div class="t">${escapeHtml(title)}</div><div class="s">${escapeHtml(sub)}</div></div>`;
