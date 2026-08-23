@@ -2,11 +2,13 @@ name: Refresh live gameweek
 
 on:
   schedule:
-    # Polls often and cheaply. The script decides whether the moment is worth
-    # publishing, and only a publish commits, which is what triggers a rebuild.
-    # Five minutes is the cadence provisional bonus needs to actually look
-    # live; on a day with no football the script publishes nothing at all, so
-    # the extra polls cost a few seconds of runner time and no commits.
+    # Asked for every five minutes; GitHub does not oblige. Measured across a
+    # match day, this repo gets a scheduled run roughly once an hour whatever
+    # the cron says, and the same was true of the */10 it replaced -- the
+    # schedule event is best-effort and high-frequency crons are dropped under
+    # load. So the cron is a wake-up call, not the cadence: once awake, the job
+    # below stays alive through the match and republishes itself every five
+    # minutes.
     - cron: '*/5 * * * *'
   workflow_dispatch: {}
   push:
@@ -26,6 +28,16 @@ concurrency:
 jobs:
   live:
     runs-on: ubuntu-latest
+    # The publishing loop runs for at most PUBLISH_WINDOW_MINUTES; this is the
+    # backstop if something wedges.
+    timeout-minutes: 75
+    env:
+      # How long one run keeps publishing for. Slightly under the hour a
+      # scheduled run actually arrives on, so the windows meet rather than
+      # overlap.
+      PUBLISH_WINDOW_MINUTES: 55
+      # Matches the script's own LIVE_REFRESH_MINUTES.
+      PUBLISH_EVERY_SECONDS: 300
     steps:
       - uses: actions/checkout@v4
 
@@ -35,27 +47,56 @@ jobs:
 
       # The bonus, substitution and award arithmetic is pure and testable, so
       # it is tested whenever it changes. Skipped on the schedule, where it
-      # would just burn a few seconds every five minutes to re-prove code that
-      # has not moved.
+      # would just burn a few seconds every run to re-prove code that has not
+      # moved.
       - name: Test the scoring arithmetic
         if: github.event_name != 'schedule'
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
 
-      - name: Fetch live gameweek data
-        id: fetch
+      - name: Publish through the match window
         env:
           # A manual run or a change to the code always publishes, so there is
-          # a way to force a refresh without waiting for a match.
-          FORCE_PUBLISH: ${{ github.event_name != 'schedule' }}
-        run: python scripts/fetch_live_data.py
-
-      - name: Commit live data if it changed
-        if: steps.fetch.outputs.publish == 'true'
+          # a way to force a refresh without waiting for a match. Only the
+          # first pass is forced -- after that each pass publishes on its own
+          # merits, or the loop would commit every five minutes on a quiet day.
+          FORCE_FIRST_PASS: ${{ github.event_name != 'schedule' }}
         run: |
+          set -euo pipefail
           git config user.name "fpl-jakarta-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add live.json awards.json
-          git diff --staged --quiet || git commit -m "Refresh live gameweek"
-          # The hourly job may have pushed while we were fetching.
-          git pull --rebase --autostash origin main
-          git push
+
+          deadline=$(( $(date +%s) + PUBLISH_WINDOW_MINUTES * 60 ))
+          export FORCE_PUBLISH="$FORCE_FIRST_PASS"
+          pass=0
+
+          while : ; do
+            pass=$(( pass + 1 ))
+            echo "::group::Pass $pass"
+            python scripts/fetch_live_data.py
+            export FORCE_PUBLISH=false
+
+            published=$(python -c "import json;print(json.load(open('.live-run-status'))['published'])")
+            in_play=$(python -c "import json;print(json.load(open('.live-run-status'))['in_play'])")
+            echo "published=$published in_play=$in_play"
+
+            if [ "$published" = "True" ]; then
+              git add live.json awards.json
+              if ! git diff --staged --quiet; then
+                git commit -m "Refresh live gameweek"
+                # The hourly job may have pushed while we were fetching.
+                git pull --rebase --autostash origin main
+                git push
+              fi
+            fi
+            echo "::endgroup::"
+
+            if [ "$in_play" != "True" ]; then
+              echo "No match being played. Nothing more to publish this run."
+              break
+            fi
+            if [ "$(date +%s)" -ge "$deadline" ]; then
+              echo "Window closed after $PUBLISH_WINDOW_MINUTES minutes; the next run takes over."
+              break
+            fi
+            sleep "$PUBLISH_EVERY_SECONDS"
+          done

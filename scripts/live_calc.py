@@ -81,6 +81,19 @@ def is_over(fixture):
     return bool(fixture.get("finished") or fixture.get("finished_provisional"))
 
 
+def match_in_progress(fixtures):
+    """
+    Whether any match is being played right now.
+
+    This decides how long the workflow keeps publishing for. GitHub delivers a
+    high-frequency schedule far less often than it is asked to -- roughly once
+    an hour here, whatever the cron says -- so a single run stays alive through
+    a match and republishes on its own rather than trusting the next trigger to
+    arrive on time.
+    """
+    return any(fx.get("started") and not is_over(fx) for fx in fixtures)
+
+
 def fixtures_with_official_bonus(live_elements):
     """
     Fixture ids whose bonus FPL has already added to the live totals.

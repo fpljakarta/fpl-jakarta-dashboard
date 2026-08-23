@@ -17,13 +17,37 @@ Both scripts read the official, unauthenticated Fantasy Premier League API at
 | Script | Writes | Run by | Cadence |
 | --- | --- | --- | --- |
 | `scripts/fetch_fpl_data.py` | `data.json`, `prices.json` | `.github/workflows/refresh.yml` | hourly |
-| `scripts/fetch_live_data.py` | `live.json`, `awards.json` | `.github/workflows/refresh-live.yml` | every 5 minutes |
+| `scripts/fetch_live_data.py` | `live.json`, `awards.json` | `.github/workflows/refresh-live.yml` | every 5 minutes during a match |
 
 Neither script writes a file unless its contents actually changed, so quiet
-periods produce no commits at all. The live script polls every five minutes but
-only publishes at moments worth publishing: shortly before a kick-off, at half
-time, at full time, and every five minutes while a match is actually being
-played. On a day with no football it writes nothing.
+periods produce no commits at all. The live script only publishes at moments
+worth publishing: shortly before a kick-off, at half time, at full time, and
+every five minutes while a match is actually being played. On a day with no
+football it writes nothing.
+
+### Why the workflow loops instead of trusting the cron
+
+The cron asks for a run every five minutes. GitHub does not oblige. Measured
+across a match day, this repository gets a scheduled run roughly **once an
+hour** whatever the cron says — the same was true of the `*/10` that preceded
+it. The `schedule` event is best-effort and high-frequency crons are dropped
+under load.
+
+Once an hour is useless for provisional bonus, which moves continuously and was
+the entire reason for a fast cadence: the projected scores would sit still for
+most of a half.
+
+So the cron is treated as a wake-up call rather than the cadence. When a run
+starts, it publishes and then asks the script whether a match is still being
+played. While one is, the job stays alive and publishes again every five
+minutes, for up to 55 minutes, before letting the next scheduled run take over.
+On a day with no football the first pass finds nothing in play and the job exits
+in seconds.
+
+The script tells the workflow what happened through `.live-run-status`, an
+untracked file holding `published` and `in_play`. A held runner is free on a
+public repository, so the cost of this is a noisier commit history on match
+days, which is the trade the fast cadence was always making.
 
 ## Two scores, and why
 

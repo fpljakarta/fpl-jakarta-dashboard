@@ -57,6 +57,7 @@ from live_calc import (
     estimate_rank,
     ownership_counts,
     is_over,
+    match_in_progress,
     provisional_bonus,
     sample_pages,
     score_squad,
@@ -111,6 +112,11 @@ STANDINGS_PAGE_SIZE = 50
 SAMPLES_PER_PAGE = 5
 
 
+# Read by the workflow after every pass so it knows whether to commit and
+# whether to keep going. Not committed; see .gitignore.
+STATUS_FILE = ".live-run-status"
+
+
 def set_output(name, value):
     """Hand a value back to the workflow step that ran us."""
     path = os.environ.get("GITHUB_OUTPUT")
@@ -118,6 +124,19 @@ def set_output(name, value):
         with open(path, "a", encoding="utf-8") as f:
             f.write(f"{name}={value}\n")
     print(f"::publish::{name}={value}")
+
+
+def write_status(published, in_play):
+    """
+    Tell the workflow what just happened and whether football is still on.
+
+    The workflow loops on this: commit when something was published, and go
+    round again while a match is still being played.
+    """
+    with open(STATUS_FILE, "w", encoding="utf-8") as f:
+        json.dump({"published": bool(published), "in_play": bool(in_play)}, f)
+    set_output("publish", "true" if published else "false")
+    set_output("in_play", "true" if in_play else "false")
 
 
 def load_json_file(path):
@@ -156,10 +175,6 @@ def due_milestones(fixtures, already, now):
         if "ft" not in done and over:
             due.append((fid, "ft"))
     return due
-
-
-def match_in_progress(fixtures):
-    return any(fx.get("started") and not is_over(fx) for fx in fixtures)
 
 
 def minutes_since(stamp, now):
@@ -556,7 +571,7 @@ def main():
               f"{sum(1 for f in fixtures if is_over(f))}"
               f"/{len(fixtures)} fixtures done, {len(upcoming)} still to come. "
               f"Skipping the manager fetch and leaving live.json untouched.")
-        set_output("publish", "false")
+        write_status(False, in_play)
         return
 
     print(f"GW{gw}: publishing because {'; '.join(reasons)}.")
@@ -687,7 +702,7 @@ def main():
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
           f"({len(picks_cache)} unique), {done}/{len(fixtures)} fixtures finished.")
-    set_output("publish", "true")
+    write_status(True, in_play)
 
 
 if __name__ == "__main__":
