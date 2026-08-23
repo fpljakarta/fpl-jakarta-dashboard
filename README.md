@@ -1,6 +1,6 @@
 # FPL Jakarta dashboard
 
-Live site: **https://fpljakarta.github.io/fpl-jakarta-dashboard/**
+Live site: **https://fpljakarta.qd.je/**
 
 A static site — no build step, no framework. Seven pages at the repo root
 (`index.html`, `live.html`, `ownership.html`, `compare.html`, `awards.html`,
@@ -120,10 +120,25 @@ five-minute schedule.
 ## Hosting
 
 GitHub Pages is the home. It serves the repo root from `main`, rebuilds on every
-push, and is free and unmetered for a public repo. Because it is a *project*
-site, everything lives under the `/fpl-jakarta-dashboard/` path — so all
-internal links must be relative (`live.html`, not `/live`). A root-absolute link
-resolves to `fpljakarta.github.io/` and 404s.
+push, and is free and unmetered for a public repo.
+
+The site answers on **https://fpljakarta.qd.je/**. The root `CNAME` file is what
+tells Pages so; Pages issues the certificate itself, and redirects the old
+project URLs under `fpljakarta.github.io/fpl-jakarta-dashboard/` to the matching
+page on the domain, so links already shared in the group keep working. Because
+the site now serves from a domain root rather than a project path, internal
+links are no longer *required* to be relative — but they are relative
+throughout, and leaving them that way keeps the pages working when opened from
+a checkout or from the Netlify mirror.
+
+The domain is a free registration from DigitalPlat FreeDomain
+(<https://dash.domain.digitalplat.org>). It costs nothing, but unlike a paid
+domain it has to be renewed periodically, and an unrenewed one stops resolving.
+If that ever happens — or if the domain needs to go for any other reason — the
+recovery is a one-file change: **delete `CNAME`, and the site is immediately
+back at `https://fpljakarta.github.io/fpl-jakarta-dashboard/`.** Nothing else in
+the repo depends on the domain except the `<link rel="canonical">` tag at the
+top of each page.
 
 The Netlify mirror at https://fpljkt.netlify.app is optional, and automatic
 builds are switched off there. Netlify's free tier bills build minutes, and a
