@@ -105,12 +105,53 @@ def fetch_history(entry_id):
     return fetch_json(f"{BASE}/entry/{entry_id}/history/")
 
 
-def winners_for(entries, phases, histories):
+def event_started(event, now):
+    """Whether a gameweek is under way, by its deadline having passed."""
+    if not event:
+        return False
+    if event.get("finished") or event.get("is_current"):
+        return True
+    deadline = event.get("deadline_time")
+    if not deadline:
+        return False
+    try:
+        return now >= datetime.fromisoformat(deadline.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+
+
+def month_is_over(phase, next_phase, events_by_id, now):
+    """
+    Whether a month's award can be handed out yet.
+
+    A month is not settled the moment one of its gameweeks has been played, and
+    it is not settled by the calendar either: fixtures get moved, and a
+    gameweek straddling the turn of the month belongs to whichever month FPL
+    assigned it to. The one unambiguous signal is the next month starting --
+    once the first gameweek of September is under way, August can no longer
+    change, so August's trophy is safe to award.
+
+    The final month of the season has no next month to wait for, so it waits
+    for its own last gameweek to finish instead.
+    """
+    if next_phase:
+        return event_started(events_by_id.get(next_phase.get("start_event")), now)
+    last = events_by_id.get(phase.get("stop_event"))
+    return bool(last and last.get("finished"))
+
+
+def winners_for(entries, phases, histories, events_by_id=None, now=None):
     """
     Manager of the month and manager of the week among these entries only, so
     each league is judged against its own members rather than the whole group.
     Scores are net of transfer hits.
+
+    A month with football still to come is reported with no winner: an award
+    handed out halfway through the month would change hands as the month went
+    on, which is worse than showing nothing.
     """
+    events_by_id = events_by_id or {}
+    now = now or datetime.now(timezone.utc)
     per_gw_best, per_phase_totals = {}, {}
 
     for entry in entries:
@@ -140,19 +181,30 @@ def winners_for(entries, phases, histories):
 
     lookup = {e["entry_id"]: e for e in entries}
     motm = []
-    for phase in phases:
+    for i, phase in enumerate(phases):
         bucket = per_phase_totals.get(phase["name"], {})
-        if not bucket:
-            motm.append({"month": phase["name"], "manager": None, "team": None, "points": None})
-            continue
-        winner_id = max(bucket, key=bucket.get)
-        winner = lookup.get(winner_id, {})
-        motm.append({
+        next_phase = phases[i + 1] if i + 1 < len(phases) else None
+        settled = month_is_over(phase, next_phase, events_by_id, now)
+
+        # `started` separates a month being played from one that has not begun,
+        # so the page can say which it is instead of calling both unplayed.
+        card = {
             "month": phase["name"],
-            "manager": winner.get("manager"),
-            "team": winner.get("team"),
-            "points": bucket[winner_id],
-        })
+            "started": bool(bucket),
+            "settled": bool(settled),
+            "manager": None,
+            "team": None,
+            "points": None,
+        }
+        if bucket and settled:
+            winner_id = max(bucket, key=bucket.get)
+            winner = lookup.get(winner_id, {})
+            card.update({
+                "manager": winner.get("manager"),
+                "team": winner.get("team"),
+                "points": bucket[winner_id],
+            })
+        motm.append(card)
 
     return motm, motw
 
@@ -276,9 +328,10 @@ def main():
             continue
         time.sleep(REQUEST_PAUSE)
 
+    events_by_id = {e["id"]: e for e in events}
     motm, motw = {}, {}
     for key, rows in standings.items():
-        motm[key], motw[key] = winners_for(rows, phases, histories)
+        motm[key], motw[key] = winners_for(rows, phases, histories, events_by_id, now)
 
     data = {
         "generated_at": now.isoformat(timespec="seconds"),

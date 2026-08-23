@@ -19,6 +19,7 @@ from live_calc import (
     estimate_rank,
     fixtures_with_official_bonus,
     is_over,
+    match_in_progress,
     ownership_counts,
     predict_autosubs,
     provisional_bonus,
@@ -116,6 +117,35 @@ class TestFixtureOver(unittest.TestCase):
 
     def test_a_match_that_has_not_kicked_off_is_not_over(self):
         self.assertFalse(is_over({}))
+
+
+class TestMatchInProgress(unittest.TestCase):
+    # This decides how long a workflow run stays alive republishing, so
+    # getting it wrong either strands the page on stale bonus or holds a
+    # runner open all night.
+    def test_a_match_under_way_counts(self):
+        self.assertTrue(match_in_progress([
+            {"started": True, "finished": False, "finished_provisional": False},
+        ]))
+
+    def test_finished_matches_alone_do_not_count(self):
+        self.assertFalse(match_in_progress([
+            {"started": True, "finished": False, "finished_provisional": True},
+            {"started": True, "finished": True, "finished_provisional": True},
+        ]))
+
+    def test_fixtures_still_to_kick_off_do_not_count(self):
+        self.assertFalse(match_in_progress([{"started": False}]))
+
+    def test_one_live_match_among_finished_ones_is_enough(self):
+        self.assertTrue(match_in_progress([
+            {"started": True, "finished": True, "finished_provisional": True},
+            {"started": True, "finished": False, "finished_provisional": False},
+            {"started": False},
+        ]))
+
+    def test_an_empty_gameweek_has_nothing_in_play(self):
+        self.assertFalse(match_in_progress([]))
 
 
 class TestOfficialBonusDetection(unittest.TestCase):
