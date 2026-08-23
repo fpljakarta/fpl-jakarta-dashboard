@@ -83,12 +83,7 @@
 <body>
 
   <div class="ticker">
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Head to head</span>
-      <span class="ticker-item">Shared players cancel out; the differentials decide it</span>
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Head to head</span>
-      <span class="ticker-item">Shared players cancel out; the differentials decide it</span>
-    </div>
+    <div class="ticker-track" id="ticker-track"></div>
   </div>
 
   <nav class="nav">
@@ -177,6 +172,7 @@ function render(){
     d ? ((d.gw_name || ('Gameweek ' + d.gameweek)) + ' · ' +
          (d.leagues?.[state.league]?.name || '')) : 'Head to head';
   document.getElementById('stamp').textContent = stampText(d?.generated_at);
+  compareTicker();
 
   if(!managers().length){
     mount.innerHTML = `<div class="empty-card" style="margin-top:18px;">
@@ -192,6 +188,30 @@ function render(){
   if(!A || !B){ mount.innerHTML = ''; return; }
 
   mount.innerHTML = scoreline(A, B) + squads(A, B);
+}
+
+/* The tightest races in the league: whoever is within touching distance of
+   the manager above them is exactly who this page is for. */
+function compareTicker(){
+  const track = document.getElementById('ticker-track');
+  const list = [...managers()].sort((a, b) => b.total - a.total);
+  if(list.length < 2){
+    renderTicker(track, 'FPL Jakarta — Head to head',
+      [tickerItem('Squads appear once the deadline passes')]);
+    return;
+  }
+
+  const races = [];
+  for(let i = 1; i < list.length; i++){
+    races.push({ ahead: list[i - 1], behind: list[i], gap: list[i - 1].total - list[i].total });
+  }
+  races.sort((a, b) => a.gap - b.gap);
+
+  const items = races.slice(0, 12).map(r => tickerItem(
+    `<b>${esc(r.ahead.team)}</b> ${r.gap === 0 ? 'level with' : '+' + r.gap + ' on'} ` +
+    `${esc(r.behind.team)}`));
+
+  renderTicker(track, 'FPL Jakarta — Head to head', items);
 }
 
 /* What a pick is worth to its manager right now, armband included. */

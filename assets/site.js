@@ -66,6 +66,44 @@ function signed(n){
   return (n > 0 ? '+' : '') + n;
 }
 
+/* ---------------------------------------------------------------------------
+   The ticker
+
+   Every page has one, and on every page it should be carrying that page's own
+   news rather than a slogan. A page hands over a list of already-escaped item
+   strings; this deals with the two things that are easy to get wrong.
+
+   First, the run is written out twice. The CSS animation translates the track
+   by -100%, so a single run would leave a gap the width of the strip before it
+   came round again; an identical second run makes the loop seamless.
+
+   Second, the duration is derived from the width rather than fixed. A fixed
+   duration made a strip of sixty items scroll unreadably fast and a strip of
+   four crawl, and the two leagues scrolled at different speeds on the same
+   page.
+--------------------------------------------------------------------------- */
+
+const TICKER_PX_PER_SEC = 90;
+
+function tickerItem(html){
+  return `<span class="ticker-item">${html}</span>`;
+}
+
+function brandItem(label){
+  return tickerItem(`<span class="live-dot"></span> ${esc(label)}`);
+}
+
+function renderTicker(track, label, items){
+  if(!track) return;
+  const run = brandItem(label) + (items && items.length
+    ? items.join('')
+    : tickerItem('Updating&hellip;'));
+  track.innerHTML = run + run;
+
+  const travel = track.scrollWidth;
+  if(travel) track.style.animationDuration = Math.round(travel / TICKER_PX_PER_SEC) + 's';
+}
+
 /* A single place to decide what a two-way league switch does, since three
    pages need exactly the same one. */
 function wireLeagueToggle(el, onChange){

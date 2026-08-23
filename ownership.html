@@ -83,12 +83,7 @@
 <body>
 
   <div class="ticker">
-    <div class="ticker-track">
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Ownership</span>
-      <span class="ticker-item">Who the league backs, and who it leaves alone</span>
-      <span class="ticker-item"><span class="live-dot"></span> FPL Jakarta &mdash; Ownership</span>
-      <span class="ticker-item">Who the league backs, and who it leaves alone</span>
-    </div>
+    <div class="ticker-track" id="ticker-track"></div>
   </div>
 
   <nav class="nav">
@@ -253,6 +248,7 @@ function render(){
     d ? ((d.gw_name || ('Gameweek ' + d.gameweek)) + ' · ' +
          (d.leagues?.[state.league]?.name || '')) : 'Ownership';
   document.getElementById('stamp').textContent = stampText(d?.generated_at);
+  ownershipTicker();
 
   const list = visible();
   if(!list.length){
@@ -321,6 +317,28 @@ function render(){
       render();
     });
   });
+}
+
+/* The league's heaviest picks, then the best-scoring player almost nobody
+   has -- the two ends of this page's story. */
+function ownershipTicker(){
+  const track = document.getElementById('ticker-track');
+  const all = rows();
+  if(!all.length){
+    renderTicker(track, 'FPL Jakarta — Ownership',
+      [tickerItem('Ownership appears once the deadline passes')]);
+    return;
+  }
+
+  const template = [...all].sort((a, b) => b.eo - a.eo).slice(0, 10)
+    .map(r => tickerItem(`<b>${esc(r.name)}</b> ${r.eo.toFixed(0)}% owned`));
+
+  const differentials = all.filter(r => r.eo <= 10 && r.points > 0)
+    .sort((a, b) => b.points - a.points).slice(0, 5)
+    .map(r => tickerItem(
+      `<b>${esc(r.name)}</b> ${r.points} pts · <span class="up-txt">${r.owners} owner${r.owners === 1 ? '' : 's'}</span>`));
+
+  renderTicker(track, 'FPL Jakarta — Ownership', template.concat(differentials));
 }
 
 function ownersHtml(pid){
