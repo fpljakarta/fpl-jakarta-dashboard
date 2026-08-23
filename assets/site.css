@@ -178,10 +178,8 @@ footer a{ color: var(--muted); }
    Partner venue pages
 
    Taproom 22 and Milo's Padel are where the league watches football, so their
-   pages lead with that and treat the address and opening hours as reference
-   rather than as the point. The details come from public listings and are
-   marked as unconfirmed, because a wrong opening time sends somebody across
-   Jakarta for nothing.
+   pages lead with the member benefit and treat the address and opening hours as
+   reference rather than as the point.
 --------------------------------------------------------------------------- */
 
 .venue-hero{
@@ -231,14 +229,6 @@ footer a{ color: var(--muted); }
 .fact .v a{ color: var(--lime); text-decoration:none; border-bottom:1px solid rgba(212,255,61,.35); }
 .fact .v a:hover{ border-bottom-color: var(--lime); }
 .fact .s{ font-size:12.5px; color: var(--muted-dim); margin-top:6px; line-height:1.45; }
-
-/* Anything we could not confirm says so, rather than looking authoritative. */
-.unconfirmed{
-  margin-top:14px; padding:12px 15px; border-radius:10px;
-  border:1px dashed var(--line); background: rgba(0,0,0,.16);
-  color: var(--muted); font-size:12.5px; line-height:1.55;
-}
-.unconfirmed b{ color: var(--gold); font-weight:600; }
 
 .links{ display:flex; gap:10px; flex-wrap:wrap; }
 .link-btn{

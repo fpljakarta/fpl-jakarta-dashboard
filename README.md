@@ -18,11 +18,12 @@ data file behind them and never change on their own.
 
 Their address, hours and contact details came from public directory listings,
 because the venues' own pages and Instagram accounts could not be read directly.
-Listings go stale, and two of them disagreed on Taproom 22's opening hours, so
-every fact on those pages sits under a visible **unconfirmed** notice pointing
-at the venue's own map listing and Instagram as the authority. If somebody
-confirms the details with the venues, that notice should come off and the
-details should be corrected in the same commit.
+Listings go stale, so each page points at the venue's own map listing, Instagram
+and WhatsApp as the authority, and says so where a detail is genuinely uncertain
+rather than inventing a precise one — two listings disagreed on Taproom 22's
+opening hours, which is why that page gives them as an afternoon-until-late range
+and sends you to the map listing before an early arrival. Anything confirmed with
+the venues should be corrected here in the same commit.
 
 ## Where the data comes from
 
