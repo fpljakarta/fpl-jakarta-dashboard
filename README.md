@@ -79,6 +79,15 @@ untracked file holding `published`, `in_play` and `starts_soon`. A held runner
 is free on a public repository, so the cost of this is a noisier commit history
 on match days, which is the trade the fast cadence was always making.
 
+Publishing takes `main` as it stands and puts the two generated files on top,
+rather than rebasing onto it. There is never anything to merge — `live.json` and
+`awards.json` are rewritten whole every pass, so the copy just written is by
+definition the newest — and rebasing one full rewrite onto another conflicts
+every time. That is not hypothetical: a run queued behind a long one started
+from a 39-minute-old checkout on 23 August and died on exactly that conflict.
+Files the hourly job owns are untouched, because only `live.json` and
+`awards.json` are copied back.
+
 ## The fixture list
 
 `live.json` carries the current gameweek's matches — score, scorers, the 3/2/1

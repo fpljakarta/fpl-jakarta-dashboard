@@ -98,13 +98,37 @@ jobs:
             echo "published=$published in_play=$in_play starts_soon=$starts_soon"
 
             if [ "$published" = "True" ]; then
-              git add live.json awards.json
-              if ! git diff --staged --quiet; then
+              # live.json and awards.json are generated whole every pass, so
+              # there is never anything to merge -- the copy just written is by
+              # definition the newest. Rebasing onto main used to be how this
+              # handled a concurrent push, and on 23 August it failed: run #34
+              # sat in the concurrency queue behind a long run, started from a
+              # 39-minute-old checkout, and rebasing its rewrite of live.json
+              # onto three newer rewrites conflicted immediately. Two full
+              # rewrites of the same JSON never auto-merge.
+              #
+              # So take main as it stands and put our files on top of it. The
+              # longer publish window makes a queued run staler still, which is
+              # exactly when the old approach broke.
+              for attempt in 1 2 3; do
+                git fetch origin main
+                cp live.json awards.json "$RUNNER_TEMP/"
+                git reset --hard origin/main
+                cp "$RUNNER_TEMP/live.json" "$RUNNER_TEMP/awards.json" .
+                git add live.json awards.json
+                if git diff --staged --quiet; then
+                  echo "Nothing changed against main; nothing to push."
+                  break
+                fi
                 git commit -m "Refresh live gameweek"
-                # The hourly job may have pushed while we were fetching.
-                git pull --rebase --autostash origin main
-                git push
-              fi
+                if git push; then
+                  break
+                fi
+                echo "Push rejected (attempt $attempt) -- someone else got there first."
+                if [ "$attempt" = "3" ]; then
+                  echo "::warning::Could not push after 3 attempts; the next pass will try again."
+                fi
+              done
             fi
             echo "::endgroup::"
 
