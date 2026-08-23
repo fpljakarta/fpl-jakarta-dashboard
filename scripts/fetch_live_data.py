@@ -56,6 +56,9 @@ from live_calc import (
     captain_counts,
     estimate_rank,
     ownership_counts,
+    fixture_bonus,
+    fixture_scorers,
+    fixture_status,
     is_over,
     match_in_progress,
     provisional_bonus,
@@ -383,6 +386,50 @@ def collect_managers(rows, gw, players, bonus, cache):
     return managers
 
 
+def build_fixture_cards(fixtures, bootstrap, fielded):
+    """
+    The gameweek's matches as the home page shows them: score, who scored, the
+    bonus, and how much of FPL Jakarta is on the pitch.
+
+    `fielded` is the set of footballers somebody in either league has in their
+    eleven. Counting how many of them are in a match is what turns a fixture
+    list into something about this league rather than about the Premier League
+    in general.
+    """
+    teams = {t["id"]: t["short_name"] for t in bootstrap["teams"]}
+    names = {el["id"]: el["web_name"] for el in bootstrap["elements"]}
+    team_of = {el["id"]: el["team"] for el in bootstrap["elements"]}
+
+    cards = []
+    for fx in sorted(fixtures, key=lambda f: (f.get("kickoff_time") or "", f["id"])):
+        home_goals, away_goals = fixture_scorers(fx)
+
+        def scorer_list(rows):
+            return [{"name": names.get(pid, "—"), "goals": goals, "og": own}
+                    for pid, goals, own in rows]
+
+        bonus = [{"name": names.get(pid, "—"), "points": pts}
+                 for pid, pts in sorted(fixture_bonus(fx).items(),
+                                        key=lambda kv: -kv[1])]
+
+        sides = (fx.get("team_h"), fx.get("team_a"))
+        cards.append({
+            "id": fx["id"],
+            "kickoff": fx.get("kickoff_time"),
+            "home": teams.get(fx.get("team_h"), "?"),
+            "away": teams.get(fx.get("team_a"), "?"),
+            "home_score": fx.get("team_h_score"),
+            "away_score": fx.get("team_a_score"),
+            "started": bool(fx.get("started")),
+            "over": is_over(fx),
+            "status": fixture_status(fx),
+            "scorers": {"home": scorer_list(home_goals), "away": scorer_list(away_goals)},
+            "bonus": bonus,
+            "owned": sum(1 for pid in fielded if team_of.get(pid) in sides),
+        })
+    return cards
+
+
 def effective_ownership(managers):
     """
     Share of the league holding each player, counting a captaincy twice.
@@ -658,6 +705,12 @@ def main():
             m["or_official"] = official_or["ranks"].get(str(m["entry"]))
             m["or_live"] = estimate_rank(curve, m["total_projected"], total_players)
 
+    # Whoever is actually on a pitch for somebody in this league, which is
+    # what the fixture list counts.
+    fielded = {p["id"] for lg in out_leagues.values() for m in lg["managers"]
+               for p in m["picks"] if not p["benched"]}
+    fixture_cards = build_fixture_cards(fixtures, bootstrap, fielded)
+
     # Only ship the footballers somebody in the league actually owns.
     used = set()
     for lg in out_leagues.values():
@@ -676,6 +729,7 @@ def main():
         "finished": bool(ev.get("finished")),
         "data_checked": bool(ev.get("data_checked")),
         "fixtures": {"total": len(fixtures), "started": kicked_off, "finished": done},
+        "fixture_list": fixture_cards,
         "average": ev.get("average_entry_score"),
         "highest": ev.get("highest_score"),
         "total_players": total_players,

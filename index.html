@@ -146,6 +146,52 @@
   }
   .toggle button.active{ background: var(--lime); color:#0a1f1a; }
 
+  /* ---------- fixtures ---------- */
+  .fixtures{ display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; }
+  @media (max-width:720px){ .fixtures{ grid-template-columns: 1fr; } }
+  .fx{
+    background: var(--bg-elevated); border:1px solid var(--line);
+    border-radius:10px; padding:12px 14px;
+  }
+  /* A match being played is the one worth looking at, so it is the one lit. */
+  .fx.live{ border-color: var(--lime-dim); }
+  .fx.pending{ opacity:.78; }
+
+  .fx-head{ display:grid; grid-template-columns: 1fr auto 1fr; align-items:center; gap:10px; }
+  .fx-team{ font-weight:600; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .fx-team.h{ text-align:right; }
+  .fx-score{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:17px;
+    white-space:nowrap; color: var(--floodlight);
+  }
+  .fx-score .dash{ color: var(--muted-dim); margin:0 3px; }
+  .fx-score.kickoff{ font-size:12.5px; font-weight:500; color: var(--muted); }
+
+  .fx-when{
+    display:flex; align-items:center; justify-content:center; gap:6px; margin-top:7px;
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+    letter-spacing:.08em; text-transform:uppercase; color: var(--muted-dim);
+  }
+  .fx-when .live-dot{ width:5px; height:5px; }
+  .fx-when b{ color: var(--lime-dim); font-weight:600; }
+
+  .fx-scorers{
+    display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:9px;
+    font-size:11.5px; color: var(--muted); line-height:1.45;
+  }
+  .fx-scorers .h{ text-align:right; }
+  .fx-scorers .og{ color: var(--muted-dim); font-style:italic; }
+
+  .fx-foot{
+    display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+    margin-top:9px; padding-top:8px; border-top:1px solid rgba(30,68,56,.7);
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+  }
+  .fx-bonus{ color: var(--muted-dim); }
+  .fx-bonus b{ color: var(--gold); font-weight:600; }
+  .fx-owned{ color: var(--muted); white-space:nowrap; }
+  .fx-owned b{ color: var(--lime); font-weight:600; }
+
   /* ---------- standings table ---------- */
   .table-card{ background: var(--bg-elevated); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden; }
   .empty-card{
@@ -263,10 +309,19 @@
       </div>
     </header>
 
+    <!-- FIXTURES -->
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>Fixtures</b></div>
+        <div class="section-note" id="fixtures-note"></div>
+      </div>
+      <div id="fixtures-mount"></div>
+    </section>
+
     <!-- STANDINGS -->
     <section>
       <div class="section-head">
-        <div class="section-label">01 &nbsp;<b>Standings</b></div>
+        <div class="section-label">02 &nbsp;<b>Standings</b></div>
         <div class="toggle" id="league-toggle">
           <button data-league="high_stakes" class="active">High Stakes</button>
           <button data-league="main">Main league</button>
@@ -278,7 +333,7 @@
     <!-- MOTM -->
     <section>
       <div class="section-head">
-        <div class="section-label">02 &nbsp;<b>Manager of the month</b></div>
+        <div class="section-label">03 &nbsp;<b>Manager of the month</b></div>
         <div class="section-note">Best month in the selected league</div>
       </div>
       <div class="motm-grid" id="motm-mount"></div>
@@ -287,7 +342,7 @@
     <!-- MOTW -->
     <section>
       <div class="section-head">
-        <div class="section-label">03 &nbsp;<b>Manager of the week</b></div>
+        <div class="section-label">04 &nbsp;<b>Manager of the week</b></div>
         <div class="section-note">Highest net score in the selected league</div>
       </div>
       <div id="motw-mount"></div>
@@ -296,7 +351,7 @@
     <!-- CUP -->
     <section>
       <div class="section-head">
-        <div class="section-label">04 &nbsp;<b>The cup</b></div>
+        <div class="section-label">05 &nbsp;<b>The cup</b></div>
         <div class="section-note">Updated by hand — FPL doesn't publish knockouts</div>
       </div>
       <div id="cup-mount"></div>
@@ -318,6 +373,7 @@ const MONTH_ORDER = ["August","September","October","November","December","Janua
 
 let state = {
   data: null,
+  live: null,
   activeLeague: "high_stakes",
 };
 
@@ -353,13 +409,25 @@ async function loadJson(name){
 }
 
 async function loadData(){
-  state.data = await loadJson('data.json');
-  if(!state.data) console.error('Could not load data.json');
+  // live.json carries the fixtures, and is republished every few minutes while
+  // a match is on; data.json is hourly. Fetching them together keeps the page
+  // to one round of waiting.
+  const [data, live] = await Promise.all([loadJson('data.json'), loadJson('live.json')]);
+  if(!data) console.error('Could not load data.json');
+  state.data = data;
+  state.live = live;
   renderAll();
-  startCountdown();
+
+  // The countdown owns a ticking interval, so it is started once and not
+  // restarted by later refreshes.
+  if(!state.countdownStarted){
+    state.countdownStarted = true;
+    startCountdown();
+  }
 }
 
 function renderAll(){
+  renderFixtures();
   renderTicker();
   renderStandings();
   renderMotm();
@@ -388,6 +456,79 @@ function forActiveLeague(block){
 function activeLeagueName(){
   return state.data?.leagues?.[state.activeLeague]?.name
       || (state.activeLeague === 'high_stakes' ? 'High Stakes' : 'Main league');
+}
+
+function renderFixtures(){
+  const mount = document.getElementById('fixtures-mount');
+  const note = document.getElementById('fixtures-note');
+  const live = state.live;
+  const list = live?.fixture_list || [];
+
+  if(!list.length){
+    mount.innerHTML = `<div class="empty-card">
+      <div class="t">No fixtures to show</div>
+      <div class="s">Scores appear here the next time the live data refreshes, which
+        happens within a few minutes.</div>
+    </div>`;
+    note.textContent = '';
+    return;
+  }
+
+  const played = list.filter(f => f.over).length;
+  const onNow = list.filter(f => f.started && !f.over).length;
+  note.textContent = (live.gw_name || ('Gameweek ' + live.gameweek)) + ' — ' + (
+    onNow ? `${onNow} being played, ${played} of ${list.length} finished`
+          : `${played} of ${list.length} finished`);
+
+  mount.innerHTML = '<div class="fixtures">' + list.map(fixtureCard).join('') + '</div>';
+}
+
+function fixtureCard(f){
+  const inPlay = f.started && !f.over;
+  const cls = inPlay ? 'live' : (f.started ? '' : 'pending');
+
+  // Before kick-off the score slot carries the time instead, in Jakarta time
+  // like every other clock on the site.
+  const score = f.started
+    ? `<div class="fx-score">${f.home_score ?? 0}<span class="dash">–</span>${f.away_score ?? 0}</div>`
+    : `<div class="fx-score kickoff">${escapeHtml(kickoffLabel(f.kickoff))}</div>`;
+
+  const when = f.started
+    ? `<div class="fx-when">${inPlay ? '<span class="live-dot"></span><b>' + escapeHtml(f.status || '') + '</b>' : escapeHtml(f.status || '')}</div>`
+    : '';
+
+  const names = side => (f.scorers?.[side] || []).map(g =>
+    `<span class="${g.og ? 'og' : ''}">${escapeHtml(g.name)}${g.goals > 1 ? ' ' + g.goals : ''}${g.og ? ' (og)' : ''}</span>`
+  ).join(', ');
+
+  const scorers = (f.scorers?.home?.length || f.scorers?.away?.length)
+    ? `<div class="fx-scorers"><div class="h">${names('home')}</div><div>${names('away')}</div></div>`
+    : '';
+
+  const bonus = (f.bonus || []).length
+    ? `<span class="fx-bonus">Bonus ${f.bonus.map(b =>
+        `${escapeHtml(b.name)} <b>${b.points}</b>`).join(' · ')}</span>`
+    : '<span class="fx-bonus"></span>';
+
+  const owned = `<span class="fx-owned"><b>${f.owned}</b> owned</span>`;
+
+  return `<div class="fx ${cls}">
+    <div class="fx-head">
+      <div class="fx-team h">${escapeHtml(f.home)}</div>
+      ${score}
+      <div class="fx-team">${escapeHtml(f.away)}</div>
+    </div>
+    ${when}
+    ${scorers}
+    <div class="fx-foot">${bonus}${owned}</div>
+  </div>`;
+}
+
+function kickoffLabel(iso){
+  if(!iso) return 'TBC';
+  return new Date(iso).toLocaleString('en-GB', {
+    timeZone: 'Asia/Jakarta', weekday: 'short', hour: '2-digit', minute: '2-digit',
+  });
 }
 
 function renderTicker(){
@@ -571,6 +712,9 @@ document.getElementById('league-toggle').addEventListener('click', (e) => {
 });
 
 loadData();
+// Scores move during a match, so the page refetches rather than sitting on
+// whatever it loaded when it was opened.
+setInterval(loadData, 120000);
 </script>
 </body>
 </html>
