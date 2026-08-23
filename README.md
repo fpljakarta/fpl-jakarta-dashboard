@@ -12,9 +12,9 @@ instead of carrying a fifth copy of the same CSS.
 
 ## The partner venue pages
 
-`taproom22.html` and `milospadel.html` are the two Jakarta venues the league is
-associated with. They have no data file behind them and never change on their
-own.
+`taproom22.html` and `milospadel.html` are the two Jakarta venues where league
+members get discounts and benefits during Premier League games. They have no
+data file behind them and never change on their own.
 
 Their address, hours and contact details came from public directory listings,
 because the venues' own pages and Instagram accounts could not be read directly.

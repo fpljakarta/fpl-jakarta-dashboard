@@ -193,6 +193,24 @@ footer a{ color: var(--muted); }
   content:''; position:absolute; right:-40px; top:-40px; width:190px; height:190px;
   background: radial-gradient(circle, rgba(212,255,61,.14), transparent 70%);
 }
+/* The member benefit is the reason a league member opens this page, so it is
+   given its own block rather than left in a paragraph to be skimmed past. */
+.perk{
+  border:1px solid var(--lime-dim); border-radius:12px;
+  background: linear-gradient(135deg, rgba(212,255,61,.10) 0%, var(--bg-elevated) 70%);
+  padding:18px 20px; margin-bottom:18px; position:relative; z-index:1;
+}
+.perk .tag{
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.12em;
+  text-transform:uppercase; color: var(--lime); margin-bottom:8px;
+  display:flex; align-items:center; gap:8px;
+}
+.perk .txt{ font-size:15px; line-height:1.55; color: var(--floodlight); }
+.perk .txt b{ color: var(--lime); font-weight:600; }
+.perk .sub{ font-size:12.5px; color: var(--muted); margin-top:8px; line-height:1.5; }
+
+.link-btn svg{ width:16px; height:16px; flex-shrink:0; }
+
 .venue-hero p{ margin:0 0 14px; color: var(--muted); font-size:15px; line-height:1.6; position:relative; z-index:1; }
 .venue-hero p:last-child{ margin-bottom:0; }
 .venue-hero b{ color: var(--floodlight); font-weight:600; }
