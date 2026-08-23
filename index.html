@@ -179,6 +179,11 @@
     padding: 14px 12px; text-align:center; position:relative;
   }
   .motm-card.won{ border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset, 0 0 22px -6px rgba(240,180,41,.35); }
+  /* Being played: still in the running, so it is lit but not gold. */
+  .motm-card.live{ border-color: var(--lime-dim); }
+  .motm-card.live .motm-month{ color: var(--lime-dim); }
+  .motm-card.live .motm-trophy{ opacity:.5; }
+  .motm-card.live .motm-name{ color: var(--muted); }
   .motm-month{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color: var(--muted-dim); margin-bottom:8px;}
   .motm-card.won .motm-month{ color: var(--gold); }
   .motm-trophy{ font-size:18px; margin-bottom:6px; opacity:.25; }
@@ -462,11 +467,16 @@ function renderMotm(){
   mount.innerHTML = MONTH_ORDER.map(month => {
     const m = byMonth[month];
     const won = m && m.manager;
+    // A month being played has no winner yet, but it is not the same as one
+    // that has not started — the trophy is still up for grabs, not absent.
+    const label = won ? escapeHtml(m.manager)
+                : (m && m.started) ? 'In progress'
+                : 'Not played yet';
     return `
-      <div class="motm-card ${won ? 'won' : ''}">
+      <div class="motm-card ${won ? 'won' : ''} ${!won && m && m.started ? 'live' : ''}">
         <div class="motm-month">${month.slice(0,3)}</div>
         <div class="motm-trophy">🏆</div>
-        <div class="motm-name">${won ? escapeHtml(m.manager) : 'Not played yet'}</div>
+        <div class="motm-name">${label}</div>
       </div>`;
   }).join('');
 }
