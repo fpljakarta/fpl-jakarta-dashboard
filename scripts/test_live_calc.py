@@ -17,6 +17,9 @@ from live_calc import (
     build_rank_curve,
     captain_counts,
     estimate_rank,
+    fixture_bonus,
+    fixture_scorers,
+    fixture_status,
     fixtures_with_official_bonus,
     is_over,
     match_in_progress,
@@ -117,6 +120,62 @@ class TestFixtureOver(unittest.TestCase):
 
     def test_a_match_that_has_not_kicked_off_is_not_over(self):
         self.assertFalse(is_over({}))
+
+
+class TestFixtureCard(unittest.TestCase):
+    def fixture(self, **kw):
+        base = {"id": 7, "started": True, "finished": False,
+                "finished_provisional": False, "minutes": 63, "stats": []}
+        base.update(kw)
+        return base
+
+    def test_scorers_are_split_by_side(self):
+        fx = self.fixture(stats=[{"identifier": "goals_scored",
+                                  "h": [{"element": 10, "value": 2}],
+                                  "a": [{"element": 20, "value": 1}]}])
+        home, away = fixture_scorers(fx)
+        self.assertEqual(home, [(10, 2, False)])
+        self.assertEqual(away, [(20, 1, False)])
+
+    def test_an_own_goal_counts_for_the_other_side(self):
+        # A home player's own goal put the away side ahead, and a scoreboard
+        # reads it that way.
+        fx = self.fixture(stats=[{"identifier": "own_goals",
+                                  "h": [{"element": 10, "value": 1}], "a": []}])
+        home, away = fixture_scorers(fx)
+        self.assertEqual(home, [])
+        self.assertEqual(away, [(10, 1, True)])
+
+    def test_a_goalless_match_has_no_scorers(self):
+        home, away = fixture_scorers(self.fixture())
+        self.assertEqual((home, away), ([], []))
+
+    def test_bonus_is_shown_even_once_fpl_has_published_it(self):
+        # Unlike provisional_bonus, which must skip settled fixtures to avoid
+        # counting them twice, this one is for reading and always reports.
+        fx = self.fixture(stats=[{"identifier": "bps",
+                                  "h": bps((1, 40), (2, 33)),
+                                  "a": bps((3, 28), (4, 12))}])
+        self.assertEqual(fixture_bonus(fx), {1: 3, 2: 2, 3: 1})
+
+    def test_no_bonus_before_kick_off(self):
+        fx = self.fixture(started=False,
+                          stats=[{"identifier": "bps", "h": bps((1, 40)), "a": []}])
+        self.assertEqual(fixture_bonus(fx), {})
+
+    def test_status_reads_the_minute_while_the_match_is_on(self):
+        self.assertEqual(fixture_status(self.fixture(minutes=63)), "63'")
+
+    def test_status_is_full_time_once_provisionally_finished(self):
+        self.assertEqual(fixture_status(self.fixture(finished_provisional=True)), "FT")
+
+    def test_status_is_absent_before_kick_off(self):
+        self.assertIsNone(fixture_status(self.fixture(started=False)))
+
+    def test_half_time_reports_the_minute_fpl_gives_us(self):
+        # FPL holds minutes at 45 through the interval; reporting that beats
+        # guessing which of the two a 45 means.
+        self.assertEqual(fixture_status(self.fixture(minutes=45)), "45'")
 
 
 class TestMatchInProgress(unittest.TestCase):

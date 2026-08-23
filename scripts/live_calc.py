@@ -94,6 +94,66 @@ def match_in_progress(fixtures):
     return any(fx.get("started") and not is_over(fx) for fx in fixtures)
 
 
+def stat_rows(fixture, identifier):
+    """The home and away rows of one of a fixture's stat blocks."""
+    for stat in fixture.get("stats") or []:
+        if stat.get("identifier") == identifier:
+            return list(stat.get("h") or []), list(stat.get("a") or [])
+    return [], []
+
+
+def fixture_scorers(fixture):
+    """
+    Who scored, as (home, away), each a list of (player id, goals, own goal).
+
+    An own goal is credited to the side it put ahead rather than the side that
+    conceded it, which is how a scoreboard reads it, and flagged so the page
+    can mark it as one.
+    """
+    goals_h, goals_a = stat_rows(fixture, "goals_scored")
+    own_h, own_a = stat_rows(fixture, "own_goals")
+
+    def rows(entries, own):
+        return [(r["element"], r["value"], own) for r in entries
+                if r.get("element") and r.get("value")]
+
+    home = rows(goals_h, False) + rows(own_a, True)
+    away = rows(goals_a, False) + rows(own_h, True)
+    return home, away
+
+
+def fixture_bonus(fixture):
+    """
+    The 3/2/1 for a fixture, whether or not FPL has published it yet.
+
+    Deliberately different from `provisional_bonus`, which exists to top up
+    scores and so must skip any fixture whose bonus is already counted. This
+    one is for showing the reader, where the published and the implied figure
+    are the same thing and both are worth seeing.
+    """
+    if not fixture.get("started"):
+        return {}
+    rows = []
+    for side in stat_rows(fixture, "bps"):
+        rows.extend(side)
+    return bonus_from_bps(rows)
+
+
+def fixture_status(fixture):
+    """
+    Where a match is up to: "FT", a minute like "63'", or None before kick-off.
+
+    FPL holds `minutes` at 45 through the interval, so half time shows as 45'
+    rather than as its own state. Reporting the number it gives us beats
+    guessing at which of the two a 45 means.
+    """
+    if is_over(fixture):
+        return "FT"
+    if fixture.get("started"):
+        return f"{fixture.get('minutes') or 0}'"
+    return None
+
+
 def fixtures_with_official_bonus(live_elements):
     """
     Fixture ids whose bonus FPL has already added to the live totals.

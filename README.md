@@ -49,6 +49,18 @@ untracked file holding `published` and `in_play`. A held runner is free on a
 public repository, so the cost of this is a noisier commit history on match
 days, which is the trade the fast cadence was always making.
 
+## The fixture list
+
+`live.json` carries the current gameweek's matches — score, scorers, the 3/2/1
+bonus, and how many footballers somebody in FPL Jakarta has in their eleven for
+that match. The home page reads it from there rather than from `data.json`,
+because `data.json` is hourly and a score an hour old is not a live score.
+
+The bonus shown on a fixture is deliberately computed differently from the
+bonus added to a manager's projected score. The scoring path must skip any
+fixture whose bonus FPL has already published, or it would count it twice; the
+fixture list has no such worry and always shows the 3/2/1, published or not.
+
 ## Two scores, and why
 
 Every manager carries an **official** score and a **projected** one.
