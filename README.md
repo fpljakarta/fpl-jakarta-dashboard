@@ -54,16 +54,30 @@ the entire reason for a fast cadence: the projected scores would sit still for
 most of a half.
 
 So the cron is treated as a wake-up call rather than the cadence. When a run
-starts, it publishes and then asks the script whether a match is still being
-played. While one is, the job stays alive and publishes again every five
-minutes, for up to 55 minutes, before letting the next scheduled run take over.
-On a day with no football the first pass finds nothing in play and the job exits
-in seconds.
+starts, it publishes and then asks the script whether there is more football
+coming. While a match is being played — **or is about to kick off** — the job
+stays alive and publishes again every five minutes, for up to two hours, before
+letting the next scheduled run take over. On a day with no football the first
+pass finds nothing and the job exits in seconds.
+
+Waiting for a kick-off matters as much as staying through a match, and that
+half was missing at first. On 23 August the scheduled runs landed at 09:56,
+10:55, 11:46 — and then not again until 13:41. Two matches kicked off at 13:00.
+The 11:46 run correctly found nothing in play and exited in nine seconds, so
+nothing published the first half of either: the site sat on data ten hours old
+while the football was on. A run that waits for an imminent kick-off is the run
+that covers the match.
+
+That is also why the window is two hours rather than the 55 minutes it started
+at. Fifty-five was chosen on the assumption that runs arrive about hourly and
+the windows would meet; the 115-minute gap above is what happens when they do
+not. The window is now set above the worst gap actually measured, not the one
+the cron promises.
 
 The script tells the workflow what happened through `.live-run-status`, an
-untracked file holding `published` and `in_play`. A held runner is free on a
-public repository, so the cost of this is a noisier commit history on match
-days, which is the trade the fast cadence was always making.
+untracked file holding `published`, `in_play` and `starts_soon`. A held runner
+is free on a public repository, so the cost of this is a noisier commit history
+on match days, which is the trade the fast cadence was always making.
 
 ## The fixture list
 
