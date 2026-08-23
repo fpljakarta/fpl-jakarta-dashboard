@@ -438,6 +438,7 @@ function renderAll(){
 
 // Every section that follows the High Stakes / Main league toggle.
 function renderLeagueSections(){
+  renderFixtures();
   renderTicker();
   renderStandings();
   renderMotm();
@@ -476,9 +477,13 @@ function renderFixtures(){
 
   const played = list.filter(f => f.over).length;
   const onNow = list.filter(f => f.started && !f.over).length;
-  note.textContent = (live.gw_name || ('Gameweek ' + live.gameweek)) + ' — ' + (
-    onNow ? `${onNow} being played, ${played} of ${list.length} finished`
-          : `${played} of ${list.length} finished`);
+  // The owned counts follow the High Stakes / Main league switch, which sits
+  // below this block, so the league is named here rather than left to guess.
+  const leagueName = live.leagues?.[state.activeLeague]?.name || '';
+  note.textContent = (live.gw_name || ('Gameweek ' + live.gameweek))
+    + (leagueName ? ' · ' + leagueName : '') + ' — ' + (
+      onNow ? `${onNow} being played, ${played} of ${list.length} finished`
+            : `${played} of ${list.length} finished`);
 
   mount.innerHTML = '<div class="fixtures">' + list.map(fixtureCard).join('') + '</div>';
 }
@@ -510,7 +515,7 @@ function fixtureCard(f){
         `${escapeHtml(b.name)} <b>${b.points}</b>`).join(' · ')}</span>`
     : '<span class="fx-bonus"></span>';
 
-  const owned = `<span class="fx-owned"><b>${f.owned}</b> owned</span>`;
+  const owned = `<span class="fx-owned"><b>${ownedCount(f)}</b> owned</span>`;
 
   return `<div class="fx ${cls}">
     <div class="fx-head">
@@ -522,6 +527,14 @@ function fixtureCard(f){
     ${scorers}
     <div class="fx-foot">${bonus}${owned}</div>
   </div>`;
+}
+
+/* How many of this league's picks are in the match. Older data carried a
+   single combined number rather than one per league, so that is still read
+   rather than rendered as nothing. */
+function ownedCount(f){
+  if(f.owned && typeof f.owned === 'object') return f.owned[state.activeLeague] ?? 0;
+  return f.owned ?? 0;
 }
 
 function kickoffLabel(iso){

@@ -56,6 +56,10 @@ bonus, and how many footballers somebody in FPL Jakarta has in their eleven for
 that match. The home page reads it from there rather than from `data.json`,
 because `data.json` is hourly and a score an hour old is not a live score.
 
+The ownership count is stored per league, so it follows the High Stakes / Main
+league switch like everything else on the page. Because the fixtures sit above
+that switch, the section heading names the league the counts belong to.
+
 The bonus shown on a fixture is deliberately computed differently from the
 bonus added to a manager's projected score. The scoring path must skip any
 fixture whose bonus FPL has already published, or it would count it twice; the
