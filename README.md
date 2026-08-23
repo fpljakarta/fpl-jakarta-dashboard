@@ -2,12 +2,27 @@
 
 Live site: **https://fpljakarta.qd.je/**
 
-A static site — no build step, no framework. Seven pages at the repo root
+A static site — no build step, no framework. Nine pages at the repo root
 (`index.html`, `live.html`, `ownership.html`, `compare.html`, `awards.html`,
-`prices.html`, `signup.html`), four data files (`data.json`, `live.json`,
+`prices.html`, `signup.html`, and the two partner venues `taproom22.html` and
+`milospadel.html`), four data files (`data.json`, `live.json`,
 `awards.json`, `prices.json`) written by the scripts in `scripts/`, and a
 shared shell in `assets/` that the pages added after the first three use
 instead of carrying a fifth copy of the same CSS.
+
+## The partner venue pages
+
+`taproom22.html` and `milospadel.html` are the two Jakarta venues where league
+members get discounts and benefits during Premier League games. They have no
+data file behind them and never change on their own.
+
+Their address, hours and contact details came from public directory listings,
+because the venues' own pages and Instagram accounts could not be read directly.
+Listings go stale, and two of them disagreed on Taproom 22's opening hours, so
+every fact on those pages sits under a visible **unconfirmed** notice pointing
+at the venue's own map listing and Instagram as the authority. If somebody
+confirms the details with the venues, that notice should come off and the
+details should be corrected in the same commit.
 
 ## Where the data comes from
 
