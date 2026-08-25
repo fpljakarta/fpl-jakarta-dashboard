@@ -2,13 +2,29 @@
 
 Live site: **https://fpljakarta.qd.je/**
 
-A static site — no build step, no framework. Nine pages at the repo root
-(`index.html`, `live.html`, `ownership.html`, `compare.html`, `awards.html`,
-`prices.html`, `signup.html`, and the two partner venues `taproom22.html` and
-`milospadel.html`), four data files (`data.json`, `live.json`,
-`awards.json`, `prices.json`) written by the scripts in `scripts/`, and a
-shared shell in `assets/` that the pages added after the first three use
-instead of carrying a fifth copy of the same CSS.
+A static site — no build step, no framework. Ten pages at the repo root
+(`index.html`, `live.html`, `prizes.html`, `ownership.html`, `compare.html`,
+`awards.html`, `prices.html`, `signup.html`, and the two partner venues
+`taproom22.html` and `milospadel.html`), four data files (`data.json`,
+`live.json`, `awards.json`, `prices.json`) written by the scripts in
+`scripts/`, and a shared shell in `assets/` that the pages added after the
+first three use instead of carrying a fifth copy of the same CSS.
+
+## The prizes page
+
+`prizes.html` lists what the league pays out, per league, and holds the figures
+in a `PRIZES` constant in the page itself. There is no data file behind it: the
+amounts are set by the organisers and change by commit, not by a fetch.
+
+Everything derived is derived from that one constant — the pot totals, the bar
+widths in the placings table, and the worked tie examples. Nothing on the page
+restates a number that is also written somewhere else, so the arithmetic cannot
+drift from the table above it.
+
+The two rules the page has to state, because money depends on them: every prize
+is paid at the end of the season, whenever it was won; and tied placings pool
+the prizes for the places they occupy and split them equally, while a tied
+one-off prize is split between everyone level.
 
 ## The partner venue pages
 
@@ -54,16 +70,39 @@ the entire reason for a fast cadence: the projected scores would sit still for
 most of a half.
 
 So the cron is treated as a wake-up call rather than the cadence. When a run
-starts, it publishes and then asks the script whether a match is still being
-played. While one is, the job stays alive and publishes again every five
-minutes, for up to 55 minutes, before letting the next scheduled run take over.
-On a day with no football the first pass finds nothing in play and the job exits
-in seconds.
+starts, it publishes and then asks the script whether there is more football
+coming. While a match is being played — **or is about to kick off** — the job
+stays alive and publishes again every five minutes, for up to two hours, before
+letting the next scheduled run take over. On a day with no football the first
+pass finds nothing and the job exits in seconds.
+
+Waiting for a kick-off matters as much as staying through a match, and that
+half was missing at first. On 23 August the scheduled runs landed at 09:56,
+10:55, 11:46 — and then not again until 13:41. Two matches kicked off at 13:00.
+The 11:46 run correctly found nothing in play and exited in nine seconds, so
+nothing published the first half of either: the site sat on data ten hours old
+while the football was on. A run that waits for an imminent kick-off is the run
+that covers the match.
+
+That is also why the window is two hours rather than the 55 minutes it started
+at. Fifty-five was chosen on the assumption that runs arrive about hourly and
+the windows would meet; the 115-minute gap above is what happens when they do
+not. The window is now set above the worst gap actually measured, not the one
+the cron promises.
 
 The script tells the workflow what happened through `.live-run-status`, an
-untracked file holding `published` and `in_play`. A held runner is free on a
-public repository, so the cost of this is a noisier commit history on match
-days, which is the trade the fast cadence was always making.
+untracked file holding `published`, `in_play` and `starts_soon`. A held runner
+is free on a public repository, so the cost of this is a noisier commit history
+on match days, which is the trade the fast cadence was always making.
+
+Publishing takes `main` as it stands and puts the two generated files on top,
+rather than rebasing onto it. There is never anything to merge — `live.json` and
+`awards.json` are rewritten whole every pass, so the copy just written is by
+definition the newest — and rebasing one full rewrite onto another conflicts
+every time. That is not hypothetical: a run queued behind a long one started
+from a 39-minute-old checkout on 23 August and died on exactly that conflict.
+Files the hourly job owns are untouched, because only `live.json` and
+`awards.json` are copied back.
 
 ## The fixture list
 

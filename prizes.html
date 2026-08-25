@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta — Prizes</title>
+<link rel="canonical" href="https://fpljakarta.qd.je/prizes.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="What FPL Jakarta pays out — league placings, the cup, highest team value, Manager of the Month and Top Gun, in both the Main and High Stakes leagues.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* ---------------------------------------------------------------------
+     Prizes
+
+     The one page on the site that is selling something rather than
+     reporting it, so it is allowed more colour than the rest -- gold for
+     money, a podium for the top three, a bar behind each row so the drop
+     from first to ninth is visible rather than only readable.
+
+     Everything is drawn in CSS and inline SVG. No images, so nothing to
+     load and nothing to go stale.
+  --------------------------------------------------------------------- */
+
+  :root{ --silver:#c8d2d8; --bronze:#cd8b52; }
+
+  /* ---------- the pot ---------- */
+  .pot{
+    position:relative; overflow:hidden;
+    border:1px solid rgba(240,180,41,.42); border-radius: var(--radius);
+    background:
+      radial-gradient(circle at 88% -30%, rgba(240,180,41,.20), transparent 60%),
+      linear-gradient(135deg, #1a3d2f 0%, var(--bg-elevated) 65%);
+    padding: 30px 32px;
+  }
+  .pot-grid{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns: 1fr auto; gap:28px; align-items:center;
+  }
+  @media (max-width:720px){ .pot-grid{ grid-template-columns:1fr; gap:22px; } }
+
+  .pot-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; color: var(--gold);
+    display:flex; align-items:center; gap:9px; margin-bottom:14px;
+  }
+  .pot-total{
+    font-family:'Anton', sans-serif; font-weight:400; line-height:.95;
+    font-size: clamp(38px, 7vw, 66px); letter-spacing:.01em;
+    color: var(--gold); margin:0 0 10px;
+  }
+  .pot-total .rp{ font-size:.45em; color: var(--muted); margin-right:.18em; vertical-align:.28em; }
+  .pot-sub{ color: var(--muted); font-size:14.5px; line-height:1.55; max-width:44ch; margin:0; }
+  .pot-sub b{ color: var(--floodlight); font-weight:600; }
+
+  .pot-top{
+    background: rgba(0,0,0,.30); border:1px solid rgba(240,180,41,.35);
+    border-radius:12px; padding:18px 22px; text-align:center; min-width:190px;
+  }
+  .pot-top .k{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.12em;
+    text-transform:uppercase; color: var(--muted-dim); margin-bottom:8px;
+  }
+  .pot-top .v{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:23px; color: var(--gold);
+  }
+  .pot-top .v .rp{ color: var(--muted-dim); font-size:.72em; margin-right:.3em; }
+  .pot-top .s{ font-size:12px; color: var(--muted-dim); margin-top:6px; }
+
+  /* ---------- podium ---------- */
+  .podium{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; align-items:end;
+  }
+  @media (max-width:640px){ .podium{ grid-template-columns:1fr; align-items:stretch; } }
+
+  .step{
+    border:1px solid var(--line); border-radius: 12px 12px 0 0;
+    background: var(--bg-elevated); padding:20px 16px 18px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .step::before{
+    content:''; position:absolute; inset:0 0 auto; height:3px; background: var(--line);
+  }
+  .step .rank{
+    font-family:'Anton', sans-serif; font-size:30px; line-height:1;
+    margin-bottom:10px; letter-spacing:.02em;
+  }
+  .step .amt{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:17px;
+    color: var(--floodlight);
+  }
+  .step .amt .rp{ color: var(--muted-dim); font-size:.75em; margin-right:.25em; }
+  .step .medal{ width:34px; height:34px; margin:0 auto 10px; display:block; }
+
+  .step.gold{ border-color: rgba(240,180,41,.5); background: linear-gradient(180deg, rgba(240,180,41,.13), var(--bg-elevated) 70%); padding-top:34px; }
+  .step.gold::before{ background: var(--gold); }
+  .step.gold .rank, .step.gold .amt{ color: var(--gold); }
+
+  .step.silver{ border-color: rgba(200,210,216,.42); background: linear-gradient(180deg, rgba(200,210,216,.09), var(--bg-elevated) 70%); padding-top:24px; }
+  .step.silver::before{ background: var(--silver); }
+  .step.silver .rank{ color: var(--silver); }
+
+  .step.bronze{ border-color: rgba(205,139,82,.42); background: linear-gradient(180deg, rgba(205,139,82,.10), var(--bg-elevated) 70%); }
+  .step.bronze::before{ background: var(--bronze); }
+  .step.bronze .rank{ color: var(--bronze); }
+
+  /* Order the columns 2-1-3 so the winner stands in the middle, but stack
+     them 1-2-3 on a phone where there is no podium to stand on. */
+  .podium .step:nth-child(1){ order:2; }
+  .podium .step:nth-child(2){ order:1; }
+  .podium .step:nth-child(3){ order:3; }
+  @media (max-width:640px){
+    .podium .step{ order:0 !important; border-radius:12px; padding-top:20px; }
+  }
+
+  /* ---------- placings table ---------- */
+  .rows{ display:flex; flex-direction:column; }
+  .prow{
+    display:grid; grid-template-columns: 46px 1fr auto; gap:14px; align-items:center;
+    padding:14px 18px; border-bottom:1px solid var(--line); position:relative;
+  }
+  .prow:last-child{ border-bottom:none; }
+  /* The bar is the graphic: how big this prize is against the biggest one. */
+  .prow .bar{
+    position:absolute; left:0; top:0; bottom:0; z-index:0;
+    background: linear-gradient(90deg, rgba(212,255,61,.13) 0%, rgba(212,255,61,.05) 78%, transparent 100%);
+  }
+  .prow.gold .bar{ background: linear-gradient(90deg, rgba(240,180,41,.22) 0%, rgba(240,180,41,.07) 78%, transparent 100%); }
+  .prow > *{ position:relative; z-index:1; }
+  .prow .pos{
+    font-family:'Anton', sans-serif; font-size:19px; color: var(--muted-dim); text-align:center;
+  }
+  .prow.gold .pos{ color: var(--gold); }
+  .prow.silver .pos{ color: var(--silver); }
+  .prow.bronze .pos{ color: var(--bronze); }
+  .prow .what{ font-size:14.5px; font-weight:500; }
+  .prow .what .s{ display:block; font-size:12px; color: var(--muted-dim); margin-top:3px; font-weight:400; }
+  .prow .money{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:15px;
+    white-space:nowrap; text-align:right;
+  }
+  .prow.gold .money{ color: var(--gold); }
+  .prow .money .rp{ color: var(--muted-dim); font-size:.78em; margin-right:.3em; }
+
+  /* ---------- season-long prizes ---------- */
+  .extras{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px; }
+  @media (max-width:720px){ .extras{ grid-template-columns:1fr; } }
+  .extra{
+    border:1px solid var(--line); border-radius: var(--radius);
+    background: var(--bg-elevated); padding:20px 22px;
+    display:flex; gap:16px; align-items:flex-start;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .extra:hover{ border-color: rgba(240,180,41,.42); transform: translateY(-1px); }
+  .extra .ico{
+    width:42px; height:42px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    border:1.5px solid rgba(240,180,41,.45); color: var(--gold);
+  }
+  .extra .ico svg{ width:20px; height:20px; }
+  .extra .t{ font-weight:600; font-size:15.5px; margin-bottom:4px; }
+  .extra .money{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:18px;
+    color: var(--gold); margin:8px 0 5px;
+  }
+  .extra .money .rp{ color: var(--muted-dim); font-size:.72em; margin-right:.3em; }
+  .extra .s{ font-size:12.5px; color: var(--muted); line-height:1.5; }
+  .extra .s b{ color: var(--floodlight); font-weight:600; }
+
+  /* ---------- rules ---------- */
+  .rules{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; align-items:start; }
+  @media (max-width:720px){ .rules{ grid-template-columns:1fr; } }
+  .rule{
+    border:1px solid var(--line); border-radius: var(--radius);
+    background: var(--bg-elevated); padding:22px 24px;
+  }
+  .rule.paid{
+    border-color: rgba(212,255,61,.42);
+    background: linear-gradient(135deg, rgba(212,255,61,.09) 0%, var(--bg-elevated) 68%);
+  }
+  .rule .h{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color: var(--lime); margin-bottom:12px;
+    display:flex; align-items:center; gap:9px;
+  }
+  .rule.split .h{ color: var(--gold); }
+  .rule p{ margin:0 0 12px; color: var(--muted); font-size:14px; line-height:1.6; }
+  .rule p:last-child{ margin-bottom:0; }
+  .rule b{ color: var(--floodlight); font-weight:600; }
+  .worked{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; line-height:1.75;
+    background: rgba(0,0,0,.26); border:1px solid var(--line); border-radius:10px;
+    padding:13px 15px; margin:12px 0; color: var(--muted);
+  }
+  .worked .r{ color: var(--gold); }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="prizes.html" class="active">Prizes</a>
+      <a href="ownership.html">Ownership</a>
+      <a href="compare.html">Compare</a>
+      <a href="awards.html">Awards</a>
+      <a href="prices.html">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+      <a href="taproom22.html">Taproom 22</a>
+      <a href="milospadel.html">Milo's Padel</a>
+    </div>
+  </nav>
+
+  <div class="wrap wide">
+    <header>
+      <p class="eyebrow">Paid at the end of the 2026/27 season</p>
+      <h1>What you're <span>playing for</span></h1>
+      <p class="lede">Every rupiah on the table, in both leagues &mdash; everyone
+        who finishes in the money, the cup, the richest squad, and a trophy every
+        month and every single gameweek.</p>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>The pot</b></div>
+        <div class="toggle" id="league-toggle">
+          <button data-league="high_stakes" class="active">High Stakes</button>
+          <button data-league="main">Main league</button>
+        </div>
+      </div>
+      <div class="pot" id="pot-mount"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">02 &nbsp;<b>The podium</b></div>
+        <div class="section-note">Where the season is won</div>
+      </div>
+      <div class="podium" id="podium-mount"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">03 &nbsp;<b>Where the league finishes</b></div>
+        <div class="section-note" id="places-note"></div>
+      </div>
+      <div class="table-card"><div class="rows" id="places-mount"></div></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">04 &nbsp;<b>Won along the way</b></div>
+        <div class="section-note">Prizes that don't wait for the table</div>
+      </div>
+      <div class="extras" id="extras-mount"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">05 &nbsp;<b>The small print</b></div>
+      </div>
+      <div class="rules">
+        <div class="rule paid">
+          <div class="h"><span class="live-dot"></span> When it's paid</div>
+          <p><b>Every prize on this page is paid out at the end of the
+            2026/27 season.</b> That includes the ones decided long before then
+            &mdash; a Manager of the Month won in October and a Top Gun won in
+            GW3 are both settled when the season is.</p>
+          <p>Nothing is paid mid-season, so a trophy on the
+            <a href="awards.html" style="color:var(--lime);">awards page</a> is a
+            record of what you have earned, not of what has already landed.</p>
+        </div>
+
+        <div class="rule split">
+          <div class="h">If it ends level</div>
+          <p><b>Tied placings pool the prizes for the places they occupy and
+            split them equally.</b></p>
+          <div class="worked" id="tie-example"></div>
+          <p><b>A single prize that ties is split between everyone level on
+            points.</b> Two managers tied for Manager of the Month on
+            <span id="tie-motm-full"></span> take
+            <span id="tie-motm-half"></span> each. The same goes for Top Gun and
+            for highest team value.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Prize money is set by the FPL Jakarta organisers, not by this site, and
+      this page is a record of it rather than the authority on it. Placings are
+      taken from the final official Fantasy Premier League standings for each
+      league once the season is complete.
+    </footer>
+  </div>
+
+<script src="assets/site.js"></script>
+<script>
+/* ---------------------------------------------------------------------------
+   The prize list
+
+   Static, because it is. No data file, no fetch, no staleness -- if the
+   organisers change a number, it changes here in a commit. Amounts are held
+   as plain integers so the arithmetic on this page (pot totals, the tie
+   worked example, bar widths) is done from the same numbers on display
+   rather than from a second copy that could drift.
+--------------------------------------------------------------------------- */
+
+const PRIZES = {
+  high_stakes: {
+    name: 'High Stakes',
+    places: [
+      { pos: 1, amount: 45500000 },
+      { pos: 2, amount: 29000000 },
+      { pos: 3, amount: 18000000 },
+      { pos: 4, amount: 10300000 },
+      { pos: 5, amount:  6000000 },
+    ],
+    extras: [
+      { icon:'cup',   title:'Cup winner',            amount:10000000, note:'The knockout, run alongside the league.' },
+      { icon:'chart', title:'Highest team value',    amount: 2000000, note:'The richest squad at the <b>end of the season</b>.' },
+      { icon:'month', title:'Manager of the Month',  amount:20000000, note:'<b>10 &times; Rp 2,000,000</b> — one every month of the season.' },
+      { icon:'star',  title:'Manager of the Week — Top Gun', amount:15200000, note:'<b>38 &times; Rp 400,000</b> — the highest score, every single gameweek.' },
+    ],
+  },
+  main: {
+    name: 'Main league',
+    places: [
+      { pos: 1, amount: 19500000 },
+      { pos: 2, amount: 12500000 },
+      { pos: 3, amount:  9000000 },
+      { pos: 4, amount:  6500000 },
+      { pos: 5, amount:  5000000 },
+      { pos: 6, amount:  4000000 },
+      { pos: 7, amount:  3400000 },
+      { pos: 8, amount:  3000000 },
+      { pos: 9, amount:  1500000, sub:'Money back' },
+    ],
+    extras: [
+      { icon:'cup',   title:'Cup winner',            amount: 5000000, note:'The knockout, run alongside the league.' },
+      { icon:'chart', title:'Highest team value',    amount: 1500000, note:'The richest squad at the <b>end of the season</b>.' },
+      { icon:'month', title:'Manager of the Month',  amount:10000000, note:'<b>10 &times; Rp 1,000,000</b> — one every month of the season.' },
+      { icon:'star',  title:'Manager of the Week — Top Gun', amount: 7600000, note:'<b>38 &times; Rp 200,000</b> — the highest score, every single gameweek.' },
+    ],
+  },
+};
+
+/* Outline glyphs at one stroke weight, matching the awards page. */
+const ICONS = {
+  cup:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 01-8 0z"/><path d="M8 5H5v2a3 3 0 003 3M16 5h3v2a3 3 0 01-3 3"/><path d="M12 13v4M9 21h6M10 21c0-2 1-4 2-4s2 2 2 4"/></svg>',
+  chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 5-7"/><path d="M3 21h18"/></svg>',
+  month: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  star:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 3l2.6 5.8 6.4.7-4.8 4.3 1.3 6.2L12 17l-5.5 3 1.3-6.2L3 9.5l6.4-.7z"/></svg>',
+};
+
+/* A ribboned medal, tinted by whichever step it sits on. */
+function medal(tone){
+  const fill = { gold:'var(--gold)', silver:'var(--silver)', bronze:'var(--bronze)' }[tone];
+  return `<svg class="medal" viewBox="0 0 24 24" fill="none" stroke="${fill}"
+      stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M8.5 2.5l3 6M15.5 2.5l-3 6"/>
+    <circle cx="12" cy="15.5" r="6"/>
+    <path d="M12 12.4l1.15 2.35 2.6.38-1.88 1.83.44 2.58L12 18.3l-2.31 1.24.44-2.58-1.88-1.83 2.6-.38z"/>
+  </svg>`;
+}
+
+const state = { league: 'high_stakes' };
+
+function rp(n){ return `<span class="rp">Rp</span>${commas(n)}`; }
+
+function potOf(league){
+  const p = PRIZES[league];
+  return p.places.reduce((t, x) => t + x.amount, 0)
+       + p.extras.reduce((t, x) => t + x.amount, 0);
+}
+
+const ORDINAL = ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th'];
+const TONE = { 1:'gold', 2:'silver', 3:'bronze' };
+
+function renderPot(){
+  const p = PRIZES[state.league];
+  const paying = p.places.length;
+  document.getElementById('pot-mount').innerHTML = `
+    <div class="pot-grid">
+      <div>
+        <div class="pot-tag"><span class="live-dot"></span> ${esc(p.name)} &middot; total prize pot</div>
+        <p class="pot-total">${rp(potOf(state.league))}</p>
+        <p class="pot-sub">Spread across <b>${paying} paying league places</b>, the cup,
+          the highest team value, <b>ten</b> Manager of the Month awards and
+          <b>all 38</b> Top Guns. Every one of them paid at the end of the
+          2026/27 season.</p>
+      </div>
+      <div class="pot-top">
+        <div class="k">Winner takes</div>
+        <div class="v">${rp(p.places[0].amount)}</div>
+        <div class="s">for finishing 1st</div>
+      </div>
+    </div>`;
+}
+
+function renderPodium(){
+  const p = PRIZES[state.league];
+  document.getElementById('podium-mount').innerHTML = p.places.slice(0, 3).map(x => {
+    const tone = TONE[x.pos];
+    return `<div class="step ${tone}">
+      ${medal(tone)}
+      <div class="rank">${ORDINAL[x.pos]}</div>
+      <div class="amt">${rp(x.amount)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderPlaces(){
+  const p = PRIZES[state.league];
+  const top = p.places[0].amount;
+
+  document.getElementById('places-note').textContent =
+    `${p.places.length} places pay in the ${p.name}`;
+
+  document.getElementById('places-mount').innerHTML = p.places.map(x => {
+    const tone = TONE[x.pos] || '';
+    // Floor the bar so the smallest prize is still visibly a bar.
+    const pct = Math.max(7, Math.round(x.amount / top * 100));
+    return `<div class="prow ${tone}">
+      <div class="bar" style="width:${pct}%"></div>
+      <div class="pos">${x.pos}</div>
+      <div class="what">${ORDINAL[x.pos]} place${
+        x.sub ? `<span class="s">${esc(x.sub)}</span>` : ''}</div>
+      <div class="money">${rp(x.amount)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderExtras(){
+  document.getElementById('extras-mount').innerHTML = PRIZES[state.league].extras.map(x => `
+    <div class="extra">
+      <div class="ico">${ICONS[x.icon]}</div>
+      <div>
+        <div class="t">${esc(x.title)}</div>
+        <div class="money">${rp(x.amount)}</div>
+        <div class="s">${x.note}</div>
+      </div>
+    </div>`).join('');
+}
+
+/* The worked example is computed from the same numbers as the table above, so
+   it can never quote a figure the page has since stopped paying. */
+function renderRules(){
+  const p = PRIZES[state.league];
+  const first = p.places[0].amount, second = p.places[1].amount;
+  const motm = p.extras.find(x => x.icon === 'month');
+  const each = motm.amount / 10;
+
+  document.getElementById('tie-example').innerHTML =
+    `Two level on <span class="r">1st</span> in the ${esc(p.name)}<br>` +
+    `&nbsp;&nbsp;(Rp ${commas(first)} + Rp ${commas(second)}) &divide; 2` +
+    ` = <span class="r">Rp ${commas((first + second) / 2)}</span> each<br><br>` +
+    `Three level on <span class="r">1st</span><br>` +
+    `&nbsp;&nbsp;(1st + 2nd + 3rd) &divide; 3` +
+    ` = <span class="r">Rp ${commas(Math.round(
+        (first + second + p.places[2].amount) / 3))}</span> each`;
+
+  document.getElementById('tie-motm-full').textContent = 'Rp ' + commas(each);
+  document.getElementById('tie-motm-half').textContent = 'Rp ' + commas(each / 2);
+}
+
+function renderTicker_(){
+  const p = PRIZES[state.league];
+  renderTicker(document.getElementById('ticker-track'), 'FPL Jakarta — Prizes', [
+    tickerItem(`<b>${esc(p.name)}</b> · pot <b>Rp ${commas(potOf(state.league))}</b>`),
+    tickerItem(`1st <b>Rp ${commas(p.places[0].amount)}</b>`),
+    tickerItem(`2nd <b>Rp ${commas(p.places[1].amount)}</b>`),
+    tickerItem(`3rd <b>Rp ${commas(p.places[2].amount)}</b>`),
+    ...p.extras.map(x => tickerItem(
+      `${esc(x.title)} <b>Rp ${commas(x.amount)}</b>`)),
+    tickerItem('All prizes paid at the <b>end of the 2026/27 season</b>'),
+  ]);
+}
+
+function render(){
+  renderPot();
+  renderPodium();
+  renderPlaces();
+  renderExtras();
+  renderRules();
+  renderTicker_();
+}
+
+wireLeagueToggle(document.getElementById('league-toggle'), league => {
+  state.league = league;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

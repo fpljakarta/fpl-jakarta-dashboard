@@ -97,6 +97,14 @@ HALF_TIME_MINUTE = 45
 # without this the projected scores would sit still for a whole half.
 LIVE_REFRESH_MINUTES = 5
 
+# How long one workflow run keeps publishing for, and therefore how far ahead a
+# kick-off is worth waiting for rather than exiting and hoping the next
+# scheduled run arrives in time. Set above the worst gap measured between
+# scheduled runs -- 115 minutes on 23 August -- because a shorter window leaves
+# exactly the hole that gap opened. The workflow sets this; the default matches
+# refresh-live.yml so a local run behaves the same way.
+PUBLISH_WINDOW_MINUTES = int(os.environ.get("PUBLISH_WINDOW_MINUTES") or 120)
+
 # The overall-rank curve costs about a hundred requests to rebuild, so it is
 # reused between publishes for this long. Scores drift slowly enough across
 # eleven million managers that a curve a few minutes old is still a good read.
@@ -129,17 +137,25 @@ def set_output(name, value):
     print(f"::publish::{name}={value}")
 
 
-def write_status(published, in_play):
+def write_status(published, in_play, starts_soon=False):
     """
-    Tell the workflow what just happened and whether football is still on.
+    Tell the workflow what just happened and whether football is still coming.
 
     The workflow loops on this: commit when something was published, and go
-    round again while a match is still being played.
+    round again while a match is being played *or* about to kick off. Waiting
+    for an imminent kick-off matters as much as staying through a match --
+    GitHub delivers this schedule roughly hourly, so a run that wakes before
+    the whistle and exits leaves nobody to publish the half that follows.
     """
     with open(STATUS_FILE, "w", encoding="utf-8") as f:
-        json.dump({"published": bool(published), "in_play": bool(in_play)}, f)
+        json.dump({
+            "published": bool(published),
+            "in_play": bool(in_play),
+            "starts_soon": bool(starts_soon),
+        }, f)
     set_output("publish", "true" if published else "false")
     set_output("in_play", "true" if in_play else "false")
+    set_output("starts_soon", "true" if starts_soon else "false")
 
 
 def load_json_file(path):
@@ -178,6 +194,31 @@ def due_milestones(fixtures, already, now):
         if "ft" not in done and over:
             due.append((fid, "ft"))
     return due
+
+
+def kickoff_imminent(fixtures, now, within_minutes):
+    """
+    Whether a match that has not kicked off yet does so within the window.
+
+    The companion to `match_in_progress`, and the reason a run started before
+    the football does not simply exit. `match_in_progress` alone would have a
+    run that wakes shortly before a one o'clock kick-off find nothing in play
+    and finish in seconds -- and the next scheduled run can be nearly two hours
+    behind it, which on 23 August left the first half unpublished entirely.
+    """
+    for fx in fixtures:
+        if fx.get("started") or is_over(fx):
+            continue
+        kickoff = fx.get("kickoff_time")
+        if not kickoff:
+            continue
+        try:
+            ko = datetime.fromisoformat(kickoff.replace("Z", "+00:00"))
+        except (AttributeError, ValueError):
+            continue
+        if 0 <= (ko - now).total_seconds() / 60 <= within_minutes:
+            return True
+    return False
 
 
 def minutes_since(stamp, now):
@@ -614,13 +655,18 @@ def main():
         if age is None or age >= LIVE_REFRESH_MINUTES:
             reasons.append(f"match in play, last publish {age and round(age)}m ago")
 
+    # Not a reason to publish -- there is nothing new to say before a kick-off
+    # -- but a reason for the run to stay awake until there is.
+    starts_soon = kickoff_imminent(fixtures, now, PUBLISH_WINDOW_MINUTES)
+
     if not reasons:
         upcoming = [f for f in fixtures if not f.get("started")]
         print(f"GW{gw}: nothing to publish - "
               f"{sum(1 for f in fixtures if is_over(f))}"
               f"/{len(fixtures)} fixtures done, {len(upcoming)} still to come. "
-              f"Skipping the manager fetch and leaving live.json untouched.")
-        write_status(False, in_play)
+              f"Skipping the manager fetch and leaving live.json untouched."
+              + (" Waiting here for the next kick-off." if starts_soon else ""))
+        write_status(False, in_play, starts_soon)
         return
 
     print(f"GW{gw}: publishing because {'; '.join(reasons)}.")
@@ -760,7 +806,7 @@ def main():
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
           f"({len(picks_cache)} unique), {done}/{len(fixtures)} fixtures finished.")
-    write_status(True, in_play)
+    write_status(True, in_play, starts_soon)
 
 
 if __name__ == "__main__":

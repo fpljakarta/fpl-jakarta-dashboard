@@ -11,8 +11,13 @@ Importing the module does no network of its own.
 """
 
 import unittest
+from datetime import datetime, timezone
 
-from fetch_live_data import build_fixture_cards
+from fetch_live_data import (
+    PUBLISH_WINDOW_MINUTES as WINDOW,
+    build_fixture_cards,
+    kickoff_imminent,
+)
 
 # Two teams, four players, split two apiece.
 BOOTSTRAP = {
@@ -116,6 +121,80 @@ class TestBuildFixtureCards(unittest.TestCase):
     def test_an_unknown_team_does_not_break_the_card(self):
         card = self.cards([fixture(team_a=99)])[0]
         self.assertEqual(card["away"], "?")
+
+
+def at(hhmm):
+    """A UTC moment on the day the fixtures below kick off."""
+    hh, mm = hhmm.split(":")
+    return datetime(2026, 8, 23, int(hh), int(mm), tzinfo=timezone.utc)
+
+
+class KickoffImminentTests(unittest.TestCase):
+    """
+    Whether a run should stay awake for football that has not started yet.
+
+    This is what stops a run waking shortly before a kick-off, finding nothing
+    in play and exiting in seconds. GitHub's next scheduled run can be nearly
+    two hours later, and that silence covers a whole half.
+    """
+
+    def setUp(self):
+        self.one_oclock = [fixture(id=1, started=False, finished=False,
+                                   finished_provisional=False,
+                                   kickoff_time="2026-08-23T13:00:00Z")]
+
+    def test_a_kick_off_inside_the_window_keeps_the_run_awake(self):
+        self.assertTrue(kickoff_imminent(self.one_oclock, at("12:15"), WINDOW))
+
+    def test_the_run_that_went_quiet_on_23_august_would_now_wait(self):
+        # The scheduled runs that day landed at 09:56, 10:55, 11:46 and then
+        # not again until 13:41. The 11:46 one found nothing in play, exited,
+        # and nobody published the 13:00 kick-off or the half after it. At the
+        # window this repository actually uses, that run waits instead.
+        self.assertTrue(kickoff_imminent(self.one_oclock, at("11:46"), WINDOW))
+        # The two before it are genuinely too far out to hold a runner for.
+        self.assertFalse(kickoff_imminent(self.one_oclock, at("10:55"), WINDOW))
+        self.assertFalse(kickoff_imminent(self.one_oclock, at("09:56"), WINDOW))
+
+    def test_a_kick_off_beyond_the_window_does_not(self):
+        self.assertFalse(kickoff_imminent(self.one_oclock, at("10:30"), WINDOW))
+
+    def test_the_edge_of_a_given_window_counts(self):
+        # Exactly on the boundary, waiting is still the right answer.
+        self.assertTrue(kickoff_imminent(self.one_oclock, at("12:05"), 55))
+        self.assertFalse(kickoff_imminent(self.one_oclock, at("12:04"), 55))
+
+    def test_a_kick_off_already_past_does_not_count(self):
+        # Once the whistle has gone, match_in_progress keeps the run alive.
+        # Counting the kick-off again would hold a run open all evening after
+        # the last match of the day had finished.
+        self.assertFalse(kickoff_imminent(self.one_oclock, at("13:01"), WINDOW))
+
+    def test_a_match_already_under_way_is_not_imminent(self):
+        started = [fixture(id=1, started=True, finished=False,
+                           finished_provisional=False,
+                           kickoff_time="2026-08-23T13:00:00Z")]
+        self.assertFalse(kickoff_imminent(started, at("13:20"), WINDOW))
+
+    def test_a_finished_match_is_not_imminent(self):
+        done = [fixture(id=1, started=True, finished=True,
+                        kickoff_time="2026-08-23T13:00:00Z")]
+        self.assertFalse(kickoff_imminent(done, at("12:30"), WINDOW))
+
+    def test_the_nearest_of_several_fixtures_decides(self):
+        later = fixture(id=2, started=False, finished=False,
+                        finished_provisional=False,
+                        kickoff_time="2026-08-23T15:30:00Z")
+        self.assertTrue(kickoff_imminent(self.one_oclock + [later], at("12:15"), WINDOW))
+        # With only the far one left there is nothing to wait up for yet.
+        self.assertFalse(kickoff_imminent([later], at("12:15"), WINDOW))
+
+    def test_a_missing_or_unreadable_kick_off_is_ignored(self):
+        for bad in (None, "", "not a timestamp"):
+            with self.subTest(kickoff=bad):
+                fx = [fixture(id=1, started=False, finished=False,
+                              finished_provisional=False, kickoff_time=bad)]
+                self.assertFalse(kickoff_imminent(fx, at("12:15"), WINDOW))
 
 
 if __name__ == "__main__":
