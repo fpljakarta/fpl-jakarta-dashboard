@@ -2,13 +2,29 @@
 
 Live site: **https://fpljakarta.qd.je/**
 
-A static site — no build step, no framework. Nine pages at the repo root
-(`index.html`, `live.html`, `ownership.html`, `compare.html`, `awards.html`,
-`prices.html`, `signup.html`, and the two partner venues `taproom22.html` and
-`milospadel.html`), four data files (`data.json`, `live.json`,
-`awards.json`, `prices.json`) written by the scripts in `scripts/`, and a
-shared shell in `assets/` that the pages added after the first three use
-instead of carrying a fifth copy of the same CSS.
+A static site — no build step, no framework. Ten pages at the repo root
+(`index.html`, `live.html`, `prizes.html`, `ownership.html`, `compare.html`,
+`awards.html`, `prices.html`, `signup.html`, and the two partner venues
+`taproom22.html` and `milospadel.html`), four data files (`data.json`,
+`live.json`, `awards.json`, `prices.json`) written by the scripts in
+`scripts/`, and a shared shell in `assets/` that the pages added after the
+first three use instead of carrying a fifth copy of the same CSS.
+
+## The prizes page
+
+`prizes.html` lists what the league pays out, per league, and holds the figures
+in a `PRIZES` constant in the page itself. There is no data file behind it: the
+amounts are set by the organisers and change by commit, not by a fetch.
+
+Everything derived is derived from that one constant — the pot totals, the bar
+widths in the placings table, and the worked tie examples. Nothing on the page
+restates a number that is also written somewhere else, so the arithmetic cannot
+drift from the table above it.
+
+The two rules the page has to state, because money depends on them: every prize
+is paid at the end of the season, whenever it was won; and tied placings pool
+the prizes for the places they occupy and split them equally, while a tied
+one-off prize is split between everyone level.
 
 ## The partner venue pages
 

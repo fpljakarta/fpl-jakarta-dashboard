@@ -258,6 +258,20 @@
   .week-chip{ flex-shrink:0; font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--muted); background: var(--bg-elevated); border:1px solid var(--line); border-radius:8px; padding:7px 11px; white-space:nowrap;}
   .week-chip b{ color: var(--floodlight); }
 
+  /* The gameweek picker, matching the one on the awards page so the two
+     read as the same control rather than two different ones. */
+  .gw-picker{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+  .gw-picker .lab{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color: var(--muted-dim); }
+  .chips{ display:flex; gap:7px; flex-wrap:wrap; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--muted);
+    background: var(--bg-elevated); border:1px solid var(--line); border-radius:8px;
+    padding:7px 12px; cursor:pointer; white-space:nowrap;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .chip:hover{ color: var(--floodlight); }
+  .chip.active{ color:#0a1f1a; background: var(--lime); border-color: var(--lime); font-weight:600; }
+
   /* ---------- cup ---------- */
   .cup-card{
     background: var(--bg-elevated); border:1px solid var(--line); border-radius: var(--radius);
@@ -279,6 +293,7 @@
     <div class="nav-inner">
       <a href="index.html" class="active">Home</a>
       <a href="live.html">Live Gameweek</a>
+      <a href="prizes.html">Prizes</a>
       <a href="ownership.html">Ownership</a>
       <a href="compare.html">Compare</a>
       <a href="awards.html">Awards</a>
@@ -344,8 +359,12 @@
     <!-- MOTW -->
     <section>
       <div class="section-head">
-        <div class="section-label">04 &nbsp;<b>Manager of the week</b></div>
+        <div class="section-label">04 &nbsp;<b>Manager of the week <span style="color:var(--gold);">(Top Gun)</span></b></div>
         <div class="section-note">Highest net score in the selected league</div>
+      </div>
+      <div class="gw-picker">
+        <span class="lab">Gameweek</span>
+        <div class="chips" id="motw-chips"></div>
       </div>
       <div id="motw-mount"></div>
     </section>
@@ -377,6 +396,9 @@ let state = {
   data: null,
   live: null,
   activeLeague: "high_stakes",
+  // Which gameweek the Manager of the Week section is showing. Null until the
+  // first render, which picks the most recent week played.
+  motwGw: null,
 };
 
 // A deployed copy of this page is only as fresh as the host's last build, but
@@ -637,11 +659,23 @@ function renderMotm(){
   }).join('');
 }
 
+/*
+  Manager of the Week is the same award the awards page calls Top Gun: the
+  highest score in the league once a hit is taken off. Both are worked out from
+  that one rule -- this from each manager's settled history, Top Gun from the
+  live gameweek -- so a finished week reads the same on either page, and only a
+  week still being played can differ, with the live figure the more current of
+  the two.
+
+  Every week played gets a chip, newest first, exactly as on the awards page.
+*/
 function renderMotw(){
   const mount = document.getElementById('motw-mount');
+  const chips = document.getElementById('motw-chips');
   const weeks = forActiveLeague(state.data?.motw);
 
   if(!weeks.length){
+    chips.innerHTML = '';
     mount.innerHTML = `
       <div class="empty-card">
         <div class="t">No gameweeks played yet</div>
@@ -650,22 +684,32 @@ function renderMotw(){
     return;
   }
 
-  const latest = weeks[weeks.length - 1];
-  const past = weeks.slice(0, -1).slice(-6).reverse();
+  // Switching league can land on a week that league has not played, so fall
+  // back to its most recent one rather than showing nothing.
+  const byGw = Object.fromEntries(weeks.map(w => [w.gw, w]));
+  if(state.motwGw === null || !byGw[state.motwGw]){
+    state.motwGw = weeks[weeks.length - 1].gw;
+  }
+  const week = byGw[state.motwGw];
+
+  chips.innerHTML = weeks.slice().reverse().map(w =>
+    `<button class="chip ${w.gw === state.motwGw ? 'active' : ''}" data-gw="${w.gw}">GW${w.gw}</button>`
+  ).join('');
+
+  const latest = state.motwGw === weeks[weeks.length - 1].gw;
 
   mount.innerHTML = `
     <div class="spotlight">
       <div class="spotlight-left">
-        <div class="gw-label"><span class="live-dot"></span> Gameweek ${latest.gw}</div>
-        <p class="name">${escapeHtml(latest.manager)}</p>
-        <p class="team">${escapeHtml(latest.team)}</p>
+        <div class="gw-label">${latest ? '<span class="live-dot"></span> ' : ''}Gameweek ${week.gw} &middot; Top Gun</div>
+        <p class="name">${escapeHtml(week.manager)}</p>
+        <p class="team">${escapeHtml(week.team)}</p>
       </div>
       <div class="spotlight-right">
-        <div class="score">${latest.points}</div>
-        <div class="score-label">points this GW</div>
+        <div class="score">${week.points}</div>
+        <div class="score-label">points in GW${week.gw}</div>
       </div>
     </div>
-    ${past.length ? `<div class="past-weeks">${past.map(w => `<div class="week-chip">GW${w.gw} <b>${escapeHtml(w.manager)} — ${w.points}</b></div>`).join('')}</div>` : ''}
   `;
 }
 
@@ -724,6 +768,13 @@ document.getElementById('league-toggle').addEventListener('click', (e) => {
   state.activeLeague = btn.dataset.league;
   document.querySelectorAll('#league-toggle button').forEach(b => b.classList.toggle('active', b === btn));
   renderLeagueSections();
+});
+
+document.getElementById('motw-chips').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-gw]');
+  if(!btn) return;
+  state.motwGw = Number(btn.dataset.gw);
+  renderMotw();
 });
 
 loadData();
