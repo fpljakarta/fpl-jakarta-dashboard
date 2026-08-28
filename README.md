@@ -2,13 +2,50 @@
 
 Live site: **https://fpljakarta.qd.je/**
 
-A static site — no build step, no framework. Ten pages at the repo root
-(`index.html`, `live.html`, `prizes.html`, `ownership.html`, `compare.html`,
-`awards.html`, `prices.html`, `signup.html`, and the two partner venues
-`taproom22.html` and `milospadel.html`), four data files (`data.json`,
-`live.json`, `awards.json`, `prices.json`) written by the scripts in
-`scripts/`, and a shared shell in `assets/` that the pages added after the
-first three use instead of carrying a fifth copy of the same CSS.
+A static site — no build step, no framework. Twelve pages at the repo root
+(`index.html`, `live.html`, `prizes.html`, `transfers.html`, `teamvalue.html`,
+`ownership.html`, `compare.html`, `awards.html`, `prices.html`, `signup.html`,
+and the two partner venues `taproom22.html` and `milospadel.html`), five data
+files (`data.json`, `live.json`, `awards.json`, `prices.json`,
+`transfers.json`) written by the scripts in `scripts/`, and a shared shell in
+`assets/` that the pages added after the first three use instead of carrying a
+fifth copy of the same CSS.
+
+## Transfers, and what is deliberately not on that page
+
+`transfers.html` shows who each manager sold and who they brought in, one
+gameweek at a time. A wildcard or a free hit is named instead, with a link to
+the team on FPL: those chips can move the whole squad, so fifteen rows of swaps
+would be noise where the chip is the story.
+
+**A gameweek appears only once its deadline has passed.** FPL will happily tell
+you what somebody has already done for the gameweek *after* this one, and
+publishing that would turn the page into a way of watching rivals plan. The
+same rule governs the player-name lookup in `transfers.json`, which is built
+from what is published rather than from the whole transfer feed — otherwise a
+name could be read off the lookup before it appeared in anyone's gameweek.
+
+`in` and `out` are two lists rather than pairs, because FPL does not record
+which sale paid for which purchase. The page lines them up by position, which
+is the honest reading of a set of moves made together.
+
+## Team value, and what it means
+
+`teamvalue.html` ranks every squad, richest first, from the `values` block in
+`data.json`.
+
+FPL's `value` is **the squad and the bank together** — the whole £100.0m a
+manager started with, moved by price changes. This was checked against real
+league data rather than assumed, because a prize is settled on it: two
+gameweeks in, `value` alone spanned 100.1 to 100.4 across the league, while
+value plus bank reached 105.7, which no amount of price movement could do in a
+fortnight. The bank is shown in its own column because it is part of that
+total, not an addition to it, and adding it would count it twice.
+
+Both pages need one extra request per manager per refresh — `entry/{id}/
+transfers/`, which returns the whole season, so it is one call each rather than
+one per gameweek. Team value needs none at all: it comes out of the history
+already fetched for the monthly and weekly winners.
 
 ## The prizes page
 

@@ -105,6 +105,113 @@ def fetch_history(entry_id):
     return fetch_json(f"{BASE}/entry/{entry_id}/history/")
 
 
+def fetch_transfers(entry_id):
+    """Every transfer this manager has made all season, newest first."""
+    return fetch_json(f"{BASE}/entry/{entry_id}/transfers/")
+
+
+# The two chips that make a transfer list meaningless: a wildcard or a free hit
+# can move the whole squad, so the page names the chip instead of printing
+# fifteen rows.
+SQUAD_CHIPS = {"wildcard": "Wildcard", "freehit": "Free Hit"}
+
+# What FPL calls the rest, for the badge beside a normal transfer list.
+OTHER_CHIPS = {"bboost": "Bench Boost", "3xc": "Triple Captain",
+               "manager": "Assistant Manager"}
+
+
+def chip_by_event(history):
+    """{gameweek: chip name as FPL spells it} for one manager."""
+    out = {}
+    for chip in (history or {}).get("chips") or []:
+        event_id, name = chip.get("event"), chip.get("name")
+        if event_id is not None and name:
+            out[int(event_id)] = name
+    return out
+
+
+def team_values(rows, histories):
+    """
+    Each manager's team value, richest first.
+
+    FPL's `value` is the whole £100.0m a manager started with, moved by price
+    changes -- the squad *and* whatever is in the bank, not the squad alone.
+    Checked against real data before this was written: two gameweeks in, `value`
+    alone spanned 100.1 to 100.4 across the league, while value plus bank
+    reached 105.7, which no amount of price movement could do in a fortnight.
+    Adding the bank on top would count it twice, and this decides a prize.
+
+    `change` is the move since the previous gameweek, so the page can show
+    which way a squad is going rather than only where it stands.
+    """
+    out = []
+    for row in rows:
+        current = ((histories.get(row["entry_id"]) or {}).get("current")) or []
+        if not current:
+            continue
+        latest = current[-1]
+        previous = current[-2] if len(current) > 1 else None
+        value = latest.get("value")
+        if value is None:
+            continue
+        out.append({
+            "entry_id": row["entry_id"],
+            "manager": row["manager"],
+            "team": row["team"],
+            "gw": latest.get("event"),
+            # Tenths of a million in the API; pounds here, as the game shows it.
+            "value": round(value / 10, 1),
+            "bank": round((latest.get("bank") or 0) / 10, 1),
+            "change": (round((value - previous["value"]) / 10, 1)
+                       if previous and previous.get("value") is not None else None),
+        })
+    # Richest first; ties settled by name so the order never jitters between
+    # runs for two managers on the same value.
+    out.sort(key=lambda m: (-m["value"], m["manager"].lower()))
+    return out
+
+
+def transfers_by_gameweek(rows, histories, transfers, started_gws):
+    """
+    {gameweek: [one entry per manager]}, for gameweeks that have started.
+
+    Deliberately only started ones. FPL will happily tell you what a manager has
+    already done for the gameweek *after* this one, and publishing that would
+    turn this page into a way of watching rivals plan before the deadline. A
+    transfer becomes public here at the same moment it becomes real.
+    """
+    by_entry = {}
+    for entry_id, moves in (transfers or {}).items():
+        for move in moves or []:
+            event_id = move.get("event")
+            if event_id is None:
+                continue
+            slot = by_entry.setdefault(entry_id, {}).setdefault(int(event_id),
+                                                               {"in": [], "out": []})
+            if move.get("element_in") is not None:
+                slot["in"].append(move["element_in"])
+            if move.get("element_out") is not None:
+                slot["out"].append(move["element_out"])
+
+    out = {}
+    for gw in sorted(started_gws):
+        week = []
+        for row in rows:
+            entry_id = row["entry_id"]
+            moved = (by_entry.get(entry_id) or {}).get(gw) or {"in": [], "out": []}
+            chip = chip_by_event(histories.get(entry_id)).get(gw)
+            week.append({
+                "entry_id": entry_id,
+                "manager": row["manager"],
+                "team": row["team"],
+                "in": moved["in"],
+                "out": moved["out"],
+                "chip": chip,
+            })
+        out[str(gw)] = week
+    return out
+
+
 def event_started(event, now):
     """Whether a gameweek is under way, by its deadline having passed."""
     if not event:
@@ -333,6 +440,53 @@ def main():
     for key, rows in standings.items():
         motm[key], motw[key] = winners_for(rows, phases, histories, events_by_id, now)
 
+    values = {key: team_values(rows, histories) for key, rows in standings.items()}
+
+    # One transfer list per manager, covering the whole season, so this is a
+    # single request each rather than one per gameweek.
+    entry_transfers = {}
+    for entry_id in sorted(everyone):
+        try:
+            entry_transfers[entry_id] = fetch_transfers(entry_id)
+        except Exception:  # noqa: BLE001 - one bad manager should not stop the run
+            continue
+        time.sleep(REQUEST_PAUSE)
+
+    started = [e["id"] for e in events if event_started(e, now)]
+    elements_by_id = {e["id"]: e for e in bootstrap.get("elements", [])}
+    published = {
+        key: transfers_by_gameweek(rows, histories, entry_transfers, started)
+        for key, rows in standings.items()
+    }
+
+    # Names are collected from what is actually published, not from every
+    # transfer on file. Building the lookup from the whole feed would put next
+    # week's targets in it, and anyone could read off a name that appears in the
+    # lookup but in nobody's gameweek -- which is the thing the started-only
+    # rule exists to prevent.
+    named = sorted({pid
+                    for league in published.values()
+                    for week in league.values()
+                    for row in week
+                    for pid in row["in"] + row["out"]})
+
+    transfers = {
+        "generated_at": now.isoformat(timespec="seconds"),
+        "current_gameweek": current_event["id"] if current_event else None,
+        "leagues": {k: {"id": v["id"], "name": v["name"]} for k, v in LEAGUES.items()},
+        # Names once, referenced by id everywhere else. Thirty-eight gameweeks
+        # of two leagues repeating "Gianluigi Donnarumma" would be most of the
+        # file.
+        "players": {
+            str(pid): {
+                "name": elements_by_id[pid].get("web_name", "?"),
+                "cost": round((elements_by_id[pid].get("now_cost") or 0) / 10, 1),
+            }
+            for pid in named if pid in elements_by_id
+        },
+        "gameweeks": published,
+    }
+
     data = {
         "generated_at": now.isoformat(timespec="seconds"),
         "current_gameweek": current_event["id"] if current_event else None,
@@ -342,6 +496,7 @@ def main():
         "standings": standings,
         "motm": motm,
         "motw": motw,
+        "values": values,
     }
 
     wrote = []
@@ -351,6 +506,11 @@ def main():
             json.dump(data, f, indent=2)
             f.write("\n")
         wrote.append("data.json")
+
+    if content_changed("transfers.json", transfers):
+        with open("transfers.json", "w", encoding="utf-8") as f:
+            json.dump(transfers, f, separators=(",", ":"))
+        wrote.append("transfers.json")
 
     prices = build_prices(bootstrap, load_json("prices.json"), now)
     if prices and content_changed("prices.json", prices):

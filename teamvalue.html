@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta — Team Value</title>
+<link rel="canonical" href="https://fpljakarta.qd.je/teamvalue.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Every FPL Jakarta squad ranked by team value, richest first, in both the Main and High Stakes leagues.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .lead{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-bottom:22px;
+  }
+  @media (max-width:720px){ .lead{ grid-template-columns:1fr; } }
+  .stat{
+    background: var(--bg-elevated); border:1px solid var(--line);
+    border-radius: var(--radius); padding:18px 20px;
+  }
+  .stat.top{
+    border-color: rgba(240,180,41,.45);
+    background: linear-gradient(135deg, rgba(240,180,41,.11), var(--bg-elevated) 68%);
+  }
+  .stat .k{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.12em;
+    text-transform:uppercase; color: var(--muted-dim); margin-bottom:9px;
+  }
+  .stat.top .k{ color: var(--gold); }
+  .stat .v{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:24px;
+    color: var(--floodlight); line-height:1;
+  }
+  .stat.top .v{ color: var(--gold); }
+  .stat .s{ font-size:13px; color: var(--muted); margin-top:7px; line-height:1.45; }
+
+  .vrow{
+    display:grid; grid-template-columns: 44px 1fr 92px 84px 84px; gap:18px;
+    align-items:center; padding:13px 18px;
+    border-bottom:1px solid var(--line); position:relative;
+  }
+  .vrow:last-child{ border-bottom:none; }
+  .vrow.head{
+    border-bottom:1px solid var(--line); background: rgba(0,0,0,.18);
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color: var(--muted-dim); padding:11px 18px;
+  }
+  .vrow.head .num{ text-align:right; }
+  @media (max-width:720px){
+    .vrow{ grid-template-columns: 34px 1fr 78px 68px; gap:12px; padding:12px 14px; }
+    .vrow .bank, .vrow.head .bank{ display:none; }
+  }
+
+  /* How far above the floor this squad sits. The spread is small -- a tenth of
+     a million is a good week -- so the bar is measured from the bottom of the
+     league rather than from zero, or every row would look identical. */
+  .vrow .bar{
+    position:absolute; left:0; top:0; bottom:0; z-index:0;
+    background: linear-gradient(90deg, rgba(212,255,61,.11) 0%, rgba(212,255,61,.03) 80%, transparent 100%);
+  }
+  .vrow.gold .bar{ background: linear-gradient(90deg, rgba(240,180,41,.20) 0%, rgba(240,180,41,.05) 80%, transparent 100%); }
+  .vrow > *{ position:relative; z-index:1; }
+
+  .vrow .pos{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color: var(--muted-dim);
+    text-align:center;
+  }
+  .vrow.gold .pos{ color: var(--gold); font-weight:600; }
+  .vrow .m{ font-weight:600; font-size:14px; }
+  .vrow .t{ color: var(--muted-dim); font-size:12px; margin-top:2px; }
+  .num{
+    font-family:'IBM Plex Mono', monospace; font-size:14px; text-align:right;
+    white-space:nowrap;
+  }
+  .vrow .value{ font-weight:600; }
+  .vrow.gold .value{ color: var(--gold); }
+  .vrow .bank{ color: var(--muted-dim); font-size:13px; }
+  .vrow .chg{ font-size:13px; }
+  .flat{ color: var(--muted-dim); }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="prizes.html">Prizes</a>
+      <a href="transfers.html">Transfers</a>
+      <a href="teamvalue.html" class="active">Team Value</a>
+      <a href="ownership.html">Ownership</a>
+      <a href="compare.html">Compare</a>
+      <a href="awards.html">Awards</a>
+      <a href="prices.html">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+      <a href="taproom22.html">Taproom 22</a>
+      <a href="milospadel.html">Milo's Padel</a>
+    </div>
+  </nav>
+
+  <div class="wrap wide">
+    <header>
+      <p class="eyebrow" id="gw-tag">Team value</p>
+      <h1>The richest <span>squads</span></h1>
+      <p class="lede">Every squad in the league, most valuable first. There is a
+        prize on this one at the end of the season, so it is worth knowing where
+        you stand.</p>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>Where everyone stands</b></div>
+        <div class="toggle" id="league-toggle">
+          <button data-league="high_stakes" class="active">High Stakes</button>
+          <button data-league="main">Main league</button>
+        </div>
+      </div>
+
+      <div class="lead" id="lead"></div>
+      <div class="table-card" id="mount"></div>
+
+      <p class="section-note" style="margin-top:16px;">
+        <b>Team value is the squad plus whatever is in the bank</b> &mdash; the
+        same number the game shows you, and the same one the
+        <a href="prizes.html" style="color:var(--lime);">end-of-season prize</a>
+        is settled on. The bank is listed separately because it is part of that
+        total, not an addition to it.
+      </p>
+    </section>
+
+    <p class="section-note" id="stamp" style="margin-top:34px;"></p>
+
+    <footer>
+      Values move with player prices and settle at each deadline, so this page
+      changes as the game reprices players rather than as matches are played.
+      Everyone starts the season on £100.0m.
+    </footer>
+  </div>
+
+<script src="assets/site.js"></script>
+<script>
+const state = { data: null, league: 'high_stakes' };
+
+function money(n){ return '£' + Number(n).toFixed(1); }
+
+function change(c){
+  if(c === null || c === undefined) return '<span class="flat">—</span>';
+  if(!c) return '<span class="flat">0.0</span>';
+  const cls = c > 0 ? 'up-txt' : 'down-txt';
+  return `<span class="${cls}">${c > 0 ? '+' : ''}${c.toFixed(1)}</span>`;
+}
+
+function render(){
+  const d = state.data;
+  const rows = (d.values || {})[state.league] || [];
+  const league = (d.leagues || {})[state.league] || {};
+  const mount = document.getElementById('mount');
+  const lead = document.getElementById('lead');
+
+  document.getElementById('stamp').textContent = stampText(d.generated_at);
+  document.getElementById('gw-tag').textContent =
+    (rows.length && rows[0].gw ? `After gameweek ${rows[0].gw}` : 'Team value')
+    + ' · ' + (league.name || '');
+
+  if(!rows.length){
+    lead.innerHTML = '';
+    mount.innerHTML = `<div class="empty-card">
+      <div class="t">No values yet</div>
+      <div class="s">These appear once the first gameweek deadline has passed.</div>
+    </div>`;
+    tickerFor(rows);
+    return;
+  }
+
+  const top = rows[0];
+  const floor = rows[rows.length - 1].value;
+  const spread = top.value - floor;
+  const mean = rows.reduce((t, m) => t + m.value, 0) / rows.length;
+
+  lead.innerHTML = `
+    <div class="stat top">
+      <div class="k">Richest squad</div>
+      <div class="v">${money(top.value)}</div>
+      <div class="s">${esc(top.manager)} — ${esc(top.team)}</div>
+    </div>
+    <div class="stat">
+      <div class="k">League average</div>
+      <div class="v">${money(mean)}</div>
+      <div class="s">across ${rows.length} squads</div>
+    </div>
+    <div class="stat">
+      <div class="k">Top to bottom</div>
+      <div class="v">${money(spread).replace('£', '£')}</div>
+      <div class="s">${money(top.value)} down to ${money(floor)}</div>
+    </div>`;
+
+  mount.innerHTML =
+    `<div class="vrow head">
+       <div class="pos">#</div><div>Manager</div>
+       <div class="num">Value</div><div class="num bank">Bank</div>
+       <div class="num">Change</div>
+     </div>` +
+    rows.map((m, i) => {
+      // Measured from the bottom of the league, not from zero: the whole
+      // spread is often under a pound.
+      const pct = spread > 0
+        ? Math.max(4, Math.round((m.value - floor) / spread * 100)) : 100;
+      return `<div class="vrow ${i === 0 ? 'gold' : ''}">
+        <div class="bar" style="width:${pct}%"></div>
+        <div class="pos">${i + 1}</div>
+        <div>
+          <div class="m">${esc(m.manager)}</div>
+          <div class="t">${esc(m.team)}</div>
+        </div>
+        <div class="num value">${money(m.value)}</div>
+        <div class="num bank">${money(m.bank)}</div>
+        <div class="num chg">${change(m.change)}</div>
+      </div>`;
+    }).join('');
+
+  tickerFor(rows);
+}
+
+function tickerFor(rows){
+  const track = document.getElementById('ticker-track');
+  const league = (state.data.leagues || {})[state.league] || {};
+  if(!rows.length){
+    renderTicker(track, 'FPL Jakarta — Team Value',
+      [tickerItem('Values appear after the first deadline')]);
+    return;
+  }
+  const risers = rows.filter(m => m.change > 0)
+    .sort((a, b) => b.change - a.change).slice(0, 5);
+  renderTicker(track, 'FPL Jakarta — Team Value', [
+    tickerItem(`<b>${esc(league.name || '')}</b> · richest ` +
+      `<b>${esc(rows[0].manager)} ${money(rows[0].value)}</b>`),
+    ...rows.slice(0, 8).map((m, i) =>
+      tickerItem(`${i + 1}. ${esc(m.manager)} <b>${money(m.value)}</b>`)),
+    ...risers.map(m => tickerItem(
+      `${esc(m.manager)} <span class="up-txt">+${m.change.toFixed(1)}</span> this week`)),
+  ]);
+}
+
+wireLeagueToggle(document.getElementById('league-toggle'), league => {
+  state.league = league;
+  render();
+});
+
+async function load(){
+  state.data = await loadJson('data.json');
+  if(!state.data){
+    document.getElementById('mount').innerHTML = `<div class="empty-card">
+      <div class="t">Could not load the data</div>
+      <div class="s">Try again in a moment.</div>
+    </div>`;
+    return;
+  }
+  render();
+}
+
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>

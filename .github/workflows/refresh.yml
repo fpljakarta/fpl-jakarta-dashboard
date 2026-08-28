@@ -38,17 +38,26 @@ jobs:
           git config user.name "fpl-jakarta-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          # Both files are generated whole, so there is nothing to merge and
-          # the copy just written is the newest. This used to rebase onto main,
-          # which is how the live workflow's run #34 died on 23 August: two full
-          # rewrites of the same JSON never auto-merge. Take main as it stands
-          # and put these two on top of it instead.
+          # Only the files this run rewrote, named by the diff rather than by a
+          # fixed list -- the fetcher leaves a file alone when it has nothing
+          # new, and a list has to be remembered every time one is added.
+          mine=$(git diff --name-only -- data.json prices.json transfers.json)
+          if [ -z "$mine" ]; then
+            echo "Nothing was rewritten; nothing to push."
+            exit 0
+          fi
+
+          # These are generated whole, so there is nothing to merge and the copy
+          # just written is the newest. This used to rebase onto main, which is
+          # how the live workflow's run #34 died on 23 August: two full rewrites
+          # of the same JSON never auto-merge. Take main as it stands and put
+          # ours on top of it instead.
+          cp $mine "$RUNNER_TEMP/"
           for attempt in 1 2 3; do
             git fetch origin main
-            cp data.json prices.json "$RUNNER_TEMP/"
             git reset --hard origin/main
-            cp "$RUNNER_TEMP/data.json" "$RUNNER_TEMP/prices.json" .
-            git add data.json prices.json
+            for f in $mine; do cp "$RUNNER_TEMP/$f" "$f"; done
+            git add $mine
             if git diff --staged --quiet; then
               echo "Nothing changed against main; nothing to push."
               break
