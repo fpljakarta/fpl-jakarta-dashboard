@@ -141,6 +141,71 @@ record of what this pass wrote. That matters now that one run writes all four:
 a run that only refreshed the standings must not carry its hours-old `live.json`
 along and roll live scores back to whatever they were when it was queued.
 
+## The external trigger
+
+GitHub's `schedule` is best-effort and this repository has been badly served by
+it — nothing delivered at all on 27 August 2026, and a 34-hour gap straddling
+GW2's deadline. Everything above makes a *delivered* run worth more; none of it
+makes a run arrive. The only thing that does is a trigger from outside GitHub.
+
+A scheduled ping calls this endpoint, which starts `refresh-live.yml`, which
+refreshes all four data files:
+
+    POST https://api.github.com/repos/fpljakarta/fpl-jakarta-dashboard/actions/workflows/refresh-live.yml/dispatches
+
+    Accept: application/vnd.github+json
+    Authorization: Bearer <token>
+    X-GitHub-Api-Version: 2022-11-28
+    Content-Type: application/json
+
+    {"ref": "main"}
+
+A success is **HTTP 204** with an empty body. Anything else means the token is
+wrong, expired, or lacks the permission below.
+
+`scripts/ping-refresh.sh` makes exactly that request, so a token can be proved
+before it is pasted into anything:
+
+    GITHUB_TOKEN=github_pat_... ./scripts/ping-refresh.sh
+
+It prints `queued` on success and, on failure, what GitHub said and which of
+the four usual causes it is.
+
+Hourly is plenty: a run that finds nothing on exits in seconds, and one that
+finds a deadline or a match stays up for it. Pings that land while a run is
+already going are absorbed by the `refresh-live-data` concurrency group.
+
+### The token
+
+A fine-grained personal access token, scoped as narrowly as it goes:
+
+- **Repository access** — only `fpljakarta/fpl-jakarta-dashboard`
+- **Permissions** — Actions: *Read and write*. Nothing else.
+- **Expiry** — GitHub caps fine-grained tokens at a year. Whatever is chosen,
+  the trigger stops dead the day it lapses, so it is worth a calendar reminder.
+
+Made at <https://github.com/settings/personal-access-tokens>. It goes into the
+cron service and nowhere else — not into this repository, not into a commit,
+and not into a chat window.
+
+### Why a dispatch does not force a publish
+
+`workflow_dispatch` used to force one, on the reasoning that a person only runs
+it by hand when they want a refresh now. With something pinging it every hour
+that would put a commit an hour into the history saying nothing had changed. So
+forcing is now an explicit `force` input, off by default: the hourly ping
+behaves exactly like a scheduled run, and the tick-box is still there for a
+person who wants to force one from the Actions tab.
+
+### If a third-party service is unwanted
+
+The same token can make the workflow keep itself alive instead: a run that
+dispatches its successor before its window closes never depends on the cron
+again. It works — a dispatch authenticated with a PAT does start a new run,
+where one authenticated with `GITHUB_TOKEN` deliberately does not — but it means
+a runner is held essentially all the time, which is free on a public repository
+and noisy in the Actions tab. The external ping is the tidier of the two.
+
 ## The fixture list
 
 `live.json` carries the current gameweek's matches — score, scorers, the 3/2/1

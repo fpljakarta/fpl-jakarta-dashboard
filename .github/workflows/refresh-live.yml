@@ -10,7 +10,12 @@ on:
     # below stays alive through the match and republishes itself every five
     # minutes.
     - cron: '*/5 * * * *'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Publish even if nothing has changed"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
@@ -69,11 +74,16 @@ jobs:
 
       - name: Publish through the match window
         env:
-          # A manual run or a change to the code always publishes, so there is
-          # a way to force a refresh without waiting for a match. Only the
-          # first pass is forced -- after that each pass publishes on its own
-          # merits, or the loop would commit every five minutes on a quiet day.
-          FORCE_FIRST_PASS: ${{ github.event_name != 'schedule' }}
+          # A change to the code always publishes, and a person can tick the
+          # force box to refresh without waiting for a match. Only the first
+          # pass is forced -- after that each pass publishes on its own merits,
+          # or the loop would commit every five minutes on a quiet day.
+          #
+          # A dispatch does NOT force by default, because the external trigger
+          # (see the README) dispatches this workflow on a schedule of its own.
+          # If every one of those forced a publish, a quiet day would carry a
+          # commit an hour saying nothing had happened.
+          FORCE_FIRST_PASS: ${{ github.event_name == 'push' || inputs.force || false }}
         run: |
           set -euo pipefail
           git config user.name "fpl-jakarta-bot"
