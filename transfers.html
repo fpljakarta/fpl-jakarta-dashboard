@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FPL Jakarta — Transfers</title>
+<link rel="canonical" href="https://fpljakarta.qd.je/transfers.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Who every FPL Jakarta manager sold and who they brought in, gameweek by gameweek, in both the Main and High Stakes leagues.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .gw-picker{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  .gw-picker .lab{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color: var(--muted-dim);
+  }
+
+  .trow{
+    display:grid; grid-template-columns: 210px 1fr; gap:18px; align-items:start;
+    padding:15px 20px; border-bottom:1px solid var(--line);
+  }
+  .trow:last-child{ border-bottom:none; }
+  @media (max-width:720px){
+    .trow{ grid-template-columns:1fr; gap:10px; padding:15px 16px; }
+  }
+  .who .m{ font-weight:600; font-size:14.5px; }
+  .who .t{ color: var(--muted-dim); font-size:12.5px; margin-top:2px; }
+
+  /* One line per swap: who left, an arrow, who arrived. */
+  /* A swap is a pair, not a banner. Capped so it reads as one across a wide
+     screen instead of stretching to the far edge. */
+  .swaps{ display:flex; flex-direction:column; gap:7px; max-width:560px; }
+  .swap{
+    display:grid; grid-template-columns: 1fr 22px 1fr; gap:8px; align-items:center;
+    font-size:13.5px;
+  }
+  @media (max-width:480px){ .swap{ grid-template-columns: 1fr 18px 1fr; font-size:12.5px; } }
+  .swap .arrow{ color: var(--muted-dim); text-align:center; font-size:13px; }
+  .out, .in{
+    padding:6px 11px; border-radius:8px; border:1px solid var(--line);
+    background: var(--bg-elevated); white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis;
+  }
+  .out{ color: var(--down); border-color: rgba(255,107,91,.28); }
+  .in { color: var(--up);   border-color: rgba(110,231,160,.28); }
+  .out .c, .in .c{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color: var(--muted-dim);
+    margin-left:6px;
+  }
+
+  .none{ color: var(--muted-dim); font-size:13.5px; font-style:italic; padding:6px 0; }
+
+  /* A wildcard or free hit can move the whole squad, so the chip is the story
+     and the fifteen rows underneath it are not. */
+  .chip-line{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:2px 0; }
+  .chip-badge{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em;
+    text-transform:uppercase; font-weight:600;
+    padding:7px 13px; border-radius:8px;
+    color: var(--gold); border:1px solid rgba(240,180,41,.45);
+    background: linear-gradient(135deg, rgba(240,180,41,.14), transparent 75%);
+  }
+  .chip-badge.other{
+    color: var(--lime); border-color: rgba(212,255,61,.4);
+    background: linear-gradient(135deg, rgba(212,255,61,.12), transparent 75%);
+  }
+  .view-team{
+    font-size:13.5px; color: var(--lime); text-decoration:none;
+    border-bottom:1px solid rgba(212,255,61,.35);
+  }
+  .view-team:hover{ border-bottom-color: var(--lime); }
+
+  .count{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color: var(--muted-dim);
+    margin-top:6px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="ticker">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html">Home</a>
+      <a href="live.html">Live Gameweek</a>
+      <a href="prizes.html">Prizes</a>
+      <a href="transfers.html" class="active">Transfers</a>
+      <a href="teamvalue.html">Team Value</a>
+      <a href="ownership.html">Ownership</a>
+      <a href="compare.html">Compare</a>
+      <a href="awards.html">Awards</a>
+      <a href="prices.html">Price Changes</a>
+      <a href="https://fantasy.premierleague.com/en/the-scout" target="_blank" rel="noopener">The Scout<span class="ext">↗</span></a>
+      <a href="taproom22.html">Taproom 22</a>
+      <a href="milospadel.html">Milo's Padel</a>
+    </div>
+  </nav>
+
+  <div class="wrap wide">
+    <header>
+      <p class="eyebrow" id="gw-tag">Transfers</p>
+      <h1>In and <span>out</span></h1>
+      <p class="lede">Who everybody sold and who they brought in, gameweek by
+        gameweek &mdash; and who tore the whole thing up and started again.</p>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <div class="section-label">01 &nbsp;<b>The window</b></div>
+        <div class="toggle" id="league-toggle">
+          <button data-league="high_stakes" class="active">High Stakes</button>
+          <button data-league="main">Main league</button>
+        </div>
+      </div>
+
+      <div class="gw-picker">
+        <span class="lab">Gameweek</span>
+        <div class="chips" id="gw-chips"></div>
+      </div>
+
+      <div id="mount"></div>
+      <p class="section-note" id="summary" style="margin-top:16px;"></p>
+    </section>
+
+    <p class="section-note" id="stamp" style="margin-top:34px;"></p>
+
+    <footer>
+      A gameweek appears here once its deadline has passed, never before. FPL
+      will report a transfer the moment it is made, including one made for next
+      week &mdash; publishing that would turn this page into a way of watching
+      everyone else plan, so it waits until the deadline makes it real.
+    </footer>
+  </div>
+
+<script src="assets/site.js"></script>
+<script>
+const state = { data: null, league: 'high_stakes', gw: null };
+
+/* FPL spells them like this; we do not. */
+const SQUAD_CHIPS = { wildcard: 'Wildcard', freehit: 'Free Hit' };
+const OTHER_CHIPS = {
+  bboost: 'Bench Boost', '3xc': 'Triple Captain', manager: 'Assistant Manager',
+};
+
+function playerName(id){
+  const p = (state.data.players || {})[String(id)];
+  return p ? p.name : '—';
+}
+function playerCost(id){
+  const p = (state.data.players || {})[String(id)];
+  return p && p.cost ? `<span class="c">£${p.cost.toFixed(1)}</span>` : '';
+}
+
+function teamUrl(entry, gw){
+  return `https://fantasy.premierleague.com/entry/${entry}/event/${gw}`;
+}
+
+function weeks(){
+  const lg = (state.data.gameweeks || {})[state.league] || {};
+  return Object.keys(lg).map(Number).sort((a, b) => b - a);
+}
+
+function rowFor(m){
+  const squadChip = SQUAD_CHIPS[m.chip];
+  const otherChip = OTHER_CHIPS[m.chip];
+
+  let body;
+  if(squadChip){
+    // The chip is the story. What the fifteen individual moves were is on FPL.
+    body = `<div class="chip-line">
+        <span class="chip-badge">${esc(squadChip)}</span>
+        <a class="view-team" href="${teamUrl(m.entry_id, state.gw)}"
+           target="_blank" rel="noopener">View team</a>
+      </div>`;
+  } else if(!m.out.length && !m.in.length){
+    body = `<div class="none">No Transfer</div>`
+         + (otherChip ? `<div class="chip-line" style="margin-top:8px;">
+              <span class="chip-badge other">${esc(otherChip)}</span></div>` : '');
+  } else {
+    // Out and in are two lists, not pairs -- FPL does not say which sale paid
+    // for which buy. Lining them up by position is the honest reading of a
+    // set of moves made together.
+    const n = Math.max(m.out.length, m.in.length);
+    const swaps = Array.from({ length: n }, (_, i) => `
+      <div class="swap">
+        <div class="out">${m.out[i] !== undefined
+            ? esc(playerName(m.out[i])) + playerCost(m.out[i]) : '&nbsp;'}</div>
+        <div class="arrow">&rarr;</div>
+        <div class="in">${m.in[i] !== undefined
+            ? esc(playerName(m.in[i])) + playerCost(m.in[i]) : '&nbsp;'}</div>
+      </div>`).join('');
+    body = `<div class="swaps">${swaps}</div>`
+         + (otherChip ? `<div class="chip-line" style="margin-top:9px;">
+              <span class="chip-badge other">${esc(otherChip)}</span></div>` : '');
+  }
+
+  return `<div class="trow">
+    <div class="who">
+      <div class="m">${esc(m.manager)}</div>
+      <div class="t">${esc(m.team)}</div>
+    </div>
+    <div>${body}</div>
+  </div>`;
+}
+
+function render(){
+  const d = state.data;
+  const list = weeks();
+  if(!list.includes(state.gw)) state.gw = list[0] ?? null;
+
+  document.getElementById('gw-chips').innerHTML = list.map(gw =>
+    `<button class="chip ${gw === state.gw ? 'active' : ''}" data-gw="${gw}">GW${gw}</button>`
+  ).join('');
+
+  const league = (d.leagues || {})[state.league] || {};
+  document.getElementById('gw-tag').textContent =
+    (state.gw ? `Gameweek ${state.gw}` : 'Transfers') + ' · ' + (league.name || '');
+  document.getElementById('stamp').textContent = stampText(d.generated_at);
+
+  const rows = ((d.gameweeks || {})[state.league] || {})[String(state.gw)] || [];
+  const mount = document.getElementById('mount');
+
+  if(!rows.length){
+    mount.innerHTML = `<div class="empty-card">
+      <div class="t">Nothing to show yet</div>
+      <div class="s">Transfers appear once a gameweek's deadline has passed.</div>
+    </div>`;
+    document.getElementById('summary').textContent = '';
+    ticker(rows);
+    return;
+  }
+
+  mount.innerHTML = `<div class="table-card">${rows.map(rowFor).join('')}</div>`;
+
+  const moved = rows.filter(m => m.in.length || m.out.length || SQUAD_CHIPS[m.chip]);
+  const chips = rows.filter(m => SQUAD_CHIPS[m.chip]);
+  const swaps = rows.reduce((t, m) => t + (SQUAD_CHIPS[m.chip] ? 0 : m.in.length), 0);
+  document.getElementById('summary').textContent =
+    `${moved.length} of ${rows.length} made a move in GW${state.gw}` +
+    ` — ${swaps} transfer${swaps === 1 ? '' : 's'}` +
+    (chips.length ? `, and ${chips.length} played a wildcard or free hit.` : '.');
+
+  ticker(rows);
+}
+
+function ticker(rows){
+  const track = document.getElementById('ticker-track');
+  const league = (state.data.leagues || {})[state.league] || {};
+  if(!rows.length){
+    renderTicker(track, 'FPL Jakarta — Transfers',
+      [tickerItem('Transfers appear once a deadline has passed')]);
+    return;
+  }
+  const chips = rows.filter(m => SQUAD_CHIPS[m.chip]);
+  const items = [tickerItem(
+    `<b>GW${state.gw}</b> · ${esc(league.name || '')}`)];
+
+  rows.filter(m => !SQUAD_CHIPS[m.chip] && m.in.length).slice(0, 14).forEach(m => {
+    items.push(tickerItem(
+      `${esc(m.manager)} <span class="down-txt">${esc(playerName(m.out[0]))}</span>` +
+      ` &rarr; <span class="up-txt">${esc(playerName(m.in[0]))}</span>`));
+  });
+  chips.forEach(m => items.push(tickerItem(
+    `${esc(m.manager)} <b>${esc(SQUAD_CHIPS[m.chip])}</b>`)));
+
+  renderTicker(track, 'FPL Jakarta — Transfers', items);
+}
+
+wireLeagueToggle(document.getElementById('league-toggle'), league => {
+  state.league = league;
+  render();
+});
+
+document.getElementById('gw-chips').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-gw]');
+  if(!btn) return;
+  state.gw = Number(btn.dataset.gw);
+  render();
+});
+
+async function load(){
+  state.data = await loadJson('transfers.json');
+  if(!state.data){
+    document.getElementById('mount').innerHTML = `<div class="empty-card">
+      <div class="t">No transfer data yet</div>
+      <div class="s">This fills in after the first deadline of the season.</div>
+    </div>`;
+    return;
+  }
+  if(state.gw === null) state.gw = weeks()[0] ?? state.data.current_gameweek;
+  render();
+}
+
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>
