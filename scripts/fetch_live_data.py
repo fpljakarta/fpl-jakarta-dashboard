@@ -98,12 +98,18 @@ HALF_TIME_MINUTE = 45
 LIVE_REFRESH_MINUTES = 5
 
 # How long one workflow run keeps publishing for, and therefore how far ahead a
-# kick-off is worth waiting for rather than exiting and hoping the next
-# scheduled run arrives in time. Set above the worst gap measured between
-# scheduled runs -- 115 minutes on 23 August -- because a shorter window leaves
-# exactly the hole that gap opened. The workflow sets this; the default matches
-# refresh-live.yml so a local run behaves the same way.
-PUBLISH_WINDOW_MINUTES = int(os.environ.get("PUBLISH_WINDOW_MINUTES") or 120)
+# kick-off or a gameweek deadline is worth waiting for rather than exiting and
+# hoping the next scheduled run arrives in time.
+#
+# Sized against what GitHub actually delivers, which is far less than the cron
+# asks for: a 115-minute gap on 23 August took this from 55 to 120, and then no
+# scheduled run at all on 27 August -- and none between 01:31 and 19:21 on the
+# 28th -- took it to 300. Six hours is GitHub's cap on a job, so this is most of
+# what can be had.
+#
+# The workflow sets this; the default matches refresh-live.yml so a local run
+# behaves the same way. They are tested together, so the two cannot drift.
+PUBLISH_WINDOW_MINUTES = int(os.environ.get("PUBLISH_WINDOW_MINUTES") or 300)
 
 # The overall-rank curve costs about a hundred requests to rebuild, so it is
 # reused between publishes for this long. Scores drift slowly enough across
@@ -137,7 +143,7 @@ def set_output(name, value):
     print(f"::publish::{name}={value}")
 
 
-def write_status(published, in_play, starts_soon=False):
+def write_status(published, in_play, starts_soon=False, deadline_soon=False):
     """
     Tell the workflow what just happened and whether football is still coming.
 
@@ -152,10 +158,12 @@ def write_status(published, in_play, starts_soon=False):
             "published": bool(published),
             "in_play": bool(in_play),
             "starts_soon": bool(starts_soon),
+            "deadline_soon": bool(deadline_soon),
         }, f)
     set_output("publish", "true" if published else "false")
     set_output("in_play", "true" if in_play else "false")
     set_output("starts_soon", "true" if starts_soon else "false")
+    set_output("deadline_soon", "true" if deadline_soon else "false")
 
 
 def load_json_file(path):
@@ -219,6 +227,36 @@ def kickoff_imminent(fixtures, now, within_minutes):
         if 0 <= (ko - now).total_seconds() / 60 <= within_minutes:
             return True
     return False
+
+
+def deadline_imminent(events, now, within_minutes):
+    """
+    Whether the next gameweek's deadline falls inside the window.
+
+    A gameweek starts at its deadline: that is the moment FPL moves `is_current`
+    on, and the moment every page on the site should stop saying the old number.
+    Missing it is worse than missing a kick-off, because nothing later in the
+    week corrects it -- the site simply shows the wrong gameweek until some run
+    happens to land.
+
+    That is not hypothetical. GitHub delivered no scheduled run at all on 27
+    August 2026 and none between 01:31 and 19:21 on the 28th; the GW2 deadline
+    passed at 17:30 and the site sat on GW1 until the workflow was started by
+    hand.
+    """
+    soonest = None
+    for ev in events or []:
+        stamp = ev.get("deadline_time")
+        if not stamp:
+            continue
+        try:
+            when = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+        except (AttributeError, ValueError):
+            continue
+        ahead = (when - now).total_seconds() / 60
+        if 0 <= ahead and (soonest is None or ahead < soonest):
+            soonest = ahead
+    return soonest is not None and soonest <= within_minutes
 
 
 def minutes_since(stamp, now):
@@ -655,9 +693,12 @@ def main():
         if age is None or age >= LIVE_REFRESH_MINUTES:
             reasons.append(f"match in play, last publish {age and round(age)}m ago")
 
-    # Not a reason to publish -- there is nothing new to say before a kick-off
-    # -- but a reason for the run to stay awake until there is.
+    # Neither is a reason to publish -- there is nothing new to say before a
+    # kick-off, or before a deadline -- but both are reasons for the run to
+    # stay awake until there is.
     starts_soon = kickoff_imminent(fixtures, now, PUBLISH_WINDOW_MINUTES)
+    deadline_soon = deadline_imminent(
+        bootstrap.get("events"), now, PUBLISH_WINDOW_MINUTES)
 
     if not reasons:
         upcoming = [f for f in fixtures if not f.get("started")]
@@ -666,7 +707,7 @@ def main():
               f"/{len(fixtures)} fixtures done, {len(upcoming)} still to come. "
               f"Skipping the manager fetch and leaving live.json untouched."
               + (" Waiting here for the next kick-off." if starts_soon else ""))
-        write_status(False, in_play, starts_soon)
+        write_status(False, in_play, starts_soon, deadline_soon)
         return
 
     print(f"GW{gw}: publishing because {'; '.join(reasons)}.")
@@ -806,7 +847,7 @@ def main():
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
           f"({len(picks_cache)} unique), {done}/{len(fixtures)} fixtures finished.")
-    write_status(True, in_play, starts_soon)
+    write_status(True, in_play, starts_soon, deadline_soon)
 
 
 if __name__ == "__main__":

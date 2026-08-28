@@ -30,21 +30,26 @@ jobs:
     runs-on: ubuntu-latest
     # The publishing loop runs for at most PUBLISH_WINDOW_MINUTES; this is the
     # backstop if something wedges.
-    timeout-minutes: 140
+    timeout-minutes: 330
     env:
       # How long one run keeps publishing for, and how far ahead it will wait
-      # for a kick-off.
+      # for a kick-off or a gameweek deadline.
       #
-      # This was 55, on the assumption that scheduled runs arrive about hourly
-      # so the windows would meet. Measured on 23 August they did not: runs
-      # landed at 09:56, 10:55, 11:46 and then not again until 13:41 -- a gap
-      # of 115 minutes straddling a 13:00 kick-off. The 11:46 run found nothing
-      # in play, exited in nine seconds, and the first half went unpublished.
+      # This started at 55 on the assumption that scheduled runs arrive about
+      # hourly. They do not. On 23 August the gap was 115 minutes and straddled
+      # a kick-off, which took it to 120. Then GitHub delivered no scheduled run
+      # at all on 27 August, and none between 01:31 and 19:21 on the 28th -- so
+      # the GW2 deadline at 17:30 passed with the site still showing GW1.
       #
-      # So the window is set above the worst gap actually observed rather than
-      # the one the cron promises. A run that wakes with football coming stays
-      # up for it; on a day with none it still exits in seconds.
-      PUBLISH_WINDOW_MINUTES: 120
+      # No window survives a 34-hour gap. What a wide one does is make each
+      # delivered run worth far more: five hours of cover, and a run that wakes
+      # any time that afternoon carries the site through the deadline. Six hours
+      # is GitHub's hard cap on a job, so this is most of what is available.
+      #
+      # It costs nothing on a quiet day. The run only stays up when there is
+      # football on, football coming, or a deadline coming; otherwise it still
+      # exits in seconds.
+      PUBLISH_WINDOW_MINUTES: 300
       # Matches the script's own LIVE_REFRESH_MINUTES.
       PUBLISH_EVERY_SECONDS: 300
     steps:
@@ -86,41 +91,67 @@ jobs:
           export FORCE_PUBLISH="$FORCE_FIRST_PASS"
           pass=0
 
+          # data.json carries the gameweek number, the standings, the deadline
+          # and the monthly and weekly winners. It used to be refreshed only by
+          # the hourly workflow, which meant a delivered run of *this* one left
+          # the home page on the old gameweek -- exactly what happened at the
+          # GW2 rollover. Now whichever workflow gets a run brings the whole
+          # site current. It is the more expensive fetch, so it runs on the
+          # first pass and then every half hour rather than every five minutes.
+          slow_every=$(( 1800 / PUBLISH_EVERY_SECONDS ))
+          [ "$slow_every" -lt 1 ] && slow_every=1
+
           while : ; do
             pass=$(( pass + 1 ))
             echo "::group::Pass $pass"
+            if [ "$pass" = "1" ] || [ $(( (pass - 1) % slow_every )) = "0" ]; then
+              python scripts/fetch_fpl_data.py || \
+                echo "::warning::standings refresh failed; carrying on with the live data"
+            fi
             python scripts/fetch_live_data.py
             export FORCE_PUBLISH=false
 
             published=$(status published)
             in_play=$(status in_play)
             starts_soon=$(status starts_soon)
-            echo "published=$published in_play=$in_play starts_soon=$starts_soon"
+            deadline_soon=$(status deadline_soon)
+            echo "published=$published in_play=$in_play starts_soon=$starts_soon deadline_soon=$deadline_soon"
 
-            if [ "$published" = "True" ]; then
-              # live.json and awards.json are generated whole every pass, so
-              # there is never anything to merge -- the copy just written is by
-              # definition the newest. Rebasing onto main used to be how this
-              # handled a concurrent push, and on 23 August it failed: run #34
-              # sat in the concurrency queue behind a long run, started from a
-              # 39-minute-old checkout, and rebasing its rewrite of live.json
-              # onto three newer rewrites conflicted immediately. Two full
-              # rewrites of the same JSON never auto-merge.
+            # Only the files this pass actually rewrote are ours to push. Each
+            # fetcher leaves a file untouched when it has nothing new, so the
+            # working tree against the checkout is an exact record of what we
+            # wrote -- and carrying anything else forward would push a stale
+            # copy over a newer one. A queued run can start hours behind main,
+            # so a run that only refreshed the standings would otherwise roll
+            # live scores back to whatever they were when it was queued.
+            mine=$(git diff --name-only -- live.json awards.json data.json prices.json)
+            if [ -n "$mine" ]; then
+              # These files are generated whole, so there is never anything to
+              # merge -- the copy just written is by definition the newest.
+              # Rebasing onto main used to be how this handled a concurrent
+              # push, and on 23 August it failed: run #34 sat in the queue
+              # behind a long run, started from a 39-minute-old checkout, and
+              # rebasing its rewrite of live.json onto three newer rewrites
+              # conflicted immediately. Two full rewrites never auto-merge.
               #
-              # So take main as it stands and put our files on top of it. The
-              # longer publish window makes a queued run staler still, which is
-              # exactly when the old approach broke.
+              # So take main as it stands and put ours on top. The wider window
+              # makes a queued run staler still, which is when this broke.
+              cp $mine "$RUNNER_TEMP/"
               for attempt in 1 2 3; do
                 git fetch origin main
-                cp live.json awards.json "$RUNNER_TEMP/"
                 git reset --hard origin/main
-                cp "$RUNNER_TEMP/live.json" "$RUNNER_TEMP/awards.json" .
-                git add live.json awards.json
+                for f in $mine; do cp "$RUNNER_TEMP/$f" "$f"; done
+                git add $mine
                 if git diff --staged --quiet; then
                   echo "Nothing changed against main; nothing to push."
                   break
                 fi
-                git commit -m "Refresh live gameweek"
+                # The history is the record of what moved, so say which.
+                case "$mine" in
+                  *live.json*|*awards.json*) msg="Refresh live gameweek" ;;
+                  *)                         msg="Refresh FPL data" ;;
+                esac
+                git commit -m "$msg"
                 if git push; then
                   break
                 fi
@@ -132,13 +163,14 @@ jobs:
             fi
             echo "::endgroup::"
 
-            # Stay awake through a match, and through the wait for one about
-            # to start. A run that wakes before kick-off and exits leaves the
-            # half that follows to a scheduled run that may be two hours off.
-            # A waiting pass costs two API calls -- it stops well before the
-            # manager fetch -- so the wait is cheap.
-            if [ "$in_play" != "True" ] && [ "$starts_soon" != "True" ]; then
-              echo "No match being played and none due inside the window."
+            # Stay awake through a match, through the wait for one about to
+            # start, and through the wait for a gameweek deadline. A run that
+            # wakes before any of those and exits leaves what follows to a
+            # scheduled run that may be a day and a half off. A waiting pass
+            # stops well before the manager fetch, so the wait is cheap.
+            if [ "$in_play" != "True" ] && [ "$starts_soon" != "True" ] \
+               && [ "$deadline_soon" != "True" ]; then
+              echo "No football on, none due, and no deadline inside the window."
               break
             fi
             if [ "$(date +%s)" -ge "$deadline" ]; then
