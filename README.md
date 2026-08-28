@@ -173,8 +173,11 @@ queued behind a long one started from a 39-minute-old checkout on 23 August and
 died on exactly that conflict.
 
 Only the files a pass actually rewrote are pushed. Each fetcher leaves a file
-alone when it has nothing new, so `git diff` against the checkout is an exact
-record of what this pass wrote. That matters now that one run writes all four:
+alone when it has nothing new, so the working tree against the checkout is an
+exact record of what this pass wrote. That record comes from `git status`, not
+`git diff`: diff says nothing about a file git has never seen, so the first run
+after a new data file is added would quietly never commit it. `transfers.json`
+is how that was found out. That matters now that one run writes all four:
 a run that only refreshed the standings must not carry its hours-old `live.json`
 along and roll live scores back to whatever they were when it was queued.
 

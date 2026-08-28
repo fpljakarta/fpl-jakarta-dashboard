@@ -41,7 +41,9 @@ jobs:
           # Only the files this run rewrote, named by the diff rather than by a
           # fixed list -- the fetcher leaves a file alone when it has nothing
           # new, and a list has to be remembered every time one is added.
-          mine=$(git diff --name-only -- data.json prices.json transfers.json)
+          # status, not diff: `git diff` says nothing about a file git has never
+          # seen, so a newly added data file would quietly never be committed.
+          mine=$(git status --porcelain -- data.json prices.json transfers.json | awk '{print $2}' | sort -u)
           if [ -z "$mine" ]; then
             echo "Nothing was rewritten; nothing to push."
             exit 0

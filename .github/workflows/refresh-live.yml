@@ -134,7 +134,11 @@ jobs:
             # copy over a newer one. A queued run can start hours behind main,
             # so a run that only refreshed the standings would otherwise roll
             # live scores back to whatever they were when it was queued.
-            mine=$(git diff --name-only -- live.json awards.json data.json prices.json transfers.json)
+            # status, not diff: `git diff` says nothing about a file git has
+            # never seen, so the first run after a new data file is added would
+            # quietly never commit it. That is exactly what happened to
+            # transfers.json. --porcelain lists modified and untracked alike.
+            mine=$(git status --porcelain -- live.json awards.json data.json prices.json transfers.json | awk '{print $2}' | sort -u)
             if [ -n "$mine" ]; then
               # These files are generated whole, so there is never anything to
               # merge -- the copy just written is by definition the newest.
