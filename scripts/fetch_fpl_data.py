@@ -22,6 +22,7 @@ separately by fetch_live_data.py. The cup is not published by FPL's API and is
 maintained by hand, so it is not touched here.
 """
 
+from collections import Counter
 import json
 import os
 import time
@@ -192,6 +193,27 @@ def transfers_by_gameweek(rows, histories, transfers, started_gws):
                 slot["in"].append(move["element_in"])
             if move.get("element_out") is not None:
                 slot["out"].append(move["element_out"])
+
+    # FPL logs every move as it is made, not the net effect. Someone who buys
+    # Palmer and then sells him again before the deadline appears in the feed
+    # twice, and a wildcard shows every click of building the squad -- one
+    # manager's GW2 came through as 37 in and 37 out, of which 26 cancelled.
+    #
+    # A player who went both ways did not arrive and did not leave, so both
+    # sides drop out. What remains is what actually changed, which is what the
+    # page claims to show.
+    for weeks in by_entry.values():
+        for slot in weeks.values():
+            both = Counter(slot["in"]) & Counter(slot["out"])
+            for side in ("in", "out"):
+                spare = Counter(both)
+                kept = []
+                for pid in slot[side]:
+                    if spare[pid]:
+                        spare[pid] -= 1
+                    else:
+                        kept.append(pid)
+                slot[side] = kept
 
     out = {}
     for gw in sorted(started_gws):

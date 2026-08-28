@@ -247,6 +247,36 @@ class TestTransfersByGameweek(unittest.TestCase):
             for row in week:
                 self.assertEqual((row["in"], row["out"]), ([], []))
 
+    def test_a_player_who_went_both_ways_cancels_out(self):
+        # FPL logs every move as it is made, not the net effect. Buying Palmer
+        # and selling him again before the deadline is two rows in the feed and
+        # nothing at all in the squad.
+        churn = {1: [{"event": 2, "element_in": 11, "element_out": 22},
+                     {"event": 2, "element_in": 33, "element_out": 11}]}
+        out = transfers_by_gameweek(ROWS, self.histories, churn, [2])
+        ada = [m for m in out["2"] if m["manager"] == "Ada"][0]
+        self.assertEqual((ada["out"], ada["in"]), ([22], [33]))
+
+    def test_netting_survives_a_wildcard_rebuild(self):
+        # A real one: 37 moves in and 37 out, of which 26 were the manager
+        # trying shapes. Only the players who ended up somewhere different
+        # should show.
+        moves = ([{"event": 2, "element_in": 10 + i, "element_out": 50 + i} for i in range(5)]
+                 + [{"event": 2, "element_in": 50 + i, "element_out": 10 + i} for i in range(3)])
+        out = transfers_by_gameweek([ROWS[0]], self.histories, {1: moves}, [2])
+        row = out["2"][0]
+        self.assertEqual(sorted(row["in"]), [13, 14])
+        self.assertEqual(sorted(row["out"]), [53, 54])
+
+    def test_a_player_bought_twice_and_sold_once_is_still_a_buy(self):
+        moves = [{"event": 2, "element_in": 11, "element_out": 22},
+                 {"event": 2, "element_in": 11, "element_out": 33},
+                 {"event": 2, "element_in": 44, "element_out": 11}]
+        out = transfers_by_gameweek([ROWS[0]], self.histories, {1: moves}, [2])
+        row = out["2"][0]
+        self.assertEqual(sorted(row["in"]), [11, 44])
+        self.assertEqual(sorted(row["out"]), [22, 33])
+
     def test_a_manager_missing_from_the_transfer_feed_still_appears(self):
         out = transfers_by_gameweek(ROWS, self.histories, {}, [2])
         self.assertEqual(len(out["2"]), 3)
