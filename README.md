@@ -48,14 +48,38 @@ Both scripts read the official, unauthenticated Fantasy Premier League API at
 
 | Script | Writes | Run by | Cadence |
 | --- | --- | --- | --- |
-| `scripts/fetch_fpl_data.py` | `data.json`, `prices.json` | `.github/workflows/refresh.yml` | hourly |
+| `scripts/fetch_fpl_data.py` | `data.json`, `prices.json` | `refresh.yml` hourly, and `refresh-live.yml` on every run | hourly, plus every half hour inside a live run |
 | `scripts/fetch_live_data.py` | `live.json`, `awards.json` | `.github/workflows/refresh-live.yml` | every 5 minutes during a match |
+
+Both fetchers run inside `refresh-live.yml`, so **whichever workflow GitHub
+happens to deliver brings the whole site current**. That was not true until the
+GW2 rollover went wrong: `data.json` carries the gameweek number, the standings,
+the deadline and the monthly and weekly winners, and it used to be refreshed
+only by the hourly job — so a delivered run of the live workflow left the home
+page sitting on the old gameweek.
 
 Neither script writes a file unless its contents actually changed, so quiet
 periods produce no commits at all. The live script only publishes at moments
 worth publishing: shortly before a kick-off, at half time, at full time, and
 every five minutes while a match is actually being played. On a day with no
 football it writes nothing.
+
+### What a run stays awake for
+
+A run keeps publishing while any of three things is true, and exits in seconds
+when none of them is:
+
+- **a match is being played** — provisional bonus moves continuously;
+- **a kick-off falls inside the window** — a run that wakes before the whistle
+  and exits leaves the half that follows to whenever the next run arrives;
+- **a gameweek deadline falls inside the window** — this is the one that
+  matters most, because a gameweek *starts* at its deadline. Miss a kick-off and
+  the site shows the right gameweek with an old score. Miss a deadline and it
+  shows the wrong gameweek, and nothing later in the week corrects it.
+
+That last case is not hypothetical. GitHub delivered no scheduled run at all on
+27 August 2026, and none between 01:31 and 19:21 on the 28th. GW2's deadline
+passed at 17:30 and the site sat on GW1 until the workflow was started by hand.
 
 ### Why the workflow loops instead of trusting the cron
 
@@ -84,25 +108,38 @@ nothing published the first half of either: the site sat on data ten hours old
 while the football was on. A run that waits for an imminent kick-off is the run
 that covers the match.
 
-That is also why the window is two hours rather than the 55 minutes it started
-at. Fifty-five was chosen on the assumption that runs arrive about hourly and
-the windows would meet; the 115-minute gap above is what happens when they do
-not. The window is now set above the worst gap actually measured, not the one
-the cron promises.
+The window has been widened twice for the same reason, and both times by
+measurement rather than by guess. Fifty-five minutes assumed runs arrive about
+hourly; the 115-minute gap above is what happens when they do not, and that took
+it to 120. Then came 27 August, when nothing was delivered all day, and 120 was
+not remotely enough — so it is now **300 minutes**, five hours, against a
+six-hour cap on how long GitHub will run a job at all.
+
+A wide window does not make the cron reliable. What it does is make each
+delivered run worth much more: a single run landing any time in the five hours
+before a deadline now carries the site through the rollover. Nothing in this
+repository can promise a run will land at all — the only trigger that would is
+an external one, calling the `workflow_dispatch` API on a schedule GitHub does
+not control.
 
 The script tells the workflow what happened through `.live-run-status`, an
-untracked file holding `published`, `in_play` and `starts_soon`. A held runner
+untracked file holding `published`, `in_play`, `starts_soon` and
+`deadline_soon`. A held runner
 is free on a public repository, so the cost of this is a noisier commit history
 on match days, which is the trade the fast cadence was always making.
 
-Publishing takes `main` as it stands and puts the two generated files on top,
-rather than rebasing onto it. There is never anything to merge — `live.json` and
-`awards.json` are rewritten whole every pass, so the copy just written is by
-definition the newest — and rebasing one full rewrite onto another conflicts
-every time. That is not hypothetical: a run queued behind a long one started
-from a 39-minute-old checkout on 23 August and died on exactly that conflict.
-Files the hourly job owns are untouched, because only `live.json` and
-`awards.json` are copied back.
+Publishing takes `main` as it stands and puts the generated files on top, rather
+than rebasing onto it. There is never anything to merge — each file is rewritten
+whole, so the copy just written is by definition the newest — and rebasing one
+full rewrite onto another conflicts every time. That is not hypothetical: a run
+queued behind a long one started from a 39-minute-old checkout on 23 August and
+died on exactly that conflict.
+
+Only the files a pass actually rewrote are pushed. Each fetcher leaves a file
+alone when it has nothing new, so `git diff` against the checkout is an exact
+record of what this pass wrote. That matters now that one run writes all four:
+a run that only refreshed the standings must not carry its hours-old `live.json`
+along and roll live scores back to whatever they were when it was queued.
 
 ## The fixture list
 

@@ -34,10 +34,31 @@ jobs:
       - name: Commit data if it changed
         if: steps.fetch.outputs.publish == 'true'
         run: |
+          set -euo pipefail
           git config user.name "fpl-jakarta-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data.json prices.json
-          git diff --staged --quiet || git commit -m "Refresh FPL data"
-          # The live gameweek job may have pushed while we were fetching.
-          git pull --rebase --autostash origin main
-          git push
+
+          # Both files are generated whole, so there is nothing to merge and
+          # the copy just written is the newest. This used to rebase onto main,
+          # which is how the live workflow's run #34 died on 23 August: two full
+          # rewrites of the same JSON never auto-merge. Take main as it stands
+          # and put these two on top of it instead.
+          for attempt in 1 2 3; do
+            git fetch origin main
+            cp data.json prices.json "$RUNNER_TEMP/"
+            git reset --hard origin/main
+            cp "$RUNNER_TEMP/data.json" "$RUNNER_TEMP/prices.json" .
+            git add data.json prices.json
+            if git diff --staged --quiet; then
+              echo "Nothing changed against main; nothing to push."
+              break
+            fi
+            git commit -m "Refresh FPL data"
+            if git push; then
+              break
+            fi
+            echo "Push rejected (attempt $attempt) -- someone else got there first."
+            if [ "$attempt" = "3" ]; then
+              echo "::warning::Could not push after 3 attempts; the next run will try again."
+            fi
+          done

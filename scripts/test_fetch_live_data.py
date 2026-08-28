@@ -16,6 +16,7 @@ from datetime import datetime, timezone
 from fetch_live_data import (
     PUBLISH_WINDOW_MINUTES as WINDOW,
     build_fixture_cards,
+    deadline_imminent,
     kickoff_imminent,
 )
 
@@ -149,15 +150,20 @@ class KickoffImminentTests(unittest.TestCase):
     def test_the_run_that_went_quiet_on_23_august_would_now_wait(self):
         # The scheduled runs that day landed at 09:56, 10:55, 11:46 and then
         # not again until 13:41. The 11:46 one found nothing in play, exited,
-        # and nobody published the 13:00 kick-off or the half after it. At the
-        # window this repository actually uses, that run waits instead.
-        self.assertTrue(kickoff_imminent(self.one_oclock, at("11:46"), WINDOW))
-        # The two before it are genuinely too far out to hold a runner for.
-        self.assertFalse(kickoff_imminent(self.one_oclock, at("10:55"), WINDOW))
-        self.assertFalse(kickoff_imminent(self.one_oclock, at("09:56"), WINDOW))
+        # and nobody published the 13:00 kick-off or the half after it.
+        #
+        # At the window this repository now uses, every one of those morning
+        # runs waits for the kick-off instead of exiting -- which is the whole
+        # point of a wide window: any delivered run covers the afternoon.
+        for landed in ("11:46", "10:55", "09:56"):
+            with self.subTest(run=landed):
+                self.assertTrue(kickoff_imminent(self.one_oclock, at(landed), WINDOW))
 
     def test_a_kick_off_beyond_the_window_does_not(self):
-        self.assertFalse(kickoff_imminent(self.one_oclock, at("10:30"), WINDOW))
+        # Overnight, with the football most of a day away, there is nothing
+        # worth holding a runner open for.
+        self.assertFalse(kickoff_imminent(self.one_oclock, at("01:31"), WINDOW))
+        self.assertFalse(kickoff_imminent(self.one_oclock, at("07:00"), WINDOW))
 
     def test_the_edge_of_a_given_window_counts(self):
         # Exactly on the boundary, waiting is still the right answer.
@@ -184,10 +190,12 @@ class KickoffImminentTests(unittest.TestCase):
     def test_the_nearest_of_several_fixtures_decides(self):
         later = fixture(id=2, started=False, finished=False,
                         finished_provisional=False,
-                        kickoff_time="2026-08-23T15:30:00Z")
+                        kickoff_time="2026-08-23T20:00:00Z")
         self.assertTrue(kickoff_imminent(self.one_oclock + [later], at("12:15"), WINDOW))
-        # With only the far one left there is nothing to wait up for yet.
+        # With only the evening game left, 12:15 is still too early to wait.
         self.assertFalse(kickoff_imminent([later], at("12:15"), WINDOW))
+        # Closer in, the same evening game is worth waiting for.
+        self.assertTrue(kickoff_imminent([later], at("16:00"), WINDOW))
 
     def test_a_missing_or_unreadable_kick_off_is_ignored(self):
         for bad in (None, "", "not a timestamp"):
@@ -195,6 +203,66 @@ class KickoffImminentTests(unittest.TestCase):
                 fx = [fixture(id=1, started=False, finished=False,
                               finished_provisional=False, kickoff_time=bad)]
                 self.assertFalse(kickoff_imminent(fx, at("12:15"), WINDOW))
+
+
+def ev(deadline):
+    return {"id": 1, "deadline_time": deadline}
+
+
+class DeadlineImminentTests(unittest.TestCase):
+    """
+    Whether a run should stay awake for a gameweek deadline.
+
+    Missing a deadline is worse than missing a kick-off. A kick-off missed
+    still shows the right gameweek with an old score; a deadline missed shows
+    the wrong gameweek entirely, and nothing later in the week corrects it.
+
+    The times here are the real ones from 28 August 2026, when GW2's deadline
+    passed at 17:30 and the site sat on GW1 for nearly two hours because the
+    last scheduled run had been at 01:31.
+    """
+
+    def setUp(self):
+        # GW2 has started; GW3's deadline is a week out.
+        self.events = [ev("2026-08-21T17:30:00Z"),
+                       ev("2026-08-28T17:30:00Z"),
+                       ev("2026-09-04T17:30:00Z")]
+
+    def at(self, hh, mm, day=28):
+        return datetime(2026, 8, day, hh, mm, tzinfo=timezone.utc)
+
+    def test_the_run_that_went_quiet_on_28_august_would_now_wait(self):
+        # 13:31 is inside five hours of the 17:30 deadline, so a run landing
+        # any time that afternoon now carries the site through the rollover.
+        self.assertTrue(deadline_imminent(self.events, self.at(13, 31), WINDOW))
+        self.assertTrue(deadline_imminent(self.events, self.at(17, 29), WINDOW))
+
+    def test_a_run_far_from_any_deadline_still_exits(self):
+        # 01:31, when the last run before the rollover actually landed. Sixteen
+        # hours out: nothing to hold a runner open for.
+        self.assertFalse(deadline_imminent(self.events, self.at(1, 31), WINDOW))
+
+    def test_a_deadline_just_passed_is_not_imminent(self):
+        # Otherwise every run for the rest of the week would hold open.
+        self.assertFalse(deadline_imminent(self.events, self.at(17, 31), WINDOW))
+
+    def test_the_window_edge_counts(self):
+        self.assertTrue(deadline_imminent(self.events, self.at(12, 30), 300))
+        self.assertFalse(deadline_imminent(self.events, self.at(12, 29), 300))
+
+    def test_the_nearest_future_deadline_is_the_one_that_counts(self):
+        # GW3 is a week out; that must not keep a runner alive all week.
+        after = [ev("2026-08-21T17:30:00Z"), ev("2026-08-28T17:30:00Z")]
+        self.assertFalse(deadline_imminent(after, self.at(18, 0), WINDOW))
+
+    def test_no_events_and_unreadable_stamps_are_ignored(self):
+        for bad in ([], None, [ev(None)], [ev("")], [ev("not a timestamp")]):
+            with self.subTest(events=bad):
+                self.assertFalse(deadline_imminent(bad, self.at(13, 31), WINDOW))
+
+    def test_the_last_deadline_of_the_season_leaves_nothing_to_wait_for(self):
+        self.assertFalse(deadline_imminent(
+            [ev("2026-08-28T17:30:00Z")], self.at(20, 0), WINDOW))
 
 
 if __name__ == "__main__":
