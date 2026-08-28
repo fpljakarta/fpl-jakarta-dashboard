@@ -29,6 +29,13 @@ name could be read off the lookup before it appeared in anyone's gameweek.
 which sale paid for which purchase. The page lines them up by position, which
 is the honest reading of a set of moves made together.
 
+A player who went both ways in the same gameweek cancels out. FPL logs every
+move as it is made rather than the net effect, so buying a player and selling
+him again before the deadline appears twice in the feed and not at all in the
+squad. On a wildcard this is the difference between a readable list and a
+transcript of somebody trying shapes: one GW2 rebuild came through as 37 in and
+37 out, of which 26 cancelled.
+
 ## Team value, and what it means
 
 `teamvalue.html` ranks every squad, richest first, from the `values` block in
