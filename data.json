@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T10:05:55+00:00",
+  "generated_at": "2026-08-29T10:08:18+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 14,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
-        "total": 80,
-        "event_total": 20
-      },
-      {
-        "rank": 9,
         "last_rank": 3,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
         "entry_id": 72045,
         "total": 80,
         "event_total": 5
+      },
+      {
+        "rank": 9,
+        "last_rank": 14,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
+        "total": 80,
+        "event_total": 20
       },
       {
         "rank": 9,
@@ -179,21 +179,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 18,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 70,
-        "event_total": 13
-      },
-      {
-        "rank": 18,
         "last_rank": 9,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
         "entry_id": 1657008,
         "total": 70,
         "event_total": 2
+      },
+      {
+        "rank": 18,
+        "last_rank": 18,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 70,
+        "event_total": 13
       },
       {
         "rank": 21,
@@ -703,21 +703,21 @@
       },
       {
         "rank": 51,
-        "last_rank": 49,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
-        "total": 61,
-        "event_total": 15
-      },
-      {
-        "rank": 51,
         "last_rank": 47,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 61,
         "event_total": 13
+      },
+      {
+        "rank": 51,
+        "last_rank": 49,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
+        "total": 61,
+        "event_total": 15
       },
       {
         "rank": 53,
@@ -730,21 +730,21 @@
       },
       {
         "rank": 53,
-        "last_rank": 57,
-        "manager": "Jasvin Seera",
-        "team": "Seera Squad",
-        "entry_id": 6526117,
-        "total": 55,
-        "event_total": 14
-      },
-      {
-        "rank": 53,
         "last_rank": 52,
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
         "entry_id": 371869,
         "total": 55,
         "event_total": 13
+      },
+      {
+        "rank": 53,
+        "last_rank": 57,
+        "manager": "Jasvin Seera",
+        "team": "Seera Squad",
+        "entry_id": 6526117,
+        "total": 55,
+        "event_total": 14
       },
       {
         "rank": 56,
