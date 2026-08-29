@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T18:52:55+00:00",
+  "generated_at": "2026-08-29T19:04:06+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -134,12 +134,12 @@
       },
       {
         "rank": 14,
-        "last_rank": 21,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "entry_id": 3391935,
+        "last_rank": 14,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
         "total": 85,
-        "event_total": 33
+        "event_total": 25
       },
       {
         "rank": 14,
@@ -152,12 +152,12 @@
       },
       {
         "rank": 14,
-        "last_rank": 14,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
+        "last_rank": 21,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "entry_id": 3391935,
         "total": 85,
-        "event_total": 25
+        "event_total": 33
       },
       {
         "rank": 17,
@@ -280,21 +280,21 @@
       },
       {
         "rank": 4,
-        "last_rank": 2,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "entry_id": 2202,
-        "total": 99,
-        "event_total": 20
-      },
-      {
-        "rank": 4,
         "last_rank": 12,
         "manager": "Bharat Lakhwani",
         "team": "Bpl",
         "entry_id": 5717595,
         "total": 99,
         "event_total": 27
+      },
+      {
+        "rank": 4,
+        "last_rank": 2,
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "entry_id": 2202,
+        "total": 99,
+        "event_total": 20
       },
       {
         "rank": 6,
@@ -343,21 +343,12 @@
       },
       {
         "rank": 11,
-        "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "last_rank": 5,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
         "total": 92,
-        "event_total": 18
-      },
-      {
-        "rank": 11,
-        "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 92,
-        "event_total": 18
+        "event_total": 17
       },
       {
         "rank": 11,
@@ -370,12 +361,12 @@
       },
       {
         "rank": 11,
-        "last_rank": 5,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
+        "last_rank": 7,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 92,
-        "event_total": 17
+        "event_total": 18
       },
       {
         "rank": 11,
@@ -385,6 +376,15 @@
         "entry_id": 6175948,
         "total": 92,
         "event_total": 30
+      },
+      {
+        "rank": 11,
+        "last_rank": 7,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 92,
+        "event_total": 18
       },
       {
         "rank": 16,
@@ -451,12 +451,12 @@
       },
       {
         "rank": 23,
-        "last_rank": 20,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
+        "last_rank": 3,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
         "total": 86,
-        "event_total": 22
+        "event_total": 8
       },
       {
         "rank": 23,
@@ -469,30 +469,12 @@
       },
       {
         "rank": 23,
-        "last_rank": 3,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 86,
-        "event_total": 8
-      },
-      {
-        "rank": 26,
-        "last_rank": 42,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "entry_id": 3391935,
-        "total": 85,
-        "event_total": 33
-      },
-      {
-        "rank": 26,
         "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 85,
-        "event_total": 21
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 86,
+        "event_total": 22
       },
       {
         "rank": 26,
@@ -505,6 +487,24 @@
       },
       {
         "rank": 26,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 85,
+        "event_total": 43
+      },
+      {
+        "rank": 26,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 85,
+        "event_total": 21
+      },
+      {
+        "rank": 26,
         "last_rank": 27,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
@@ -514,12 +514,12 @@
       },
       {
         "rank": 26,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
+        "last_rank": 42,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "entry_id": 3391935,
         "total": 85,
-        "event_total": 43
+        "event_total": 33
       },
       {
         "rank": 26,
@@ -658,12 +658,12 @@
       },
       {
         "rank": 46,
-        "last_rank": 52,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "entry_id": 679630,
+        "last_rank": 44,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
         "total": 73,
-        "event_total": 31
+        "event_total": 23
       },
       {
         "rank": 46,
@@ -676,12 +676,12 @@
       },
       {
         "rank": 46,
-        "last_rank": 44,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
+        "last_rank": 52,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "entry_id": 679630,
         "total": 73,
-        "event_total": 23
+        "event_total": 31
       },
       {
         "rank": 49,
