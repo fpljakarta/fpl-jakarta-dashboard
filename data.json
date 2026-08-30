@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T18:54:27+00:00",
+  "generated_at": "2026-08-30T19:05:47+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 171,
         "event_total": 97
       },
       {
         "rank": 4,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 171,
         "event_total": 97
       },
@@ -316,6 +316,15 @@
       },
       {
         "rank": 8,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 169,
+        "event_total": 105
+      },
+      {
+        "rank": 8,
         "last_rank": 5,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
@@ -331,15 +340,6 @@
         "entry_id": 693910,
         "total": 169,
         "event_total": 109
-      },
-      {
-        "rank": 8,
-        "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 169,
-        "event_total": 105
       },
       {
         "rank": 11,
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 52,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "entry_id": 679630,
-        "total": 166,
-        "event_total": 124
-      },
-      {
-        "rank": 14,
         "last_rank": 16,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
+      },
+      {
+        "rank": 14,
+        "last_rank": 52,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "entry_id": 679630,
+        "total": 166,
+        "event_total": 124
       },
       {
         "rank": 16,
@@ -424,12 +424,12 @@
       },
       {
         "rank": 20,
-        "last_rank": 26,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
+        "last_rank": 31,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
         "total": 157,
-        "event_total": 95
+        "event_total": 100
       },
       {
         "rank": 20,
@@ -451,21 +451,12 @@
       },
       {
         "rank": 20,
-        "last_rank": 31,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
+        "last_rank": 26,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
         "total": 157,
-        "event_total": 100
-      },
-      {
-        "rank": 24,
-        "last_rank": 17,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 156,
-        "event_total": 88
+        "event_total": 95
       },
       {
         "rank": 24,
@@ -475,6 +466,15 @@
         "entry_id": 8019077,
         "total": 156,
         "event_total": 106
+      },
+      {
+        "rank": 24,
+        "last_rank": 17,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 156,
+        "event_total": 88
       },
       {
         "rank": 26,
