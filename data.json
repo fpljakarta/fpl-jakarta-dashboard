@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T00:47:17+00:00",
+  "generated_at": "2026-08-30T00:58:25+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 3,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 92,
-        "event_total": 17
-      },
-      {
-        "rank": 6,
         "last_rank": 5,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 92,
         "event_total": 18
+      },
+      {
+        "rank": 6,
+        "last_rank": 3,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 92,
+        "event_total": 17
       },
       {
         "rank": 6,
@@ -433,15 +433,6 @@
       },
       {
         "rank": 21,
-        "last_rank": 17,
-        "manager": "Siddarth Kaul",
-        "team": "sidskids",
-        "entry_id": 11184,
-        "total": 87,
-        "event_total": 19
-      },
-      {
-        "rank": 21,
         "last_rank": 16,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
@@ -450,22 +441,13 @@
         "event_total": 18
       },
       {
-        "rank": 23,
-        "last_rank": 20,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 86,
-        "event_total": 22
-      },
-      {
-        "rank": 23,
-        "last_rank": 49,
-        "manager": "Juzer Saify",
-        "team": "JS FC",
-        "entry_id": 503301,
-        "total": 86,
-        "event_total": 40
+        "rank": 21,
+        "last_rank": 17,
+        "manager": "Siddarth Kaul",
+        "team": "sidskids",
+        "entry_id": 11184,
+        "total": 87,
+        "event_total": 19
       },
       {
         "rank": 23,
@@ -479,11 +461,38 @@
       {
         "rank": 23,
         "last_rank": 20,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 86,
+        "event_total": 22
+      },
+      {
+        "rank": 23,
+        "last_rank": 20,
         "manager": "Chiraag Keswani",
         "team": "Ckeswani's XI",
         "entry_id": 248046,
         "total": 86,
         "event_total": 22
+      },
+      {
+        "rank": 23,
+        "last_rank": 49,
+        "manager": "Juzer Saify",
+        "team": "JS FC",
+        "entry_id": 503301,
+        "total": 86,
+        "event_total": 40
+      },
+      {
+        "rank": 27,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 85,
+        "event_total": 43
       },
       {
         "rank": 27,
@@ -522,13 +531,13 @@
         "event_total": 33
       },
       {
-        "rank": 27,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 85,
-        "event_total": 43
+        "rank": 32,
+        "last_rank": 12,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
+        "total": 84,
+        "event_total": 12
       },
       {
         "rank": 32,
@@ -536,15 +545,6 @@
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
-        "total": 84,
-        "event_total": 12
-      },
-      {
-        "rank": 32,
-        "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
         "total": 84,
         "event_total": 12
       },
@@ -658,12 +658,12 @@
       },
       {
         "rank": 46,
-        "last_rank": 52,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "entry_id": 679630,
+        "last_rank": 44,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
         "total": 73,
-        "event_total": 31
+        "event_total": 23
       },
       {
         "rank": 46,
@@ -676,12 +676,12 @@
       },
       {
         "rank": 46,
-        "last_rank": 44,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
+        "last_rank": 52,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "entry_id": 679630,
         "total": 73,
-        "event_total": 23
+        "event_total": 31
       },
       {
         "rank": 49,
