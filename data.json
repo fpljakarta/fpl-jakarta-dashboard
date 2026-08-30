@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T17:48:51+00:00",
+  "generated_at": "2026-08-30T17:59:42+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -316,6 +316,15 @@
       },
       {
         "rank": 8,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 169,
+        "event_total": 105
+      },
+      {
+        "rank": 8,
         "last_rank": 5,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
@@ -333,13 +342,13 @@
         "event_total": 109
       },
       {
-        "rank": 8,
-        "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 169,
-        "event_total": 105
+        "rank": 11,
+        "last_rank": 12,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
+        "total": 168,
+        "event_total": 96
       },
       {
         "rank": 11,
@@ -347,15 +356,6 @@
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
-        "total": 168,
-        "event_total": 96
-      },
-      {
-        "rank": 11,
-        "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
         "total": 168,
         "event_total": 96
       },
@@ -433,15 +433,6 @@
       },
       {
         "rank": 20,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 157,
-        "event_total": 115
-      },
-      {
-        "rank": 20,
         "last_rank": 3,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
@@ -457,6 +448,15 @@
         "entry_id": 1165190,
         "total": 157,
         "event_total": 100
+      },
+      {
+        "rank": 20,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 157,
+        "event_total": 115
       },
       {
         "rank": 24,
