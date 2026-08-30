@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T10:33:57+00:00",
+  "generated_at": "2026-08-30T11:04:38+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -62,12 +62,12 @@
       },
       {
         "rank": 6,
-        "last_rank": 3,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
+        "last_rank": 16,
+        "manager": "joachim chia",
+        "team": "brotatogyokeres",
+        "entry_id": 4712875,
         "total": 92,
-        "event_total": 17
+        "event_total": 33
       },
       {
         "rank": 6,
@@ -80,12 +80,12 @@
       },
       {
         "rank": 6,
-        "last_rank": 16,
-        "manager": "joachim chia",
-        "team": "brotatogyokeres",
-        "entry_id": 4712875,
+        "last_rank": 3,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
         "total": 92,
-        "event_total": 33
+        "event_total": 17
       },
       {
         "rank": 9,
@@ -143,21 +143,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 14,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
-        "total": 85,
-        "event_total": 25
-      },
-      {
-        "rank": 14,
         "last_rank": 21,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 85,
         "event_total": 33
+      },
+      {
+        "rank": 14,
+        "last_rank": 14,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
+        "total": 85,
+        "event_total": 25
       },
       {
         "rank": 17,
@@ -280,21 +280,21 @@
       },
       {
         "rank": 4,
-        "last_rank": 2,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "entry_id": 2202,
-        "total": 99,
-        "event_total": 20
-      },
-      {
-        "rank": 4,
         "last_rank": 12,
         "manager": "Bharat Lakhwani",
         "team": "Bpl",
         "entry_id": 5717595,
         "total": 99,
         "event_total": 27
+      },
+      {
+        "rank": 4,
+        "last_rank": 2,
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "entry_id": 2202,
+        "total": 99,
+        "event_total": 20
       },
       {
         "rank": 6,
@@ -343,33 +343,6 @@
       },
       {
         "rank": 11,
-        "last_rank": 5,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 92,
-        "event_total": 17
-      },
-      {
-        "rank": 11,
-        "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 92,
-        "event_total": 18
-      },
-      {
-        "rank": 11,
-        "last_rank": 26,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 92,
-        "event_total": 30
-      },
-      {
-        "rank": 11,
         "last_rank": 7,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
@@ -385,6 +358,33 @@
         "entry_id": 4712875,
         "total": 92,
         "event_total": 33
+      },
+      {
+        "rank": 11,
+        "last_rank": 5,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 92,
+        "event_total": 17
+      },
+      {
+        "rank": 11,
+        "last_rank": 26,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 92,
+        "event_total": 30
+      },
+      {
+        "rank": 11,
+        "last_rank": 7,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 92,
+        "event_total": 18
       },
       {
         "rank": 16,
@@ -451,6 +451,15 @@
       },
       {
         "rank": 23,
+        "last_rank": 3,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 86,
+        "event_total": 8
+      },
+      {
+        "rank": 23,
         "last_rank": 20,
         "manager": "Chiraag Keswani",
         "team": "Ckeswani's XI",
@@ -477,13 +486,13 @@
         "event_total": 40
       },
       {
-        "rank": 23,
-        "last_rank": 3,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 86,
-        "event_total": 8
+        "rank": 27,
+        "last_rank": 42,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "entry_id": 3391935,
+        "total": 85,
+        "event_total": 33
       },
       {
         "rank": 27,
@@ -496,19 +505,10 @@
       },
       {
         "rank": 27,
-        "last_rank": 42,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "entry_id": 3391935,
-        "total": 85,
-        "event_total": 33
-      },
-      {
-        "rank": 27,
         "last_rank": 27,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
         "total": 85,
         "event_total": 25
       },
@@ -524,9 +524,9 @@
       {
         "rank": 27,
         "last_rank": 27,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
         "total": 85,
         "event_total": 25
       },
@@ -658,12 +658,12 @@
       },
       {
         "rank": 46,
-        "last_rank": 44,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
+        "last_rank": 37,
+        "manager": "Jeremy Oberoi",
+        "team": "Next Season FC",
+        "entry_id": 4127500,
         "total": 73,
-        "event_total": 23
+        "event_total": 19
       },
       {
         "rank": 46,
@@ -676,12 +676,12 @@
       },
       {
         "rank": 46,
-        "last_rank": 37,
-        "manager": "Jeremy Oberoi",
-        "team": "Next Season FC",
-        "entry_id": 4127500,
+        "last_rank": 44,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
         "total": 73,
-        "event_total": 19
+        "event_total": 23
       },
       {
         "rank": 49,
