@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T03:00:51+00:00",
+  "generated_at": "2026-08-30T03:07:58+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -62,6 +62,15 @@
       },
       {
         "rank": 6,
+        "last_rank": 5,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 92,
+        "event_total": 18
+      },
+      {
+        "rank": 6,
         "last_rank": 3,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
@@ -77,15 +86,6 @@
         "entry_id": 4712875,
         "total": 92,
         "event_total": 33
-      },
-      {
-        "rank": 6,
-        "last_rank": 5,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 92,
-        "event_total": 18
       },
       {
         "rank": 9,
@@ -343,6 +343,15 @@
       },
       {
         "rank": 11,
+        "last_rank": 5,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 92,
+        "event_total": 17
+      },
+      {
+        "rank": 11,
         "last_rank": 7,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
@@ -376,15 +385,6 @@
         "entry_id": 6175948,
         "total": 92,
         "event_total": 30
-      },
-      {
-        "rank": 11,
-        "last_rank": 5,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 92,
-        "event_total": 17
       },
       {
         "rank": 16,
@@ -460,15 +460,6 @@
       },
       {
         "rank": 23,
-        "last_rank": 3,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 86,
-        "event_total": 8
-      },
-      {
-        "rank": 23,
         "last_rank": 49,
         "manager": "Juzer Saify",
         "team": "JS FC",
@@ -486,13 +477,13 @@
         "event_total": 22
       },
       {
-        "rank": 27,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 85,
-        "event_total": 43
+        "rank": 23,
+        "last_rank": 3,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 86,
+        "event_total": 8
       },
       {
         "rank": 27,
@@ -505,6 +496,15 @@
       },
       {
         "rank": 27,
+        "last_rank": 23,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
+        "total": 85,
+        "event_total": 22
+      },
+      {
+        "rank": 27,
         "last_rank": 27,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
@@ -514,12 +514,12 @@
       },
       {
         "rank": 27,
-        "last_rank": 23,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
         "total": 85,
-        "event_total": 22
+        "event_total": 43
       },
       {
         "rank": 27,
@@ -641,18 +641,18 @@
       {
         "rank": 44,
         "last_rank": 31,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
         "total": 75,
         "event_total": 18
       },
       {
         "rank": 44,
         "last_rank": 31,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
         "total": 75,
         "event_total": 18
       },
