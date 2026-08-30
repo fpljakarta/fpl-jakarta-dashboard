@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T18:43:44+00:00",
+  "generated_at": "2026-08-30T18:54:27+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -35,21 +35,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 3,
-        "manager": "Sanjay Morani",
-        "team": "Xisco Inferno FC",
-        "entry_id": 3331264,
-        "total": 169,
-        "event_total": 94
-      },
-      {
-        "rank": 3,
         "last_rank": 14,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 169,
         "event_total": 109
+      },
+      {
+        "rank": 3,
+        "last_rank": 3,
+        "manager": "Sanjay Morani",
+        "team": "Xisco Inferno FC",
+        "entry_id": 3331264,
+        "total": 169,
+        "event_total": 94
       },
       {
         "rank": 5,
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 171,
         "event_total": 97
       },
       {
         "rank": 4,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 171,
         "event_total": 97
       },
@@ -325,21 +325,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 169,
-        "event_total": 105
-      },
-      {
-        "rank": 8,
         "last_rank": 27,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 169,
         "event_total": 109
+      },
+      {
+        "rank": 8,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 169,
+        "event_total": 105
       },
       {
         "rank": 11,
@@ -424,30 +424,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 157,
-        "event_total": 115
-      },
-      {
-        "rank": 20,
-        "last_rank": 31,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 157,
-        "event_total": 100
-      },
-      {
-        "rank": 20,
         "last_rank": 26,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
         "total": 157,
         "event_total": 95
+      },
+      {
+        "rank": 20,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 157,
+        "event_total": 115
       },
       {
         "rank": 20,
@@ -459,13 +450,13 @@
         "event_total": 79
       },
       {
-        "rank": 24,
-        "last_rank": 44,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 156,
-        "event_total": 106
+        "rank": 20,
+        "last_rank": 31,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 157,
+        "event_total": 100
       },
       {
         "rank": 24,
@@ -475,6 +466,15 @@
         "entry_id": 1657008,
         "total": 156,
         "event_total": 88
+      },
+      {
+        "rank": 24,
+        "last_rank": 44,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 156,
+        "event_total": 106
       },
       {
         "rank": 26,
@@ -559,21 +559,21 @@
       },
       {
         "rank": 35,
-        "last_rank": 42,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
-        "total": 146,
-        "event_total": 94
-      },
-      {
-        "rank": 35,
         "last_rank": 44,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
         "entry_id": 26047,
         "total": 146,
         "event_total": 96
+      },
+      {
+        "rank": 35,
+        "last_rank": 42,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
+        "total": 146,
+        "event_total": 94
       },
       {
         "rank": 37,
