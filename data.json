@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T01:20:34+00:00",
+  "generated_at": "2026-08-30T01:31:54+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 5,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 92,
-        "event_total": 18
-      },
-      {
-        "rank": 6,
         "last_rank": 16,
         "manager": "joachim chia",
         "team": "brotatogyokeres",
         "entry_id": 4712875,
         "total": 92,
         "event_total": 33
+      },
+      {
+        "rank": 6,
+        "last_rank": 5,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 92,
+        "event_total": 18
       },
       {
         "rank": 6,
@@ -280,21 +280,21 @@
       },
       {
         "rank": 4,
-        "last_rank": 12,
-        "manager": "Bharat Lakhwani",
-        "team": "Bpl",
-        "entry_id": 5717595,
-        "total": 99,
-        "event_total": 27
-      },
-      {
-        "rank": 4,
         "last_rank": 2,
         "manager": "S M",
         "team": "I Know Nothing",
         "entry_id": 2202,
         "total": 99,
         "event_total": 20
+      },
+      {
+        "rank": 4,
+        "last_rank": 12,
+        "manager": "Bharat Lakhwani",
+        "team": "Bpl",
+        "entry_id": 5717595,
+        "total": 99,
+        "event_total": 27
       },
       {
         "rank": 6,
@@ -344,9 +344,9 @@
       {
         "rank": 11,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 92,
         "event_total": 18
       },
@@ -380,9 +380,9 @@
       {
         "rank": 11,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 92,
         "event_total": 18
       },
@@ -452,15 +452,6 @@
       {
         "rank": 23,
         "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 86,
-        "event_total": 22
-      },
-      {
-        "rank": 23,
-        "last_rank": 20,
         "manager": "Suraj Topandasani",
         "team": "Londonal FC",
         "entry_id": 431772,
@@ -486,6 +477,24 @@
         "event_total": 8
       },
       {
+        "rank": 23,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 86,
+        "event_total": 22
+      },
+      {
+        "rank": 27,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 85,
+        "event_total": 43
+      },
+      {
         "rank": 27,
         "last_rank": 42,
         "manager": "Amrit Lakhiani",
@@ -493,15 +502,6 @@
         "entry_id": 3391935,
         "total": 85,
         "event_total": 33
-      },
-      {
-        "rank": 27,
-        "last_rank": 27,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
-        "total": 85,
-        "event_total": 25
       },
       {
         "rank": 27,
@@ -523,12 +523,12 @@
       },
       {
         "rank": 27,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
+        "last_rank": 27,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
         "total": 85,
-        "event_total": 43
+        "event_total": 25
       },
       {
         "rank": 32,
@@ -577,21 +577,21 @@
       },
       {
         "rank": 37,
-        "last_rank": 39,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 81,
-        "event_total": 28
-      },
-      {
-        "rank": 37,
         "last_rank": 58,
         "manager": "Ashwin Mulani",
         "team": "Balon D'orgu",
         "entry_id": 4294662,
         "total": 81,
         "event_total": 44
+      },
+      {
+        "rank": 37,
+        "last_rank": 39,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 81,
+        "event_total": 28
       },
       {
         "rank": 39,
@@ -641,6 +641,15 @@
       {
         "rank": 44,
         "last_rank": 31,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 75,
+        "event_total": 18
+      },
+      {
+        "rank": 44,
+        "last_rank": 31,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
@@ -648,13 +657,13 @@
         "event_total": 18
       },
       {
-        "rank": 44,
-        "last_rank": 31,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 75,
-        "event_total": 18
+        "rank": 46,
+        "last_rank": 37,
+        "manager": "Jeremy Oberoi",
+        "team": "Next Season FC",
+        "entry_id": 4127500,
+        "total": 73,
+        "event_total": 19
       },
       {
         "rank": 46,
@@ -673,15 +682,6 @@
         "entry_id": 679630,
         "total": 73,
         "event_total": 31
-      },
-      {
-        "rank": 46,
-        "last_rank": 37,
-        "manager": "Jeremy Oberoi",
-        "team": "Next Season FC",
-        "entry_id": 4127500,
-        "total": 73,
-        "event_total": 19
       },
       {
         "rank": 49,
