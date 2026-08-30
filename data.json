@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T17:37:42+00:00",
+  "generated_at": "2026-08-30T17:48:51+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -35,21 +35,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 14,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 169,
-        "event_total": 109
-      },
-      {
-        "rank": 3,
         "last_rank": 3,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 169,
         "event_total": 94
+      },
+      {
+        "rank": 3,
+        "last_rank": 14,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 169,
+        "event_total": 109
       },
       {
         "rank": 5,
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 171,
         "event_total": 97
       },
       {
         "rank": 4,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 171,
         "event_total": 97
       },
@@ -352,21 +352,21 @@
       },
       {
         "rank": 11,
-        "last_rank": 5,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 168,
-        "event_total": 93
-      },
-      {
-        "rank": 11,
         "last_rank": 12,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
         "total": 168,
         "event_total": 96
+      },
+      {
+        "rank": 11,
+        "last_rank": 5,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 168,
+        "event_total": 93
       },
       {
         "rank": 14,
@@ -433,21 +433,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 3,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 157,
-        "event_total": 79
-      },
-      {
-        "rank": 20,
         "last_rank": 52,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 157,
         "event_total": 115
+      },
+      {
+        "rank": 20,
+        "last_rank": 3,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 157,
+        "event_total": 79
       },
       {
         "rank": 20,
@@ -460,21 +460,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 44,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 156,
-        "event_total": 106
-      },
-      {
-        "rank": 24,
         "last_rank": 17,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
         "entry_id": 1657008,
         "total": 156,
         "event_total": 88
+      },
+      {
+        "rank": 24,
+        "last_rank": 44,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 156,
+        "event_total": 106
       },
       {
         "rank": 26,
