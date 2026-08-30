@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T22:01:22+00:00",
+  "generated_at": "2026-08-30T22:07:58+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -262,21 +262,21 @@
       },
       {
         "rank": 2,
-        "last_rank": 39,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 173,
-        "event_total": 120
-      },
-      {
-        "rank": 2,
         "last_rank": 10,
         "manager": "Neel Dadlani",
         "team": "NDFC",
         "entry_id": 1427203,
         "total": 173,
         "event_total": 100
+      },
+      {
+        "rank": 2,
+        "last_rank": 39,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 173,
+        "event_total": 120
       },
       {
         "rank": 4,
@@ -325,21 +325,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 169,
-        "event_total": 105
-      },
-      {
-        "rank": 9,
         "last_rank": 5,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 169,
         "event_total": 94
+      },
+      {
+        "rank": 9,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 169,
+        "event_total": 105
       },
       {
         "rank": 11,
@@ -433,15 +433,6 @@
       },
       {
         "rank": 21,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 157,
-        "event_total": 115
-      },
-      {
-        "rank": 21,
         "last_rank": 31,
         "manager": "Rachman Witarlan",
         "team": "FC Milanello",
@@ -457,6 +448,15 @@
         "entry_id": 171383,
         "total": 157,
         "event_total": 79
+      },
+      {
+        "rank": 21,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 157,
+        "event_total": 115
       },
       {
         "rank": 24,
