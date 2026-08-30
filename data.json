@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T19:05:47+00:00",
+  "generated_at": "2026-08-30T19:08:03+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -35,21 +35,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 14,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 169,
-        "event_total": 109
-      },
-      {
-        "rank": 3,
         "last_rank": 3,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 169,
         "event_total": 94
+      },
+      {
+        "rank": 3,
+        "last_rank": 14,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 169,
+        "event_total": 109
       },
       {
         "rank": 5,
