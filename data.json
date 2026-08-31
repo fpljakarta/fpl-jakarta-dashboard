@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T12:32:18+00:00",
+  "generated_at": "2026-08-31T12:43:24+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -262,21 +262,21 @@
       },
       {
         "rank": 2,
-        "last_rank": 39,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 173,
-        "event_total": 120
-      },
-      {
-        "rank": 2,
         "last_rank": 10,
         "manager": "Neel Dadlani",
         "team": "NDFC",
         "entry_id": 1427203,
         "total": 173,
         "event_total": 100
+      },
+      {
+        "rank": 2,
+        "last_rank": 39,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 173,
+        "event_total": 120
       },
       {
         "rank": 4,
@@ -290,9 +290,9 @@
       {
         "rank": 5,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 171,
         "event_total": 97
       },
@@ -308,9 +308,9 @@
       {
         "rank": 5,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 171,
         "event_total": 97
       },
@@ -344,15 +344,6 @@
       {
         "rank": 11,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 168,
-        "event_total": 96
-      },
-      {
-        "rank": 11,
-        "last_rank": 12,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
@@ -369,6 +360,15 @@
         "event_total": 93
       },
       {
+        "rank": 11,
+        "last_rank": 12,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
+        "total": 168,
+        "event_total": 96
+      },
+      {
         "rank": 14,
         "last_rank": 52,
         "manager": "Paras Lalwani",
@@ -379,21 +379,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 16,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 166,
-        "event_total": 97
-      },
-      {
-        "rank": 14,
         "last_rank": 23,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
         "entry_id": 9279,
         "total": 166,
         "event_total": 103
+      },
+      {
+        "rank": 14,
+        "last_rank": 16,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 166,
+        "event_total": 97
       },
       {
         "rank": 17,
@@ -433,21 +433,21 @@
       },
       {
         "rank": 21,
-        "last_rank": 31,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 157,
-        "event_total": 100
-      },
-      {
-        "rank": 21,
         "last_rank": 3,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
         "entry_id": 171383,
         "total": 157,
         "event_total": 79
+      },
+      {
+        "rank": 21,
+        "last_rank": 31,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 157,
+        "event_total": 100
       },
       {
         "rank": 21,
@@ -505,21 +505,21 @@
       },
       {
         "rank": 29,
-        "last_rank": 34,
-        "manager": "Rayan Hamza",
-        "team": "Zarks",
-        "entry_id": 2805634,
-        "total": 153,
-        "event_total": 98
-      },
-      {
-        "rank": 29,
         "last_rank": 31,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 153,
         "event_total": 96
+      },
+      {
+        "rank": 29,
+        "last_rank": 34,
+        "manager": "Rayan Hamza",
+        "team": "Zarks",
+        "entry_id": 2805634,
+        "total": 153,
+        "event_total": 98
       },
       {
         "rank": 31,
