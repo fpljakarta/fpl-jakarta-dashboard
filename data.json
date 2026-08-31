@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T16:04:54+00:00",
+  "generated_at": "2026-08-31T16:08:07+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -343,15 +343,6 @@
       },
       {
         "rank": 11,
-        "last_rank": 5,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 168,
-        "event_total": 93
-      },
-      {
-        "rank": 11,
         "last_rank": 12,
         "manager": "Akshay Melwani",
         "team": "Test",
@@ -367,6 +358,15 @@
         "entry_id": 2552235,
         "total": 168,
         "event_total": 96
+      },
+      {
+        "rank": 11,
+        "last_rank": 5,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 168,
+        "event_total": 93
       },
       {
         "rank": 14,
@@ -505,21 +505,21 @@
       },
       {
         "rank": 29,
-        "last_rank": 34,
-        "manager": "Rayan Hamza",
-        "team": "Zarks",
-        "entry_id": 2805634,
-        "total": 153,
-        "event_total": 98
-      },
-      {
-        "rank": 29,
         "last_rank": 31,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 153,
         "event_total": 96
+      },
+      {
+        "rank": 29,
+        "last_rank": 34,
+        "manager": "Rayan Hamza",
+        "team": "Zarks",
+        "entry_id": 2805634,
+        "total": 153,
+        "event_total": 98
       },
       {
         "rank": 31,
