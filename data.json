@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T21:27:14+00:00",
+  "generated_at": "2026-08-31T21:38:23+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -116,21 +116,21 @@
       },
       {
         "rank": 12,
-        "last_rank": 22,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "entry_id": 3712006,
-        "total": 172,
-        "event_total": 124
-      },
-      {
-        "rank": 12,
         "last_rank": 7,
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
         "entry_id": 29071,
         "total": 172,
         "event_total": 101
+      },
+      {
+        "rank": 12,
+        "last_rank": 22,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "entry_id": 3712006,
+        "total": 172,
+        "event_total": 124
       },
       {
         "rank": 14,
@@ -353,18 +353,18 @@
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 182,
         "event_total": 108
       },
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 182,
         "event_total": 108
       },
@@ -406,21 +406,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 20,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 174,
-        "event_total": 110
-      },
-      {
-        "rank": 18,
         "last_rank": 3,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
         "entry_id": 171383,
         "total": 174,
         "event_total": 96
+      },
+      {
+        "rank": 18,
+        "last_rank": 20,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 174,
+        "event_total": 110
       },
       {
         "rank": 18,
@@ -541,6 +541,15 @@
       },
       {
         "rank": 33,
+        "last_rank": 42,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
+        "total": 163,
+        "event_total": 111
+      },
+      {
+        "rank": 33,
         "last_rank": 49,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
@@ -558,15 +567,6 @@
         "event_total": 79
       },
       {
-        "rank": 33,
-        "last_rank": 42,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
-        "total": 163,
-        "event_total": 111
-      },
-      {
         "rank": 36,
         "last_rank": 44,
         "manager": "Abhishek Keswani",
@@ -577,21 +577,21 @@
       },
       {
         "rank": 37,
-        "last_rank": 30,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 159,
-        "event_total": 101
-      },
-      {
-        "rank": 37,
         "last_rank": 37,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 159,
         "event_total": 105
+      },
+      {
+        "rank": 37,
+        "last_rank": 30,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 159,
+        "event_total": 101
       },
       {
         "rank": 39,
