@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T12:21:12+00:00",
+  "generated_at": "2026-08-31T12:32:18+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 8,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 166,
-        "event_total": 97
-      },
-      {
-        "rank": 6,
         "last_rank": 12,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
         "entry_id": 9279,
         "total": 166,
         "event_total": 103
+      },
+      {
+        "rank": 6,
+        "last_rank": 8,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 166,
+        "event_total": 97
       },
       {
         "rank": 8,
@@ -298,21 +298,21 @@
       },
       {
         "rank": 5,
-        "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 171,
-        "event_total": 97
-      },
-      {
-        "rank": 5,
         "last_rank": 27,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 171,
         "event_total": 111
+      },
+      {
+        "rank": 5,
+        "last_rank": 7,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 171,
+        "event_total": 97
       },
       {
         "rank": 8,
@@ -344,6 +344,15 @@
       {
         "rank": 11,
         "last_rank": 12,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
+        "total": 168,
+        "event_total": 96
+      },
+      {
+        "rank": 11,
+        "last_rank": 12,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
@@ -360,13 +369,13 @@
         "event_total": 93
       },
       {
-        "rank": 11,
-        "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 168,
-        "event_total": 96
+        "rank": 14,
+        "last_rank": 52,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "entry_id": 679630,
+        "total": 166,
+        "event_total": 124
       },
       {
         "rank": 14,
@@ -376,15 +385,6 @@
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
-      },
-      {
-        "rank": 14,
-        "last_rank": 52,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "entry_id": 679630,
-        "total": 166,
-        "event_total": 124
       },
       {
         "rank": 14,
@@ -559,21 +559,21 @@
       },
       {
         "rank": 35,
-        "last_rank": 44,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 146,
-        "event_total": 96
-      },
-      {
-        "rank": 35,
         "last_rank": 42,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
         "entry_id": 6552691,
         "total": 146,
         "event_total": 94
+      },
+      {
+        "rank": 35,
+        "last_rank": 44,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 146,
+        "event_total": 96
       },
       {
         "rank": 37,
