@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T23:06:34+00:00",
+  "generated_at": "2026-08-31T23:17:33+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -89,15 +89,6 @@
       },
       {
         "rank": 9,
-        "last_rank": 11,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 174,
-        "event_total": 110
-      },
-      {
-        "rank": 9,
         "last_rank": 9,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
@@ -113,6 +104,15 @@
         "entry_id": 171383,
         "total": 174,
         "event_total": 96
+      },
+      {
+        "rank": 9,
+        "last_rank": 11,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 174,
+        "event_total": 110
       },
       {
         "rank": 12,
@@ -263,18 +263,18 @@
       {
         "rank": 2,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 194,
         "event_total": 122
       },
       {
         "rank": 2,
         "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 194,
         "event_total": 122
       },
@@ -353,18 +353,18 @@
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 182,
         "event_total": 108
       },
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 182,
         "event_total": 108
       },
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 20,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 167,
-        "event_total": 103
-      },
-      {
-        "rank": 30,
         "last_rank": 44,
         "manager": "Michael Kenneth",
         "team": "Pool4life",
         "entry_id": 8019077,
         "total": 167,
         "event_total": 117
+      },
+      {
+        "rank": 30,
+        "last_rank": 20,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 167,
+        "event_total": 103
       },
       {
         "rank": 32,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 1,
-        "manager": "M Suudi",
-        "team": "Cakdes FPL",
-        "entry_id": 17640,
-        "total": 163,
-        "event_total": 79
-      },
-      {
-        "rank": 33,
         "last_rank": 49,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
         "entry_id": 2934189,
         "total": 163,
         "event_total": 117
+      },
+      {
+        "rank": 33,
+        "last_rank": 1,
+        "manager": "M Suudi",
+        "team": "Cakdes FPL",
+        "entry_id": 17640,
+        "total": 163,
+        "event_total": 79
       },
       {
         "rank": 33,
