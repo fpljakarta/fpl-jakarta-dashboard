@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T21:05:13+00:00",
+  "generated_at": "2026-08-31T21:08:23+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -98,15 +98,6 @@
       },
       {
         "rank": 9,
-        "last_rank": 9,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 174,
-        "event_total": 106
-      },
-      {
-        "rank": 9,
         "last_rank": 2,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
@@ -115,13 +106,13 @@
         "event_total": 96
       },
       {
-        "rank": 12,
-        "last_rank": 7,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "entry_id": 29071,
-        "total": 172,
-        "event_total": 101
+        "rank": 9,
+        "last_rank": 9,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 174,
+        "event_total": 106
       },
       {
         "rank": 12,
@@ -131,6 +122,15 @@
         "entry_id": 3712006,
         "total": 172,
         "event_total": 124
+      },
+      {
+        "rank": 12,
+        "last_rank": 7,
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "entry_id": 29071,
+        "total": 172,
+        "event_total": 101
       },
       {
         "rank": 14,
