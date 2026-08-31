@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T00:48:03+00:00",
+  "generated_at": "2026-08-31T00:58:59+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -289,21 +289,21 @@
       },
       {
         "rank": 5,
-        "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 171,
-        "event_total": 97
-      },
-      {
-        "rank": 5,
         "last_rank": 27,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 171,
         "event_total": 111
+      },
+      {
+        "rank": 5,
+        "last_rank": 7,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 171,
+        "event_total": 97
       },
       {
         "rank": 5,
@@ -370,6 +370,15 @@
       },
       {
         "rank": 14,
+        "last_rank": 23,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 166,
+        "event_total": 103
+      },
+      {
+        "rank": 14,
         "last_rank": 52,
         "manager": "Paras Lalwani",
         "team": "FC Pain Chaud",
@@ -385,15 +394,6 @@
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
-      },
-      {
-        "rank": 14,
-        "last_rank": 23,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 166,
-        "event_total": 103
       },
       {
         "rank": 17,
@@ -460,21 +460,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 17,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 156,
-        "event_total": 88
-      },
-      {
-        "rank": 24,
         "last_rank": 44,
         "manager": "Michael Kenneth",
         "team": "Pool4life",
         "entry_id": 8019077,
         "total": 156,
         "event_total": 106
+      },
+      {
+        "rank": 24,
+        "last_rank": 17,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 156,
+        "event_total": 88
       },
       {
         "rank": 26,
@@ -505,21 +505,21 @@
       },
       {
         "rank": 29,
-        "last_rank": 34,
-        "manager": "Rayan Hamza",
-        "team": "Zarks",
-        "entry_id": 2805634,
-        "total": 153,
-        "event_total": 98
-      },
-      {
-        "rank": 29,
         "last_rank": 31,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 153,
         "event_total": 96
+      },
+      {
+        "rank": 29,
+        "last_rank": 34,
+        "manager": "Rayan Hamza",
+        "team": "Zarks",
+        "entry_id": 2805634,
+        "total": 153,
+        "event_total": 98
       },
       {
         "rank": 31,
