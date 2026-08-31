@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T11:47:10+00:00",
+  "generated_at": "2026-08-31T11:58:02+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -298,21 +298,21 @@
       },
       {
         "rank": 5,
-        "last_rank": 27,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 171,
-        "event_total": 111
-      },
-      {
-        "rank": 5,
         "last_rank": 7,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 171,
         "event_total": 97
+      },
+      {
+        "rank": 5,
+        "last_rank": 27,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 171,
+        "event_total": 111
       },
       {
         "rank": 8,
@@ -325,21 +325,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 169,
-        "event_total": 105
-      },
-      {
-        "rank": 9,
         "last_rank": 5,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 169,
         "event_total": 94
+      },
+      {
+        "rank": 9,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 169,
+        "event_total": 105
       },
       {
         "rank": 11,
@@ -379,21 +379,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 16,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 166,
-        "event_total": 97
-      },
-      {
-        "rank": 14,
         "last_rank": 23,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
         "entry_id": 9279,
         "total": 166,
         "event_total": 103
+      },
+      {
+        "rank": 14,
+        "last_rank": 16,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 166,
+        "event_total": 97
       },
       {
         "rank": 17,
@@ -433,6 +433,15 @@
       },
       {
         "rank": 21,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 157,
+        "event_total": 115
+      },
+      {
+        "rank": 21,
         "last_rank": 3,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
@@ -448,15 +457,6 @@
         "entry_id": 1165190,
         "total": 157,
         "event_total": 100
-      },
-      {
-        "rank": 21,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 157,
-        "event_total": 115
       },
       {
         "rank": 24,
