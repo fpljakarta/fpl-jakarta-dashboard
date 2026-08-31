@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T13:05:47+00:00",
+  "generated_at": "2026-08-31T13:08:19+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -289,12 +289,12 @@
       },
       {
         "rank": 5,
-        "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "last_rank": 27,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
         "total": 171,
-        "event_total": 97
+        "event_total": 111
       },
       {
         "rank": 5,
@@ -307,12 +307,12 @@
       },
       {
         "rank": 5,
-        "last_rank": 27,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
+        "last_rank": 7,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 171,
-        "event_total": 111
+        "event_total": 97
       },
       {
         "rank": 8,
@@ -343,21 +343,21 @@
       },
       {
         "rank": 11,
-        "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 168,
-        "event_total": 96
-      },
-      {
-        "rank": 11,
         "last_rank": 5,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
         "entry_id": 72045,
         "total": 168,
         "event_total": 93
+      },
+      {
+        "rank": 11,
+        "last_rank": 12,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
+        "total": 168,
+        "event_total": 96
       },
       {
         "rank": 11,
@@ -505,21 +505,21 @@
       },
       {
         "rank": 29,
-        "last_rank": 31,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 153,
-        "event_total": 96
-      },
-      {
-        "rank": 29,
         "last_rank": 34,
         "manager": "Rayan Hamza",
         "team": "Zarks",
         "entry_id": 2805634,
         "total": 153,
         "event_total": 98
+      },
+      {
+        "rank": 29,
+        "last_rank": 31,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 153,
+        "event_total": 96
       },
       {
         "rank": 31,
