@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T02:06:34+00:00",
+  "generated_at": "2026-08-31T02:17:44+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -26,21 +26,21 @@
       },
       {
         "rank": 2,
-        "last_rank": 14,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 171,
-        "event_total": 111
-      },
-      {
-        "rank": 2,
         "last_rank": 5,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 171,
         "event_total": 97
+      },
+      {
+        "rank": 2,
+        "last_rank": 14,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 171,
+        "event_total": 111
       },
       {
         "rank": 4,
@@ -298,21 +298,21 @@
       },
       {
         "rank": 5,
-        "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 171,
-        "event_total": 97
-      },
-      {
-        "rank": 5,
         "last_rank": 27,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 171,
         "event_total": 111
+      },
+      {
+        "rank": 5,
+        "last_rank": 7,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 171,
+        "event_total": 97
       },
       {
         "rank": 8,
@@ -343,12 +343,12 @@
       },
       {
         "rank": 11,
-        "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "last_rank": 5,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
         "total": 168,
-        "event_total": 96
+        "event_total": 93
       },
       {
         "rank": 11,
@@ -361,12 +361,12 @@
       },
       {
         "rank": 11,
-        "last_rank": 5,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
+        "last_rank": 12,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 168,
-        "event_total": 93
+        "event_total": 96
       },
       {
         "rank": 14,
@@ -379,21 +379,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 23,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 166,
-        "event_total": 103
-      },
-      {
-        "rank": 14,
         "last_rank": 16,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
+      },
+      {
+        "rank": 14,
+        "last_rank": 23,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 166,
+        "event_total": 103
       },
       {
         "rank": 17,
@@ -433,12 +433,12 @@
       },
       {
         "rank": 21,
-        "last_rank": 52,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
+        "last_rank": 31,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
         "total": 157,
-        "event_total": 115
+        "event_total": 100
       },
       {
         "rank": 21,
@@ -451,21 +451,12 @@
       },
       {
         "rank": 21,
-        "last_rank": 31,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
+        "last_rank": 52,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
         "total": 157,
-        "event_total": 100
-      },
-      {
-        "rank": 24,
-        "last_rank": 44,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 156,
-        "event_total": 106
+        "event_total": 115
       },
       {
         "rank": 24,
@@ -475,6 +466,15 @@
         "entry_id": 1657008,
         "total": 156,
         "event_total": 88
+      },
+      {
+        "rank": 24,
+        "last_rank": 44,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 156,
+        "event_total": 106
       },
       {
         "rank": 26,
@@ -559,21 +559,21 @@
       },
       {
         "rank": 35,
-        "last_rank": 44,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 146,
-        "event_total": 96
-      },
-      {
-        "rank": 35,
         "last_rank": 42,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
         "entry_id": 6552691,
         "total": 146,
         "event_total": 94
+      },
+      {
+        "rank": 35,
+        "last_rank": 44,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 146,
+        "event_total": 96
       },
       {
         "rank": 37,
