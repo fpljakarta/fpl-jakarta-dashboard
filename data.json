@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T07:08:18+00:00",
+  "generated_at": "2026-08-31T07:19:27+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 12,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 166,
-        "event_total": 103
-      },
-      {
-        "rank": 6,
         "last_rank": 8,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
+      },
+      {
+        "rank": 6,
+        "last_rank": 12,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 166,
+        "event_total": 103
       },
       {
         "rank": 8,
@@ -289,21 +289,21 @@
       },
       {
         "rank": 5,
-        "last_rank": 27,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 171,
-        "event_total": 111
-      },
-      {
-        "rank": 5,
         "last_rank": 7,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 171,
         "event_total": 97
+      },
+      {
+        "rank": 5,
+        "last_rank": 27,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 171,
+        "event_total": 111
       },
       {
         "rank": 5,
@@ -325,15 +325,6 @@
       },
       {
         "rank": 9,
-        "last_rank": 20,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 169,
-        "event_total": 105
-      },
-      {
-        "rank": 9,
         "last_rank": 5,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
@@ -342,13 +333,13 @@
         "event_total": 94
       },
       {
-        "rank": 11,
-        "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 168,
-        "event_total": 96
+        "rank": 9,
+        "last_rank": 20,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 169,
+        "event_total": 105
       },
       {
         "rank": 11,
@@ -369,13 +360,13 @@
         "event_total": 96
       },
       {
-        "rank": 14,
-        "last_rank": 23,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 166,
-        "event_total": 103
+        "rank": 11,
+        "last_rank": 12,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
+        "total": 168,
+        "event_total": 96
       },
       {
         "rank": 14,
@@ -385,6 +376,15 @@
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
+      },
+      {
+        "rank": 14,
+        "last_rank": 23,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 166,
+        "event_total": 103
       },
       {
         "rank": 14,
