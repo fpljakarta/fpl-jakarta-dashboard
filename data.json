@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T03:08:22+00:00",
+  "generated_at": "2026-08-31T03:14:07+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -262,21 +262,21 @@
       },
       {
         "rank": 2,
-        "last_rank": 10,
-        "manager": "Neel Dadlani",
-        "team": "NDFC",
-        "entry_id": 1427203,
-        "total": 173,
-        "event_total": 100
-      },
-      {
-        "rank": 2,
         "last_rank": 39,
         "manager": "Rohan Kalwani",
         "team": "-4 Builds Carrickter",
         "entry_id": 3822923,
         "total": 173,
         "event_total": 120
+      },
+      {
+        "rank": 2,
+        "last_rank": 10,
+        "manager": "Neel Dadlani",
+        "team": "NDFC",
+        "entry_id": 1427203,
+        "total": 173,
+        "event_total": 100
       },
       {
         "rank": 4,
@@ -286,6 +286,15 @@
         "entry_id": 3986012,
         "total": 172,
         "event_total": 96
+      },
+      {
+        "rank": 5,
+        "last_rank": 27,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 171,
+        "event_total": 111
       },
       {
         "rank": 5,
@@ -306,15 +315,6 @@
         "event_total": 97
       },
       {
-        "rank": 5,
-        "last_rank": 27,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 171,
-        "event_total": 111
-      },
-      {
         "rank": 8,
         "last_rank": 12,
         "manager": "Bharat Lakhwani",
@@ -322,6 +322,15 @@
         "entry_id": 5717595,
         "total": 170,
         "event_total": 98
+      },
+      {
+        "rank": 9,
+        "last_rank": 5,
+        "manager": "Sanjay Morani",
+        "team": "Xisco Inferno FC",
+        "entry_id": 3331264,
+        "total": 169,
+        "event_total": 94
       },
       {
         "rank": 9,
@@ -333,13 +342,13 @@
         "event_total": 105
       },
       {
-        "rank": 9,
-        "last_rank": 5,
-        "manager": "Sanjay Morani",
-        "team": "Xisco Inferno FC",
-        "entry_id": 3331264,
-        "total": 169,
-        "event_total": 94
+        "rank": 11,
+        "last_rank": 12,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
+        "total": 168,
+        "event_total": 96
       },
       {
         "rank": 11,
@@ -353,29 +362,11 @@
       {
         "rank": 11,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 168,
-        "event_total": 96
-      },
-      {
-        "rank": 11,
-        "last_rank": 12,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
         "total": 168,
         "event_total": 96
-      },
-      {
-        "rank": 14,
-        "last_rank": 23,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 166,
-        "event_total": 103
       },
       {
         "rank": 14,
@@ -385,6 +376,15 @@
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
+      },
+      {
+        "rank": 14,
+        "last_rank": 23,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 166,
+        "event_total": 103
       },
       {
         "rank": 14,
@@ -505,21 +505,21 @@
       },
       {
         "rank": 29,
-        "last_rank": 34,
-        "manager": "Rayan Hamza",
-        "team": "Zarks",
-        "entry_id": 2805634,
-        "total": 153,
-        "event_total": 98
-      },
-      {
-        "rank": 29,
         "last_rank": 31,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 153,
         "event_total": 96
+      },
+      {
+        "rank": 29,
+        "last_rank": 34,
+        "manager": "Rayan Hamza",
+        "team": "Zarks",
+        "entry_id": 2805634,
+        "total": 153,
+        "event_total": 98
       },
       {
         "rank": 31,
@@ -559,21 +559,21 @@
       },
       {
         "rank": 35,
-        "last_rank": 44,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 146,
-        "event_total": 96
-      },
-      {
-        "rank": 35,
         "last_rank": 42,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
         "entry_id": 6552691,
         "total": 146,
         "event_total": 94
+      },
+      {
+        "rank": 35,
+        "last_rank": 44,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 146,
+        "event_total": 96
       },
       {
         "rank": 37,
