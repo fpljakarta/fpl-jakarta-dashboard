@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T23:51:39+00:00",
+  "generated_at": "2026-08-31T00:03:38+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -26,21 +26,21 @@
       },
       {
         "rank": 2,
-        "last_rank": 5,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 171,
-        "event_total": 97
-      },
-      {
-        "rank": 2,
         "last_rank": 14,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 171,
         "event_total": 111
+      },
+      {
+        "rank": 2,
+        "last_rank": 5,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 171,
+        "event_total": 97
       },
       {
         "rank": 4,
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 12,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 166,
-        "event_total": 103
-      },
-      {
-        "rank": 6,
         "last_rank": 8,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 166,
         "event_total": 97
+      },
+      {
+        "rank": 6,
+        "last_rank": 12,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 166,
+        "event_total": 103
       },
       {
         "rank": 8,
@@ -290,6 +290,15 @@
       {
         "rank": 5,
         "last_rank": 7,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 171,
+        "event_total": 97
+      },
+      {
+        "rank": 5,
+        "last_rank": 7,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
@@ -304,15 +313,6 @@
         "entry_id": 693910,
         "total": 171,
         "event_total": 111
-      },
-      {
-        "rank": 5,
-        "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 171,
-        "event_total": 97
       },
       {
         "rank": 8,
@@ -343,6 +343,15 @@
       },
       {
         "rank": 11,
+        "last_rank": 12,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
+        "total": 168,
+        "event_total": 96
+      },
+      {
+        "rank": 11,
         "last_rank": 5,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
@@ -360,22 +369,13 @@
         "event_total": 96
       },
       {
-        "rank": 11,
-        "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
-        "total": 168,
-        "event_total": 96
-      },
-      {
         "rank": 14,
-        "last_rank": 16,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
+        "last_rank": 52,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "entry_id": 679630,
         "total": 166,
-        "event_total": 97
+        "event_total": 124
       },
       {
         "rank": 14,
@@ -388,12 +388,12 @@
       },
       {
         "rank": 14,
-        "last_rank": 52,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "entry_id": 679630,
+        "last_rank": 16,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
         "total": 166,
-        "event_total": 124
+        "event_total": 97
       },
       {
         "rank": 17,
@@ -433,6 +433,15 @@
       },
       {
         "rank": 21,
+        "last_rank": 31,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 157,
+        "event_total": 100
+      },
+      {
+        "rank": 21,
         "last_rank": 3,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
@@ -448,15 +457,6 @@
         "entry_id": 3005141,
         "total": 157,
         "event_total": 115
-      },
-      {
-        "rank": 21,
-        "last_rank": 31,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 157,
-        "event_total": 100
       },
       {
         "rank": 24,
