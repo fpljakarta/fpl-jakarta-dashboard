@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T03:32:26+00:00",
+  "generated_at": "2026-09-01T03:46:57+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 2,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 174,
-        "event_total": 96
-      },
-      {
-        "rank": 9,
         "last_rank": 9,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
         "entry_id": 1657008,
         "total": 174,
         "event_total": 106
+      },
+      {
+        "rank": 9,
+        "last_rank": 2,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 174,
+        "event_total": 96
       },
       {
         "rank": 9,
@@ -406,6 +406,15 @@
       },
       {
         "rank": 18,
+        "last_rank": 17,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 174,
+        "event_total": 106
+      },
+      {
+        "rank": 18,
         "last_rank": 20,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
@@ -423,15 +432,6 @@
         "event_total": 96
       },
       {
-        "rank": 18,
-        "last_rank": 17,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 174,
-        "event_total": 106
-      },
-      {
         "rank": 21,
         "last_rank": 17,
         "manager": "Siddarth Kaul",
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 15,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "entry_id": 29071,
-        "total": 172,
-        "event_total": 101
-      },
-      {
-        "rank": 22,
         "last_rank": 47,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 172,
         "event_total": 124
+      },
+      {
+        "rank": 22,
+        "last_rank": 15,
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "entry_id": 29071,
+        "total": 172,
+        "event_total": 101
       },
       {
         "rank": 24,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 42,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
-        "total": 163,
-        "event_total": 111
-      },
-      {
-        "rank": 33,
         "last_rank": 1,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 163,
         "event_total": 79
+      },
+      {
+        "rank": 33,
+        "last_rank": 42,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
+        "total": 163,
+        "event_total": 111
       },
       {
         "rank": 33,
