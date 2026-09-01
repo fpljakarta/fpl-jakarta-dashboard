@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T01:20:09+00:00",
+  "generated_at": "2026-09-01T01:33:09+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -89,6 +89,15 @@
       },
       {
         "rank": 9,
+        "last_rank": 9,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 174,
+        "event_total": 106
+      },
+      {
+        "rank": 9,
         "last_rank": 11,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
@@ -104,15 +113,6 @@
         "entry_id": 171383,
         "total": 174,
         "event_total": 96
-      },
-      {
-        "rank": 9,
-        "last_rank": 9,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 174,
-        "event_total": 106
       },
       {
         "rank": 12,
@@ -353,18 +353,18 @@
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 182,
         "event_total": 108
       },
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 182,
         "event_total": 108
       },
@@ -406,6 +406,15 @@
       },
       {
         "rank": 18,
+        "last_rank": 20,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 174,
+        "event_total": 110
+      },
+      {
+        "rank": 18,
         "last_rank": 17,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
@@ -421,15 +430,6 @@
         "entry_id": 171383,
         "total": 174,
         "event_total": 96
-      },
-      {
-        "rank": 18,
-        "last_rank": 20,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 174,
-        "event_total": 110
       },
       {
         "rank": 21,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 42,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
-        "total": 163,
-        "event_total": 111
-      },
-      {
-        "rank": 33,
         "last_rank": 49,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
         "entry_id": 2934189,
         "total": 163,
         "event_total": 117
+      },
+      {
+        "rank": 33,
+        "last_rank": 42,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
+        "total": 163,
+        "event_total": 111
       },
       {
         "rank": 33,
@@ -676,21 +676,21 @@
       },
       {
         "rank": 48,
-        "last_rank": 34,
-        "manager": "Sagar Sadarangani",
-        "team": "cole me palmer",
-        "entry_id": 3435396,
-        "total": 134,
-        "event_total": 79
-      },
-      {
-        "rank": 48,
         "last_rank": 23,
         "manager": "Kevin Raymond",
         "team": "Gunners United",
         "entry_id": 5199728,
         "total": 134,
         "event_total": 71
+      },
+      {
+        "rank": 48,
+        "last_rank": 34,
+        "manager": "Sagar Sadarangani",
+        "team": "cole me palmer",
+        "entry_id": 3435396,
+        "total": 134,
+        "event_total": 79
       },
       {
         "rank": 50,
