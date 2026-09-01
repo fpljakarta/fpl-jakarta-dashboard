@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T02:44:59+00:00",
+  "generated_at": "2026-09-01T02:56:49+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 9,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 174,
-        "event_total": 106
-      },
-      {
-        "rank": 9,
         "last_rank": 11,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
         "entry_id": 2849972,
         "total": 174,
         "event_total": 110
+      },
+      {
+        "rank": 9,
+        "last_rank": 9,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 174,
+        "event_total": 106
       },
       {
         "rank": 12,
@@ -478,21 +478,21 @@
       },
       {
         "rank": 26,
-        "last_rank": 26,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 170,
-        "event_total": 108
-      },
-      {
-        "rank": 26,
         "last_rank": 34,
         "manager": "Rayan Hamza",
         "team": "Zarks",
         "entry_id": 2805634,
         "total": 170,
         "event_total": 115
+      },
+      {
+        "rank": 26,
+        "last_rank": 26,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 170,
+        "event_total": 108
       },
       {
         "rank": 28,
@@ -541,15 +541,6 @@
       },
       {
         "rank": 33,
-        "last_rank": 49,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
-        "total": 163,
-        "event_total": 117
-      },
-      {
-        "rank": 33,
         "last_rank": 1,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
@@ -567,6 +558,15 @@
         "event_total": 111
       },
       {
+        "rank": 33,
+        "last_rank": 49,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
+        "total": 163,
+        "event_total": 117
+      },
+      {
         "rank": 36,
         "last_rank": 44,
         "manager": "Abhishek Keswani",
@@ -577,21 +577,21 @@
       },
       {
         "rank": 37,
-        "last_rank": 30,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 159,
-        "event_total": 101
-      },
-      {
-        "rank": 37,
         "last_rank": 37,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 159,
         "event_total": 105
+      },
+      {
+        "rank": 37,
+        "last_rank": 30,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 159,
+        "event_total": 101
       },
       {
         "rank": 39,
@@ -676,21 +676,21 @@
       },
       {
         "rank": 48,
-        "last_rank": 23,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
-        "total": 134,
-        "event_total": 71
-      },
-      {
-        "rank": 48,
         "last_rank": 34,
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
         "entry_id": 3435396,
         "total": 134,
         "event_total": 79
+      },
+      {
+        "rank": 48,
+        "last_rank": 23,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
+        "total": 134,
+        "event_total": 71
       },
       {
         "rank": 50,
