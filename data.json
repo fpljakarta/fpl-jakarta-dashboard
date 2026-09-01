@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T04:32:04+00:00",
+  "generated_at": "2026-09-01T04:46:11+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -89,6 +89,15 @@
       },
       {
         "rank": 9,
+        "last_rank": 9,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 174,
+        "event_total": 106
+      },
+      {
+        "rank": 9,
         "last_rank": 2,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
@@ -104,15 +113,6 @@
         "entry_id": 2849972,
         "total": 174,
         "event_total": 110
-      },
-      {
-        "rank": 9,
-        "last_rank": 9,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 174,
-        "event_total": 106
       },
       {
         "rank": 12,
@@ -353,18 +353,18 @@
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 182,
         "event_total": 108
       },
       {
         "rank": 12,
         "last_rank": 7,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
         "total": 182,
         "event_total": 108
       },
@@ -415,21 +415,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 17,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 174,
-        "event_total": 106
-      },
-      {
-        "rank": 18,
         "last_rank": 3,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
         "entry_id": 171383,
         "total": 174,
         "event_total": 96
+      },
+      {
+        "rank": 18,
+        "last_rank": 17,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 174,
+        "event_total": 106
       },
       {
         "rank": 21,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 44,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 167,
-        "event_total": 117
-      },
-      {
-        "rank": 30,
         "last_rank": 20,
         "manager": "Suraj Topandasani",
         "team": "Londonal FC",
         "entry_id": 431772,
         "total": 167,
         "event_total": 103
+      },
+      {
+        "rank": 30,
+        "last_rank": 44,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 167,
+        "event_total": 117
       },
       {
         "rank": 32,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 42,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
-        "total": 163,
-        "event_total": 111
-      },
-      {
-        "rank": 33,
         "last_rank": 1,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 163,
         "event_total": 79
+      },
+      {
+        "rank": 33,
+        "last_rank": 42,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
+        "total": 163,
+        "event_total": 111
       },
       {
         "rank": 33,
@@ -577,21 +577,21 @@
       },
       {
         "rank": 37,
-        "last_rank": 37,
-        "manager": "Ajay Yeleswaram",
-        "team": "Relegated",
-        "entry_id": 1257763,
-        "total": 159,
-        "event_total": 105
-      },
-      {
-        "rank": 37,
         "last_rank": 30,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
         "total": 159,
         "event_total": 101
+      },
+      {
+        "rank": 37,
+        "last_rank": 37,
+        "manager": "Ajay Yeleswaram",
+        "team": "Relegated",
+        "entry_id": 1257763,
+        "total": 159,
+        "event_total": 105
       },
       {
         "rank": 39,
