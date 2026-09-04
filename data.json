@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T20:36:02+00:00",
+  "generated_at": "2026-09-04T21:19:21+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -272,15 +272,6 @@
       {
         "rank": 3,
         "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 197,
-        "event_total": 3
-      },
-      {
-        "rank": 3,
-        "last_rank": 2,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
@@ -295,6 +286,15 @@
         "entry_id": 72045,
         "total": 197,
         "event_total": 11
+      },
+      {
+        "rank": 3,
+        "last_rank": 2,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
+        "total": 197,
+        "event_total": 3
       },
       {
         "rank": 6,
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 29,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 178,
-        "event_total": 10
-      },
-      {
-        "rank": 23,
         "last_rank": 33,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 177,
         "event_total": 14
+      },
+      {
+        "rank": 22,
+        "last_rank": 29,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 177,
+        "event_total": 9
       },
       {
         "rank": 24,
@@ -671,11 +671,11 @@
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
         "entry_id": 754628,
-        "total": 147,
-        "event_total": 7
+        "total": 146,
+        "event_total": 6
       },
       {
-        "rank": 48,
+        "rank": 47,
         "last_rank": 52,
         "manager": "Juzer Saify",
         "team": "JS FC",
@@ -689,8 +689,8 @@
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
         "entry_id": 3435396,
-        "total": 142,
-        "event_total": 10
+        "total": 141,
+        "event_total": 9
       },
       {
         "rank": 50,
@@ -761,8 +761,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 117,
-        "event_total": 15
+        "total": 118,
+        "event_total": 16
       },
       {
         "rank": 58,
