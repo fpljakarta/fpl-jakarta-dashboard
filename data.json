@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T19:27:03+00:00",
+  "generated_at": "2026-09-04T20:02:01+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -71,21 +71,21 @@
       },
       {
         "rank": 7,
-        "last_rank": 12,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "entry_id": 3712006,
-        "total": 185,
-        "event_total": 13
-      },
-      {
-        "rank": 7,
         "last_rank": 5,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 185,
         "event_total": 1
+      },
+      {
+        "rank": 7,
+        "last_rank": 12,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "entry_id": 3712006,
+        "total": 185,
+        "event_total": 13
       },
       {
         "rank": 9,
@@ -246,8 +246,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 105,
-        "event_total": 3
+        "total": 106,
+        "event_total": 4
       }
     ],
     "main": [
@@ -271,21 +271,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 8,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 195,
-        "event_total": 9
-      },
-      {
-        "rank": 3,
         "last_rank": 2,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
         "total": 195,
         "event_total": 1
+      },
+      {
+        "rank": 3,
+        "last_rank": 8,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 195,
+        "event_total": 9
       },
       {
         "rank": 3,
@@ -770,8 +770,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 105,
-        "event_total": 3
+        "total": 106,
+        "event_total": 4
       },
       {
         "rank": 59,
