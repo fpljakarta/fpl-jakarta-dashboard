@@ -143,7 +143,8 @@ def set_output(name, value):
     print(f"::publish::{name}={value}")
 
 
-def write_status(published, in_play, starts_soon=False, deadline_soon=False):
+def write_status(published, in_play, starts_soon=False, deadline_soon=False,
+                 gw_changed=False):
     """
     Tell the workflow what just happened and whether football is still coming.
 
@@ -159,11 +160,13 @@ def write_status(published, in_play, starts_soon=False, deadline_soon=False):
             "in_play": bool(in_play),
             "starts_soon": bool(starts_soon),
             "deadline_soon": bool(deadline_soon),
+            "gw_changed": bool(gw_changed),
         }, f)
     set_output("publish", "true" if published else "false")
     set_output("in_play", "true" if in_play else "false")
     set_output("starts_soon", "true" if starts_soon else "false")
     set_output("deadline_soon", "true" if deadline_soon else "false")
+    set_output("gw_changed", "true" if gw_changed else "false")
 
 
 def load_json_file(path):
@@ -229,9 +232,22 @@ def kickoff_imminent(fixtures, now, within_minutes):
     return False
 
 
-def deadline_imminent(events, now, within_minutes):
+# How long to keep publishing after a deadline has passed. FPL does not move
+# `is_current` at the stroke of the deadline -- it takes a few minutes -- so a
+# run that stops the instant the clock ticks over has waited for the rollover
+# and then walked out of the room before it happened.
+#
+# That is exactly what run #538 did on 4 September: it held for four hours,
+# reached the 17:30 deadline, and broke out of the loop at 17:30:16 with
+# `deadline_soon=false`. The site went on showing GW2.
+DEADLINE_GRACE_MINUTES = 45
+
+
+def deadline_imminent(events, now, within_minutes,
+                      grace_minutes=DEADLINE_GRACE_MINUTES):
     """
-    Whether the next gameweek's deadline falls inside the window.
+    Whether a gameweek deadline is close enough to keep publishing for --
+    either coming up inside the window, or just gone.
 
     A gameweek starts at its deadline: that is the moment FPL moves `is_current`
     on, and the moment every page on the site should stop saying the old number.
@@ -239,12 +255,14 @@ def deadline_imminent(events, now, within_minutes):
     week corrects it -- the site simply shows the wrong gameweek until some run
     happens to land.
 
-    That is not hypothetical. GitHub delivered no scheduled run at all on 27
-    August 2026 and none between 01:31 and 19:21 on the 28th; the GW2 deadline
-    passed at 17:30 and the site sat on GW1 until the workflow was started by
-    hand.
+    That is not hypothetical, twice over. GitHub delivered no scheduled run at
+    all on 27 August 2026 and none between 01:31 and 19:21 on the 28th, so GW2
+    started with the site on GW1. And on 4 September a run *was* there, having
+    waited four hours for the 17:30 deadline -- and stopped sixteen seconds
+    after it, before FPL had moved anything. Hence the grace period: the
+    interesting moment is not the deadline, it is the minutes just after it.
     """
-    soonest = None
+    ahead, behind = None, None
     for ev in events or []:
         stamp = ev.get("deadline_time")
         if not stamp:
@@ -253,10 +271,13 @@ def deadline_imminent(events, now, within_minutes):
             when = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
         except (AttributeError, ValueError):
             continue
-        ahead = (when - now).total_seconds() / 60
-        if 0 <= ahead and (soonest is None or ahead < soonest):
-            soonest = ahead
-    return soonest is not None and soonest <= within_minutes
+        delta = (when - now).total_seconds() / 60
+        if delta >= 0:
+            ahead = delta if ahead is None else min(ahead, delta)
+        else:
+            behind = -delta if behind is None else min(behind, -delta)
+    return ((ahead is not None and ahead <= within_minutes)
+            or (behind is not None and behind <= grace_minutes))
 
 
 def minutes_since(stamp, now):
@@ -707,7 +728,7 @@ def main():
               f"/{len(fixtures)} fixtures done, {len(upcoming)} still to come. "
               f"Skipping the manager fetch and leaving live.json untouched."
               + (" Waiting here for the next kick-off." if starts_soon else ""))
-        write_status(False, in_play, starts_soon, deadline_soon)
+        write_status(False, in_play, starts_soon, deadline_soon, not same_gw)
         return
 
     print(f"GW{gw}: publishing because {'; '.join(reasons)}.")
@@ -847,7 +868,7 @@ def main():
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
           f"({len(picks_cache)} unique), {done}/{len(fixtures)} fixtures finished.")
-    write_status(True, in_play, starts_soon, deadline_soon)
+    write_status(True, in_play, starts_soon, deadline_soon, not same_gw)
 
 
 if __name__ == "__main__":

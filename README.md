@@ -116,14 +116,32 @@ when none of them is:
 - **a match is being played** — provisional bonus moves continuously;
 - **a kick-off falls inside the window** — a run that wakes before the whistle
   and exits leaves the half that follows to whenever the next run arrives;
-- **a gameweek deadline falls inside the window** — this is the one that
-  matters most, because a gameweek *starts* at its deadline. Miss a kick-off and
-  the site shows the right gameweek with an old score. Miss a deadline and it
-  shows the wrong gameweek, and nothing later in the week corrects it.
+- **a gameweek deadline is close** — either coming up inside the window, or
+  gone within the last 45 minutes. This is the one that matters most, because a
+  gameweek *starts* at its deadline. Miss a kick-off and the site shows the
+  right gameweek with an old score. Miss a deadline and it shows the wrong
+  gameweek, and nothing later in the week corrects it.
 
-That last case is not hypothetical. GitHub delivered no scheduled run at all on
-27 August 2026, and none between 01:31 and 19:21 on the 28th. GW2's deadline
-passed at 17:30 and the site sat on GW1 until the workflow was started by hand.
+That last case is not hypothetical, and it has now failed twice for different
+reasons.
+
+On 27 August 2026 GitHub delivered no scheduled run at all, and none between
+01:31 and 19:21 on the 28th, so GW2 began with the site still on GW1. That is
+what the window is for.
+
+On 4 September a run *was* there. Run #538 started at 13:30, held for four
+hours waiting for the 17:30 deadline exactly as intended — and broke out of the
+loop at **17:30:16**, sixteen seconds after it, with `deadline_soon=false`. FPL
+does not move `is_current` at the stroke of the deadline; it takes a few
+minutes. The run had waited all afternoon for the rollover and then left the
+room just before it happened.
+
+Hence the grace period. The interesting moment is not the deadline itself but
+the minutes just after it, so a deadline keeps a run publishing for 45 minutes
+past. And when the live fetcher does see the gameweek move, the standings fetch
+runs on that same pass rather than waiting up to half an hour for its own
+cadence — which is why the live script now runs first in each pass and reports
+`gw_changed`.
 
 ### Why the workflow loops instead of trusting the cron
 
@@ -167,8 +185,8 @@ an external one, calling the `workflow_dispatch` API on a schedule GitHub does
 not control.
 
 The script tells the workflow what happened through `.live-run-status`, an
-untracked file holding `published`, `in_play`, `starts_soon` and
-`deadline_soon`. A held runner
+untracked file holding `published`, `in_play`, `starts_soon`, `deadline_soon`
+and `gw_changed`. A held runner
 is free on a public repository, so the cost of this is a noisier commit history
 on match days, which is the trade the fast cadence was always making.
 

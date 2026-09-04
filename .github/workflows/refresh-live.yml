@@ -114,10 +114,11 @@ jobs:
           while : ; do
             pass=$(( pass + 1 ))
             echo "::group::Pass $pass"
-            if [ "$pass" = "1" ] || [ $(( (pass - 1) % slow_every )) = "0" ]; then
-              python scripts/fetch_fpl_data.py || \
-                echo "::warning::standings refresh failed; carrying on with the live data"
-            fi
+            # Live first: it is the cheap one, and it is the one that notices
+            # the gameweek has moved. The standings fetch then runs on the first
+            # pass, on the slow cadence -- and immediately when the gameweek
+            # did move, rather than up to half an hour after the rollover the
+            # whole run stayed awake for.
             python scripts/fetch_live_data.py
             export FORCE_PUBLISH=false
 
@@ -125,7 +126,14 @@ jobs:
             in_play=$(status in_play)
             starts_soon=$(status starts_soon)
             deadline_soon=$(status deadline_soon)
-            echo "published=$published in_play=$in_play starts_soon=$starts_soon deadline_soon=$deadline_soon"
+            gw_changed=$(status gw_changed)
+            echo "published=$published in_play=$in_play starts_soon=$starts_soon deadline_soon=$deadline_soon gw_changed=$gw_changed"
+
+            if [ "$pass" = "1" ] || [ "$gw_changed" = "True" ] \
+               || [ $(( (pass - 1) % slow_every )) = "0" ]; then
+              python scripts/fetch_fpl_data.py || \
+                echo "::warning::standings refresh failed; carrying on with the live data"
+            fi
 
             # Only the files this pass actually rewrote are ours to push. Each
             # fetcher leaves a file untouched when it has nothing new, so the

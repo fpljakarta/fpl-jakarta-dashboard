@@ -11,9 +11,10 @@ Importing the module does no network of its own.
 """
 
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from fetch_live_data import (
+    DEADLINE_GRACE_MINUTES as GRACE,
     PUBLISH_WINDOW_MINUTES as WINDOW,
     build_fixture_cards,
     deadline_imminent,
@@ -228,8 +229,15 @@ class DeadlineImminentTests(unittest.TestCase):
                        ev("2026-08-28T17:30:00Z"),
                        ev("2026-09-04T17:30:00Z")]
 
+    #: The GW2 deadline these tests are anchored to.
+    DEADLINE = datetime(2026, 8, 28, 17, 30, tzinfo=timezone.utc)
+
     def at(self, hh, mm, day=28):
         return datetime(2026, 8, day, hh, mm, tzinfo=timezone.utc)
+
+    def after_deadline(self, minutes):
+        """A moment `minutes` past the deadline, without hand-rolling clocks."""
+        return self.DEADLINE + timedelta(minutes=minutes)
 
     def test_the_run_that_went_quiet_on_28_august_would_now_wait(self):
         # 13:31 is inside five hours of the 17:30 deadline, so a run landing
@@ -242,18 +250,45 @@ class DeadlineImminentTests(unittest.TestCase):
         # hours out: nothing to hold a runner open for.
         self.assertFalse(deadline_imminent(self.events, self.at(1, 31), WINDOW))
 
-    def test_a_deadline_just_passed_is_not_imminent(self):
-        # Otherwise every run for the rest of the week would hold open.
-        self.assertFalse(deadline_imminent(self.events, self.at(17, 31), WINDOW))
+    def test_the_run_that_let_go_on_4_september_would_now_hold_on(self):
+        # Run #538 waited four hours for the 17:30 deadline and broke out of
+        # the loop at 17:30:16 -- sixteen seconds after it, and several minutes
+        # before FPL moved is_current. The site went on showing GW2.
+        #
+        # The minutes just after a deadline are the ones that matter, so they
+        # are inside the window now.
+        for minute in (30, 31, 40, 59):
+            with self.subTest(at=f"17:{minute}"):
+                self.assertTrue(
+                    deadline_imminent(self.events, self.at(17, minute), WINDOW))
+        self.assertTrue(deadline_imminent(
+            self.events, self.at(18, 14), WINDOW))          # 44 min after
+
+    def test_the_grace_period_does_end(self):
+        # Otherwise every run for the rest of the week would hold a runner open.
+        self.assertFalse(deadline_imminent(
+            self.events, self.at(18, 16), WINDOW))          # 46 min after
+        self.assertFalse(deadline_imminent(
+            self.events, self.at(20, 0), WINDOW))
+
+    def test_the_grace_period_is_the_one_the_workflow_uses(self):
+        # A test that passed against a grace of five minutes would have said
+        # nothing about the real thing.
+        self.assertGreaterEqual(GRACE, 30)
+        self.assertTrue(deadline_imminent(
+            self.events, self.after_deadline(GRACE - 1), WINDOW))
+        self.assertFalse(deadline_imminent(
+            self.events, self.after_deadline(GRACE + 1), WINDOW))
 
     def test_the_window_edge_counts(self):
         self.assertTrue(deadline_imminent(self.events, self.at(12, 30), 300))
         self.assertFalse(deadline_imminent(self.events, self.at(12, 29), 300))
 
     def test_the_nearest_future_deadline_is_the_one_that_counts(self):
-        # GW3 is a week out; that must not keep a runner alive all week.
+        # GW3 is a week out; that must not keep a runner alive all week. Well
+        # clear of the grace period, or this would be testing the grace instead.
         after = [ev("2026-08-21T17:30:00Z"), ev("2026-08-28T17:30:00Z")]
-        self.assertFalse(deadline_imminent(after, self.at(18, 0), WINDOW))
+        self.assertFalse(deadline_imminent(after, self.at(19, 0), WINDOW))
 
     def test_no_events_and_unreadable_stamps_are_ignored(self):
         for bad in ([], None, [ev(None)], [ev("")], [ev("not a timestamp")]):
@@ -261,6 +296,7 @@ class DeadlineImminentTests(unittest.TestCase):
                 self.assertFalse(deadline_imminent(bad, self.at(13, 31), WINDOW))
 
     def test_the_last_deadline_of_the_season_leaves_nothing_to_wait_for(self):
+        # Past the grace, GW38's deadline holds nothing open.
         self.assertFalse(deadline_imminent(
             [ev("2026-08-28T17:30:00Z")], self.at(20, 0), WINDOW))
 
