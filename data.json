@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T15:02:07+00:00",
+  "generated_at": "2026-09-04T15:32:45+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -263,18 +263,18 @@
       {
         "rank": 2,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 194,
         "event_total": 122
       },
       {
         "rank": 2,
         "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 194,
         "event_total": 122
       },
@@ -406,6 +406,15 @@
       },
       {
         "rank": 18,
+        "last_rank": 3,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 174,
+        "event_total": 96
+      },
+      {
+        "rank": 18,
         "last_rank": 17,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
@@ -423,15 +432,6 @@
         "event_total": 110
       },
       {
-        "rank": 18,
-        "last_rank": 3,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 174,
-        "event_total": 96
-      },
-      {
         "rank": 21,
         "last_rank": 17,
         "manager": "Siddarth Kaul",
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 15,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "entry_id": 29071,
-        "total": 172,
-        "event_total": 101
-      },
-      {
-        "rank": 22,
         "last_rank": 47,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 172,
         "event_total": 124
+      },
+      {
+        "rank": 22,
+        "last_rank": 15,
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "entry_id": 29071,
+        "total": 172,
+        "event_total": 101
       },
       {
         "rank": 24,
@@ -478,21 +478,21 @@
       },
       {
         "rank": 26,
-        "last_rank": 34,
-        "manager": "Rayan Hamza",
-        "team": "Zarks",
-        "entry_id": 2805634,
-        "total": 170,
-        "event_total": 115
-      },
-      {
-        "rank": 26,
         "last_rank": 26,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
         "total": 170,
         "event_total": 108
+      },
+      {
+        "rank": 26,
+        "last_rank": 34,
+        "manager": "Rayan Hamza",
+        "team": "Zarks",
+        "entry_id": 2805634,
+        "total": 170,
+        "event_total": 115
       },
       {
         "rank": 28,
@@ -541,12 +541,12 @@
       },
       {
         "rank": 33,
-        "last_rank": 42,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
+        "last_rank": 49,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
         "total": 163,
-        "event_total": 111
+        "event_total": 117
       },
       {
         "rank": 33,
@@ -559,12 +559,12 @@
       },
       {
         "rank": 33,
-        "last_rank": 49,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
+        "last_rank": 42,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
         "total": 163,
-        "event_total": 117
+        "event_total": 111
       },
       {
         "rank": 36,
@@ -766,21 +766,21 @@
       },
       {
         "rank": 58,
-        "last_rank": 52,
-        "manager": "Gaurav Yadav",
-        "team": "Quantom of Tzolis",
-        "entry_id": 5408140,
-        "total": 102,
-        "event_total": 60
-      },
-      {
-        "rank": 58,
         "last_rank": 59,
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
         "total": 102,
         "event_total": 82
+      },
+      {
+        "rank": 58,
+        "last_rank": 52,
+        "manager": "Gaurav Yadav",
+        "team": "Quantom of Tzolis",
+        "entry_id": 5408140,
+        "total": 102,
+        "event_total": 60
       }
     ]
   },
