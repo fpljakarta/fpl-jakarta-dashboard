@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T00:18:39+00:00",
+  "generated_at": "2026-09-04T04:02:48+00:00",
   "current_gameweek": 2,
   "next_gameweek": 3,
   "next_deadline": "2026-09-04T17:30:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 2,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 174,
-        "event_total": 96
-      },
-      {
-        "rank": 9,
         "last_rank": 11,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
         "entry_id": 2849972,
         "total": 174,
         "event_total": 110
+      },
+      {
+        "rank": 9,
+        "last_rank": 2,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 174,
+        "event_total": 96
       },
       {
         "rank": 9,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 20,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 167,
-        "event_total": 103
-      },
-      {
-        "rank": 30,
         "last_rank": 44,
         "manager": "Michael Kenneth",
         "team": "Pool4life",
         "entry_id": 8019077,
         "total": 167,
         "event_total": 117
+      },
+      {
+        "rank": 30,
+        "last_rank": 20,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 167,
+        "event_total": 103
       },
       {
         "rank": 32,
@@ -538,6 +538,15 @@
         "entry_id": 1165190,
         "total": 164,
         "event_total": 107
+      },
+      {
+        "rank": 33,
+        "last_rank": 49,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
+        "total": 163,
+        "event_total": 117
       },
       {
         "rank": 33,
@@ -558,15 +567,6 @@
         "event_total": 111
       },
       {
-        "rank": 33,
-        "last_rank": 49,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
-        "total": 163,
-        "event_total": 117
-      },
-      {
         "rank": 36,
         "last_rank": 44,
         "manager": "Abhishek Keswani",
@@ -577,21 +577,21 @@
       },
       {
         "rank": 37,
-        "last_rank": 30,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 159,
-        "event_total": 101
-      },
-      {
-        "rank": 37,
         "last_rank": 37,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 159,
         "event_total": 105
+      },
+      {
+        "rank": 37,
+        "last_rank": 30,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 159,
+        "event_total": 101
       },
       {
         "rank": 39,
@@ -766,21 +766,21 @@
       },
       {
         "rank": 58,
-        "last_rank": 52,
-        "manager": "Gaurav Yadav",
-        "team": "Quantom of Tzolis",
-        "entry_id": 5408140,
-        "total": 102,
-        "event_total": 60
-      },
-      {
-        "rank": 58,
         "last_rank": 59,
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
         "total": 102,
         "event_total": 82
+      },
+      {
+        "rank": 58,
+        "last_rank": 52,
+        "manager": "Gaurav Yadav",
+        "team": "Quantom of Tzolis",
+        "entry_id": 5408140,
+        "total": 102,
+        "event_total": 60
       }
     ]
   },
