@@ -10,9 +10,13 @@ Importing the module does no network of its own.
     python -m unittest discover -s scripts -p 'test_*.py'
 """
 
+import io
+import json as _json
 import unittest
 from datetime import datetime, timedelta, timezone
+from unittest import mock
 
+import fetch_live_data
 from fetch_live_data import (
     DEADLINE_GRACE_MINUTES as GRACE,
     PUBLISH_WINDOW_MINUTES as WINDOW,
@@ -299,6 +303,88 @@ class DeadlineImminentTests(unittest.TestCase):
         # Past the grace, GW38's deadline holds nothing open.
         self.assertFalse(deadline_imminent(
             [ev("2026-08-28T17:30:00Z")], self.at(20, 0), WINDOW))
+
+
+class Outage:
+    """urlopen that is down for a stretch of simulated seconds, then recovers."""
+
+    def __init__(self, seconds_down, payload=None):
+        self.seconds_down = seconds_down
+        self.payload = {"ok": True} if payload is None else payload
+        self.now = 0.0
+        self.attempts = 0
+
+    def sleep(self, seconds):
+        self.now += seconds
+
+    def urlopen(self, req, timeout=None):
+        self.attempts += 1
+        if self.now < self.seconds_down:
+            raise OSError("HTTP Error 503: Service Unavailable")
+        body = _json.dumps(self.payload).encode("utf-8")
+        return mock.MagicMock(
+            __enter__=lambda s: io.BytesIO(body), __exit__=lambda *a: False
+        )
+
+
+class TestLiveFetchRetryBudget(unittest.TestCase):
+    """This is the script that is supposed to be awake across a rollover.
+
+    Which makes it the one most likely to meet FPL's 503s, and the worst one to
+    have raise: the workflow step runs under `set -e`, so an unhandled failure
+    ends the whole long-lived run at the moment it was being kept alive for.
+    """
+
+    def setUp(self):
+        fetch_live_data.reset_retry_budget()
+        self.addCleanup(fetch_live_data.reset_retry_budget)
+
+    def fetch(self, outage, url="http://example/api", **kw):
+        with mock.patch.object(fetch_live_data.urllib.request, "urlopen",
+                               outage.urlopen), \
+             mock.patch.object(fetch_live_data.time, "sleep", outage.sleep):
+            return fetch_live_data.fetch_json(url, **kw)
+
+    def try_fetch(self, outage, url="http://example/extra"):
+        with mock.patch.object(fetch_live_data.urllib.request, "urlopen",
+                               outage.urlopen), \
+             mock.patch.object(fetch_live_data.time, "sleep", outage.sleep):
+            return fetch_live_data.try_fetch(url)
+
+    def test_rides_out_a_minute_of_503s(self):
+        outage = Outage(seconds_down=60)
+        self.assertEqual(self.fetch(outage), {"ok": True})
+
+    def test_gives_up_cleanly_rather_than_looping_forever(self):
+        fetch_live_data.reset_retry_budget(60)
+        outage = Outage(seconds_down=10 ** 6)
+        with self.assertRaises(RuntimeError):
+            self.fetch(outage)
+        self.assertLessEqual(outage.now, 60)
+
+    def test_the_budget_stays_inside_one_publish_cycle(self):
+        # The loop publishes every five minutes. A pass that spent longer than
+        # that retrying would put the cadence out of step, so the default
+        # allowance has to stay comfortably under it.
+        self.assertLessEqual(fetch_live_data.RETRY_BUDGET_SECONDS, 300)
+
+    def test_a_working_api_is_not_slowed_down(self):
+        outage = Outage(seconds_down=0)
+        self.assertEqual(self.fetch(outage), {"ok": True})
+        self.assertEqual(outage.now, 0)
+
+    def test_optional_extras_do_not_spend_the_shared_pool(self):
+        # try_fetch covers the nice-to-haves. One of those being down must not
+        # cost the live scores their allowance.
+        before = fetch_live_data._retry_budget_left
+        outage = Outage(seconds_down=10 ** 6)
+        self.assertIsNone(self.try_fetch(outage))
+        self.assertEqual(fetch_live_data._retry_budget_left, before)
+        self.assertLessEqual(outage.now, fetch_live_data.OPTIONAL_RETRY_SECONDS)
+
+    def test_an_optional_extra_still_returns_none_instead_of_raising(self):
+        outage = Outage(seconds_down=10 ** 6)
+        self.assertIsNone(self.try_fetch(outage))
 
 
 if __name__ == "__main__":

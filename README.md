@@ -122,8 +122,8 @@ when none of them is:
   right gameweek with an old score. Miss a deadline and it shows the wrong
   gameweek, and nothing later in the week corrects it.
 
-That last case is not hypothetical, and it has now failed twice for different
-reasons.
+That last case is not hypothetical, and it has now failed three times for three
+different reasons.
 
 On 27 August 2026 GitHub delivered no scheduled run at all, and none between
 01:31 and 19:21 on the 28th, so GW2 began with the site still on GW1. That is
@@ -142,6 +142,33 @@ past. And when the live fetcher does see the gameweek move, the standings fetch
 runs on that same pass rather than waiting up to half an hour for its own
 cadence — which is why the live script now runs first in each pass and reports
 `gw_changed`.
+
+The third failure came 43 minutes later the same evening, and it is the reason
+the grace period alone would not have been enough. The hourly run at 18:13 got
+as far as asking for the High Stakes standings and was told:
+
+```
+RuntimeError: Failed to fetch .../leagues-classic/325153/standings/: HTTP Error 503
+```
+
+FPL takes its league and entry endpoints down while it processes a rollover.
+The fetchers allowed three attempts three seconds apart, so the run gave up ten
+seconds after it started and wrote nothing — during the one window where being
+awake mattered.
+
+Two things follow from that. Fetches now back off exponentially against a
+**retry budget** — ten minutes for the hourly script, two for the live one,
+both `FETCH_RETRY_BUDGET_SECONDS` — because runs are scarce enough that waiting
+an outage out inside a run beats forfeiting the run and hoping the next one is
+soon. The budget is shared across a whole run rather than granted per URL: the
+hourly script makes hundreds of requests, and a per-URL budget would let one
+long outage hold a runner for hours.
+
+And a failed live fetch no longer ends the run. That step runs under `set -e`,
+so a raised exception would have taken down the very run being kept alive
+across the deadline. A failing pass is now skipped and retried; the run only
+gives up after `LIVE_FAIL_LIMIT` consecutive failures, about twenty-five
+minutes of solid outage.
 
 ### Why the workflow loops instead of trusting the cron
 

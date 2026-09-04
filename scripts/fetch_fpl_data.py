@@ -49,6 +49,30 @@ MOMENTUM_SIZE = 15
 # Courtesy pause between manager requests so we are not hammering the API.
 REQUEST_PAUSE = 0.25
 
+# FPL takes its league and entry endpoints down while it processes a gameweek
+# rollover, answering 503 to everything for anywhere between a few seconds and
+# several minutes. That is the exact moment this script matters most, and runs
+# are scarce -- GitHub throttles the schedule hard enough that the next one can
+# be hours away -- so an outage is worth waiting out inside a run rather than
+# dying and forfeiting the slot.
+#
+# This is what broke the GW3 rollover: the 18:13 run on 4 September 2026 asked
+# for the High Stakes standings, got a 503, gave up ten seconds later and left
+# the site on GW2.
+#
+# The budget is shared by every fetch in the run rather than granted per URL.
+# This script makes hundreds of requests, and a per-URL budget would let one
+# long outage hold the runner for hours.
+RETRY_BUDGET_SECONDS = float(os.environ.get("FETCH_RETRY_BUDGET_SECONDS") or 600)
+
+_retry_budget_left = RETRY_BUDGET_SECONDS
+
+
+def reset_retry_budget(seconds=None):
+    """Refill the shared budget. Used by the tests; harmless in a real run."""
+    global _retry_budget_left
+    _retry_budget_left = RETRY_BUDGET_SECONDS if seconds is None else seconds
+
 
 def set_output(name, value):
     """Hand a value back to the workflow step that ran us."""
@@ -59,17 +83,29 @@ def set_output(name, value):
     print(f"::publish::{name}={value}")
 
 
-def fetch_json(url, retries=3, delay=3):
-    last_err = None
-    for _ in range(retries):
+def fetch_json(url, first_delay=3, max_delay=60):
+    """Fetch JSON, riding out a temporary FPL outage.
+
+    Backs off exponentially -- 3s, 6s, 12s and so on up to max_delay -- for as
+    long as the run's shared retry budget lasts. One attempt is always made, so
+    an exhausted budget still behaves like a plain fetch that either works or
+    raises.
+    """
+    global _retry_budget_left
+    delay, last_err = first_delay, None
+    while True:
         try:
             req = urllib.request.Request(url, headers=HEADERS)
             with urllib.request.urlopen(req, timeout=25) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except Exception as e:  # noqa: BLE001 - keep retrying regardless of cause
             last_err = e
-            time.sleep(delay)
-    raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        wait = min(delay, max_delay, _retry_budget_left)
+        if wait <= 0:
+            raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        time.sleep(wait)
+        _retry_budget_left -= wait
+        delay *= 2
 
 
 def load_json(path):

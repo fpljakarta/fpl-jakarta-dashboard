@@ -133,6 +133,28 @@ SAMPLES_PER_PAGE = 5
 # whether to keep going. Not committed; see .gitignore.
 STATUS_FILE = ".live-run-status"
 
+# FPL answers 503 across its endpoints while it processes a gameweek rollover,
+# for anywhere between a few seconds and several minutes. This script is the
+# one meant to be awake through exactly that moment, so it waits an outage out
+# rather than raising and taking the whole long-lived run down with it.
+#
+# Smaller than the hourly script's budget because this one runs on a five
+# minute cadence: a pass that spends two minutes retrying still leaves the loop
+# in step, while one that spent ten would not.
+RETRY_BUDGET_SECONDS = float(os.environ.get("FETCH_RETRY_BUDGET_SECONDS") or 120)
+
+# Optional extras get their own small allowance instead of the shared pool, so
+# a nice-to-have that is down cannot spend what the live scores need.
+OPTIONAL_RETRY_SECONDS = 4.0
+
+_retry_budget_left = RETRY_BUDGET_SECONDS
+
+
+def reset_retry_budget(seconds=None):
+    """Refill the shared budget. Used by the tests; harmless in a real run."""
+    global _retry_budget_left
+    _retry_budget_left = RETRY_BUDGET_SECONDS if seconds is None else seconds
+
 
 def set_output(name, value):
     """Hand a value back to the workflow step that ran us."""
@@ -293,23 +315,45 @@ def minutes_since(stamp, now):
     return (now - then).total_seconds() / 60
 
 
-def fetch_json(url, retries=3, delay=3):
-    last_err = None
-    for _ in range(retries):
+def fetch_json(url, first_delay=3, max_delay=30, budget=None):
+    """Fetch JSON, riding out a temporary FPL outage.
+
+    Backs off exponentially -- 3s, 6s, 12s and so on up to max_delay -- for as
+    long as there is retry budget left. One attempt is always made, so an
+    exhausted budget still behaves like a plain fetch.
+
+    budget=None draws on the run's shared pool (see RETRY_BUDGET_SECONDS). A
+    number instead spends that many seconds privately, without touching the
+    pool, which is what the optional extras use so a nice-to-have cannot eat
+    the allowance the live scores depend on.
+    """
+    global _retry_budget_left
+    shared = budget is None
+    private = 0.0 if shared else float(budget)
+    delay, last_err = first_delay, None
+    while True:
         try:
             req = urllib.request.Request(url, headers=HEADERS)
             with urllib.request.urlopen(req, timeout=25) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except Exception as e:  # noqa: BLE001 - retry regardless of cause
             last_err = e
-            time.sleep(delay)
-    raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        left = _retry_budget_left if shared else private
+        wait = min(delay, max_delay, left)
+        if wait <= 0:
+            raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        time.sleep(wait)
+        if shared:
+            _retry_budget_left -= wait
+        else:
+            private -= wait
+        delay *= 2
 
 
 def try_fetch(url):
     """Fetch that returns None instead of raising, for optional extras."""
     try:
-        return fetch_json(url, retries=2, delay=2)
+        return fetch_json(url, first_delay=2, budget=OPTIONAL_RETRY_SECONDS)
     except RuntimeError as e:
         print(f"  skipped: {e}")
         return None
