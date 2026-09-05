@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T23:42:50+00:00",
+  "generated_at": "2026-09-05T23:52:10+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 6,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 219,
-        "event_total": 37
-      },
-      {
-        "rank": 10,
         "last_rank": 9,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
         "entry_id": 2849972,
         "total": 219,
         "event_total": 45
+      },
+      {
+        "rank": 10,
+        "last_rank": 6,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 219,
+        "event_total": 37
       },
       {
         "rank": 12,
@@ -316,21 +316,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 18,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 227,
-        "event_total": 53
-      },
-      {
-        "rank": 8,
         "last_rank": 14,
         "manager": "Bharat Lakhwani",
         "team": "Bpl",
         "entry_id": 5717595,
         "total": 227,
         "event_total": 46
+      },
+      {
+        "rank": 8,
+        "last_rank": 18,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 227,
+        "event_total": 53
       },
       {
         "rank": 10,
@@ -362,18 +362,18 @@
       {
         "rank": 13,
         "last_rank": 2,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 224,
         "event_total": 30
       },
       {
         "rank": 13,
         "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 224,
         "event_total": 30
       },
@@ -469,21 +469,21 @@
       },
       {
         "rank": 25,
-        "last_rank": 21,
-        "manager": "Siddarth Kaul",
-        "team": "sidskids",
-        "entry_id": 11184,
-        "total": 210,
-        "event_total": 37
-      },
-      {
-        "rank": 25,
         "last_rank": 28,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 210,
         "event_total": 41
+      },
+      {
+        "rank": 25,
+        "last_rank": 21,
+        "manager": "Siddarth Kaul",
+        "team": "sidskids",
+        "entry_id": 11184,
+        "total": 210,
+        "event_total": 37
       },
       {
         "rank": 27,
