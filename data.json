@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T18:32:28+00:00",
+  "generated_at": "2026-09-05T20:18:17+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 9,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 219,
-        "event_total": 45
-      },
-      {
-        "rank": 10,
         "last_rank": 6,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 219,
         "event_total": 37
+      },
+      {
+        "rank": 10,
+        "last_rank": 9,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 219,
+        "event_total": 45
       },
       {
         "rank": 12,
@@ -129,11 +129,11 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 211,
-        "event_total": 42
+        "total": 212,
+        "event_total": 43
       },
       {
-        "rank": 13,
+        "rank": 14,
         "last_rank": 12,
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
@@ -170,21 +170,21 @@
       },
       {
         "rank": 18,
+        "last_rank": 19,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 196,
+        "event_total": 45
+      },
+      {
+        "rank": 19,
         "last_rank": 20,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 195,
         "event_total": 48
-      },
-      {
-        "rank": 18,
-        "last_rank": 19,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 195,
-        "event_total": 44
       },
       {
         "rank": 20,
@@ -316,21 +316,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 18,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 227,
-        "event_total": 53
-      },
-      {
-        "rank": 8,
         "last_rank": 14,
         "manager": "Bharat Lakhwani",
         "team": "Bpl",
         "entry_id": 5717595,
         "total": 227,
         "event_total": 46
+      },
+      {
+        "rank": 8,
+        "last_rank": 18,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 227,
+        "event_total": 53
       },
       {
         "rank": 10,
@@ -342,7 +342,16 @@
         "event_total": 35
       },
       {
-        "rank": 11,
+        "rank": 10,
+        "last_rank": 15,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 226,
+        "event_total": 46
+      },
+      {
+        "rank": 12,
         "last_rank": 22,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
@@ -351,13 +360,13 @@
         "event_total": 54
       },
       {
-        "rank": 12,
-        "last_rank": 15,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 225,
-        "event_total": 45
+        "rank": 13,
+        "last_rank": 2,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
+        "total": 224,
+        "event_total": 30
       },
       {
         "rank": 13,
@@ -365,15 +374,6 @@
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
-        "total": 224,
-        "event_total": 30
-      },
-      {
-        "rank": 13,
-        "last_rank": 2,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
         "total": 224,
         "event_total": 30
       },
@@ -424,21 +424,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 18,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 219,
-        "event_total": 45
-      },
-      {
-        "rank": 20,
         "last_rank": 12,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 219,
         "event_total": 37
+      },
+      {
+        "rank": 20,
+        "last_rank": 18,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 219,
+        "event_total": 45
       },
       {
         "rank": 22,
@@ -451,21 +451,21 @@
       },
       {
         "rank": 23,
+        "last_rank": 28,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 212,
+        "event_total": 43
+      },
+      {
+        "rank": 24,
         "last_rank": 22,
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
         "entry_id": 29071,
         "total": 211,
         "event_total": 39
-      },
-      {
-        "rank": 23,
-        "last_rank": 28,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 211,
-        "event_total": 42
       },
       {
         "rank": 25,
@@ -518,8 +518,8 @@
         "manager": "Joanda Febrian",
         "team": "DBM FC",
         "entry_id": 822879,
-        "total": 207,
-        "event_total": 64
+        "total": 208,
+        "event_total": 65
       },
       {
         "rank": 31,
@@ -612,22 +612,22 @@
         "event_total": 32
       },
       {
-        "rank": 41,
+        "rank": 40,
+        "last_rank": 41,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 196,
+        "event_total": 45
+      },
+      {
+        "rank": 42,
         "last_rank": 43,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 195,
         "event_total": 48
-      },
-      {
-        "rank": 41,
-        "last_rank": 41,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 195,
-        "event_total": 44
       },
       {
         "rank": 43,
@@ -653,8 +653,8 @@
         "manager": "Kevin Raymond",
         "team": "Gunners United",
         "entry_id": 5199728,
-        "total": 187,
-        "event_total": 53
+        "total": 189,
+        "event_total": 55
       },
       {
         "rank": 46,
@@ -689,8 +689,8 @@
         "manager": "Anoop Vaswani",
         "team": "Beer Kings",
         "entry_id": 3624633,
-        "total": 178,
-        "event_total": 29
+        "total": 179,
+        "event_total": 30
       },
       {
         "rank": 50,
