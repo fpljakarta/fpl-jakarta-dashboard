@@ -16,9 +16,11 @@ from unittest import mock
 
 import fetch_fpl_data
 from fetch_fpl_data import (
+    attach_squads,
     event_started,
     month_is_over,
     team_values,
+    squad_chip_weeks,
     transfers_by_gameweek,
     winners_for,
 )
@@ -396,6 +398,71 @@ class TestFetchRetryBudget(unittest.TestCase):
         self.assertEqual(self.run_fetch(outage), {"ok": True})
         self.assertEqual(outage.attempts, 1)
         self.assertEqual(outage.now, 0)
+
+
+def wk(entry_id, chip=None):
+    return {"entry_id": entry_id, "manager": f"M{entry_id}", "team": f"T{entry_id}",
+            "in": [], "out": [], "chip": chip}
+
+
+class TestSquadChipWeeks(unittest.TestCase):
+    """Which managers need their squad fetched either side of a chip."""
+
+    def test_finds_wildcards_and_free_hits_only(self):
+        published = {"main": {
+            "2": [wk(1, "wildcard"), wk(2), wk(3, "bboost")],
+            "3": [wk(1), wk(2, "freehit"), wk(3, "3xc")],
+        }}
+        self.assertEqual(squad_chip_weeks(published), [(1, 2), (2, 3)])
+
+    def test_a_manager_in_both_leagues_is_asked_for_once(self):
+        published = {
+            "main": {"2": [wk(7, "wildcard")]},
+            "high_stakes": {"2": [wk(7, "wildcard")]},
+        }
+        self.assertEqual(squad_chip_weeks(published), [(7, 2)])
+
+    def test_nothing_to_fetch_when_no_squad_chip_was_played(self):
+        published = {"main": {"2": [wk(1), wk(2, "bboost")]}}
+        self.assertEqual(squad_chip_weeks(published), [])
+
+    def test_only_published_gameweeks_are_reachable(self):
+        # transfers_by_gameweek already drops gameweeks that have not started,
+        # so a chip played for next week cannot pull a squad in early.
+        published = {"main": {"2": [wk(1, "wildcard")]}}
+        self.assertEqual(squad_chip_weeks(published), [(1, 2)])
+
+
+class TestAttachSquads(unittest.TestCase):
+
+    def test_the_squad_either_side_lands_on_the_row(self):
+        published = {"main": {"3": [wk(1, "wildcard")]}}
+        squads = {(1, 3): [10, 11, 12], (1, 2): [20, 21, 22]}
+        attach_squads(published, squads)
+        row = published["main"]["3"][0]
+        self.assertEqual(row["squad_before"], [20, 21, 22])
+        self.assertEqual(row["squad_after"], [10, 11, 12])
+
+    def test_a_chip_in_the_opening_week_has_no_team_before(self):
+        published = {"main": {"1": [wk(1, "wildcard")]}}
+        attach_squads(published, {(1, 1): [10, 11]})
+        row = published["main"]["1"][0]
+        self.assertEqual(row["squad_after"], [10, 11])
+        self.assertNotIn("squad_before", row)
+
+    def test_a_failed_fetch_leaves_the_row_alone_rather_than_empty(self):
+        published = {"main": {"3": [wk(1, "freehit")]}}
+        attach_squads(published, {})
+        row = published["main"]["3"][0]
+        self.assertNotIn("squad_before", row)
+        self.assertNotIn("squad_after", row)
+
+    def test_rows_without_a_squad_chip_are_untouched(self):
+        published = {"main": {"3": [wk(1), wk(2, "bboost")]}}
+        attach_squads(published, {(1, 3): [1], (1, 2): [2], (2, 3): [3], (2, 2): [4]})
+        for row in published["main"]["3"]:
+            self.assertNotIn("squad_before", row)
+            self.assertNotIn("squad_after", row)
 
 
 if __name__ == "__main__":

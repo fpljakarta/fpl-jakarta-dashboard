@@ -62,6 +62,7 @@ from live_calc import (
     is_over,
     match_in_progress,
     provisional_bonus,
+    rank_managers,
     sample_pages,
     score_squad,
     weekly_awards,
@@ -794,20 +795,9 @@ def main():
         rows, name = fetch_standings(cfg["id"])
         managers = collect_managers(rows, gw, players, bonus, picks_cache)
 
-        # Two orderings: what the table shows now, and what it would show if
-        # every pending bonus and substitution landed as predicted.
-        by_official = sorted(managers, key=lambda m: (-m["gw_points"], m["rank"]))
-        for i, m in enumerate(by_official, start=1):
-            m["live_rank"] = i
-        by_projected = sorted(managers, key=lambda m: (-m["gw_projected"], m["rank"]))
-        for i, m in enumerate(by_projected, start=1):
-            m["projected_rank"] = i
-
-        for m in managers:
-            baseline = m["last_rank"] or m["rank"]
-            m["rank_change"] = baseline - m["live_rank"]
-
-        managers = by_official
+        # Placed on the season total as it stands, not on this gameweek's
+        # score -- see rank_managers. Pure arithmetic, so it is tested.
+        managers = rank_managers(managers)
         out_leagues[key] = {
             "id": cfg["id"],
             "name": cfg["name"],

@@ -71,6 +71,37 @@
   }
   .view-team:hover{ border-bottom-color: var(--lime); }
 
+  /* A wildcard rebuilds the side, so the two squads sit side by side and the
+     reader compares them down the column. Both are ordered keeper-first so the
+     same row is the same position on each side. */
+  .squads{
+    display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    max-width:620px; margin-top:12px;
+  }
+  @media (max-width:520px){ .squads{ grid-template-columns:1fr; gap:16px; } }
+  .squad-head{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.11em;
+    text-transform:uppercase; color: var(--muted-dim); margin-bottom:8px;
+  }
+  .squad-list{ display:flex; flex-direction:column; gap:4px; }
+  .pl{
+    display:grid; grid-template-columns: 30px 1fr auto; gap:8px; align-items:center;
+    padding:5px 9px; border-radius:7px; font-size:13px;
+    border:1px solid var(--line); background: var(--bg-elevated);
+  }
+  .pl .pos{
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.06em;
+    color: var(--muted-dim);
+  }
+  .pl .nm{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .pl .c{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; color: var(--muted-dim);
+  }
+  /* Kept players stay quiet. Only what actually changed is coloured. */
+  .pl.gone{ color: var(--down); border-color: rgba(255,107,91,.28); }
+  .pl.new { color: var(--up);   border-color: rgba(110,231,160,.28); }
+  .squad-note{ color: var(--muted-dim); font-size:12.5px; font-style:italic; }
+
   .count{
     font-family:'IBM Plex Mono', monospace; font-size:11px; color: var(--muted-dim);
     margin-top:6px;
@@ -159,6 +190,37 @@ function teamUrl(entry, gw){
   return `https://fantasy.premierleague.com/entry/${entry}/event/${gw}`;
 }
 
+/* Keeper, defence, midfield, attack -- so the same row is the same position
+   in both columns and the eye can run straight down. */
+const POS_ORDER = { GKP: 0, DEF: 1, MID: 2, FWD: 3 };
+function playerPos(id){
+  const p = (state.data.players || {})[String(id)];
+  return p && p.pos ? p.pos : '';
+}
+function bySquadOrder(a, b){
+  const pa = POS_ORDER[playerPos(a)], pb = POS_ORDER[playerPos(b)];
+  if(pa !== pb) return (pa === undefined ? 9 : pa) - (pb === undefined ? 9 : pb);
+  return playerName(a).localeCompare(playerName(b));
+}
+
+/* One squad column. `changed` is the other squad: anyone missing from it is
+   what moved, and gets the only colour on the list. */
+function squadColumn(title, ids, other, tone){
+  const held = new Set(other || []);
+  const list = (ids || []).slice().sort(bySquadOrder).map(id => {
+    const moved = (other && !held.has(id)) ? ` ${tone}` : '';
+    return `<div class="pl${moved}">
+      <span class="pos">${esc(playerPos(id))}</span>
+      <span class="nm">${esc(playerName(id))}</span>
+      ${playerCost(id)}
+    </div>`;
+  }).join('');
+  return `<div class="squad-col">
+    <div class="squad-head">${esc(title)}</div>
+    <div class="squad-list">${list}</div>
+  </div>`;
+}
+
 function weeks(){
   const lg = (state.data.gameweeks || {})[state.league] || {};
   return Object.keys(lg).map(Number).sort((a, b) => b - a);
@@ -170,12 +232,28 @@ function rowFor(m){
 
   let body;
   if(squadChip){
-    // The chip is the story. What the fifteen individual moves were is on FPL.
+    // A rebuilt squad is not a list of swaps -- FPL logs every click, and for
+    // one manager that came to 37 moves. The honest account is the team before
+    // and the team after, with only what actually changed picked out.
     body = `<div class="chip-line">
         <span class="chip-badge">${esc(squadChip)}</span>
         <a class="view-team" href="${teamUrl(m.entry_id, state.gw)}"
            target="_blank" rel="noopener">View team</a>
       </div>`;
+    if(m.squad_after && m.squad_after.length){
+      const before = m.squad_before && m.squad_before.length ? m.squad_before : null;
+      body += `<div class="squads">`
+        + (before
+            ? squadColumn('Old team', before, m.squad_after, 'gone')
+            : `<div class="squad-col">
+                 <div class="squad-head">Old team</div>
+                 <div class="squad-note">${state.gw === 1
+                    ? 'First squad of the season.'
+                    : 'Not available.'}</div>
+               </div>`)
+        + squadColumn('New team', m.squad_after, before, 'new')
+        + `</div>`;
+    }
   } else if(!m.out.length && !m.in.length){
     body = `<div class="none">No Transfer</div>`
          + (otherChip ? `<div class="chip-line" style="margin-top:8px;">

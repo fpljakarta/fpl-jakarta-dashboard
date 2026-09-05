@@ -29,6 +29,8 @@ from live_calc import (
     sample_pages,
     score_squad,
     weekly_awards,
+    rank_managers,
+    _extremes,
 )
 
 
@@ -556,6 +558,211 @@ class TestCounts(unittest.TestCase):
     def test_captain_counts(self):
         managers = [{"captain": 5}, {"captain": 5}, {"captain": 9}, {"captain": None}]
         self.assertEqual(captain_counts(managers), {5: 2, 9: 1})
+
+
+def manager(rank, total, gw, last_rank=None, projected=None):
+    """One row as collect_managers builds it, trimmed to what ranking reads."""
+    return {
+        "rank": rank,
+        "last_rank": rank if last_rank is None else last_rank,
+        "total": total,
+        "total_projected": total if projected is None else projected,
+        "gw_points": gw,
+    }
+
+
+class TestRankManagers(unittest.TestCase):
+    """A league table is ordered by the league, not by the afternoon.
+
+    Taken from the Main league on 5 September 2026, where the site showed
+    Seera Squad first on 150 points and I Know Nothing sixth on 214. The table
+    was being sorted by gameweek score, so the manager having the best day
+    outranked the manager leading the league.
+    """
+
+    # (rank, total, gw_points) exactly as the broken table showed them.
+    SCREENSHOT = [
+        manager(1, 150, 26),
+        manager(2, 193, 19),
+        manager(3, 152, 19),
+        manager(4, 190, 18),
+        manager(5, 160, 17),
+        manager(6, 214, 16),
+        manager(7, 188, 16),
+        manager(8, 165, 16),
+        manager(9, 118, 16),
+        manager(10, 177, 14),
+    ]
+
+    def test_the_league_leader_is_first(self):
+        placed = rank_managers([dict(m) for m in self.SCREENSHOT])
+        self.assertEqual(placed[0]["total"], 214)
+        self.assertEqual(placed[0]["live_rank"], 1)
+
+    def test_the_table_runs_highest_total_first(self):
+        placed = rank_managers([dict(m) for m in self.SCREENSHOT])
+        totals = [m["total"] for m in placed]
+        self.assertEqual(totals, sorted(totals, reverse=True))
+        self.assertEqual(
+            totals, [214, 193, 190, 188, 177, 165, 160, 152, 150, 118]
+        )
+
+    def test_the_best_gameweek_does_not_win_the_table(self):
+        # 26 was the best score of the round and the lowest total but one.
+        # It must not lead the league.
+        placed = rank_managers([dict(m) for m in self.SCREENSHOT])
+        best_gw = max(placed, key=lambda m: m["gw_points"])
+        self.assertEqual(best_gw["gw_points"], 26)
+        self.assertEqual(best_gw["live_rank"], 9)
+
+    def test_positions_are_a_full_run_with_no_gaps_or_repeats(self):
+        placed = rank_managers([dict(m) for m in self.SCREENSHOT])
+        self.assertEqual([m["live_rank"] for m in placed],
+                         list(range(1, len(self.SCREENSHOT) + 1)))
+
+    def test_projected_ranks_on_the_projected_total(self):
+        # Second place is 21 behind and has a big bonus haul pending; if it
+        # lands they go top. The live table still shows them second.
+        rows = [
+            manager(1, 214, 16, projected=214),
+            manager(2, 193, 19, projected=225),
+        ]
+        placed = rank_managers(rows)
+        self.assertEqual(placed[0]["total"], 214)
+        leader, chaser = placed
+        self.assertEqual(leader["live_rank"], 1)
+        self.assertEqual(chaser["live_rank"], 2)
+        self.assertEqual(chaser["projected_rank"], 1)
+        self.assertEqual(leader["projected_rank"], 2)
+
+    def test_rank_change_compares_like_with_like(self):
+        # Up three places from last gameweek's finish. This was nonsense while
+        # live_rank came from the gameweek and last_rank from the table.
+        rows = [manager(1, 200, 10, last_rank=4)]
+        placed = rank_managers(rows)
+        self.assertEqual(placed[0]["live_rank"], 1)
+        self.assertEqual(placed[0]["rank_change"], 3)
+
+    def test_the_opening_gameweek_reports_no_movement(self):
+        # last_rank is 0 before anyone has finished a gameweek.
+        rows = [manager(1, 60, 60, last_rank=0), manager(2, 50, 50, last_rank=0)]
+        placed = rank_managers(rows)
+        self.assertEqual([m["rank_change"] for m in placed], [0, 0])
+
+    def test_a_tie_keeps_the_order_the_league_had(self):
+        # Equal totals must not swap places between runs, or the table would
+        # jitter every five minutes for no reason.
+        rows = [manager(7, 180, 12), manager(3, 180, 30), manager(5, 180, 1)]
+        first = [m["rank"] for m in rank_managers([dict(m) for m in rows])]
+        second = [m["rank"] for m in rank_managers([dict(m) for m in rows])]
+        self.assertEqual(first, [3, 5, 7])
+        self.assertEqual(first, second)
+
+    def test_every_manager_is_placed_and_none_lost(self):
+        rows = [dict(m) for m in self.SCREENSHOT]
+        placed = rank_managers(rows)
+        self.assertEqual(len(placed), len(rows))
+        self.assertTrue(all("live_rank" in m for m in rows))
+        self.assertTrue(all("projected_rank" in m for m in rows))
+
+
+class TestExtremes(unittest.TestCase):
+    """Best and worst are only a pair when something separates them."""
+
+    def test_a_level_field_awards_neither(self):
+        pool = [{"n": 1, "v": 0}, {"n": 2, "v": 0}, {"n": 3, "v": 0}]
+        self.assertEqual(_extremes(pool, lambda m: m["v"]), (None, None))
+
+    def test_a_separated_field_gives_both_ends(self):
+        pool = [{"n": 1, "v": 4}, {"n": 2, "v": 9}, {"n": 3, "v": 2}]
+        best, worst = _extremes(pool, lambda m: m["v"])
+        self.assertEqual(best["n"], 2)
+        self.assertEqual(worst["n"], 3)
+
+    def test_an_empty_pool_awards_neither(self):
+        self.assertEqual(_extremes([], lambda m: m["v"]), (None, None))
+
+    def test_the_where_filter_is_applied_before_comparing(self):
+        pool = [{"v": 0, "ok": False}, {"v": 5, "ok": True}, {"v": 1, "ok": True}]
+        best, worst = _extremes(pool, lambda m: m["v"], where=lambda m: m["ok"])
+        self.assertEqual(best["v"], 5)
+        self.assertEqual(worst["v"], 1)
+
+    def test_one_candidate_alone_is_not_a_pair(self):
+        # A field of one is level with itself: it is neither best nor worst.
+        self.assertEqual(_extremes([{"v": 7}], lambda m: m["v"]), (None, None))
+
+
+def award_manager(entry, gw_points, captain, chip=None):
+    """One manager in the shape weekly_awards reads."""
+    return {
+        "entry": entry, "manager": f"M{entry}", "team": f"T{entry}",
+        "gw_points": gw_points, "captain": captain, "chip": chip,
+        "bench_points": 0, "hit": 0, "value": 100.0, "rank_change": 0,
+        "picks": [{"id": captain, "slot": 1, "mult": 2,
+                   "captain": True, "vice": False, "benched": False}],
+    }
+
+
+class TestNoContradictoryTrophies(unittest.TestCase):
+    """The 5 September 2026 awards page gave one manager both captain trophies.
+
+    Twenty-five of twenty-six had captained Haaland and his match had not
+    started, so every haul was nought. Stable sorting then handed the same
+    person Captain Marvel and Armband Fail, nought points each.
+    """
+
+    # Points come from the players lookup, which is how weekly_awards reads a
+    # captain's haul. Haaland has not kicked a ball; João Pedro has scored.
+    PLAYERS = {
+        411: player("FWD", points=0, name="Haaland"),
+        165: player("FWD", points=6, name="João Pedro"),
+    }
+
+    def cards(self, managers, players=None):
+        return {c["key"]: c
+                for c in weekly_awards(managers, players or self.PLAYERS)}
+
+    def test_nobody_wins_best_and_worst_captain_at_once(self):
+        before_kickoff = [award_manager(i, 0, 411) for i in range(1, 6)]
+        cards = self.cards(before_kickoff)
+        self.assertIsNone(cards["captain_marvel"]["entry"])
+        self.assertIsNone(cards["armband_fail"]["entry"])
+
+    def test_the_captain_trophies_return_once_hauls_differ(self):
+        # One captained João Pedro, who has scored; the other Haaland, who has
+        # not. Now there is something to tell them apart.
+        managers = [award_manager(1, 12, 165), award_manager(2, 4, 411)]
+        cards = self.cards(managers)
+        self.assertEqual(cards["captain_marvel"]["entry"], 1)
+        self.assertEqual(cards["armband_fail"]["entry"], 2)
+        self.assertEqual(cards["captain_marvel"]["value"], "12 pts")
+        self.assertEqual(cards["armband_fail"]["value"], "0 pts")
+
+    def test_no_paired_trophy_ever_goes_to_the_same_manager_twice(self):
+        # Whatever the state of play, best and worst must not be one person.
+        for scores in ([0, 0, 0], [5, 5, 5], [1, 2, 3]):
+            managers = [award_manager(i, s, 411) for i, s in enumerate(scores, 1)]
+            cards = self.cards(managers)
+            for good, bad in (("top_gun", "tough_week"),
+                              ("captain_marvel", "armband_fail"),
+                              ("rank_riser", "rank_crasher")):
+                a = cards[good]["entry"]
+                b = cards[bad]["entry"]
+                if a is not None and b is not None:
+                    self.assertNotEqual(a, b, f"{good}/{bad} on {scores}")
+
+    def test_a_level_gameweek_awards_no_top_gun_either(self):
+        managers = [award_manager(i, 0, 411) for i in range(1, 4)]
+        cards = self.cards(managers)
+        self.assertIsNone(cards["top_gun"]["entry"])
+        self.assertIsNone(cards["tough_week"]["entry"])
+
+    def test_a_real_gameweek_still_awards_top_gun(self):
+        managers = [award_manager(1, 26, 411), award_manager(2, 14, 411)]
+        cards = self.cards(managers)
+        self.assertEqual(cards["top_gun"]["entry"], 1)
+        self.assertEqual(cards["tough_week"]["entry"], 2)
 
 
 if __name__ == "__main__":

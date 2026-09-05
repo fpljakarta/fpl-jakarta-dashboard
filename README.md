@@ -14,9 +14,21 @@ fifth copy of the same CSS.
 ## Transfers, and what is deliberately not on that page
 
 `transfers.html` shows who each manager sold and who they brought in, one
-gameweek at a time. A wildcard or a free hit is named instead, with a link to
-the team on FPL: those chips can move the whole squad, so fifteen rows of swaps
-would be noise where the chip is the story.
+gameweek at a time.
+
+A wildcard or a free hit is shown differently, because it is a different kind
+of event: the squad before it and the squad after it, side by side, with only
+the players who actually changed picked out — red on the left for those who
+went, green on the right for those who arrived, and everyone kept left quiet.
+Both columns run keeper-first so the same row is the same position on each
+side. The chip badge and the link to the team on FPL stay above them. Reporting
+a rebuild as a list of swaps would be a transcript of somebody trying shapes
+rather than an account of what they did.
+
+The squads either side of a chip are the only per-gameweek picks this script
+fetches, and only for the managers who actually played one, so it costs a
+handful of requests rather than one per manager per week. A chip played in GW1
+has no team before it, and says so rather than showing an empty column.
 
 **A gameweek appears only once its deadline has passed.** FPL will happily tell
 you what somebody has already done for the gameweek *after* this one, and
@@ -313,6 +325,42 @@ The bonus shown on a fixture is deliberately computed differently from the
 bonus added to a manager's projected score. The scoring path must skip any
 fixture whose bonus FPL has already published, or it would count it twice; the
 fixture list has no such worry and always shows the 3/2/1, published or not.
+
+## What decides a position in the live table
+
+The season total, as it stands right now — the running total including whatever
+has been scored so far today. Not the gameweek score.
+
+This is worth writing down because it was wrong until 5 September 2026. The
+table was sorted by gameweek points, so on GW3 the Main league showed a manager
+on 150 points in first place and the league leader on 214 in sixth: whoever was
+having the best afternoon went top. Both leagues were affected. It also made the
+up-and-down arrow meaningless, since it compared last gameweek's finishing
+position — a standing by total — against a position by gameweek score.
+
+`rank_managers` in `live_calc.py` now does the placing, and being pure it is
+tested: the fixture is the real broken table from that day, and the test asserts
+that the manager on 214 is first and the manager with the best gameweek is
+ninth. Ties keep the order the league itself had, so equal totals do not jitter
+between runs five minutes apart.
+
+The projected table is the same thing over projected totals, so it answers "who
+would lead if every pending bonus and substitution landed", not "who had the
+best week".
+
+### A trophy nobody has earned yet is not awarded
+
+Best-and-worst pairs — Top Gun and Tough Week, Captain Marvel and Armband Fail
+— are only handed out when something actually separates the field. While every
+candidate is level they go to nobody.
+
+This is not hypothetical either. On 5 September 2026 twenty-five of the
+twenty-six High Stakes managers had captained the same player and his match had
+not kicked off, so every captain haul was nought. Sorting is stable, so asking
+for the top and the bottom of that list returned the same manager twice, and
+the page gave one person both Captain Marvel and Armband Fail — best captain of
+the week and worst captain of the week, nought points each. Rank Riser and Rank
+Crasher already guarded against this; the other two now do too.
 
 ## Two scores, and why
 
