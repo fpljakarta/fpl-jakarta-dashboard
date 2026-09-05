@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T13:19:41+00:00",
+  "generated_at": "2026-09-05T13:53:30+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -174,8 +174,8 @@
         "manager": "joachim chia",
         "team": "brotatogyokeres",
         "entry_id": 4712875,
-        "total": 155,
-        "event_total": 7
+        "total": 154,
+        "event_total": 6
       },
       {
         "rank": 19,
@@ -496,21 +496,21 @@
       },
       {
         "rank": 28,
-        "last_rank": 26,
-        "manager": "Rayan Hamza",
-        "team": "Zarks",
-        "entry_id": 2805634,
-        "total": 173,
-        "event_total": 3
-      },
-      {
-        "rank": 28,
         "last_rank": 28,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 173,
         "event_total": 4
+      },
+      {
+        "rank": 28,
+        "last_rank": 26,
+        "manager": "Rayan Hamza",
+        "team": "Zarks",
+        "entry_id": 2805634,
+        "total": 173,
+        "event_total": 3
       },
       {
         "rank": 30,
@@ -532,21 +532,21 @@
       },
       {
         "rank": 32,
-        "last_rank": 32,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 171,
-        "event_total": 7
-      },
-      {
-        "rank": 32,
         "last_rank": 30,
         "manager": "Michael Kenneth",
         "team": "Pool4life",
         "entry_id": 8019077,
         "total": 171,
         "event_total": 4
+      },
+      {
+        "rank": 32,
+        "last_rank": 32,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 171,
+        "event_total": 7
       },
       {
         "rank": 34,
@@ -617,8 +617,8 @@
         "manager": "joachim chia",
         "team": "brotatogyokeres",
         "entry_id": 4712875,
-        "total": 155,
-        "event_total": 7
+        "total": 154,
+        "event_total": 6
       },
       {
         "rank": 42,
@@ -703,21 +703,21 @@
       },
       {
         "rank": 51,
-        "last_rank": 47,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
-        "total": 140,
-        "event_total": 4
-      },
-      {
-        "rank": 51,
         "last_rank": 49,
         "manager": "Kevin Raymond",
         "team": "Gunners United",
         "entry_id": 5199728,
         "total": 140,
         "event_total": 6
+      },
+      {
+        "rank": 51,
+        "last_rank": 47,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
+        "total": 140,
+        "event_total": 4
       },
       {
         "rank": 53,
