@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T17:56:54+00:00",
+  "generated_at": "2026-09-05T18:03:01+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 6,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 219,
-        "event_total": 37
-      },
-      {
-        "rank": 10,
         "last_rank": 9,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
         "entry_id": 2849972,
         "total": 219,
         "event_total": 45
+      },
+      {
+        "rank": 10,
+        "last_rank": 6,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 219,
+        "event_total": 37
       },
       {
         "rank": 12,
@@ -170,21 +170,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 19,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 195,
-        "event_total": 44
-      },
-      {
-        "rank": 18,
         "last_rank": 20,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 195,
         "event_total": 48
+      },
+      {
+        "rank": 18,
+        "last_rank": 19,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 195,
+        "event_total": 44
       },
       {
         "rank": 20,
@@ -460,21 +460,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 22,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "entry_id": 29071,
-        "total": 211,
-        "event_total": 39
-      },
-      {
-        "rank": 24,
         "last_rank": 28,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 211,
         "event_total": 42
+      },
+      {
+        "rank": 24,
+        "last_rank": 22,
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "entry_id": 29071,
+        "total": 211,
+        "event_total": 39
       },
       {
         "rank": 26,
