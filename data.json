@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T10:54:23+00:00",
+  "generated_at": "2026-09-05T11:02:15+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -271,21 +271,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 8,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 197,
-        "event_total": 11
-      },
-      {
-        "rank": 3,
         "last_rank": 2,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
         "total": 197,
         "event_total": 3
+      },
+      {
+        "rank": 3,
+        "last_rank": 8,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 197,
+        "event_total": 11
       },
       {
         "rank": 3,
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 29,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 177,
-        "event_total": 9
-      },
-      {
-        "rank": 22,
         "last_rank": 33,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 177,
         "event_total": 14
+      },
+      {
+        "rank": 22,
+        "last_rank": 29,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 177,
+        "event_total": 9
       },
       {
         "rank": 24,
