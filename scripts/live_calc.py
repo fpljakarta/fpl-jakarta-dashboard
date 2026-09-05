@@ -473,6 +473,28 @@ def _best(managers, key, reverse=True, where=None):
     return sorted(pool, key=key, reverse=reverse)[0]
 
 
+def _extremes(managers, key, where=None):
+    """The best and the worst of a field -- but only if they differ.
+
+    A best-and-worst pair says nothing while the whole field is level, and
+    early in a gameweek it is: nobody's captain has kicked a ball, so every
+    haul is nought. Asking _best for the top and the bottom of that gives the
+    same manager twice, because sorting is stable, which is how one manager
+    came to hold both Captain Marvel and Armband Fail on 5 September 2026 --
+    best captain of the week and worst captain of the week, nought points each.
+
+    A tie across the entire field means neither trophy is awarded yet.
+    """
+    pool = [m for m in managers if (where is None or where(m))]
+    if not pool:
+        return None, None
+    ranked = sorted(pool, key=key, reverse=True)
+    best, worst = ranked[0], ranked[-1]
+    if key(best) == key(worst):
+        return None, None
+    return best, worst
+
+
 CHIP_NAMES = {
     "bboost": "BB",
     "3xc": "TC",
@@ -502,16 +524,14 @@ def weekly_awards(managers, players, ownership=None):
 
     cards = []
 
-    top = _best(managers, lambda m: m["gw_points"])
+    top, low = _extremes(managers, lambda m: m["gw_points"])
     cards.append(_card(
         "top_gun", "Top Gun", "Highest Gameweek score", "good", "star",
-        top, f"{top['gw_points']} pts",
+        top, f"{top['gw_points']} pts" if top else None,
     ))
-
-    low = _best(managers, lambda m: m["gw_points"], reverse=False)
     cards.append(_card(
         "tough_week", "Tough Week", "Lowest Gameweek score", "bad", "layers",
-        low, f"{low['gw_points']} pts",
+        low, f"{low['gw_points']} pts" if low else None,
     ))
 
     riser = _best(managers, lambda m: m.get("rank_change", 0))
@@ -568,14 +588,13 @@ def weekly_awards(managers, players, ownership=None):
         mult = 3 if m.get("chip") == "3xc" else 2
         return pts(cap) * mult
 
-    skipper = _best(managers, captain_haul, where=lambda m: m.get("captain"))
+    skipper, flop = _extremes(managers, captain_haul,
+                              where=lambda m: m.get("captain"))
     cards.append(_card(
         "captain_marvel", "Captain Marvel", "Best captain haul", "good", "star",
         skipper, f"{captain_haul(skipper)} pts" if skipper else None,
         f"Captained {name(skipper['captain'])}" if skipper else None,
     ))
-
-    flop = _best(managers, captain_haul, reverse=False, where=lambda m: m.get("captain"))
     cards.append(_card(
         "armband_fail", "Armband Fail", "Worst captain haul", "bad", "star",
         flop, f"{captain_haul(flop)} pts" if flop else None,
@@ -622,6 +641,44 @@ def weekly_awards(managers, players, ownership=None):
     ))
 
     return cards
+
+
+def rank_managers(managers):
+    """Place a league's managers, live.
+
+    Position is decided by the season total as it stands right now -- the
+    running total including whatever has been scored so far today -- because
+    that is what a league table means. Ranking on the gameweek score instead
+    put a manager on 150 points above one on 214 for having a better
+    afternoon, which is what the table did until 5 September 2026.
+
+    Each manager gets `live_rank` from the totals as they are and
+    `projected_rank` from the totals as they would be if every pending bonus
+    and substitution landed as predicted, plus `rank_change`: how many places
+    they have moved since last gameweek's finish. Ties keep the order the
+    league itself had, so equal totals never jitter between runs.
+
+    Returns the managers in table order. The same list objects are updated in
+    place, so a caller holding the original order sees the new keys too.
+    """
+    by_official = sorted(managers, key=lambda m: (-m["total"], m["rank"]))
+    for i, m in enumerate(by_official, start=1):
+        m["live_rank"] = i
+
+    by_projected = sorted(
+        managers, key=lambda m: (-m["total_projected"], m["rank"])
+    )
+    for i, m in enumerate(by_projected, start=1):
+        m["projected_rank"] = i
+
+    for m in managers:
+        # last_rank is where they finished the previous gameweek. It is 0 in
+        # the opening week, when there is nowhere to have moved from, so fall
+        # back to the standing rank and report no movement.
+        baseline = m.get("last_rank") or m["rank"]
+        m["rank_change"] = baseline - m["live_rank"]
+
+    return by_official
 
 
 def ownership_counts(managers):

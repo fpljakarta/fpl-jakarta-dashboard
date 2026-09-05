@@ -62,6 +62,7 @@ from live_calc import (
     is_over,
     match_in_progress,
     provisional_bonus,
+    rank_managers,
     sample_pages,
     score_squad,
     weekly_awards,
@@ -133,6 +134,28 @@ SAMPLES_PER_PAGE = 5
 # whether to keep going. Not committed; see .gitignore.
 STATUS_FILE = ".live-run-status"
 
+# FPL answers 503 across its endpoints while it processes a gameweek rollover,
+# for anywhere between a few seconds and several minutes. This script is the
+# one meant to be awake through exactly that moment, so it waits an outage out
+# rather than raising and taking the whole long-lived run down with it.
+#
+# Smaller than the hourly script's budget because this one runs on a five
+# minute cadence: a pass that spends two minutes retrying still leaves the loop
+# in step, while one that spent ten would not.
+RETRY_BUDGET_SECONDS = float(os.environ.get("FETCH_RETRY_BUDGET_SECONDS") or 120)
+
+# Optional extras get their own small allowance instead of the shared pool, so
+# a nice-to-have that is down cannot spend what the live scores need.
+OPTIONAL_RETRY_SECONDS = 4.0
+
+_retry_budget_left = RETRY_BUDGET_SECONDS
+
+
+def reset_retry_budget(seconds=None):
+    """Refill the shared budget. Used by the tests; harmless in a real run."""
+    global _retry_budget_left
+    _retry_budget_left = RETRY_BUDGET_SECONDS if seconds is None else seconds
+
 
 def set_output(name, value):
     """Hand a value back to the workflow step that ran us."""
@@ -143,7 +166,8 @@ def set_output(name, value):
     print(f"::publish::{name}={value}")
 
 
-def write_status(published, in_play, starts_soon=False, deadline_soon=False):
+def write_status(published, in_play, starts_soon=False, deadline_soon=False,
+                 gw_changed=False):
     """
     Tell the workflow what just happened and whether football is still coming.
 
@@ -159,11 +183,13 @@ def write_status(published, in_play, starts_soon=False, deadline_soon=False):
             "in_play": bool(in_play),
             "starts_soon": bool(starts_soon),
             "deadline_soon": bool(deadline_soon),
+            "gw_changed": bool(gw_changed),
         }, f)
     set_output("publish", "true" if published else "false")
     set_output("in_play", "true" if in_play else "false")
     set_output("starts_soon", "true" if starts_soon else "false")
     set_output("deadline_soon", "true" if deadline_soon else "false")
+    set_output("gw_changed", "true" if gw_changed else "false")
 
 
 def load_json_file(path):
@@ -229,9 +255,22 @@ def kickoff_imminent(fixtures, now, within_minutes):
     return False
 
 
-def deadline_imminent(events, now, within_minutes):
+# How long to keep publishing after a deadline has passed. FPL does not move
+# `is_current` at the stroke of the deadline -- it takes a few minutes -- so a
+# run that stops the instant the clock ticks over has waited for the rollover
+# and then walked out of the room before it happened.
+#
+# That is exactly what run #538 did on 4 September: it held for four hours,
+# reached the 17:30 deadline, and broke out of the loop at 17:30:16 with
+# `deadline_soon=false`. The site went on showing GW2.
+DEADLINE_GRACE_MINUTES = 45
+
+
+def deadline_imminent(events, now, within_minutes,
+                      grace_minutes=DEADLINE_GRACE_MINUTES):
     """
-    Whether the next gameweek's deadline falls inside the window.
+    Whether a gameweek deadline is close enough to keep publishing for --
+    either coming up inside the window, or just gone.
 
     A gameweek starts at its deadline: that is the moment FPL moves `is_current`
     on, and the moment every page on the site should stop saying the old number.
@@ -239,12 +278,14 @@ def deadline_imminent(events, now, within_minutes):
     week corrects it -- the site simply shows the wrong gameweek until some run
     happens to land.
 
-    That is not hypothetical. GitHub delivered no scheduled run at all on 27
-    August 2026 and none between 01:31 and 19:21 on the 28th; the GW2 deadline
-    passed at 17:30 and the site sat on GW1 until the workflow was started by
-    hand.
+    That is not hypothetical, twice over. GitHub delivered no scheduled run at
+    all on 27 August 2026 and none between 01:31 and 19:21 on the 28th, so GW2
+    started with the site on GW1. And on 4 September a run *was* there, having
+    waited four hours for the 17:30 deadline -- and stopped sixteen seconds
+    after it, before FPL had moved anything. Hence the grace period: the
+    interesting moment is not the deadline, it is the minutes just after it.
     """
-    soonest = None
+    ahead, behind = None, None
     for ev in events or []:
         stamp = ev.get("deadline_time")
         if not stamp:
@@ -253,10 +294,13 @@ def deadline_imminent(events, now, within_minutes):
             when = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
         except (AttributeError, ValueError):
             continue
-        ahead = (when - now).total_seconds() / 60
-        if 0 <= ahead and (soonest is None or ahead < soonest):
-            soonest = ahead
-    return soonest is not None and soonest <= within_minutes
+        delta = (when - now).total_seconds() / 60
+        if delta >= 0:
+            ahead = delta if ahead is None else min(ahead, delta)
+        else:
+            behind = -delta if behind is None else min(behind, -delta)
+    return ((ahead is not None and ahead <= within_minutes)
+            or (behind is not None and behind <= grace_minutes))
 
 
 def minutes_since(stamp, now):
@@ -272,23 +316,45 @@ def minutes_since(stamp, now):
     return (now - then).total_seconds() / 60
 
 
-def fetch_json(url, retries=3, delay=3):
-    last_err = None
-    for _ in range(retries):
+def fetch_json(url, first_delay=3, max_delay=30, budget=None):
+    """Fetch JSON, riding out a temporary FPL outage.
+
+    Backs off exponentially -- 3s, 6s, 12s and so on up to max_delay -- for as
+    long as there is retry budget left. One attempt is always made, so an
+    exhausted budget still behaves like a plain fetch.
+
+    budget=None draws on the run's shared pool (see RETRY_BUDGET_SECONDS). A
+    number instead spends that many seconds privately, without touching the
+    pool, which is what the optional extras use so a nice-to-have cannot eat
+    the allowance the live scores depend on.
+    """
+    global _retry_budget_left
+    shared = budget is None
+    private = 0.0 if shared else float(budget)
+    delay, last_err = first_delay, None
+    while True:
         try:
             req = urllib.request.Request(url, headers=HEADERS)
             with urllib.request.urlopen(req, timeout=25) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except Exception as e:  # noqa: BLE001 - retry regardless of cause
             last_err = e
-            time.sleep(delay)
-    raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        left = _retry_budget_left if shared else private
+        wait = min(delay, max_delay, left)
+        if wait <= 0:
+            raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        time.sleep(wait)
+        if shared:
+            _retry_budget_left -= wait
+        else:
+            private -= wait
+        delay *= 2
 
 
 def try_fetch(url):
     """Fetch that returns None instead of raising, for optional extras."""
     try:
-        return fetch_json(url, retries=2, delay=2)
+        return fetch_json(url, first_delay=2, budget=OPTIONAL_RETRY_SECONDS)
     except RuntimeError as e:
         print(f"  skipped: {e}")
         return None
@@ -707,7 +773,7 @@ def main():
               f"/{len(fixtures)} fixtures done, {len(upcoming)} still to come. "
               f"Skipping the manager fetch and leaving live.json untouched."
               + (" Waiting here for the next kick-off." if starts_soon else ""))
-        write_status(False, in_play, starts_soon, deadline_soon)
+        write_status(False, in_play, starts_soon, deadline_soon, not same_gw)
         return
 
     print(f"GW{gw}: publishing because {'; '.join(reasons)}.")
@@ -729,20 +795,9 @@ def main():
         rows, name = fetch_standings(cfg["id"])
         managers = collect_managers(rows, gw, players, bonus, picks_cache)
 
-        # Two orderings: what the table shows now, and what it would show if
-        # every pending bonus and substitution landed as predicted.
-        by_official = sorted(managers, key=lambda m: (-m["gw_points"], m["rank"]))
-        for i, m in enumerate(by_official, start=1):
-            m["live_rank"] = i
-        by_projected = sorted(managers, key=lambda m: (-m["gw_projected"], m["rank"]))
-        for i, m in enumerate(by_projected, start=1):
-            m["projected_rank"] = i
-
-        for m in managers:
-            baseline = m["last_rank"] or m["rank"]
-            m["rank_change"] = baseline - m["live_rank"]
-
-        managers = by_official
+        # Placed on the season total as it stands, not on this gameweek's
+        # score -- see rank_managers. Pure arithmetic, so it is tested.
+        managers = rank_managers(managers)
         out_leagues[key] = {
             "id": cfg["id"],
             "name": cfg["name"],
@@ -847,7 +902,7 @@ def main():
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
           f"({len(picks_cache)} unique), {done}/{len(fixtures)} fixtures finished.")
-    write_status(True, in_play, starts_soon, deadline_soon)
+    write_status(True, in_play, starts_soon, deadline_soon, not same_gw)
 
 
 if __name__ == "__main__":

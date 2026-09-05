@@ -14,9 +14,21 @@ fifth copy of the same CSS.
 ## Transfers, and what is deliberately not on that page
 
 `transfers.html` shows who each manager sold and who they brought in, one
-gameweek at a time. A wildcard or a free hit is named instead, with a link to
-the team on FPL: those chips can move the whole squad, so fifteen rows of swaps
-would be noise where the chip is the story.
+gameweek at a time.
+
+A wildcard or a free hit is shown differently, because it is a different kind
+of event: the squad before it and the squad after it, side by side, with only
+the players who actually changed picked out — red on the left for those who
+went, green on the right for those who arrived, and everyone kept left quiet.
+Both columns run keeper-first so the same row is the same position on each
+side. The chip badge and the link to the team on FPL stay above them. Reporting
+a rebuild as a list of swaps would be a transcript of somebody trying shapes
+rather than an account of what they did.
+
+The squads either side of a chip are the only per-gameweek picks this script
+fetches, and only for the managers who actually played one, so it costs a
+handful of requests rather than one per manager per week. A chip played in GW1
+has no team before it, and says so rather than showing an empty column.
 
 **A gameweek appears only once its deadline has passed.** FPL will happily tell
 you what somebody has already done for the gameweek *after* this one, and
@@ -116,14 +128,59 @@ when none of them is:
 - **a match is being played** — provisional bonus moves continuously;
 - **a kick-off falls inside the window** — a run that wakes before the whistle
   and exits leaves the half that follows to whenever the next run arrives;
-- **a gameweek deadline falls inside the window** — this is the one that
-  matters most, because a gameweek *starts* at its deadline. Miss a kick-off and
-  the site shows the right gameweek with an old score. Miss a deadline and it
-  shows the wrong gameweek, and nothing later in the week corrects it.
+- **a gameweek deadline is close** — either coming up inside the window, or
+  gone within the last 45 minutes. This is the one that matters most, because a
+  gameweek *starts* at its deadline. Miss a kick-off and the site shows the
+  right gameweek with an old score. Miss a deadline and it shows the wrong
+  gameweek, and nothing later in the week corrects it.
 
-That last case is not hypothetical. GitHub delivered no scheduled run at all on
-27 August 2026, and none between 01:31 and 19:21 on the 28th. GW2's deadline
-passed at 17:30 and the site sat on GW1 until the workflow was started by hand.
+That last case is not hypothetical, and it has now failed three times for three
+different reasons.
+
+On 27 August 2026 GitHub delivered no scheduled run at all, and none between
+01:31 and 19:21 on the 28th, so GW2 began with the site still on GW1. That is
+what the window is for.
+
+On 4 September a run *was* there. Run #538 started at 13:30, held for four
+hours waiting for the 17:30 deadline exactly as intended — and broke out of the
+loop at **17:30:16**, sixteen seconds after it, with `deadline_soon=false`. FPL
+does not move `is_current` at the stroke of the deadline; it takes a few
+minutes. The run had waited all afternoon for the rollover and then left the
+room just before it happened.
+
+Hence the grace period. The interesting moment is not the deadline itself but
+the minutes just after it, so a deadline keeps a run publishing for 45 minutes
+past. And when the live fetcher does see the gameweek move, the standings fetch
+runs on that same pass rather than waiting up to half an hour for its own
+cadence — which is why the live script now runs first in each pass and reports
+`gw_changed`.
+
+The third failure came 43 minutes later the same evening, and it is the reason
+the grace period alone would not have been enough. The hourly run at 18:13 got
+as far as asking for the High Stakes standings and was told:
+
+```
+RuntimeError: Failed to fetch .../leagues-classic/325153/standings/: HTTP Error 503
+```
+
+FPL takes its league and entry endpoints down while it processes a rollover.
+The fetchers allowed three attempts three seconds apart, so the run gave up ten
+seconds after it started and wrote nothing — during the one window where being
+awake mattered.
+
+Two things follow from that. Fetches now back off exponentially against a
+**retry budget** — ten minutes for the hourly script, two for the live one,
+both `FETCH_RETRY_BUDGET_SECONDS` — because runs are scarce enough that waiting
+an outage out inside a run beats forfeiting the run and hoping the next one is
+soon. The budget is shared across a whole run rather than granted per URL: the
+hourly script makes hundreds of requests, and a per-URL budget would let one
+long outage hold a runner for hours.
+
+And a failed live fetch no longer ends the run. That step runs under `set -e`,
+so a raised exception would have taken down the very run being kept alive
+across the deadline. A failing pass is now skipped and retried; the run only
+gives up after `LIVE_FAIL_LIMIT` consecutive failures, about twenty-five
+minutes of solid outage.
 
 ### Why the workflow loops instead of trusting the cron
 
@@ -167,8 +224,8 @@ an external one, calling the `workflow_dispatch` API on a schedule GitHub does
 not control.
 
 The script tells the workflow what happened through `.live-run-status`, an
-untracked file holding `published`, `in_play`, `starts_soon` and
-`deadline_soon`. A held runner
+untracked file holding `published`, `in_play`, `starts_soon`, `deadline_soon`
+and `gw_changed`. A held runner
 is free on a public repository, so the cost of this is a noisier commit history
 on match days, which is the trade the fast cadence was always making.
 
@@ -268,6 +325,42 @@ The bonus shown on a fixture is deliberately computed differently from the
 bonus added to a manager's projected score. The scoring path must skip any
 fixture whose bonus FPL has already published, or it would count it twice; the
 fixture list has no such worry and always shows the 3/2/1, published or not.
+
+## What decides a position in the live table
+
+The season total, as it stands right now — the running total including whatever
+has been scored so far today. Not the gameweek score.
+
+This is worth writing down because it was wrong until 5 September 2026. The
+table was sorted by gameweek points, so on GW3 the Main league showed a manager
+on 150 points in first place and the league leader on 214 in sixth: whoever was
+having the best afternoon went top. Both leagues were affected. It also made the
+up-and-down arrow meaningless, since it compared last gameweek's finishing
+position — a standing by total — against a position by gameweek score.
+
+`rank_managers` in `live_calc.py` now does the placing, and being pure it is
+tested: the fixture is the real broken table from that day, and the test asserts
+that the manager on 214 is first and the manager with the best gameweek is
+ninth. Ties keep the order the league itself had, so equal totals do not jitter
+between runs five minutes apart.
+
+The projected table is the same thing over projected totals, so it answers "who
+would lead if every pending bonus and substitution landed", not "who had the
+best week".
+
+### A trophy nobody has earned yet is not awarded
+
+Best-and-worst pairs — Top Gun and Tough Week, Captain Marvel and Armband Fail
+— are only handed out when something actually separates the field. While every
+candidate is level they go to nobody.
+
+This is not hypothetical either. On 5 September 2026 twenty-five of the
+twenty-six High Stakes managers had captained the same player and his match had
+not kicked off, so every captain haul was nought. Sorting is stable, so asking
+for the top and the bottom of that list returned the same manager twice, and
+the page gave one person both Captain Marvel and Armband Fail — best captain of
+the week and worst captain of the week, nought points each. Rank Riser and Rank
+Crasher already guarded against this; the other two now do too.
 
 ## Two scores, and why
 

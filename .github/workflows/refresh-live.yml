@@ -57,6 +57,17 @@ jobs:
       PUBLISH_WINDOW_MINUTES: 300
       # Matches the script's own LIVE_REFRESH_MINUTES.
       PUBLISH_EVERY_SECONDS: 300
+      # How long a fetcher may spend riding out an FPL outage. FPL answers 503
+      # across its endpoints while a gameweek rolls over -- which is the moment
+      # this run exists for -- so giving up in seconds forfeits the run. Set
+      # here rather than left to each script's default because the standings
+      # fetch runs inside this loop, and its own default of ten minutes would
+      # put a five-minute cadence badly out of step.
+      FETCH_RETRY_BUDGET_SECONDS: 120
+      # Consecutive failed live fetches before the run gives up. Five passes is
+      # about twenty-five minutes of solid failure -- long enough to be sure it
+      # is not a passing outage, short enough not to hold a runner all window.
+      LIVE_FAIL_LIMIT: 5
     steps:
       - uses: actions/checkout@v4
 
@@ -100,6 +111,7 @@ jobs:
           deadline=$(( $(date +%s) + PUBLISH_WINDOW_MINUTES * 60 ))
           export FORCE_PUBLISH="$FORCE_FIRST_PASS"
           pass=0
+          live_fails=0
 
           # data.json carries the gameweek number, the standings, the deadline
           # and the monthly and weekly winners. It used to be refreshed only by
@@ -114,18 +126,52 @@ jobs:
           while : ; do
             pass=$(( pass + 1 ))
             echo "::group::Pass $pass"
-            if [ "$pass" = "1" ] || [ $(( (pass - 1) % slow_every )) = "0" ]; then
-              python scripts/fetch_fpl_data.py || \
-                echo "::warning::standings refresh failed; carrying on with the live data"
+            # Live first: it is the cheap one, and it is the one that notices
+            # the gameweek has moved. The standings fetch then runs on the first
+            # pass, on the slow cadence -- and immediately when the gameweek
+            # did move, rather than up to half an hour after the rollover the
+            # whole run stayed awake for.
+            # A failed live fetch must not take the run down with it. This
+            # step runs under `set -e`, so an unguarded failure ends the whole
+            # loop -- including the long run whose entire job is to be awake
+            # across a deadline, at precisely the moment FPL is most likely to
+            # be answering 503. So skip the pass, keep the loop, and let the
+            # next pass try again; give up only if it keeps failing, so a
+            # genuinely broken script cannot hold a runner for the whole window.
+            if python scripts/fetch_live_data.py; then
+              live_fails=0
+            else
+              live_fails=$(( live_fails + 1 ))
+              echo "::warning::live fetch failed ($live_fails in a row); skipping this pass"
+              echo "::endgroup::"
+              if [ "$live_fails" -ge "$LIVE_FAIL_LIMIT" ]; then
+                echo "::error::live fetch failed $live_fails times running; giving up."
+                exit 1
+              fi
+              # Nothing was written, so there is nothing to commit and the
+              # status file still holds the previous pass. Wait and retry
+              # rather than acting on either.
+              if [ "$(date +%s)" -ge "$deadline" ]; then
+                echo "Window closed after $PUBLISH_WINDOW_MINUTES minutes; the next run takes over."
+                break
+              fi
+              sleep "$PUBLISH_EVERY_SECONDS"
+              continue
             fi
-            python scripts/fetch_live_data.py
             export FORCE_PUBLISH=false
 
             published=$(status published)
             in_play=$(status in_play)
             starts_soon=$(status starts_soon)
             deadline_soon=$(status deadline_soon)
-            echo "published=$published in_play=$in_play starts_soon=$starts_soon deadline_soon=$deadline_soon"
+            gw_changed=$(status gw_changed)
+            echo "published=$published in_play=$in_play starts_soon=$starts_soon deadline_soon=$deadline_soon gw_changed=$gw_changed"
+
+            if [ "$pass" = "1" ] || [ "$gw_changed" = "True" ] \
+               || [ $(( (pass - 1) % slow_every )) = "0" ]; then
+              python scripts/fetch_fpl_data.py || \
+                echo "::warning::standings refresh failed; carrying on with the live data"
+            fi
 
             # Only the files this pass actually rewrote are ours to push. Each
             # fetcher leaves a file untouched when it has nothing new, so the

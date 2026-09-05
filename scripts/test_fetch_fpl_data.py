@@ -8,13 +8,19 @@ own; everything under test here is a pure function over data already in hand.
     python -m unittest discover -s scripts -p 'test_*.py'
 """
 
+import io
+import json as _json
 import unittest
 from datetime import datetime, timezone
+from unittest import mock
 
+import fetch_fpl_data
 from fetch_fpl_data import (
+    attach_squads,
     event_started,
     month_is_over,
     team_values,
+    squad_chip_weeks,
     transfers_by_gameweek,
     winners_for,
 )
@@ -281,6 +287,182 @@ class TestTransfersByGameweek(unittest.TestCase):
         out = transfers_by_gameweek(ROWS, self.histories, {}, [2])
         self.assertEqual(len(out["2"]), 3)
         self.assertTrue(all(r["in"] == [] and r["out"] == [] for r in out["2"]))
+
+
+class Outage:
+    """A stand-in for urlopen that fails for a while and then recovers.
+
+    Counts in seconds of simulated clock rather than in attempts, because what
+    decides whether a run survives a rollover is how long FPL is down, not how
+    many times we happened to ask.
+    """
+
+    def __init__(self, seconds_down, payload=None, error=None):
+        self.seconds_down = seconds_down
+        self.payload = {"ok": True} if payload is None else payload
+        self.error = error or OSError("HTTP Error 503: Service Unavailable")
+        self.now = 0.0
+        self.attempts = 0
+
+    def sleep(self, seconds):
+        self.now += seconds
+
+    def urlopen(self, req, timeout=None):
+        self.attempts += 1
+        if self.now < self.seconds_down:
+            raise self.error
+        body = _json.dumps(self.payload).encode("utf-8")
+        return mock.MagicMock(
+            __enter__=lambda s: io.BytesIO(body), __exit__=lambda *a: False
+        )
+
+
+class TestFetchRetryBudget(unittest.TestCase):
+    """The 503 window FPL opens while it rolls a gameweek over.
+
+    On 4 September 2026 the hourly run asked for the High Stakes standings 43
+    minutes after the GW3 deadline, got a 503, and gave up ten seconds later --
+    leaving the site on GW2 until the next run, which the schedule does not
+    promise for hours.
+    """
+
+    def setUp(self):
+        fetch_fpl_data.reset_retry_budget()
+        self.addCleanup(fetch_fpl_data.reset_retry_budget)
+
+    def run_fetch(self, outage, budget=None):
+        if budget is not None:
+            fetch_fpl_data.reset_retry_budget(budget)
+        with mock.patch.object(fetch_fpl_data.urllib.request, "urlopen",
+                               outage.urlopen), \
+             mock.patch.object(fetch_fpl_data.time, "sleep", outage.sleep):
+            return fetch_fpl_data.fetch_json("http://example/api")
+
+    def test_rides_out_the_rollover_outage(self):
+        # A minute of 503s -- six times longer than the old three-tries-in-nine
+        # -seconds gave up after -- is survived, and the caller never knows.
+        outage = Outage(seconds_down=60)
+        self.assertEqual(self.run_fetch(outage), {"ok": True})
+        self.assertGreaterEqual(outage.now, 60)
+
+    def test_survives_several_minutes_down(self):
+        outage = Outage(seconds_down=300)
+        self.assertEqual(self.run_fetch(outage), {"ok": True})
+
+    def test_the_old_budget_would_not_have_survived_it(self):
+        # Guards the fix itself: with the ten seconds the old code allowed,
+        # the 4 September outage is still fatal. If someone shrinks the budget
+        # back, this is the test that says what it costs.
+        outage = Outage(seconds_down=60)
+        with self.assertRaises(RuntimeError):
+            self.run_fetch(outage, budget=10)
+
+    def test_gives_up_once_the_budget_is_spent(self):
+        # An outage longer than any run should wait for still ends in a clean
+        # RuntimeError naming the URL, not an endless loop.
+        outage = Outage(seconds_down=10 ** 6)
+        with self.assertRaises(RuntimeError) as caught:
+            self.run_fetch(outage, budget=120)
+        self.assertIn("http://example/api", str(caught.exception))
+        self.assertLessEqual(outage.now, 120)
+
+    def test_backs_off_instead_of_hammering(self):
+        # Waiting out five minutes must not mean hundreds of requests at FPL
+        # while it is trying to recover.
+        outage = Outage(seconds_down=300)
+        self.run_fetch(outage)
+        self.assertLess(outage.attempts, 20)
+
+    def test_budget_is_shared_across_the_run(self):
+        # Hundreds of URLs are fetched per run. A per-URL budget would let a
+        # long outage hold the runner for hours, so the pool is spent once.
+        fetch_fpl_data.reset_retry_budget(30)
+        first = Outage(seconds_down=10 ** 6)
+        with self.assertRaises(RuntimeError):
+            with mock.patch.object(fetch_fpl_data.urllib.request, "urlopen",
+                                   first.urlopen), \
+                 mock.patch.object(fetch_fpl_data.time, "sleep", first.sleep):
+                fetch_fpl_data.fetch_json("http://example/one")
+        second = Outage(seconds_down=10 ** 6)
+        with self.assertRaises(RuntimeError):
+            with mock.patch.object(fetch_fpl_data.urllib.request, "urlopen",
+                                   second.urlopen), \
+                 mock.patch.object(fetch_fpl_data.time, "sleep", second.sleep):
+                fetch_fpl_data.fetch_json("http://example/two")
+        # The pool was emptied by the first URL, so the second only got its
+        # one free attempt.
+        self.assertEqual(second.attempts, 1)
+
+    def test_a_working_api_is_not_slowed_down(self):
+        outage = Outage(seconds_down=0)
+        self.assertEqual(self.run_fetch(outage), {"ok": True})
+        self.assertEqual(outage.attempts, 1)
+        self.assertEqual(outage.now, 0)
+
+
+def wk(entry_id, chip=None):
+    return {"entry_id": entry_id, "manager": f"M{entry_id}", "team": f"T{entry_id}",
+            "in": [], "out": [], "chip": chip}
+
+
+class TestSquadChipWeeks(unittest.TestCase):
+    """Which managers need their squad fetched either side of a chip."""
+
+    def test_finds_wildcards_and_free_hits_only(self):
+        published = {"main": {
+            "2": [wk(1, "wildcard"), wk(2), wk(3, "bboost")],
+            "3": [wk(1), wk(2, "freehit"), wk(3, "3xc")],
+        }}
+        self.assertEqual(squad_chip_weeks(published), [(1, 2), (2, 3)])
+
+    def test_a_manager_in_both_leagues_is_asked_for_once(self):
+        published = {
+            "main": {"2": [wk(7, "wildcard")]},
+            "high_stakes": {"2": [wk(7, "wildcard")]},
+        }
+        self.assertEqual(squad_chip_weeks(published), [(7, 2)])
+
+    def test_nothing_to_fetch_when_no_squad_chip_was_played(self):
+        published = {"main": {"2": [wk(1), wk(2, "bboost")]}}
+        self.assertEqual(squad_chip_weeks(published), [])
+
+    def test_only_published_gameweeks_are_reachable(self):
+        # transfers_by_gameweek already drops gameweeks that have not started,
+        # so a chip played for next week cannot pull a squad in early.
+        published = {"main": {"2": [wk(1, "wildcard")]}}
+        self.assertEqual(squad_chip_weeks(published), [(1, 2)])
+
+
+class TestAttachSquads(unittest.TestCase):
+
+    def test_the_squad_either_side_lands_on_the_row(self):
+        published = {"main": {"3": [wk(1, "wildcard")]}}
+        squads = {(1, 3): [10, 11, 12], (1, 2): [20, 21, 22]}
+        attach_squads(published, squads)
+        row = published["main"]["3"][0]
+        self.assertEqual(row["squad_before"], [20, 21, 22])
+        self.assertEqual(row["squad_after"], [10, 11, 12])
+
+    def test_a_chip_in_the_opening_week_has_no_team_before(self):
+        published = {"main": {"1": [wk(1, "wildcard")]}}
+        attach_squads(published, {(1, 1): [10, 11]})
+        row = published["main"]["1"][0]
+        self.assertEqual(row["squad_after"], [10, 11])
+        self.assertNotIn("squad_before", row)
+
+    def test_a_failed_fetch_leaves_the_row_alone_rather_than_empty(self):
+        published = {"main": {"3": [wk(1, "freehit")]}}
+        attach_squads(published, {})
+        row = published["main"]["3"][0]
+        self.assertNotIn("squad_before", row)
+        self.assertNotIn("squad_after", row)
+
+    def test_rows_without_a_squad_chip_are_untouched(self):
+        published = {"main": {"3": [wk(1), wk(2, "bboost")]}}
+        attach_squads(published, {(1, 3): [1], (1, 2): [2], (2, 3): [3], (2, 2): [4]})
+        for row in published["main"]["3"]:
+            self.assertNotIn("squad_before", row)
+            self.assertNotIn("squad_after", row)
 
 
 if __name__ == "__main__":

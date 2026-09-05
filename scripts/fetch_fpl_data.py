@@ -49,6 +49,30 @@ MOMENTUM_SIZE = 15
 # Courtesy pause between manager requests so we are not hammering the API.
 REQUEST_PAUSE = 0.25
 
+# FPL takes its league and entry endpoints down while it processes a gameweek
+# rollover, answering 503 to everything for anywhere between a few seconds and
+# several minutes. That is the exact moment this script matters most, and runs
+# are scarce -- GitHub throttles the schedule hard enough that the next one can
+# be hours away -- so an outage is worth waiting out inside a run rather than
+# dying and forfeiting the slot.
+#
+# This is what broke the GW3 rollover: the 18:13 run on 4 September 2026 asked
+# for the High Stakes standings, got a 503, gave up ten seconds later and left
+# the site on GW2.
+#
+# The budget is shared by every fetch in the run rather than granted per URL.
+# This script makes hundreds of requests, and a per-URL budget would let one
+# long outage hold the runner for hours.
+RETRY_BUDGET_SECONDS = float(os.environ.get("FETCH_RETRY_BUDGET_SECONDS") or 600)
+
+_retry_budget_left = RETRY_BUDGET_SECONDS
+
+
+def reset_retry_budget(seconds=None):
+    """Refill the shared budget. Used by the tests; harmless in a real run."""
+    global _retry_budget_left
+    _retry_budget_left = RETRY_BUDGET_SECONDS if seconds is None else seconds
+
 
 def set_output(name, value):
     """Hand a value back to the workflow step that ran us."""
@@ -59,17 +83,29 @@ def set_output(name, value):
     print(f"::publish::{name}={value}")
 
 
-def fetch_json(url, retries=3, delay=3):
-    last_err = None
-    for _ in range(retries):
+def fetch_json(url, first_delay=3, max_delay=60):
+    """Fetch JSON, riding out a temporary FPL outage.
+
+    Backs off exponentially -- 3s, 6s, 12s and so on up to max_delay -- for as
+    long as the run's shared retry budget lasts. One attempt is always made, so
+    an exhausted budget still behaves like a plain fetch that either works or
+    raises.
+    """
+    global _retry_budget_left
+    delay, last_err = first_delay, None
+    while True:
         try:
             req = urllib.request.Request(url, headers=HEADERS)
             with urllib.request.urlopen(req, timeout=25) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except Exception as e:  # noqa: BLE001 - keep retrying regardless of cause
             last_err = e
-            time.sleep(delay)
-    raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        wait = min(delay, max_delay, _retry_budget_left)
+        if wait <= 0:
+            raise RuntimeError(f"Failed to fetch {url}: {last_err}")
+        time.sleep(wait)
+        _retry_budget_left -= wait
+        delay *= 2
 
 
 def load_json(path):
@@ -104,6 +140,11 @@ def fetch_standings(league_id):
 
 def fetch_history(entry_id):
     return fetch_json(f"{BASE}/entry/{entry_id}/history/")
+
+
+def fetch_picks(entry_id, gw):
+    """The fifteen this manager had in a given gameweek."""
+    return fetch_json(f"{BASE}/entry/{entry_id}/event/{gw}/picks/")
 
 
 def fetch_transfers(entry_id):
@@ -170,6 +211,49 @@ def team_values(rows, histories):
     # runs for two managers on the same value.
     out.sort(key=lambda m: (-m["value"], m["manager"].lower()))
     return out
+
+
+def squad_chip_weeks(published):
+    """Every (manager, gameweek) that played a wildcard or a free hit.
+
+    A squad chip is not really a transfer -- the manager rebuilt the side, and
+    the in/out list from the feed can run to a couple of dozen names that say
+    nothing. What is worth showing is the team before and the team after, so
+    these are the pairs whose squads have to be fetched.
+
+    Read off what is already published rather than off the raw chip history, so
+    a chip played for a gameweek that has not started yet cannot pull a squad
+    into the file early.
+    """
+    wanted = set()
+    for league in published.values():
+        for gw, week in league.items():
+            for row in week:
+                if row.get("chip") in SQUAD_CHIPS:
+                    wanted.add((row["entry_id"], int(gw)))
+    return sorted(wanted)
+
+
+def attach_squads(published, squads):
+    """Hang the before-and-after squads on the rows that played a squad chip.
+
+    `squads` is {(entry_id, gameweek): [player ids]}. The team *before* a
+    wildcard is the squad from the previous gameweek; missing means there was
+    no previous gameweek -- a chip in GW1 -- or the fetch failed, and the page
+    says so rather than showing an empty side.
+    """
+    for league in published.values():
+        for gw, week in league.items():
+            for row in week:
+                if row.get("chip") not in SQUAD_CHIPS:
+                    continue
+                after = squads.get((row["entry_id"], int(gw)))
+                before = squads.get((row["entry_id"], int(gw) - 1))
+                if after:
+                    row["squad_after"] = list(after)
+                if before:
+                    row["squad_before"] = list(before)
+    return published
 
 
 def transfers_by_gameweek(rows, histories, transfers, started_gws):
@@ -481,6 +565,25 @@ def main():
         for key, rows in standings.items()
     }
 
+    # A wildcard or free hit gets the squad either side of it instead of a
+    # meaningless list of twenty names. Only the managers who actually played
+    # one are fetched, and only for gameweeks already published, so this costs
+    # a handful of requests rather than one per manager per week.
+    squads = {}
+    for entry_id, gw in squad_chip_weeks(published):
+        for want in (gw, gw - 1):
+            if want < 1 or (entry_id, want) in squads:
+                continue
+            try:
+                picks = fetch_picks(entry_id, want)
+            except Exception:  # noqa: BLE001 - a missing squad just goes unshown
+                continue
+            squads[(entry_id, want)] = [
+                pick["element"] for pick in picks.get("picks") or []
+            ]
+            time.sleep(REQUEST_PAUSE)
+    published = attach_squads(published, squads)
+
     # Names are collected from what is actually published, not from every
     # transfer on file. Building the lookup from the whole feed would put next
     # week's targets in it, and anyone could read off a name that appears in the
@@ -490,7 +593,8 @@ def main():
                     for league in published.values()
                     for week in league.values()
                     for row in week
-                    for pid in row["in"] + row["out"]})
+                    for pid in row["in"] + row["out"]
+                    + row.get("squad_before", []) + row.get("squad_after", [])})
 
     transfers = {
         "generated_at": now.isoformat(timespec="seconds"),
@@ -503,6 +607,9 @@ def main():
             str(pid): {
                 "name": elements_by_id[pid].get("web_name", "?"),
                 "cost": round((elements_by_id[pid].get("now_cost") or 0) / 10, 1),
+                # Carried so the before-and-after squads can be shown in the
+                # same order down both columns instead of FPL's pick order.
+                "pos": POSITIONS.get(elements_by_id[pid].get("element_type"), "?"),
             }
             for pid in named if pid in elements_by_id
         },
