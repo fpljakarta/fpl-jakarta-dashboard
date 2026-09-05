@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T11:02:15+00:00",
+  "generated_at": "2026-09-05T11:34:28+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -271,15 +271,6 @@
       },
       {
         "rank": 3,
-        "last_rank": 2,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
-        "total": 197,
-        "event_total": 3
-      },
-      {
-        "rank": 3,
         "last_rank": 8,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
@@ -293,6 +284,15 @@
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
+        "total": 197,
+        "event_total": 3
+      },
+      {
+        "rank": 3,
+        "last_rank": 2,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 197,
         "event_total": 3
       },
@@ -667,21 +667,21 @@
       },
       {
         "rank": 47,
-        "last_rank": 52,
-        "manager": "Juzer Saify",
-        "team": "JS FC",
-        "entry_id": 503301,
-        "total": 146,
-        "event_total": 14
-      },
-      {
-        "rank": 47,
         "last_rank": 45,
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
         "entry_id": 754628,
         "total": 146,
         "event_total": 6
+      },
+      {
+        "rank": 47,
+        "last_rank": 52,
+        "manager": "Juzer Saify",
+        "team": "JS FC",
+        "entry_id": 503301,
+        "total": 146,
+        "event_total": 14
       },
       {
         "rank": 49,
