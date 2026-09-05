@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T18:03:01+00:00",
+  "generated_at": "2026-09-05T18:30:46+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -30,8 +30,8 @@
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
-        "total": 241,
-        "event_total": 53
+        "total": 240,
+        "event_total": 52
       },
       {
         "rank": 3,
@@ -125,21 +125,21 @@
       },
       {
         "rank": 13,
-        "last_rank": 12,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "entry_id": 29071,
-        "total": 211,
-        "event_total": 39
-      },
-      {
-        "rank": 13,
         "last_rank": 15,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 211,
         "event_total": 42
+      },
+      {
+        "rank": 13,
+        "last_rank": 12,
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "entry_id": 29071,
+        "total": 211,
+        "event_total": 39
       },
       {
         "rank": 15,
@@ -165,8 +165,8 @@
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
         "entry_id": 371869,
-        "total": 200,
-        "event_total": 67
+        "total": 199,
+        "event_total": 66
       },
       {
         "rank": 18,
@@ -266,8 +266,8 @@
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
-        "total": 241,
-        "event_total": 53
+        "total": 240,
+        "event_total": 52
       },
       {
         "rank": 3,
@@ -284,8 +284,8 @@
         "manager": "Rishabh Mehta",
         "team": "PepMasterclass",
         "entry_id": 4111970,
-        "total": 234,
-        "event_total": 62
+        "total": 233,
+        "event_total": 61
       },
       {
         "rank": 5,
@@ -406,21 +406,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 16,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 221,
-        "event_total": 43
-      },
-      {
-        "rank": 18,
         "last_rank": 29,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 221,
         "event_total": 53
+      },
+      {
+        "rank": 18,
+        "last_rank": 16,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 221,
+        "event_total": 43
       },
       {
         "rank": 20,
@@ -451,15 +451,15 @@
       },
       {
         "rank": 23,
-        "last_rank": 30,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 212,
-        "event_total": 45
+        "last_rank": 22,
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "entry_id": 29071,
+        "total": 211,
+        "event_total": 39
       },
       {
-        "rank": 24,
+        "rank": 23,
         "last_rank": 28,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
@@ -468,13 +468,13 @@
         "event_total": 42
       },
       {
-        "rank": 24,
-        "last_rank": 22,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "entry_id": 29071,
+        "rank": 25,
+        "last_rank": 30,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
         "total": 211,
-        "event_total": 39
+        "event_total": 44
       },
       {
         "rank": 26,
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 33,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
-        "total": 206,
-        "event_total": 43
-      },
-      {
-        "rank": 31,
         "last_rank": 26,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
         "total": 206,
         "event_total": 36
+      },
+      {
+        "rank": 31,
+        "last_rank": 33,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
+        "total": 206,
+        "event_total": 43
       },
       {
         "rank": 33,
@@ -572,8 +572,8 @@
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
         "entry_id": 371869,
-        "total": 200,
-        "event_total": 67
+        "total": 199,
+        "event_total": 66
       },
       {
         "rank": 37,
@@ -761,8 +761,8 @@
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
-        "total": 152,
-        "event_total": 50
+        "total": 151,
+        "event_total": 49
       },
       {
         "rank": 58,
