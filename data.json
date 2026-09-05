@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T21:03:27+00:00",
+  "generated_at": "2026-09-05T22:06:01+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 9,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 219,
-        "event_total": 45
-      },
-      {
-        "rank": 10,
         "last_rank": 6,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 219,
         "event_total": 37
+      },
+      {
+        "rank": 10,
+        "last_rank": 9,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 219,
+        "event_total": 45
       },
       {
         "rank": 12,
@@ -316,21 +316,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 14,
-        "manager": "Bharat Lakhwani",
-        "team": "Bpl",
-        "entry_id": 5717595,
-        "total": 227,
-        "event_total": 46
-      },
-      {
-        "rank": 8,
         "last_rank": 18,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
         "entry_id": 1657008,
         "total": 227,
         "event_total": 53
+      },
+      {
+        "rank": 8,
+        "last_rank": 14,
+        "manager": "Bharat Lakhwani",
+        "team": "Bpl",
+        "entry_id": 5717595,
+        "total": 227,
+        "event_total": 46
       },
       {
         "rank": 10,
@@ -362,18 +362,18 @@
       {
         "rank": 13,
         "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 224,
         "event_total": 30
       },
       {
         "rank": 13,
         "last_rank": 2,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 224,
         "event_total": 30
       },
@@ -388,19 +388,19 @@
       },
       {
         "rank": 16,
-        "last_rank": 10,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
+        "last_rank": 9,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
         "total": 222,
         "event_total": 38
       },
       {
         "rank": 16,
-        "last_rank": 9,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
+        "last_rank": 10,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
         "total": 222,
         "event_total": 38
       },
