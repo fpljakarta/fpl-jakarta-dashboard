@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T18:59:10+00:00",
+  "generated_at": "2026-09-06T19:16:38+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 9,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 226,
-        "event_total": 52
-      },
-      {
-        "rank": 9,
         "last_rank": 14,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 226,
         "event_total": 55
+      },
+      {
+        "rank": 9,
+        "last_rank": 9,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 226,
+        "event_total": 52
       },
       {
         "rank": 11,
@@ -224,21 +224,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 25,
-        "manager": "Lavesh Punjabi",
-        "team": "Punjabi United",
-        "entry_id": 20654,
-        "total": 172,
-        "event_total": 47
-      },
-      {
-        "rank": 24,
         "last_rank": 24,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 172,
         "event_total": 44
+      },
+      {
+        "rank": 24,
+        "last_rank": 25,
+        "manager": "Lavesh Punjabi",
+        "team": "Punjabi United",
+        "entry_id": 20654,
+        "total": 172,
+        "event_total": 47
       },
       {
         "rank": 26,
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 9,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 231,
-        "event_total": 47
-      },
-      {
-        "rank": 14,
         "last_rank": 36,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
         "entry_id": 26047,
         "total": 231,
         "event_total": 71
+      },
+      {
+        "rank": 14,
+        "last_rank": 9,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 231,
+        "event_total": 47
       },
       {
         "rank": 16,
@@ -424,21 +424,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 25,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 226,
-        "event_total": 55
-      },
-      {
-        "rank": 20,
         "last_rank": 18,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
         "entry_id": 2849972,
         "total": 226,
         "event_total": 52
+      },
+      {
+        "rank": 20,
+        "last_rank": 25,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 226,
+        "event_total": 55
       },
       {
         "rank": 22,
