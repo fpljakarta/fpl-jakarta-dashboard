@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T13:31:19+00:00",
+  "generated_at": "2026-09-06T13:49:11+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -586,15 +586,6 @@
       },
       {
         "rank": 38,
-        "last_rank": 37,
-        "manager": "Ajay Yeleswaram",
-        "team": "Relegated",
-        "entry_id": 1257763,
-        "total": 199,
-        "event_total": 40
-      },
-      {
-        "rank": 38,
         "last_rank": 33,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
@@ -603,13 +594,13 @@
         "event_total": 36
       },
       {
-        "rank": 40,
-        "last_rank": 41,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 197,
-        "event_total": 46
+        "rank": 38,
+        "last_rank": 37,
+        "manager": "Ajay Yeleswaram",
+        "team": "Relegated",
+        "entry_id": 1257763,
+        "total": 199,
+        "event_total": 40
       },
       {
         "rank": 40,
@@ -619,6 +610,15 @@
         "entry_id": 1165190,
         "total": 197,
         "event_total": 33
+      },
+      {
+        "rank": 40,
+        "last_rank": 41,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 197,
+        "event_total": 46
       },
       {
         "rank": 42,
