@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T07:11:50+00:00",
+  "generated_at": "2026-09-06T09:14:49+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -316,21 +316,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 18,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 227,
-        "event_total": 53
-      },
-      {
-        "rank": 8,
         "last_rank": 14,
         "manager": "Bharat Lakhwani",
         "team": "Bpl",
         "entry_id": 5717595,
         "total": 227,
         "event_total": 46
+      },
+      {
+        "rank": 8,
+        "last_rank": 18,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 227,
+        "event_total": 53
       },
       {
         "rank": 10,
@@ -388,15 +388,6 @@
       },
       {
         "rank": 16,
-        "last_rank": 9,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 222,
-        "event_total": 38
-      },
-      {
-        "rank": 16,
         "last_rank": 10,
         "manager": "Rohan Kalwani",
         "team": "-4 Builds Carrickter",
@@ -405,13 +396,13 @@
         "event_total": 38
       },
       {
-        "rank": 18,
-        "last_rank": 29,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 221,
-        "event_total": 53
+        "rank": 16,
+        "last_rank": 9,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 222,
+        "event_total": 38
       },
       {
         "rank": 18,
@@ -423,13 +414,13 @@
         "event_total": 43
       },
       {
-        "rank": 20,
-        "last_rank": 18,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 219,
-        "event_total": 45
+        "rank": 18,
+        "last_rank": 29,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 221,
+        "event_total": 53
       },
       {
         "rank": 20,
@@ -439,6 +430,15 @@
         "entry_id": 2123666,
         "total": 219,
         "event_total": 37
+      },
+      {
+        "rank": 20,
+        "last_rank": 18,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 219,
+        "event_total": 45
       },
       {
         "rank": 22,
@@ -469,21 +469,21 @@
       },
       {
         "rank": 25,
-        "last_rank": 28,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 210,
-        "event_total": 41
-      },
-      {
-        "rank": 25,
         "last_rank": 21,
         "manager": "Siddarth Kaul",
         "team": "sidskids",
         "entry_id": 11184,
         "total": 210,
         "event_total": 37
+      },
+      {
+        "rank": 25,
+        "last_rank": 28,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 210,
+        "event_total": 41
       },
       {
         "rank": 27,
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 26,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 206,
-        "event_total": 36
-      },
-      {
-        "rank": 31,
         "last_rank": 33,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
         "entry_id": 6552691,
         "total": 206,
         "event_total": 43
+      },
+      {
+        "rank": 31,
+        "last_rank": 26,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 206,
+        "event_total": 36
       },
       {
         "rank": 33,
@@ -604,21 +604,21 @@
       },
       {
         "rank": 40,
-        "last_rank": 41,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 196,
-        "event_total": 45
-      },
-      {
-        "rank": 40,
         "last_rank": 32,
         "manager": "Rachman Witarlan",
         "team": "FC Milanello",
         "entry_id": 1165190,
         "total": 196,
         "event_total": 32
+      },
+      {
+        "rank": 40,
+        "last_rank": 41,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 196,
+        "event_total": 45
       },
       {
         "rank": 42,
