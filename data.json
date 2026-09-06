@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T02:18:25+00:00",
+  "generated_at": "2026-09-06T04:06:40+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 9,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 219,
-        "event_total": 45
-      },
-      {
-        "rank": 10,
         "last_rank": 6,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 219,
         "event_total": 37
+      },
+      {
+        "rank": 10,
+        "last_rank": 9,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 219,
+        "event_total": 45
       },
       {
         "rank": 12,
@@ -316,15 +316,6 @@
       },
       {
         "rank": 8,
-        "last_rank": 14,
-        "manager": "Bharat Lakhwani",
-        "team": "Bpl",
-        "entry_id": 5717595,
-        "total": 227,
-        "event_total": 46
-      },
-      {
-        "rank": 8,
         "last_rank": 18,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
@@ -333,12 +324,12 @@
         "event_total": 53
       },
       {
-        "rank": 10,
-        "last_rank": 15,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 226,
+        "rank": 8,
+        "last_rank": 14,
+        "manager": "Bharat Lakhwani",
+        "team": "Bpl",
+        "entry_id": 5717595,
+        "total": 227,
         "event_total": 46
       },
       {
@@ -349,6 +340,15 @@
         "entry_id": 1427203,
         "total": 226,
         "event_total": 35
+      },
+      {
+        "rank": 10,
+        "last_rank": 15,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 226,
+        "event_total": 46
       },
       {
         "rank": 12,
@@ -388,15 +388,6 @@
       },
       {
         "rank": 16,
-        "last_rank": 10,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 222,
-        "event_total": 38
-      },
-      {
-        "rank": 16,
         "last_rank": 9,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
@@ -405,13 +396,13 @@
         "event_total": 38
       },
       {
-        "rank": 18,
-        "last_rank": 29,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 221,
-        "event_total": 53
+        "rank": 16,
+        "last_rank": 10,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 222,
+        "event_total": 38
       },
       {
         "rank": 18,
@@ -421,6 +412,15 @@
         "entry_id": 24602,
         "total": 221,
         "event_total": 43
+      },
+      {
+        "rank": 18,
+        "last_rank": 29,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 221,
+        "event_total": 53
       },
       {
         "rank": 20,
