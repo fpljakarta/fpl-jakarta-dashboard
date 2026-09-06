@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T13:15:07+00:00",
+  "generated_at": "2026-09-06T13:31:19+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -371,18 +371,18 @@
       {
         "rank": 14,
         "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 224,
         "event_total": 30
       },
       {
         "rank": 14,
         "last_rank": 2,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 224,
         "event_total": 30
       },
@@ -568,15 +568,6 @@
       },
       {
         "rank": 36,
-        "last_rank": 50,
-        "manager": "Edward Angkasa",
-        "team": "Juvenalis",
-        "entry_id": 371869,
-        "total": 199,
-        "event_total": 66
-      },
-      {
-        "rank": 36,
         "last_rank": 33,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
@@ -585,13 +576,13 @@
         "event_total": 36
       },
       {
-        "rank": 38,
-        "last_rank": 33,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
+        "rank": 36,
+        "last_rank": 50,
+        "manager": "Edward Angkasa",
+        "team": "Juvenalis",
+        "entry_id": 371869,
         "total": 199,
-        "event_total": 36
+        "event_total": 66
       },
       {
         "rank": 38,
@@ -603,13 +594,13 @@
         "event_total": 40
       },
       {
-        "rank": 40,
-        "last_rank": 32,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 197,
-        "event_total": 33
+        "rank": 38,
+        "last_rank": 33,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
+        "total": 199,
+        "event_total": 36
       },
       {
         "rank": 40,
@@ -619,6 +610,15 @@
         "entry_id": 1004009,
         "total": 197,
         "event_total": 46
+      },
+      {
+        "rank": 40,
+        "last_rank": 32,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 197,
+        "event_total": 33
       },
       {
         "rank": 42,
@@ -748,21 +748,21 @@
       },
       {
         "rank": 56,
+        "last_rank": 58,
+        "manager": "Sanjev Rama",
+        "team": "Jippy's",
+        "entry_id": 6924233,
+        "total": 157,
+        "event_total": 55
+      },
+      {
+        "rank": 57,
         "last_rank": 55,
         "manager": "Jasvin Seera",
         "team": "Seera Squad",
         "entry_id": 6526117,
         "total": 156,
         "event_total": 32
-      },
-      {
-        "rank": 57,
-        "last_rank": 58,
-        "manager": "Sanjev Rama",
-        "team": "Jippy's",
-        "entry_id": 6924233,
-        "total": 154,
-        "event_total": 52
       },
       {
         "rank": 58,
