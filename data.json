@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T04:06:40+00:00",
+  "generated_at": "2026-09-06T07:11:50+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -362,18 +362,18 @@
       {
         "rank": 13,
         "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 224,
         "event_total": 30
       },
       {
         "rank": 13,
         "last_rank": 2,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 224,
         "event_total": 30
       },
@@ -406,21 +406,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 16,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 221,
-        "event_total": 43
-      },
-      {
-        "rank": 18,
         "last_rank": 29,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 221,
         "event_total": 53
+      },
+      {
+        "rank": 18,
+        "last_rank": 16,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 221,
+        "event_total": 43
       },
       {
         "rank": 20,
@@ -469,21 +469,21 @@
       },
       {
         "rank": 25,
-        "last_rank": 21,
-        "manager": "Siddarth Kaul",
-        "team": "sidskids",
-        "entry_id": 11184,
-        "total": 210,
-        "event_total": 37
-      },
-      {
-        "rank": 25,
         "last_rank": 28,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 210,
         "event_total": 41
+      },
+      {
+        "rank": 25,
+        "last_rank": 21,
+        "manager": "Siddarth Kaul",
+        "team": "sidskids",
+        "entry_id": 11184,
+        "total": 210,
+        "event_total": 37
       },
       {
         "rank": 27,
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 33,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
-        "total": 206,
-        "event_total": 43
-      },
-      {
-        "rank": 31,
         "last_rank": 26,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
         "total": 206,
         "event_total": 36
+      },
+      {
+        "rank": 31,
+        "last_rank": 33,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
+        "total": 206,
+        "event_total": 43
       },
       {
         "rank": 33,
