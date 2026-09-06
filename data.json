@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T23:52:10+00:00",
+  "generated_at": "2026-09-06T02:18:25+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -388,19 +388,19 @@
       },
       {
         "rank": 16,
-        "last_rank": 9,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
+        "last_rank": 10,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
         "total": 222,
         "event_total": 38
       },
       {
         "rank": 16,
-        "last_rank": 10,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
+        "last_rank": 9,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
         "total": 222,
         "event_total": 38
       },
@@ -469,21 +469,21 @@
       },
       {
         "rank": 25,
-        "last_rank": 28,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 210,
-        "event_total": 41
-      },
-      {
-        "rank": 25,
         "last_rank": 21,
         "manager": "Siddarth Kaul",
         "team": "sidskids",
         "entry_id": 11184,
         "total": 210,
         "event_total": 37
+      },
+      {
+        "rank": 25,
+        "last_rank": 28,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 210,
+        "event_total": 41
       },
       {
         "rank": 27,
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 26,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 206,
-        "event_total": 36
-      },
-      {
-        "rank": 31,
         "last_rank": 33,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
         "entry_id": 6552691,
         "total": 206,
         "event_total": 43
+      },
+      {
+        "rank": 31,
+        "last_rank": 26,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 206,
+        "event_total": 36
       },
       {
         "rank": 33,
