@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T23:41:19+00:00",
+  "generated_at": "2026-09-07T00:55:15+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 14,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 226,
-        "event_total": 55
-      },
-      {
-        "rank": 9,
         "last_rank": 9,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
         "entry_id": 2849972,
         "total": 226,
         "event_total": 52
+      },
+      {
+        "rank": 9,
+        "last_rank": 14,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 226,
+        "event_total": 55
       },
       {
         "rank": 11,
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 36,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 231,
-        "event_total": 71
-      },
-      {
-        "rank": 14,
         "last_rank": 9,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 231,
         "event_total": 47
+      },
+      {
+        "rank": 14,
+        "last_rank": 36,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 231,
+        "event_total": 71
       },
       {
         "rank": 16,
@@ -469,21 +469,21 @@
       },
       {
         "rank": 25,
-        "last_rank": 12,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 223,
-        "event_total": 41
-      },
-      {
-        "rank": 25,
         "last_rank": 29,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 223,
         "event_total": 55
+      },
+      {
+        "rank": 25,
+        "last_rank": 12,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 223,
+        "event_total": 41
       },
       {
         "rank": 27,
@@ -739,21 +739,21 @@
       },
       {
         "rank": 55,
-        "last_rank": 54,
-        "manager": "Lavesh Punjabi",
-        "team": "Punjabi United",
-        "entry_id": 20654,
-        "total": 172,
-        "event_total": 47
-      },
-      {
-        "rank": 55,
         "last_rank": 53,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 172,
         "event_total": 44
+      },
+      {
+        "rank": 55,
+        "last_rank": 54,
+        "manager": "Lavesh Punjabi",
+        "team": "Punjabi United",
+        "entry_id": 20654,
+        "total": 172,
+        "event_total": 47
       },
       {
         "rank": 57,
