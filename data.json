@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:18:44+00:00",
+  "generated_at": "2026-09-08T17:52:27+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 9,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 226,
-        "event_total": 52
-      },
-      {
-        "rank": 9,
         "last_rank": 14,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 226,
         "event_total": 55
+      },
+      {
+        "rank": 9,
+        "last_rank": 9,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 226,
+        "event_total": 52
       },
       {
         "rank": 11,
@@ -389,18 +389,18 @@
       {
         "rank": 16,
         "last_rank": 2,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 230,
         "event_total": 36
       },
       {
         "rank": 16,
         "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 230,
         "event_total": 36
       },
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 16,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 225,
-        "event_total": 47
-      },
-      {
-        "rank": 22,
         "last_rank": 12,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 225,
         "event_total": 43
+      },
+      {
+        "rank": 22,
+        "last_rank": 16,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 225,
+        "event_total": 47
       },
       {
         "rank": 24,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 33,
-        "manager": "M Suudi",
-        "team": "Cakdes FPL",
-        "entry_id": 17640,
-        "total": 215,
-        "event_total": 52
-      },
-      {
-        "rank": 30,
         "last_rank": 21,
         "manager": "Siddarth Kaul",
         "team": "sidskids",
         "entry_id": 11184,
         "total": 215,
         "event_total": 42
+      },
+      {
+        "rank": 30,
+        "last_rank": 33,
+        "manager": "M Suudi",
+        "team": "Cakdes FPL",
+        "entry_id": 17640,
+        "total": 215,
+        "event_total": 52
       },
       {
         "rank": 32,
