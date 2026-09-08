@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T13:57:49+00:00",
+  "generated_at": "2026-09-08T14:18:44+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -298,21 +298,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 10,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 239,
-        "event_total": 55
-      },
-      {
-        "rank": 6,
         "last_rank": 22,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 239,
         "event_total": 67
+      },
+      {
+        "rank": 6,
+        "last_rank": 10,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 239,
+        "event_total": 55
       },
       {
         "rank": 8,
@@ -370,15 +370,6 @@
       },
       {
         "rank": 14,
-        "last_rank": 9,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 231,
-        "event_total": 47
-      },
-      {
-        "rank": 14,
         "last_rank": 36,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
@@ -387,13 +378,13 @@
         "event_total": 71
       },
       {
-        "rank": 16,
-        "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 230,
-        "event_total": 36
+        "rank": 14,
+        "last_rank": 9,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 231,
+        "event_total": 47
       },
       {
         "rank": 16,
@@ -401,6 +392,15 @@
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
+        "total": 230,
+        "event_total": 36
+      },
+      {
+        "rank": 16,
+        "last_rank": 2,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 230,
         "event_total": 36
       },
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 21,
-        "manager": "Siddarth Kaul",
-        "team": "sidskids",
-        "entry_id": 11184,
-        "total": 215,
-        "event_total": 42
-      },
-      {
-        "rank": 30,
         "last_rank": 33,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 215,
         "event_total": 52
+      },
+      {
+        "rank": 30,
+        "last_rank": 21,
+        "manager": "Siddarth Kaul",
+        "team": "sidskids",
+        "entry_id": 11184,
+        "total": 215,
+        "event_total": 42
       },
       {
         "rank": 32,
