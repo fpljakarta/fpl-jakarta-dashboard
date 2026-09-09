@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09T18:34:51+00:00",
+  "generated_at": "2026-09-09T21:09:02+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 12,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 225,
-        "event_total": 43
-      },
-      {
-        "rank": 22,
         "last_rank": 16,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 225,
         "event_total": 47
+      },
+      {
+        "rank": 22,
+        "last_rank": 12,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 225,
+        "event_total": 43
       },
       {
         "rank": 24,
