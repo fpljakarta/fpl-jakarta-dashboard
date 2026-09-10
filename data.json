@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T04:29:57+00:00",
+  "generated_at": "2026-09-10T05:58:38+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -298,21 +298,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 22,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "entry_id": 3712006,
-        "total": 239,
-        "event_total": 67
-      },
-      {
-        "rank": 6,
         "last_rank": 10,
         "manager": "Rohan Kalwani",
         "team": "-4 Builds Carrickter",
         "entry_id": 3822923,
         "total": 239,
         "event_total": 55
+      },
+      {
+        "rank": 6,
+        "last_rank": 22,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "entry_id": 3712006,
+        "total": 239,
+        "event_total": 67
       },
       {
         "rank": 8,
@@ -370,15 +370,6 @@
       },
       {
         "rank": 14,
-        "last_rank": 36,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 231,
-        "event_total": 71
-      },
-      {
-        "rank": 14,
         "last_rank": 9,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
@@ -387,13 +378,13 @@
         "event_total": 47
       },
       {
-        "rank": 16,
-        "last_rank": 2,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
-        "total": 230,
-        "event_total": 36
+        "rank": 14,
+        "last_rank": 36,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 231,
+        "event_total": 71
       },
       {
         "rank": 16,
@@ -401,6 +392,15 @@
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
+        "total": 230,
+        "event_total": 36
+      },
+      {
+        "rank": 16,
+        "last_rank": 2,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 230,
         "event_total": 36
       },
@@ -424,21 +424,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 18,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 226,
-        "event_total": 52
-      },
-      {
-        "rank": 20,
         "last_rank": 25,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 226,
         "event_total": 55
+      },
+      {
+        "rank": 20,
+        "last_rank": 18,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 226,
+        "event_total": 52
       },
       {
         "rank": 22,
