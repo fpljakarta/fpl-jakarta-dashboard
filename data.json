@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T11:07:39+00:00",
+  "generated_at": "2026-09-10T14:12:43+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -424,15 +424,6 @@
       },
       {
         "rank": 20,
-        "last_rank": 25,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 226,
-        "event_total": 55
-      },
-      {
-        "rank": 20,
         "last_rank": 18,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
@@ -441,13 +432,13 @@
         "event_total": 52
       },
       {
-        "rank": 22,
-        "last_rank": 12,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 225,
-        "event_total": 43
+        "rank": 20,
+        "last_rank": 25,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 226,
+        "event_total": 55
       },
       {
         "rank": 22,
@@ -457,6 +448,15 @@
         "entry_id": 24602,
         "total": 225,
         "event_total": 47
+      },
+      {
+        "rank": 22,
+        "last_rank": 12,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 225,
+        "event_total": 43
       },
       {
         "rank": 24,
