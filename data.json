@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T19:18:49+00:00",
+  "generated_at": "2026-09-12T19:26:11+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 11,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 273,
-        "event_total": 48
-      },
-      {
-        "rank": 6,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 273,
         "event_total": 30
+      },
+      {
+        "rank": 6,
+        "last_rank": 11,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 273,
+        "event_total": 48
       },
       {
         "rank": 8,
@@ -371,18 +371,18 @@
       {
         "rank": 14,
         "last_rank": 16,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 271,
         "event_total": 41
       },
       {
         "rank": 14,
         "last_rank": 16,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 271,
         "event_total": 41
       },
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 18,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 264,
-        "event_total": 35
-      },
-      {
-        "rank": 19,
         "last_rank": 26,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 264,
         "event_total": 41
+      },
+      {
+        "rank": 19,
+        "last_rank": 18,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 264,
+        "event_total": 35
       },
       {
         "rank": 21,
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 30,
-        "manager": "M Suudi",
-        "team": "Cakdes FPL",
-        "entry_id": 17640,
-        "total": 251,
-        "event_total": 36
-      },
-      {
-        "rank": 31,
         "last_rank": 9,
         "manager": "Rishabh Mehta",
         "team": "PepMasterclass",
         "entry_id": 4111970,
         "total": 251,
         "event_total": 15
+      },
+      {
+        "rank": 31,
+        "last_rank": 30,
+        "manager": "M Suudi",
+        "team": "Cakdes FPL",
+        "entry_id": 17640,
+        "total": 251,
+        "event_total": 36
       },
       {
         "rank": 33,
@@ -577,21 +577,21 @@
       },
       {
         "rank": 37,
-        "last_rank": 36,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 247,
-        "event_total": 34
-      },
-      {
-        "rank": 37,
         "last_rank": 32,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
         "entry_id": 2934189,
         "total": 247,
         "event_total": 32
+      },
+      {
+        "rank": 37,
+        "last_rank": 36,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 247,
+        "event_total": 34
       },
       {
         "rank": 39,
@@ -676,21 +676,21 @@
       },
       {
         "rank": 48,
-        "last_rank": 47,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
-        "total": 233,
-        "event_total": 40
-      },
-      {
-        "rank": 48,
         "last_rank": 53,
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
         "entry_id": 3435396,
         "total": 233,
         "event_total": 51
+      },
+      {
+        "rank": 48,
+        "last_rank": 47,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
+        "total": 233,
+        "event_total": 40
       },
       {
         "rank": 50,
@@ -739,21 +739,21 @@
       },
       {
         "rank": 55,
+        "last_rank": 54,
+        "manager": "Jasvin Seera",
+        "team": "Seera Squad",
+        "entry_id": 6526117,
+        "total": 205,
+        "event_total": 26
+      },
+      {
+        "rank": 56,
         "last_rank": 56,
         "manager": "Lavesh Punjabi",
         "team": "Punjabi United",
         "entry_id": 20654,
         "total": 203,
         "event_total": 35
-      },
-      {
-        "rank": 56,
-        "last_rank": 54,
-        "manager": "Jasvin Seera",
-        "team": "Seera Squad",
-        "entry_id": 6526117,
-        "total": 202,
-        "event_total": 23
       },
       {
         "rank": 57,
