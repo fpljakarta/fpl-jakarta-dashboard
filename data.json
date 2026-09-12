@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T19:09:55+00:00",
+  "generated_at": "2026-09-12T19:18:49+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -334,21 +334,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 273,
-        "event_total": 48
-      },
-      {
-        "rank": 10,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 273,
         "event_total": 30
+      },
+      {
+        "rank": 10,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 273,
+        "event_total": 48
       },
       {
         "rank": 12,
@@ -371,18 +371,18 @@
       {
         "rank": 14,
         "last_rank": 16,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 271,
         "event_total": 41
       },
       {
         "rank": 14,
         "last_rank": 16,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 271,
         "event_total": 41
       },
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 26,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 264,
-        "event_total": 41
-      },
-      {
-        "rank": 19,
         "last_rank": 18,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
         "entry_id": 1657008,
         "total": 264,
         "event_total": 35
+      },
+      {
+        "rank": 19,
+        "last_rank": 26,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 264,
+        "event_total": 41
       },
       {
         "rank": 21,
@@ -451,21 +451,21 @@
       },
       {
         "rank": 23,
-        "last_rank": 20,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 260,
-        "event_total": 34
-      },
-      {
-        "rank": 23,
         "last_rank": 22,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 260,
         "event_total": 35
+      },
+      {
+        "rank": 23,
+        "last_rank": 20,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 260,
+        "event_total": 34
       },
       {
         "rank": 25,
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 9,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 251,
-        "event_total": 15
-      },
-      {
-        "rank": 31,
         "last_rank": 30,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 251,
         "event_total": 36
+      },
+      {
+        "rank": 31,
+        "last_rank": 9,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 251,
+        "event_total": 15
       },
       {
         "rank": 33,
@@ -550,21 +550,21 @@
       },
       {
         "rank": 34,
-        "last_rank": 33,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 249,
-        "event_total": 34
-      },
-      {
-        "rank": 34,
         "last_rank": 39,
         "manager": "Rachman Witarlan",
         "team": "FC Milanello",
         "entry_id": 1165190,
         "total": 249,
         "event_total": 41
+      },
+      {
+        "rank": 34,
+        "last_rank": 33,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 249,
+        "event_total": 34
       },
       {
         "rank": 36,
