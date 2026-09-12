@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T09:11:49+00:00",
+  "generated_at": "2026-09-12T09:42:45+00:00",
   "current_gameweek": 3,
   "next_gameweek": 4,
   "next_deadline": "2026-09-12T12:30:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 9,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 226,
-        "event_total": 52
-      },
-      {
-        "rank": 9,
         "last_rank": 14,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 226,
         "event_total": 55
+      },
+      {
+        "rank": 9,
+        "last_rank": 9,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 226,
+        "event_total": 52
       },
       {
         "rank": 11,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 21,
-        "manager": "Siddarth Kaul",
-        "team": "sidskids",
-        "entry_id": 11184,
-        "total": 215,
-        "event_total": 42
-      },
-      {
-        "rank": 30,
         "last_rank": 33,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 215,
         "event_total": 52
+      },
+      {
+        "rank": 30,
+        "last_rank": 21,
+        "manager": "Siddarth Kaul",
+        "team": "sidskids",
+        "entry_id": 11184,
+        "total": 215,
+        "event_total": 42
       },
       {
         "rank": 32,
