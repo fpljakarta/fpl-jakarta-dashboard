@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T15:58:51+00:00",
+  "generated_at": "2026-09-12T16:30:28+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -53,21 +53,21 @@
       },
       {
         "rank": 5,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 271,
-        "event_total": 28
-      },
-      {
-        "rank": 5,
         "last_rank": 11,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 271,
         "event_total": 46
+      },
+      {
+        "rank": 5,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 271,
+        "event_total": 28
       },
       {
         "rank": 7,
@@ -192,8 +192,8 @@
         "manager": "Prakash Mahtani",
         "team": "400K Redemption Arc",
         "entry_id": 1004009,
-        "total": 227,
-        "event_total": 21
+        "total": 229,
+        "event_total": 23
       },
       {
         "rank": 21,
@@ -253,21 +253,21 @@
     "main": [
       {
         "rank": 1,
+        "last_rank": 4,
+        "manager": "Neel Dadlani",
+        "team": "NDFC",
+        "entry_id": 1427203,
+        "total": 292,
+        "event_total": 51
+      },
+      {
+        "rank": 2,
         "last_rank": 1,
         "manager": "S M",
         "team": "I Know Nothing",
         "entry_id": 2202,
         "total": 291,
         "event_total": 40
-      },
-      {
-        "rank": 2,
-        "last_rank": 4,
-        "manager": "Neel Dadlani",
-        "team": "NDFC",
-        "entry_id": 1427203,
-        "total": 290,
-        "event_total": 49
       },
       {
         "rank": 3,
@@ -307,21 +307,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 271,
-        "event_total": 28
-      },
-      {
-        "rank": 6,
         "last_rank": 22,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 271,
         "event_total": 46
+      },
+      {
+        "rank": 6,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 271,
+        "event_total": 28
       },
       {
         "rank": 9,
@@ -617,8 +617,8 @@
         "manager": "Rachman Witarlan",
         "team": "FC Milanello",
         "entry_id": 1165190,
-        "total": 237,
-        "event_total": 29
+        "total": 239,
+        "event_total": 31
       },
       {
         "rank": 42,
@@ -662,17 +662,8 @@
         "manager": "Hitesh Singh",
         "team": "Not Too Xabi",
         "entry_id": 3323643,
-        "total": 228,
-        "event_total": 41
-      },
-      {
-        "rank": 47,
-        "last_rank": 46,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
-        "total": 227,
-        "event_total": 32
+        "total": 230,
+        "event_total": 43
       },
       {
         "rank": 47,
@@ -680,8 +671,17 @@
         "manager": "Prakash Mahtani",
         "team": "400K Redemption Arc",
         "entry_id": 1004009,
+        "total": 229,
+        "event_total": 23
+      },
+      {
+        "rank": 48,
+        "last_rank": 46,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
         "total": 227,
-        "event_total": 21
+        "event_total": 32
       },
       {
         "rank": 49,
@@ -712,21 +712,21 @@
       },
       {
         "rank": 52,
+        "last_rank": 52,
+        "manager": "Gajendra Khand",
+        "team": "Gajendra united",
+        "entry_id": 835924,
+        "total": 208,
+        "event_total": 24
+      },
+      {
+        "rank": 53,
         "last_rank": 55,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 208,
         "event_total": 32
-      },
-      {
-        "rank": 53,
-        "last_rank": 52,
-        "manager": "Gajendra Khand",
-        "team": "Gajendra united",
-        "entry_id": 835924,
-        "total": 206,
-        "event_total": 22
       },
       {
         "rank": 54,
@@ -998,8 +998,8 @@
       },
       {
         "gw": 4,
-        "manager": "S M",
-        "team": "I Know Nothing",
+        "manager": "Neel Dadlani",
+        "team": "NDFC",
         "points": 0
       }
     ]
