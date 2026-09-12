@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T17:04:24+00:00",
+  "generated_at": "2026-09-12T17:38:19+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -307,6 +307,15 @@
       },
       {
         "rank": 7,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 271,
+        "event_total": 46
+      },
+      {
+        "rank": 7,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
@@ -322,15 +331,6 @@
         "entry_id": 248046,
         "total": 271,
         "event_total": 36
-      },
-      {
-        "rank": 7,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 271,
-        "event_total": 46
       },
       {
         "rank": 10,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 30,
-        "manager": "M Suudi",
-        "team": "Cakdes FPL",
-        "entry_id": 17640,
-        "total": 249,
-        "event_total": 34
-      },
-      {
-        "rank": 30,
         "last_rank": 9,
         "manager": "Rishabh Mehta",
         "team": "PepMasterclass",
         "entry_id": 4111970,
         "total": 249,
         "event_total": 13
+      },
+      {
+        "rank": 30,
+        "last_rank": 30,
+        "manager": "M Suudi",
+        "team": "Cakdes FPL",
+        "entry_id": 17640,
+        "total": 249,
+        "event_total": 34
       },
       {
         "rank": 32,
@@ -649,21 +649,21 @@
       },
       {
         "rank": 45,
-        "last_rank": 50,
-        "manager": "Hitesh Singh",
-        "team": "Not Too Xabi",
-        "entry_id": 3323643,
-        "total": 231,
-        "event_total": 44
-      },
-      {
-        "rank": 45,
         "last_rank": 48,
         "manager": "Jeremy Oberoi",
         "team": "Next Season FC",
         "entry_id": 4127500,
         "total": 231,
         "event_total": 39
+      },
+      {
+        "rank": 45,
+        "last_rank": 50,
+        "manager": "Hitesh Singh",
+        "team": "Not Too Xabi",
+        "entry_id": 3323643,
+        "total": 231,
+        "event_total": 44
       },
       {
         "rank": 47,
