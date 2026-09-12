@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T21:12:13+00:00",
+  "generated_at": "2026-09-12T22:06:53+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -460,21 +460,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 33,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 269,
-        "event_total": 54
-      },
-      {
-        "rank": 24,
         "last_rank": 26,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 269,
         "event_total": 46
+      },
+      {
+        "rank": 24,
+        "last_rank": 33,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 269,
+        "event_total": 54
       },
       {
         "rank": 26,
