@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-12T12:17:32+00:00",
-  "current_gameweek": 3,
-  "next_gameweek": 4,
-  "next_deadline": "2026-09-12T12:30:00Z",
+  "generated_at": "2026-09-12T13:17:33+00:00",
+  "current_gameweek": 4,
+  "next_gameweek": 5,
+  "next_deadline": "2026-09-18T17:30:00Z",
   "leagues": {
     "high_stakes": {
       "id": 325153,
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 9,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 226,
-        "event_total": 52
-      },
-      {
-        "rank": 9,
         "last_rank": 14,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 226,
         "event_total": 55
+      },
+      {
+        "rank": 9,
+        "last_rank": 9,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 226,
+        "event_total": 52
       },
       {
         "rank": 11,
@@ -298,21 +298,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 10,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 239,
-        "event_total": 55
-      },
-      {
-        "rank": 6,
         "last_rank": 22,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 239,
         "event_total": 67
+      },
+      {
+        "rank": 6,
+        "last_rank": 10,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 239,
+        "event_total": 55
       },
       {
         "rank": 8,
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 36,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 231,
-        "event_total": 71
-      },
-      {
-        "rank": 14,
         "last_rank": 9,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 231,
         "event_total": 47
+      },
+      {
+        "rank": 14,
+        "last_rank": 36,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 231,
+        "event_total": 71
       },
       {
         "rank": 16,
@@ -424,15 +424,6 @@
       },
       {
         "rank": 20,
-        "last_rank": 25,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 226,
-        "event_total": 55
-      },
-      {
-        "rank": 20,
         "last_rank": 18,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
@@ -441,13 +432,13 @@
         "event_total": 52
       },
       {
-        "rank": 22,
-        "last_rank": 12,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 225,
-        "event_total": 43
+        "rank": 20,
+        "last_rank": 25,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 226,
+        "event_total": 55
       },
       {
         "rank": 22,
@@ -457,6 +448,15 @@
         "entry_id": 24602,
         "total": 225,
         "event_total": 47
+      },
+      {
+        "rank": 22,
+        "last_rank": 12,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 225,
+        "event_total": 43
       },
       {
         "rank": 24,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 33,
-        "manager": "M Suudi",
-        "team": "Cakdes FPL",
-        "entry_id": 17640,
-        "total": 215,
-        "event_total": 52
-      },
-      {
-        "rank": 30,
         "last_rank": 21,
         "manager": "Siddarth Kaul",
         "team": "sidskids",
         "entry_id": 11184,
         "total": 215,
         "event_total": 42
+      },
+      {
+        "rank": 30,
+        "last_rank": 33,
+        "manager": "M Suudi",
+        "team": "Cakdes FPL",
+        "entry_id": 17640,
+        "total": 215,
+        "event_total": 52
       },
       {
         "rank": 32,
@@ -969,6 +969,12 @@
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "points": 67
+      },
+      {
+        "gw": 4,
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "points": 0
       }
     ],
     "main": [
@@ -989,370 +995,439 @@
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
         "points": 71
+      },
+      {
+        "gw": 4,
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "points": 0
       }
     ]
   },
   "values": {
     "high_stakes": [
       {
-        "entry_id": 503301,
-        "manager": "Juzer Saify",
-        "team": "JS FC",
-        "gw": 3,
-        "value": 101.1,
-        "bank": 2.3,
-        "change": 0.7
-      },
-      {
         "entry_id": 72045,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
-        "gw": 3,
-        "value": 101.0,
-        "bank": 2.2,
-        "change": 0.7
-      },
-      {
-        "entry_id": 24602,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "gw": 3,
-        "value": 100.9,
-        "bank": 1.5,
-        "change": 0.7
-      },
-      {
-        "entry_id": 20654,
-        "manager": "Lavesh Punjabi",
-        "team": "Punjabi United",
-        "gw": 3,
-        "value": 100.9,
-        "bank": 0.8,
+        "gw": 4,
+        "value": 101.8,
+        "bank": 0.3,
         "change": 0.8
       },
       {
         "entry_id": 29071,
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
-        "gw": 3,
-        "value": 100.9,
+        "gw": 4,
+        "value": 101.8,
         "bank": 0.0,
-        "change": 0.7
+        "change": 0.9
       },
       {
-        "entry_id": 1004009,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "gw": 3,
-        "value": 100.8,
-        "bank": 0.8,
+        "entry_id": 20654,
+        "manager": "Lavesh Punjabi",
+        "team": "Punjabi United",
+        "gw": 4,
+        "value": 101.7,
+        "bank": 0.0,
+        "change": 0.8
+      },
+      {
+        "entry_id": 503301,
+        "manager": "Juzer Saify",
+        "team": "JS FC",
+        "gw": 4,
+        "value": 101.6,
+        "bank": 0.1,
         "change": 0.5
-      },
-      {
-        "entry_id": 479311,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "gw": 3,
-        "value": 100.7,
-        "bank": 2.0,
-        "change": 0.4
       },
       {
         "entry_id": 693910,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
-        "gw": 3,
-        "value": 100.7,
-        "bank": 0.1,
-        "change": 0.5
-      },
-      {
-        "entry_id": 338097,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 2.8,
-        "change": 0.3
-      },
-      {
-        "entry_id": 171383,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 0.0,
-        "change": 0.3
-      },
-      {
-        "entry_id": 2849972,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 0.7,
-        "change": 0.2
-      },
-      {
-        "entry_id": 4712875,
-        "manager": "joachim chia",
-        "team": "brotatogyokeres",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.4,
-        "change": 0.2
-      },
-      {
-        "entry_id": 14828,
-        "manager": "Jonathan Lobo",
-        "team": "Jonathan's Team",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.4,
-        "change": 0.1
-      },
-      {
-        "entry_id": 2123666,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3712006,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 2.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3080011,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 1.2,
-        "change": 0.2
-      },
-      {
-        "entry_id": 6104023,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3331264,
-        "manager": "Sanjay Morani",
-        "team": "Xisco Inferno FC",
-        "gw": 3,
-        "value": 100.4,
+        "gw": 4,
+        "value": 101.6,
         "bank": 0.2,
-        "change": 0.2
+        "change": 0.9
+      },
+      {
+        "entry_id": 24602,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "gw": 4,
+        "value": 101.4,
+        "bank": 1.6,
+        "change": 0.5
       },
       {
         "entry_id": 1440618,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
+        "gw": 4,
+        "value": 101.1,
+        "bank": 0.1,
+        "change": 0.7
+      },
+      {
+        "entry_id": 338097,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "gw": 4,
+        "value": 101.0,
+        "bank": 0.9,
+        "change": 0.5
+      },
+      {
+        "entry_id": 1004009,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "gw": 4,
+        "value": 100.9,
+        "bank": 3.2,
+        "change": 0.1
       },
       {
         "entry_id": 3391935,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
-        "change": 0.2
+        "gw": 4,
+        "value": 100.8,
+        "bank": 0.1,
+        "change": 0.5
       },
       {
-        "entry_id": 1657008,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
+        "entry_id": 171383,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "gw": 4,
+        "value": 100.8,
+        "bank": 0.9,
+        "change": 0.3
+      },
+      {
+        "entry_id": 479311,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "gw": 4,
+        "value": 100.8,
+        "bank": 0.9,
         "change": 0.1
       },
       {
         "entry_id": 371869,
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 1.2,
-        "change": 0.1
+        "gw": 4,
+        "value": 100.7,
+        "bank": 0.8,
+        "change": 0.4
       },
       {
-        "entry_id": 5408140,
-        "manager": "Gaurav Yadav",
-        "team": "Quantom of Tzolis",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 5.5,
-        "change": 0.1
+        "entry_id": 2849972,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "gw": 4,
+        "value": 100.7,
+        "bank": 3.0,
+        "change": 0.2
       },
       {
         "entry_id": 863474,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.2,
-        "change": 0.1
+        "gw": 4,
+        "value": 100.6,
+        "bank": 2.6,
+        "change": 0.3
+      },
+      {
+        "entry_id": 4712875,
+        "manager": "joachim chia",
+        "team": "brotatogyokeres",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.4,
+        "change": 0.0
+      },
+      {
+        "entry_id": 2123666,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
+        "change": 0.0
+      },
+      {
+        "entry_id": 3712006,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 1.5,
+        "change": 0.0
+      },
+      {
+        "entry_id": 3080011,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.1,
+        "change": 0.0
       },
       {
         "entry_id": 9279,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.1,
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
         "change": 0.1
+      },
+      {
+        "entry_id": 6104023,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
+        "change": 0.0
+      },
+      {
+        "entry_id": 1657008,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 0.4,
+        "change": 0.0
+      },
+      {
+        "entry_id": 14828,
+        "manager": "Jonathan Lobo",
+        "team": "Jonathan's Team",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 1.8,
+        "change": -0.1
+      },
+      {
+        "entry_id": 3331264,
+        "manager": "Sanjay Morani",
+        "team": "Xisco Inferno FC",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 0.0,
+        "change": -0.1
+      },
+      {
+        "entry_id": 5408140,
+        "manager": "Gaurav Yadav",
+        "team": "Quantom of Tzolis",
+        "gw": 4,
+        "value": 100.2,
+        "bank": 1.6,
+        "change": -0.1
       },
       {
         "entry_id": 2202,
         "manager": "S M",
         "team": "I Know Nothing",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
-        "change": 0.2
+        "gw": 4,
+        "value": 100.2,
+        "bank": 0.9,
+        "change": -0.1
       }
     ],
     "main": [
       {
-        "entry_id": 503301,
-        "manager": "Juzer Saify",
-        "team": "JS FC",
-        "gw": 3,
-        "value": 101.1,
-        "bank": 2.3,
-        "change": 0.7
-      },
-      {
-        "entry_id": 431772,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "gw": 3,
-        "value": 101.1,
-        "bank": 4.4,
-        "change": 0.7
-      },
-      {
-        "entry_id": 835924,
-        "manager": "Gajendra Khand",
-        "team": "Gajendra united",
-        "gw": 3,
-        "value": 101.0,
+        "entry_id": 11184,
+        "manager": "Siddarth Kaul",
+        "team": "sidskids",
+        "gw": 4,
+        "value": 101.9,
         "bank": 0.0,
-        "change": 0.5
+        "change": 0.9
       },
       {
         "entry_id": 72045,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
-        "gw": 3,
-        "value": 101.0,
-        "bank": 2.2,
-        "change": 0.7
-      },
-      {
-        "entry_id": 11184,
-        "manager": "Siddarth Kaul",
-        "team": "sidskids",
-        "gw": 3,
-        "value": 101.0,
-        "bank": 0.5,
-        "change": 0.8
-      },
-      {
-        "entry_id": 6889469,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "gw": 3,
-        "value": 100.9,
-        "bank": 0.2,
-        "change": 0.7
-      },
-      {
-        "entry_id": 2552235,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "gw": 3,
-        "value": 100.9,
-        "bank": 0.2,
-        "change": 0.7
-      },
-      {
-        "entry_id": 24602,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "gw": 3,
-        "value": 100.9,
-        "bank": 1.5,
-        "change": 0.7
-      },
-      {
-        "entry_id": 20654,
-        "manager": "Lavesh Punjabi",
-        "team": "Punjabi United",
-        "gw": 3,
-        "value": 100.9,
-        "bank": 0.8,
+        "gw": 4,
+        "value": 101.8,
+        "bank": 0.3,
         "change": 0.8
       },
       {
         "entry_id": 29071,
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
-        "gw": 3,
-        "value": 100.9,
+        "gw": 4,
+        "value": 101.8,
         "bank": 0.0,
-        "change": 0.7
+        "change": 0.9
       },
       {
-        "entry_id": 1004009,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "gw": 3,
-        "value": 100.8,
-        "bank": 0.8,
+        "entry_id": 20654,
+        "manager": "Lavesh Punjabi",
+        "team": "Punjabi United",
+        "gw": 4,
+        "value": 101.7,
+        "bank": 0.0,
+        "change": 0.8
+      },
+      {
+        "entry_id": 503301,
+        "manager": "Juzer Saify",
+        "team": "JS FC",
+        "gw": 4,
+        "value": 101.6,
+        "bank": 0.1,
+        "change": 0.5
+      },
+      {
+        "entry_id": 693910,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "gw": 4,
+        "value": 101.6,
+        "bank": 0.2,
+        "change": 0.9
+      },
+      {
+        "entry_id": 6889469,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "gw": 4,
+        "value": 101.5,
+        "bank": 0.2,
+        "change": 0.6
+      },
+      {
+        "entry_id": 2552235,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "gw": 4,
+        "value": 101.5,
+        "bank": 0.2,
+        "change": 0.6
+      },
+      {
+        "entry_id": 835924,
+        "manager": "Gajendra Khand",
+        "team": "Gajendra united",
+        "gw": 4,
+        "value": 101.5,
+        "bank": 0.0,
+        "change": 0.5
+      },
+      {
+        "entry_id": 24602,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "gw": 4,
+        "value": 101.4,
+        "bank": 1.6,
         "change": 0.5
       },
       {
         "entry_id": 26047,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
-        "gw": 3,
-        "value": 100.7,
-        "bank": 3.9,
+        "gw": 4,
+        "value": 101.3,
+        "bank": 0.3,
+        "change": 0.6
+      },
+      {
+        "entry_id": 431772,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "gw": 4,
+        "value": 101.2,
+        "bank": 0.3,
+        "change": 0.1
+      },
+      {
+        "entry_id": 679630,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "gw": 4,
+        "value": 101.1,
+        "bank": 0.5,
+        "change": 0.5
+      },
+      {
+        "entry_id": 1440618,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "gw": 4,
+        "value": 101.1,
+        "bank": 0.1,
+        "change": 0.7
+      },
+      {
+        "entry_id": 338097,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "gw": 4,
+        "value": 101.0,
+        "bank": 0.9,
+        "change": 0.5
+      },
+      {
+        "entry_id": 822879,
+        "manager": "Joanda Febrian",
+        "team": "DBM FC",
+        "gw": 4,
+        "value": 101.0,
+        "bank": 0.6,
+        "change": 0.6
+      },
+      {
+        "entry_id": 8019077,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "gw": 4,
+        "value": 101.0,
+        "bank": 0.3,
         "change": 0.4
       },
       {
-        "entry_id": 479311,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "gw": 3,
-        "value": 100.7,
-        "bank": 2.0,
+        "entry_id": 3323643,
+        "manager": "Hitesh Singh",
+        "team": "Not Too Xabi",
+        "gw": 4,
+        "value": 100.9,
+        "bank": 0.0,
         "change": 0.4
       },
       {
-        "entry_id": 693910,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "gw": 3,
-        "value": 100.7,
+        "entry_id": 1004009,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "gw": 4,
+        "value": 100.9,
+        "bank": 3.2,
+        "change": 0.1
+      },
+      {
+        "entry_id": 4111970,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "gw": 4,
+        "value": 100.9,
+        "bank": 0.0,
+        "change": 0.6
+      },
+      {
+        "entry_id": 3391935,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "gw": 4,
+        "value": 100.8,
         "bank": 0.1,
         "change": 0.5
       },
@@ -1360,406 +1435,343 @@
         "entry_id": 248046,
         "manager": "Chiraag Keswani",
         "team": "Ckeswani's XI",
-        "gw": 3,
-        "value": 100.6,
+        "gw": 4,
+        "value": 100.8,
         "bank": 0.4,
-        "change": 0.4
+        "change": 0.2
       },
       {
-        "entry_id": 8019077,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "gw": 3,
-        "value": 100.6,
-        "bank": 0.5,
-        "change": 0.4
-      },
-      {
-        "entry_id": 1427203,
-        "manager": "Neel Dadlani",
-        "team": "NDFC",
-        "gw": 3,
-        "value": 100.6,
-        "bank": 0.5,
-        "change": 0.3
-      },
-      {
-        "entry_id": 679630,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "gw": 3,
-        "value": 100.6,
-        "bank": 0.4,
+        "entry_id": 171383,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "gw": 4,
+        "value": 100.8,
+        "bank": 0.9,
         "change": 0.3
       },
       {
         "entry_id": 3986012,
         "manager": "Rahul Nanwani",
         "team": "Rahul Nanwani FC",
-        "gw": 3,
-        "value": 100.6,
-        "bank": 0.3,
-        "change": 0.3
-      },
-      {
-        "entry_id": 338097,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 2.8,
-        "change": 0.3
-      },
-      {
-        "entry_id": 171383,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 0.0,
-        "change": 0.3
-      },
-      {
-        "entry_id": 3323643,
-        "manager": "Hitesh Singh",
-        "team": "Not Too Xabi",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 1.3,
-        "change": 0.3
-      },
-      {
-        "entry_id": 2849972,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 0.7,
+        "gw": 4,
+        "value": 100.8,
+        "bank": 0.1,
         "change": 0.2
       },
       {
-        "entry_id": 3822923,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "gw": 3,
-        "value": 100.5,
-        "bank": 0.5,
-        "change": 0.3
-      },
-      {
-        "entry_id": 6552691,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 4712875,
-        "manager": "joachim chia",
-        "team": "brotatogyokeres",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.4,
-        "change": 0.2
-      },
-      {
-        "entry_id": 822879,
-        "manager": "Joanda Febrian",
-        "team": "DBM FC",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 1.5,
-        "change": 0.1
-      },
-      {
-        "entry_id": 14828,
-        "manager": "Jonathan Lobo",
-        "team": "Jonathan's Team",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.4,
-        "change": 0.1
-      },
-      {
-        "entry_id": 2123666,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3712006,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 2.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3080011,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 1.2,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3721681,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 6104023,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 2805634,
-        "manager": "Rayan Hamza",
-        "team": "Zarks",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3331264,
-        "manager": "Sanjay Morani",
-        "team": "Xisco Inferno FC",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.2,
-        "change": 0.2
-      },
-      {
-        "entry_id": 6175948,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.1
-      },
-      {
-        "entry_id": 1440618,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3005141,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "gw": 3,
-        "value": 100.4,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 3391935,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 5717595,
-        "manager": "Bharat Lakhwani",
-        "team": "Bpl",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
-        "change": 0.2
-      },
-      {
-        "entry_id": 1657008,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
+        "entry_id": 479311,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "gw": 4,
+        "value": 100.8,
+        "bank": 0.9,
         "change": 0.1
       },
       {
         "entry_id": 371869,
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 1.2,
-        "change": 0.1
+        "gw": 4,
+        "value": 100.7,
+        "bank": 0.8,
+        "change": 0.4
       },
       {
-        "entry_id": 5408140,
-        "manager": "Gaurav Yadav",
-        "team": "Quantom of Tzolis",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 5.5,
-        "change": 0.1
-      },
-      {
-        "entry_id": 2934189,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
-        "change": 0.1
-      },
-      {
-        "entry_id": 4127500,
-        "manager": "Jeremy Oberoi",
-        "team": "Next Season FC",
-        "gw": 3,
-        "value": 100.3,
+        "entry_id": 2849972,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "gw": 4,
+        "value": 100.7,
         "bank": 3.0,
-        "change": 0.1
-      },
-      {
-        "entry_id": 5199728,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 1.2,
-        "change": 0.1
-      },
-      {
-        "entry_id": 863474,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.2,
-        "change": 0.1
-      },
-      {
-        "entry_id": 9279,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.1,
-        "change": 0.1
-      },
-      {
-        "entry_id": 1165190,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 1.7,
-        "change": 0.1
-      },
-      {
-        "entry_id": 4111970,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.2,
-        "change": 0.1
-      },
-      {
-        "entry_id": 2202,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "gw": 3,
-        "value": 100.3,
-        "bank": 0.0,
         "change": 0.2
       },
       {
         "entry_id": 4294662,
         "manager": "Ashwin Mulani",
         "team": "Balon D'orgu",
-        "gw": 3,
-        "value": 100.2,
+        "gw": 4,
+        "value": 100.6,
         "bank": 0.0,
+        "change": 0.4
+      },
+      {
+        "entry_id": 863474,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "gw": 4,
+        "value": 100.6,
+        "bank": 2.6,
+        "change": 0.3
+      },
+      {
+        "entry_id": 6175948,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "gw": 4,
+        "value": 100.6,
+        "bank": 2.3,
+        "change": 0.2
+      },
+      {
+        "entry_id": 4127500,
+        "manager": "Jeremy Oberoi",
+        "team": "Next Season FC",
+        "gw": 4,
+        "value": 100.5,
+        "bank": 0.3,
+        "change": 0.2
+      },
+      {
+        "entry_id": 6552691,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "gw": 4,
+        "value": 100.5,
+        "bank": 0.1,
         "change": 0.1
       },
       {
-        "entry_id": 754628,
-        "manager": "Indar Dhaliwal",
-        "team": "Daylight Brobbery",
-        "gw": 3,
-        "value": 100.2,
+        "entry_id": 1427203,
+        "manager": "Neel Dadlani",
+        "team": "NDFC",
+        "gw": 4,
+        "value": 100.5,
         "bank": 0.8,
+        "change": -0.1
+      },
+      {
+        "entry_id": 4712875,
+        "manager": "joachim chia",
+        "team": "brotatogyokeres",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.4,
+        "change": 0.0
+      },
+      {
+        "entry_id": 2123666,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
+        "change": 0.0
+      },
+      {
+        "entry_id": 5199728,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 1.2,
+        "change": 0.1
+      },
+      {
+        "entry_id": 3712006,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 1.5,
         "change": 0.0
       },
       {
         "entry_id": 17640,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
-        "gw": 3,
-        "value": 100.2,
-        "bank": 0.4,
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
+        "change": 0.2
+      },
+      {
+        "entry_id": 3080011,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.1,
         "change": 0.0
       },
       {
-        "entry_id": 1257763,
-        "manager": "Ajay Yeleswaram",
-        "team": "Relegated",
-        "gw": 3,
-        "value": 100.1,
-        "bank": 0.3,
+        "entry_id": 9279,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
+        "change": 0.1
+      },
+      {
+        "entry_id": 6104023,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
         "change": 0.0
       },
       {
-        "entry_id": 3624633,
-        "manager": "Anoop Vaswani",
-        "team": "Beer Kings",
-        "gw": 3,
-        "value": 100.0,
-        "bank": 1.3,
+        "entry_id": 3822923,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.0,
         "change": -0.1
-      },
-      {
-        "entry_id": 6526117,
-        "manager": "Jasvin Seera",
-        "team": "Seera Squad",
-        "gw": 3,
-        "value": 100.0,
-        "bank": 0.5,
-        "change": 0.0
       },
       {
         "entry_id": 3435396,
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
-        "gw": 3,
-        "value": 100.0,
-        "bank": 0.5,
+        "gw": 4,
+        "value": 100.4,
+        "bank": 0.1,
+        "change": 0.4
+      },
+      {
+        "entry_id": 5717595,
+        "manager": "Bharat Lakhwani",
+        "team": "Bpl",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 2.5,
+        "change": 0.0
+      },
+      {
+        "entry_id": 1657008,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 0.4,
+        "change": 0.0
+      },
+      {
+        "entry_id": 2934189,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 2.6,
+        "change": 0.0
+      },
+      {
+        "entry_id": 14828,
+        "manager": "Jonathan Lobo",
+        "team": "Jonathan's Team",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 1.8,
         "change": -0.1
+      },
+      {
+        "entry_id": 3721681,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 0.4,
+        "change": -0.1
+      },
+      {
+        "entry_id": 1165190,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 1.7,
+        "change": 0.0
+      },
+      {
+        "entry_id": 3331264,
+        "manager": "Sanjay Morani",
+        "team": "Xisco Inferno FC",
+        "gw": 4,
+        "value": 100.3,
+        "bank": 0.0,
+        "change": -0.1
+      },
+      {
+        "entry_id": 5408140,
+        "manager": "Gaurav Yadav",
+        "team": "Quantom of Tzolis",
+        "gw": 4,
+        "value": 100.2,
+        "bank": 1.6,
+        "change": -0.1
+      },
+      {
+        "entry_id": 2202,
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "gw": 4,
+        "value": 100.2,
+        "bank": 0.9,
+        "change": -0.1
+      },
+      {
+        "entry_id": 754628,
+        "manager": "Indar Dhaliwal",
+        "team": "Daylight Brobbery",
+        "gw": 4,
+        "value": 100.1,
+        "bank": 0.6,
+        "change": -0.1
+      },
+      {
+        "entry_id": 2805634,
+        "manager": "Rayan Hamza",
+        "team": "Zarks",
+        "gw": 4,
+        "value": 100.1,
+        "bank": 0.0,
+        "change": -0.3
+      },
+      {
+        "entry_id": 3005141,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "gw": 4,
+        "value": 100.1,
+        "bank": 1.1,
+        "change": -0.3
+      },
+      {
+        "entry_id": 1257763,
+        "manager": "Ajay Yeleswaram",
+        "team": "Relegated",
+        "gw": 4,
+        "value": 100.0,
+        "bank": 0.4,
+        "change": -0.1
+      },
+      {
+        "entry_id": 3624633,
+        "manager": "Anoop Vaswani",
+        "team": "Beer Kings",
+        "gw": 4,
+        "value": 99.7,
+        "bank": 1.4,
+        "change": -0.3
+      },
+      {
+        "entry_id": 6526117,
+        "manager": "Jasvin Seera",
+        "team": "Seera Squad",
+        "gw": 4,
+        "value": 99.7,
+        "bank": 0.5,
+        "change": -0.3
       },
       {
         "entry_id": 6924233,
         "manager": "Sanjev Rama",
         "team": "Jippy's",
-        "gw": 3,
-        "value": 99.6,
+        "gw": 4,
+        "value": 99.5,
         "bank": 0.8,
-        "change": -0.4
+        "change": -0.1
       }
     ]
   }
