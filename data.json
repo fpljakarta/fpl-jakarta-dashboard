@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T14:59:25+00:00",
+  "generated_at": "2026-09-13T15:12:21+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 302,
-        "event_total": 59
-      },
-      {
-        "rank": 14,
         "last_rank": 22,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 302,
         "event_total": 77
+      },
+      {
+        "rank": 14,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 302,
+        "event_total": 59
       },
       {
         "rank": 16,
@@ -568,21 +568,21 @@
       },
       {
         "rank": 36,
-        "last_rank": 33,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 269,
-        "event_total": 54
-      },
-      {
-        "rank": 36,
         "last_rank": 26,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 269,
         "event_total": 46
+      },
+      {
+        "rank": 36,
+        "last_rank": 33,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 269,
+        "event_total": 54
       },
       {
         "rank": 38,
