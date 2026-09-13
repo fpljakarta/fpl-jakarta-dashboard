@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T00:16:18+00:00",
+  "generated_at": "2026-09-13T00:45:28+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 11,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 283,
-        "event_total": 58
-      },
-      {
-        "rank": 6,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 283,
         "event_total": 40
+      },
+      {
+        "rank": 6,
+        "last_rank": 11,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 283,
+        "event_total": 58
       },
       {
         "rank": 8,
@@ -667,21 +667,21 @@
       },
       {
         "rank": 47,
-        "last_rank": 47,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
-        "total": 245,
-        "event_total": 52
-      },
-      {
-        "rank": 47,
         "last_rank": 53,
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
         "entry_id": 3435396,
         "total": 245,
         "event_total": 63
+      },
+      {
+        "rank": 47,
+        "last_rank": 47,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
+        "total": 245,
+        "event_total": 52
       },
       {
         "rank": 49,
