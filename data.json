@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T22:33:36+00:00",
+  "generated_at": "2026-09-13T00:16:18+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -361,21 +361,21 @@
       },
       {
         "rank": 13,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 283,
-        "event_total": 40
-      },
-      {
-        "rank": 13,
         "last_rank": 22,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 283,
         "event_total": 58
+      },
+      {
+        "rank": 13,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 283,
+        "event_total": 40
       },
       {
         "rank": 15,
@@ -460,21 +460,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 26,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 269,
-        "event_total": 46
-      },
-      {
-        "rank": 24,
         "last_rank": 33,
         "manager": "Michael Kenneth",
         "team": "Pool4life",
         "entry_id": 8019077,
         "total": 269,
         "event_total": 54
+      },
+      {
+        "rank": 24,
+        "last_rank": 26,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 269,
+        "event_total": 46
       },
       {
         "rank": 26,
@@ -649,15 +649,6 @@
       },
       {
         "rank": 45,
-        "last_rank": 48,
-        "manager": "Jeremy Oberoi",
-        "team": "Next Season FC",
-        "entry_id": 4127500,
-        "total": 246,
-        "event_total": 54
-      },
-      {
-        "rank": 45,
         "last_rank": 50,
         "manager": "Hitesh Singh",
         "team": "Not Too Xabi",
@@ -666,13 +657,13 @@
         "event_total": 59
       },
       {
-        "rank": 47,
-        "last_rank": 53,
-        "manager": "Sagar Sadarangani",
-        "team": "cole me palmer",
-        "entry_id": 3435396,
-        "total": 245,
-        "event_total": 63
+        "rank": 45,
+        "last_rank": 48,
+        "manager": "Jeremy Oberoi",
+        "team": "Next Season FC",
+        "entry_id": 4127500,
+        "total": 246,
+        "event_total": 54
       },
       {
         "rank": 47,
@@ -682,6 +673,15 @@
         "entry_id": 3080011,
         "total": 245,
         "event_total": 52
+      },
+      {
+        "rank": 47,
+        "last_rank": 53,
+        "manager": "Sagar Sadarangani",
+        "team": "cole me palmer",
+        "entry_id": 3435396,
+        "total": 245,
+        "event_total": 63
       },
       {
         "rank": 49,
@@ -974,7 +974,7 @@
         "gw": 4,
         "manager": "S M",
         "team": "I Know Nothing",
-        "points": 0
+        "points": 79
       }
     ],
     "main": [
@@ -1000,7 +1000,7 @@
         "gw": 4,
         "manager": "S M",
         "team": "I Know Nothing",
-        "points": 0
+        "points": 79
       }
     ]
   },
