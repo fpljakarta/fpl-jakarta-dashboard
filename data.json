@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T16:01:29+00:00",
+  "generated_at": "2026-09-13T16:18:53+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 303,
-        "event_total": 78
-      },
-      {
-        "rank": 14,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 303,
         "event_total": 60
+      },
+      {
+        "rank": 14,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 303,
+        "event_total": 78
       },
       {
         "rank": 16,
@@ -491,8 +491,8 @@
         "manager": "Suraj Topandasani",
         "team": "Londonal FC",
         "entry_id": 431772,
-        "total": 283,
-        "event_total": 64
+        "total": 281,
+        "event_total": 62
       },
       {
         "rank": 28,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 43,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 279,
-        "event_total": 78
-      },
-      {
-        "rank": 30,
         "last_rank": 36,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
         "total": 279,
         "event_total": 66
+      },
+      {
+        "rank": 30,
+        "last_rank": 43,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 279,
+        "event_total": 78
       },
       {
         "rank": 32,
@@ -568,15 +568,6 @@
       },
       {
         "rank": 36,
-        "last_rank": 33,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 273,
-        "event_total": 58
-      },
-      {
-        "rank": 37,
         "last_rank": 37,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
@@ -585,13 +576,22 @@
         "event_total": 63
       },
       {
-        "rank": 38,
+        "rank": 37,
         "last_rank": 26,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 271,
         "event_total": 48
+      },
+      {
+        "rank": 37,
+        "last_rank": 33,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 271,
+        "event_total": 56
       },
       {
         "rank": 39,
@@ -658,21 +658,21 @@
       },
       {
         "rank": 46,
-        "last_rank": 50,
-        "manager": "Hitesh Singh",
-        "team": "Not Too Xabi",
-        "entry_id": 3323643,
-        "total": 258,
-        "event_total": 71
-      },
-      {
-        "rank": 46,
         "last_rank": 39,
         "manager": "Rachman Witarlan",
         "team": "FC Milanello",
         "entry_id": 1165190,
         "total": 258,
         "event_total": 50
+      },
+      {
+        "rank": 46,
+        "last_rank": 50,
+        "manager": "Hitesh Singh",
+        "team": "Not Too Xabi",
+        "entry_id": 3323643,
+        "total": 258,
+        "event_total": 71
       },
       {
         "rank": 48,
@@ -689,8 +689,8 @@
         "manager": "joachim chia",
         "team": "brotatogyokeres",
         "entry_id": 4712875,
-        "total": 255,
-        "event_total": 52
+        "total": 253,
+        "event_total": 50
       },
       {
         "rank": 50,
@@ -761,8 +761,8 @@
         "manager": "Ashwin Mulani",
         "team": "Balon D'orgu",
         "entry_id": 4294662,
-        "total": 221,
-        "event_total": 65
+        "total": 219,
+        "event_total": 63
       },
       {
         "rank": 58,
