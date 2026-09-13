@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T17:26:58+00:00",
+  "generated_at": "2026-09-13T19:15:37+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -254,18 +254,18 @@
       {
         "rank": 1,
         "last_rank": 16,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 332,
         "event_total": 102
       },
       {
         "rank": 1,
         "last_rank": 16,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 332,
         "event_total": 102
       },
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 310,
-        "event_total": 85
-      },
-      {
-        "rank": 14,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 310,
         "event_total": 67
+      },
+      {
+        "rank": 14,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 310,
+        "event_total": 85
       },
       {
         "rank": 16,
@@ -397,21 +397,21 @@
       },
       {
         "rank": 17,
-        "last_rank": 12,
-        "manager": "Bharat Lakhwani",
-        "team": "Bpl",
-        "entry_id": 5717595,
-        "total": 306,
-        "event_total": 72
-      },
-      {
-        "rank": 17,
         "last_rank": 6,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 306,
         "event_total": 67
+      },
+      {
+        "rank": 17,
+        "last_rank": 12,
+        "manager": "Bharat Lakhwani",
+        "team": "Bpl",
+        "entry_id": 5717595,
+        "total": 306,
+        "event_total": 72
       },
       {
         "rank": 19,
@@ -460,19 +460,19 @@
       },
       {
         "rank": 23,
-        "last_rank": 27,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
+        "last_rank": 28,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
         "total": 298,
         "event_total": 79
       },
       {
         "rank": 23,
-        "last_rank": 28,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
+        "last_rank": 27,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
         "total": 298,
         "event_total": 79
       },
@@ -972,9 +972,9 @@
       },
       {
         "gw": 4,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "points": 79
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "points": 96
       }
     ],
     "main": [
@@ -998,9 +998,9 @@
       },
       {
         "gw": 4,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "points": 79
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "points": 102
       }
     ]
   },
