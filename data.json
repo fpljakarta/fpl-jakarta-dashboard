@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T00:51:46+00:00",
+  "generated_at": "2026-09-14T01:39:31+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 11,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 311,
-        "event_total": 86
-      },
-      {
-        "rank": 6,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 311,
         "event_total": 68
+      },
+      {
+        "rank": 6,
+        "last_rank": 11,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 311,
+        "event_total": 86
       },
       {
         "rank": 8,
@@ -254,18 +254,18 @@
       {
         "rank": 1,
         "last_rank": 16,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 333,
         "event_total": 103
       },
       {
         "rank": 1,
         "last_rank": 16,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 333,
         "event_total": 103
       },
@@ -451,19 +451,19 @@
       },
       {
         "rank": 23,
-        "last_rank": 28,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
+        "last_rank": 27,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
         "total": 299,
         "event_total": 80
       },
       {
         "rank": 23,
-        "last_rank": 27,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
+        "last_rank": 28,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
         "total": 299,
         "event_total": 80
       },
@@ -532,21 +532,21 @@
       },
       {
         "rank": 32,
-        "last_rank": 43,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 287,
-        "event_total": 86
-      },
-      {
-        "rank": 32,
         "last_rank": 36,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
         "total": 287,
         "event_total": 74
+      },
+      {
+        "rank": 32,
+        "last_rank": 43,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 287,
+        "event_total": 86
       },
       {
         "rank": 34,
@@ -998,8 +998,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 102
       }
     ]
