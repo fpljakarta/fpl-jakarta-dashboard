@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T01:39:31+00:00",
+  "generated_at": "2026-09-14T05:58:53+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 311,
-        "event_total": 68
-      },
-      {
-        "rank": 6,
         "last_rank": 11,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 311,
         "event_total": 86
+      },
+      {
+        "rank": 6,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 311,
+        "event_total": 68
       },
       {
         "rank": 8,
@@ -254,18 +254,18 @@
       {
         "rank": 1,
         "last_rank": 16,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 333,
         "event_total": 103
       },
       {
         "rank": 1,
         "last_rank": 16,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 333,
         "event_total": 103
       },
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 311,
-        "event_total": 68
-      },
-      {
-        "rank": 14,
         "last_rank": 22,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 311,
         "event_total": 86
+      },
+      {
+        "rank": 14,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 311,
+        "event_total": 68
       },
       {
         "rank": 16,
@@ -998,8 +998,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 102
       }
     ]
