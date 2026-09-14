@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T05:58:53+00:00",
+  "generated_at": "2026-09-14T07:06:59+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 311,
-        "event_total": 86
-      },
-      {
-        "rank": 14,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 311,
         "event_total": 68
+      },
+      {
+        "rank": 14,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 311,
+        "event_total": 86
       },
       {
         "rank": 16,
@@ -451,19 +451,19 @@
       },
       {
         "rank": 23,
-        "last_rank": 27,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
+        "last_rank": 28,
+        "manager": "Jevesh Vatvani",
+        "team": "YNWA",
+        "entry_id": 6552691,
         "total": 299,
         "event_total": 80
       },
       {
         "rank": 23,
-        "last_rank": 28,
-        "manager": "Jevesh Vatvani",
-        "team": "YNWA",
-        "entry_id": 6552691,
+        "last_rank": 27,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
         "total": 299,
         "event_total": 80
       },
@@ -532,21 +532,21 @@
       },
       {
         "rank": 32,
-        "last_rank": 36,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 287,
-        "event_total": 74
-      },
-      {
-        "rank": 32,
         "last_rank": 43,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 287,
         "event_total": 86
+      },
+      {
+        "rank": 32,
+        "last_rank": 36,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 287,
+        "event_total": 74
       },
       {
         "rank": 34,
