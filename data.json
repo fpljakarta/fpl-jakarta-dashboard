@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T07:32:05+00:00",
+  "generated_at": "2026-09-15T10:27:41+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -111,8 +111,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 305,
-        "event_total": 91
+        "total": 306,
+        "event_total": 92
       },
       {
         "rank": 12,
@@ -174,8 +174,8 @@
         "manager": "joachim chia",
         "team": "brotatogyokeres",
         "entry_id": 4712875,
-        "total": 280,
-        "event_total": 77
+        "total": 281,
+        "event_total": 78
       },
       {
         "rank": 19,
@@ -210,8 +210,8 @@
         "manager": "Mohit Mirpuri",
         "team": "LION CITY BALLERS",
         "entry_id": 3080011,
-        "total": 268,
-        "event_total": 75
+        "total": 269,
+        "event_total": 76
       },
       {
         "rank": 23,
@@ -246,8 +246,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 219,
-        "event_total": 63
+        "total": 220,
+        "event_total": 64
       }
     ],
     "main": [
@@ -272,18 +272,18 @@
       {
         "rank": 3,
         "last_rank": 16,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 335,
         "event_total": 105
       },
       {
         "rank": 3,
         "last_rank": 16,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 335,
         "event_total": 105
       },
@@ -437,8 +437,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 305,
-        "event_total": 91
+        "total": 306,
+        "event_total": 92
       },
       {
         "rank": 22,
@@ -478,21 +478,21 @@
       },
       {
         "rank": 26,
-        "last_rank": 22,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 301,
-        "event_total": 76
-      },
-      {
-        "rank": 26,
         "last_rank": 14,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 301,
         "event_total": 70
+      },
+      {
+        "rank": 26,
+        "last_rank": 22,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 301,
+        "event_total": 76
       },
       {
         "rank": 28,
@@ -559,6 +559,15 @@
       },
       {
         "rank": 35,
+        "last_rank": 36,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 290,
+        "event_total": 77
+      },
+      {
+        "rank": 36,
         "last_rank": 25,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
@@ -567,16 +576,7 @@
         "event_total": 65
       },
       {
-        "rank": 36,
-        "last_rank": 36,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 287,
-        "event_total": 74
-      },
-      {
-        "rank": 36,
+        "rank": 37,
         "last_rank": 43,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
@@ -617,17 +617,8 @@
         "manager": "joachim chia",
         "team": "brotatogyokeres",
         "entry_id": 4712875,
-        "total": 280,
-        "event_total": 77
-      },
-      {
-        "rank": 42,
-        "last_rank": 39,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 277,
-        "event_total": 69
+        "total": 281,
+        "event_total": 78
       },
       {
         "rank": 42,
@@ -637,6 +628,15 @@
         "entry_id": 17640,
         "total": 277,
         "event_total": 62
+      },
+      {
+        "rank": 42,
+        "last_rank": 39,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 277,
+        "event_total": 69
       },
       {
         "rank": 44,
@@ -680,8 +680,8 @@
         "manager": "Mohit Mirpuri",
         "team": "LION CITY BALLERS",
         "entry_id": 3080011,
-        "total": 268,
-        "event_total": 75
+        "total": 269,
+        "event_total": 76
       },
       {
         "rank": 49,
@@ -725,8 +725,8 @@
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
         "entry_id": 3435396,
-        "total": 254,
-        "event_total": 72
+        "total": 255,
+        "event_total": 73
       },
       {
         "rank": 54,
@@ -770,8 +770,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 219,
-        "event_total": 63
+        "total": 220,
+        "event_total": 64
       },
       {
         "rank": 59,
@@ -998,8 +998,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       }
     ]
