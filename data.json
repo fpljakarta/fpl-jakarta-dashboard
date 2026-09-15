@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T01:18:49+00:00",
+  "generated_at": "2026-09-15T05:38:50+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 313,
-        "event_total": 70
-      },
-      {
-        "rank": 6,
         "last_rank": 11,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 313,
         "event_total": 88
+      },
+      {
+        "rank": 6,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 313,
+        "event_total": 70
       },
       {
         "rank": 8,
@@ -478,21 +478,21 @@
       },
       {
         "rank": 26,
-        "last_rank": 14,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 301,
-        "event_total": 70
-      },
-      {
-        "rank": 26,
         "last_rank": 22,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 301,
         "event_total": 76
+      },
+      {
+        "rank": 26,
+        "last_rank": 14,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 301,
+        "event_total": 70
       },
       {
         "rank": 28,
