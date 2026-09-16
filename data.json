@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T09:50:32+00:00",
+  "generated_at": "2026-09-16T13:20:52+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 313,
-        "event_total": 88
-      },
-      {
-        "rank": 14,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 313,
         "event_total": 70
+      },
+      {
+        "rank": 14,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 313,
+        "event_total": 88
       },
       {
         "rank": 16,
