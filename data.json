@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T18:20:06+00:00",
+  "generated_at": "2026-09-16T21:27:51+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 313,
-        "event_total": 70
-      },
-      {
-        "rank": 6,
         "last_rank": 11,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 313,
         "event_total": 88
+      },
+      {
+        "rank": 6,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 313,
+        "event_total": 70
       },
       {
         "rank": 8,
@@ -272,18 +272,18 @@
       {
         "rank": 3,
         "last_rank": 16,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 335,
         "event_total": 105
       },
       {
         "rank": 3,
         "last_rank": 16,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 335,
         "event_total": 105
       },
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 313,
-        "event_total": 88
-      },
-      {
-        "rank": 14,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 313,
         "event_total": 70
+      },
+      {
+        "rank": 14,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 313,
+        "event_total": 88
       },
       {
         "rank": 16,
@@ -478,21 +478,21 @@
       },
       {
         "rank": 26,
-        "last_rank": 22,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 301,
-        "event_total": 76
-      },
-      {
-        "rank": 26,
         "last_rank": 14,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 301,
         "event_total": 70
+      },
+      {
+        "rank": 26,
+        "last_rank": 22,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 301,
+        "event_total": 76
       },
       {
         "rank": 28,
@@ -622,21 +622,21 @@
       },
       {
         "rank": 42,
-        "last_rank": 39,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 277,
-        "event_total": 69
-      },
-      {
-        "rank": 42,
         "last_rank": 30,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 277,
         "event_total": 62
+      },
+      {
+        "rank": 42,
+        "last_rank": 39,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 277,
+        "event_total": 69
       },
       {
         "rank": 44,
@@ -998,8 +998,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       }
     ]
