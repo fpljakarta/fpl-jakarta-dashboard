@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T01:47:28+00:00",
+  "generated_at": "2026-09-17T05:57:17+00:00",
   "current_gameweek": 4,
   "next_gameweek": 5,
   "next_deadline": "2026-09-18T17:30:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 3,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 313,
-        "event_total": 70
-      },
-      {
-        "rank": 6,
         "last_rank": 11,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 313,
         "event_total": 88
+      },
+      {
+        "rank": 6,
+        "last_rank": 3,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 313,
+        "event_total": 70
       },
       {
         "rank": 8,
@@ -370,21 +370,21 @@
       },
       {
         "rank": 14,
-        "last_rank": 22,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 313,
-        "event_total": 88
-      },
-      {
-        "rank": 14,
         "last_rank": 3,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 313,
         "event_total": 70
+      },
+      {
+        "rank": 14,
+        "last_rank": 22,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 313,
+        "event_total": 88
       },
       {
         "rank": 16,
@@ -622,21 +622,21 @@
       },
       {
         "rank": 42,
-        "last_rank": 39,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 277,
-        "event_total": 69
-      },
-      {
-        "rank": 42,
         "last_rank": 30,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
         "entry_id": 17640,
         "total": 277,
         "event_total": 62
+      },
+      {
+        "rank": 42,
+        "last_rank": 39,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 277,
+        "event_total": 69
       },
       {
         "rank": 44,
