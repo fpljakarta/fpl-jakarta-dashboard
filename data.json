@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-18T19:33:07+00:00",
+  "generated_at": "2026-09-18T20:07:05+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -93,8 +93,8 @@
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
-        "total": 310,
-        "event_total": 3
+        "total": 312,
+        "event_total": 5
       },
       {
         "rank": 10,
@@ -272,18 +272,18 @@
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 336,
         "event_total": 1
       },
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 336,
         "event_total": 1
       },
@@ -329,8 +329,8 @@
         "manager": "Siddarth Kaul",
         "team": "sidskids",
         "entry_id": 11184,
-        "total": 321,
-        "event_total": 3
+        "total": 323,
+        "event_total": 5
       },
       {
         "rank": 10,
@@ -406,21 +406,21 @@
       },
       {
         "rank": 18,
+        "last_rank": 20,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "entry_id": 3712006,
+        "total": 312,
+        "event_total": 5
+      },
+      {
+        "rank": 19,
         "last_rank": 19,
         "manager": "Rishabh Mehta",
         "team": "PepMasterclass",
         "entry_id": 4111970,
         "total": 311,
         "event_total": 1
-      },
-      {
-        "rank": 19,
-        "last_rank": 20,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "entry_id": 3712006,
-        "total": 310,
-        "event_total": 3
       },
       {
         "rank": 20,
@@ -460,21 +460,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 24,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 303,
-        "event_total": 1
-      },
-      {
-        "rank": 24,
         "last_rank": 23,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 303,
         "event_total": 0
+      },
+      {
+        "rank": 24,
+        "last_rank": 24,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 303,
+        "event_total": 1
       },
       {
         "rank": 26,
@@ -1004,8 +1004,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
