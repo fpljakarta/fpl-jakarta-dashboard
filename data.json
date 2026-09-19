@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T12:06:08+00:00",
+  "generated_at": "2026-09-19T12:40:32+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -284,8 +284,8 @@
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
-        "total": 338,
-        "event_total": 3
+        "total": 337,
+        "event_total": 2
       },
       {
         "rank": 4,
@@ -293,8 +293,8 @@
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
-        "total": 338,
-        "event_total": 3
+        "total": 337,
+        "event_total": 2
       },
       {
         "rank": 6,
@@ -487,21 +487,21 @@
       },
       {
         "rank": 27,
-        "last_rank": 28,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
-        "total": 304,
-        "event_total": 4
-      },
-      {
-        "rank": 27,
         "last_rank": 26,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 304,
         "event_total": 3
+      },
+      {
+        "rank": 27,
+        "last_rank": 28,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
+        "total": 304,
+        "event_total": 4
       },
       {
         "rank": 29,
@@ -770,8 +770,8 @@
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
-        "total": 225,
-        "event_total": 6
+        "total": 223,
+        "event_total": 4
       },
       {
         "rank": 59,
