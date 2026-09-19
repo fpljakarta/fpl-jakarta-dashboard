@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T21:11:51+00:00",
+  "generated_at": "2026-09-19T22:50:17+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 364,
         "event_total": 29
       },
       {
         "rank": 4,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 364,
         "event_total": 29
       },
@@ -442,6 +442,15 @@
       },
       {
         "rank": 22,
+        "last_rank": 35,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 322,
+        "event_total": 32
+      },
+      {
+        "rank": 22,
         "last_rank": 30,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
@@ -457,15 +466,6 @@
         "entry_id": 2123666,
         "total": 322,
         "event_total": 13
-      },
-      {
-        "rank": 22,
-        "last_rank": 35,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 322,
-        "event_total": 32
       },
       {
         "rank": 25,
@@ -496,21 +496,21 @@
       },
       {
         "rank": 28,
-        "last_rank": 28,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
-        "total": 314,
-        "event_total": 14
-      },
-      {
-        "rank": 28,
         "last_rank": 26,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 314,
         "event_total": 13
+      },
+      {
+        "rank": 28,
+        "last_rank": 28,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
+        "total": 314,
+        "event_total": 14
       },
       {
         "rank": 30,
@@ -1004,8 +1004,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
