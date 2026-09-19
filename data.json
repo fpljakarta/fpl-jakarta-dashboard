@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T00:04:55+00:00",
+  "generated_at": "2026-09-19T00:35:14+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -532,21 +532,21 @@
       },
       {
         "rank": 32,
-        "last_rank": 30,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 296,
-        "event_total": 4
-      },
-      {
-        "rank": 32,
         "last_rank": 33,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 296,
         "event_total": 5
+      },
+      {
+        "rank": 32,
+        "last_rank": 30,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 296,
+        "event_total": 4
       },
       {
         "rank": 34,
