@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T22:50:17+00:00",
+  "generated_at": "2026-09-19T23:09:05+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -442,6 +442,15 @@
       },
       {
         "rank": 22,
+        "last_rank": 16,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
+        "total": 322,
+        "event_total": 13
+      },
+      {
+        "rank": 22,
         "last_rank": 35,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
@@ -457,15 +466,6 @@
         "entry_id": 26047,
         "total": 322,
         "event_total": 30
-      },
-      {
-        "rank": 22,
-        "last_rank": 16,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
-        "total": 322,
-        "event_total": 13
       },
       {
         "rank": 25,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 31,
-        "manager": "Indar Dhaliwal",
-        "team": "Daylight Brobbery",
-        "entry_id": 754628,
-        "total": 312,
-        "event_total": 16
-      },
-      {
-        "rank": 33,
         "last_rank": 34,
         "manager": "Win Win",
         "team": "Kalimasada FC",
         "entry_id": 3005141,
         "total": 312,
         "event_total": 22
+      },
+      {
+        "rank": 33,
+        "last_rank": 31,
+        "manager": "Indar Dhaliwal",
+        "team": "Daylight Brobbery",
+        "entry_id": 754628,
+        "total": 312,
+        "event_total": 16
       },
       {
         "rank": 35,
