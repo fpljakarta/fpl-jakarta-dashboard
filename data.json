@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T17:52:15+00:00",
+  "generated_at": "2026-09-19T18:26:18+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -532,6 +532,15 @@
       },
       {
         "rank": 32,
+        "last_rank": 34,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 312,
+        "event_total": 22
+      },
+      {
+        "rank": 32,
         "last_rank": 31,
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
@@ -540,21 +549,12 @@
         "event_total": 16
       },
       {
-        "rank": 33,
+        "rank": 34,
         "last_rank": 32,
         "manager": "Michael Kenneth",
         "team": "Pool4life",
         "entry_id": 8019077,
         "total": 311,
-        "event_total": 20
-      },
-      {
-        "rank": 34,
-        "last_rank": 34,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 310,
         "event_total": 20
       },
       {
@@ -617,8 +617,8 @@
         "manager": "Kevin Raymond",
         "team": "Gunners United",
         "entry_id": 5199728,
-        "total": 300,
-        "event_total": 16
+        "total": 302,
+        "event_total": 18
       },
       {
         "rank": 42,
