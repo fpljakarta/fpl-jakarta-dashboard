@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T14:16:39+00:00",
+  "generated_at": "2026-09-19T14:21:08+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -21,8 +21,8 @@
         "manager": "S M",
         "team": "I Know Nothing",
         "entry_id": 2202,
-        "total": 351,
-        "event_total": 9
+        "total": 354,
+        "event_total": 12
       },
       {
         "rank": 2,
@@ -284,8 +284,8 @@
         "manager": "S M",
         "team": "I Know Nothing",
         "entry_id": 2202,
-        "total": 351,
-        "event_total": 9
+        "total": 354,
+        "event_total": 12
       },
       {
         "rank": 5,
@@ -370,6 +370,15 @@
       },
       {
         "rank": 14,
+        "last_rank": 19,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 328,
+        "event_total": 18
+      },
+      {
+        "rank": 15,
         "last_rank": 20,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
@@ -378,7 +387,7 @@
         "event_total": 21
       },
       {
-        "rank": 15,
+        "rank": 16,
         "last_rank": 14,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
@@ -387,22 +396,13 @@
         "event_total": 14
       },
       {
-        "rank": 16,
+        "rank": 17,
         "last_rank": 17,
         "manager": "Chiraag Keswani",
         "team": "Ckeswani's XI",
         "entry_id": 248046,
         "total": 326,
         "event_total": 14
-      },
-      {
-        "rank": 17,
-        "last_rank": 19,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 325,
-        "event_total": 15
       },
       {
         "rank": 18,
@@ -550,21 +550,21 @@
       },
       {
         "rank": 34,
-        "last_rank": 34,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 302,
-        "event_total": 12
-      },
-      {
-        "rank": 34,
         "last_rank": 37,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 302,
         "event_total": 15
+      },
+      {
+        "rank": 34,
+        "last_rank": 34,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 302,
+        "event_total": 12
       },
       {
         "rank": 36,
