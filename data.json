@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T15:51:50+00:00",
+  "generated_at": "2026-09-20T16:03:54+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -272,18 +272,18 @@
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 378,
         "event_total": 43
       },
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 378,
         "event_total": 43
       },
@@ -486,22 +486,22 @@
         "event_total": 45
       },
       {
-        "rank": 27,
+        "rank": 26,
+        "last_rank": 21,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 341,
+        "event_total": 35
+      },
+      {
+        "rank": 28,
         "last_rank": 16,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 341,
         "event_total": 32
-      },
-      {
-        "rank": 28,
-        "last_rank": 21,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 339,
-        "event_total": 33
       },
       {
         "rank": 29,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 30,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 338,
-        "event_total": 46
-      },
-      {
-        "rank": 30,
         "last_rank": 26,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 338,
         "event_total": 37
+      },
+      {
+        "rank": 30,
+        "last_rank": 30,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 338,
+        "event_total": 46
       },
       {
         "rank": 32,
@@ -559,21 +559,21 @@
       },
       {
         "rank": 35,
+        "last_rank": 35,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 332,
+        "event_total": 42
+      },
+      {
+        "rank": 36,
         "last_rank": 32,
         "manager": "Michael Kenneth",
         "team": "Pool4life",
         "entry_id": 8019077,
         "total": 331,
         "event_total": 40
-      },
-      {
-        "rank": 36,
-        "last_rank": 35,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 331,
-        "event_total": 41
       },
       {
         "rank": 37,
@@ -586,21 +586,21 @@
       },
       {
         "rank": 38,
-        "last_rank": 39,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
-        "total": 330,
-        "event_total": 46
-      },
-      {
-        "rank": 38,
         "last_rank": 28,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
         "entry_id": 2934189,
         "total": 330,
         "event_total": 30
+      },
+      {
+        "rank": 38,
+        "last_rank": 39,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
+        "total": 330,
+        "event_total": 46
       },
       {
         "rank": 40,
@@ -1004,8 +1004,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
