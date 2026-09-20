@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T11:33:41+00:00",
+  "generated_at": "2026-09-20T12:04:58+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 30,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 322,
-        "event_total": 30
-      },
-      {
-        "rank": 22,
         "last_rank": 16,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 322,
         "event_total": 13
+      },
+      {
+        "rank": 22,
+        "last_rank": 30,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 322,
+        "event_total": 30
       },
       {
         "rank": 22,
@@ -496,21 +496,21 @@
       },
       {
         "rank": 28,
-        "last_rank": 28,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
-        "total": 314,
-        "event_total": 14
-      },
-      {
-        "rank": 28,
         "last_rank": 26,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 314,
         "event_total": 13
+      },
+      {
+        "rank": 28,
+        "last_rank": 28,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
+        "total": 314,
+        "event_total": 14
       },
       {
         "rank": 30,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 34,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 312,
-        "event_total": 22
-      },
-      {
-        "rank": 33,
         "last_rank": 31,
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
         "entry_id": 754628,
         "total": 312,
         "event_total": 16
+      },
+      {
+        "rank": 33,
+        "last_rank": 34,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 312,
+        "event_total": 22
       },
       {
         "rank": 35,
