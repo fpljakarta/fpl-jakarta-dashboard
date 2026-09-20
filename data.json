@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T01:08:13+00:00",
+  "generated_at": "2026-09-20T05:57:17+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -325,21 +325,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 19,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 345,
-        "event_total": 35
-      },
-      {
-        "rank": 9,
         "last_rank": 7,
         "manager": "Paras Lalwani",
         "team": "FC Pain Chaud",
         "entry_id": 679630,
         "total": 345,
         "event_total": 20
+      },
+      {
+        "rank": 9,
+        "last_rank": 19,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 345,
+        "event_total": 35
       },
       {
         "rank": 11,
@@ -442,12 +442,12 @@
       },
       {
         "rank": 22,
-        "last_rank": 35,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
+        "last_rank": 16,
+        "manager": "Karan Khosla",
+        "team": "Jinja's Safari",
+        "entry_id": 2123666,
         "total": 322,
-        "event_total": 32
+        "event_total": 13
       },
       {
         "rank": 22,
@@ -460,12 +460,12 @@
       },
       {
         "rank": 22,
-        "last_rank": 16,
-        "manager": "Karan Khosla",
-        "team": "Jinja's Safari",
-        "entry_id": 2123666,
+        "last_rank": 35,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
         "total": 322,
-        "event_total": 13
+        "event_total": 32
       },
       {
         "rank": 25,
