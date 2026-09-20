@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T14:56:00+00:00",
+  "generated_at": "2026-09-20T15:28:48+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -134,21 +134,21 @@
       },
       {
         "rank": 14,
+        "last_rank": 11,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 338,
+        "event_total": 32
+      },
+      {
+        "rank": 15,
         "last_rank": 8,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 338,
         "event_total": 29
-      },
-      {
-        "rank": 15,
-        "last_rank": 11,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 336,
-        "event_total": 30
       },
       {
         "rank": 16,
@@ -228,8 +228,8 @@
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
-        "total": 298,
-        "event_total": 47
+        "total": 299,
+        "event_total": 48
       },
       {
         "rank": 25,
@@ -272,18 +272,18 @@
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 378,
         "event_total": 43
       },
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 378,
         "event_total": 43
       },
@@ -496,6 +496,15 @@
       },
       {
         "rank": 28,
+        "last_rank": 21,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 338,
+        "event_total": 32
+      },
+      {
+        "rank": 29,
         "last_rank": 16,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
@@ -504,22 +513,13 @@
         "event_total": 29
       },
       {
-        "rank": 28,
+        "rank": 29,
         "last_rank": 30,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
         "entry_id": 26047,
         "total": 338,
         "event_total": 46
-      },
-      {
-        "rank": 30,
-        "last_rank": 21,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 336,
-        "event_total": 30
       },
       {
         "rank": 31,
@@ -725,8 +725,8 @@
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
-        "total": 298,
-        "event_total": 47
+        "total": 299,
+        "event_total": 48
       },
       {
         "rank": 54,
@@ -1004,8 +1004,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
