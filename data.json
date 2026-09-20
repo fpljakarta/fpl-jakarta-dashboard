@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T16:03:54+00:00",
+  "generated_at": "2026-09-20T16:38:57+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -406,21 +406,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 17,
-        "manager": "Chiraag Keswani",
-        "team": "Ckeswani's XI",
-        "entry_id": 248046,
-        "total": 355,
-        "event_total": 43
-      },
-      {
-        "rank": 18,
         "last_rank": 11,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 355,
         "event_total": 37
+      },
+      {
+        "rank": 18,
+        "last_rank": 17,
+        "manager": "Chiraag Keswani",
+        "team": "Ckeswani's XI",
+        "entry_id": 248046,
+        "total": 355,
+        "event_total": 43
       },
       {
         "rank": 20,
@@ -486,22 +486,22 @@
         "event_total": 45
       },
       {
-        "rank": 26,
-        "last_rank": 21,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 341,
-        "event_total": 35
-      },
-      {
-        "rank": 28,
+        "rank": 27,
         "last_rank": 16,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
         "total": 341,
         "event_total": 32
+      },
+      {
+        "rank": 28,
+        "last_rank": 21,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 339,
+        "event_total": 33
       },
       {
         "rank": 29,
@@ -514,15 +514,6 @@
       },
       {
         "rank": 30,
-        "last_rank": 26,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 338,
-        "event_total": 37
-      },
-      {
-        "rank": 30,
         "last_rank": 30,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
@@ -531,7 +522,25 @@
         "event_total": 46
       },
       {
+        "rank": 30,
+        "last_rank": 26,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 338,
+        "event_total": 37
+      },
+      {
         "rank": 32,
+        "last_rank": 35,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 335,
+        "event_total": 45
+      },
+      {
+        "rank": 33,
         "last_rank": 34,
         "manager": "Win Win",
         "team": "Kalimasada FC",
@@ -540,7 +549,7 @@
         "event_total": 44
       },
       {
-        "rank": 33,
+        "rank": 34,
         "last_rank": 40,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
@@ -549,22 +558,13 @@
         "event_total": 50
       },
       {
-        "rank": 34,
+        "rank": 35,
         "last_rank": 23,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 332,
         "event_total": 29
-      },
-      {
-        "rank": 35,
-        "last_rank": 35,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 332,
-        "event_total": 42
       },
       {
         "rank": 36,
