@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T21:55:54+00:00",
+  "generated_at": "2026-09-21T00:02:34+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -272,18 +272,18 @@
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 378,
         "event_total": 43
       },
       {
         "rank": 3,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 378,
         "event_total": 43
       },
@@ -487,21 +487,21 @@
       },
       {
         "rank": 27,
-        "last_rank": 21,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 342,
-        "event_total": 36
-      },
-      {
-        "rank": 27,
         "last_rank": 31,
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
         "entry_id": 754628,
         "total": 342,
         "event_total": 46
+      },
+      {
+        "rank": 27,
+        "last_rank": 21,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 342,
+        "event_total": 36
       },
       {
         "rank": 29,
@@ -1004,8 +1004,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
