@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-23T15:33:22+00:00",
+  "generated_at": "2026-09-23T16:38:00+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -253,15 +253,6 @@
     "main": [
       {
         "rank": 1,
-        "last_rank": 6,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "entry_id": 72045,
-        "total": 385,
-        "event_total": 56
-      },
-      {
-        "rank": 1,
         "last_rank": 2,
         "manager": "Rahul Nanwani",
         "team": "Rahul Nanwani FC",
@@ -270,13 +261,13 @@
         "event_total": 48
       },
       {
-        "rank": 3,
-        "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
-        "total": 378,
-        "event_total": 43
+        "rank": 1,
+        "last_rank": 6,
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "entry_id": 72045,
+        "total": 385,
+        "event_total": 56
       },
       {
         "rank": 3,
@@ -284,6 +275,15 @@
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
+        "total": 378,
+        "event_total": 43
+      },
+      {
+        "rank": 3,
+        "last_rank": 3,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 378,
         "event_total": 43
       },
@@ -388,21 +388,21 @@
       },
       {
         "rank": 16,
-        "last_rank": 20,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "entry_id": 3712006,
-        "total": 360,
-        "event_total": 53
-      },
-      {
-        "rank": 16,
         "last_rank": 9,
         "manager": "Rohan Kalwani",
         "team": "-4 Builds Carrickter",
         "entry_id": 3822923,
         "total": 360,
         "event_total": 41
+      },
+      {
+        "rank": 16,
+        "last_rank": 20,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "entry_id": 3712006,
+        "total": 360,
+        "event_total": 53
       },
       {
         "rank": 18,
@@ -1004,8 +1004,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
