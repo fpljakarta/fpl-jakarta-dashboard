@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T13:32:00+00:00",
+  "generated_at": "2026-09-25T15:29:56+00:00",
   "current_gameweek": 5,
   "next_gameweek": 6,
   "next_deadline": "2026-10-10T10:00:00Z",
@@ -343,21 +343,21 @@
       },
       {
         "rank": 11,
-        "last_rank": 12,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 368,
-        "event_total": 53
-      },
-      {
-        "rank": 11,
         "last_rank": 8,
         "manager": "Bharat Lakhwani",
         "team": "Bpl",
         "entry_id": 5717595,
         "total": 368,
         "event_total": 44
+      },
+      {
+        "rank": 11,
+        "last_rank": 12,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 368,
+        "event_total": 53
       },
       {
         "rank": 13,
