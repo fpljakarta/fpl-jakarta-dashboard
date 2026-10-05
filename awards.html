@@ -60,6 +60,21 @@
     font-family:'IBM Plex Mono', monospace;
   }
   .award.unwon .award-winner{ color: var(--muted-dim); font-size:13.5px; justify-content:center; }
+  /* A shared trophy stacks one pill per winner, each with its own note. */
+  .award-winner + .award-winner{ margin-top:8px; }
+  .award-winner .note{ flex-basis:100%; color: var(--muted-dim); font-size:12px;
+    font-family:'IBM Plex Mono', monospace; }
+  .award-more{ margin-top:8px; }
+  .award-more summary{
+    cursor:pointer; list-style:none; padding:6px 16px; color: var(--muted);
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+  }
+  .award-more summary::-webkit-details-marker{ display:none; }
+  .award-more[open] summary{ margin-bottom:8px; }
+  .award-shared{
+    margin-top:12px; font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+    letter-spacing:.08em; text-transform:uppercase; color: var(--muted-dim);
+  }
 
   .controls{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center; }
   .gw-picker{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
@@ -221,22 +236,44 @@ function awardsTicker(week, lg, cards){
     (week && !week.final ? ' · provisional' : ''))];
 
   const items = won.map(c => tickerItem(
-    `<b>${esc(c.title)}</b> ${esc(c.manager)} ` +
+    `<b>${esc(c.title)}</b> ${winnersOf(c).map(w => esc(w.manager)).join(' &amp; ')} ` +
     `<span class="${c.tone === 'bad' ? 'down-txt' : 'up-txt'}">${esc(c.value ?? '')}</span>`));
 
   renderTicker(track, 'FPL Jakarta — Awards of the Week', head.concat(items));
 }
 
+/* Everyone sharing an award. Weeks written before ties were kept carry
+   only the single manager, so fall back to that. */
+function winnersOf(a){
+  if(Array.isArray(a.winners)) return a.winners;
+  return a.manager ? [{ manager:a.manager, team:a.team, note:a.note }] : [];
+}
+
 function card(a){
-  const won = !!a.manager;
+  const winners = winnersOf(a);
+  const won = winners.length > 0;
+  const shared = winners.length > 1;
   const tone = won ? a.tone : 'unwon';
-  const winner = won
-    ? `<div class="award-winner">
-         <span class="who">${esc(a.manager)}</span>
-         <span class="team">${esc(a.team)}</span>
+  // One manager keeps the note under the pill as before; in a tie each note
+  // belongs to its own winner, so it goes inside their pill.
+  const pill = w => `<div class="award-winner">
+         <span class="who">${esc(w.manager)}</span>
+         <span class="team">${esc(w.team)}</span>
          <span class="val">${esc(a.value ?? '')}</span>
-       </div>`
+         ${shared && w.note ? `<span class="note">${esc(w.note)}</span>` : ''}
+       </div>`;
+  // Half the league can share a captain haul, so a big tie shows the first
+  // few and folds the rest away -- still every name, just not all at once.
+  const SHOWN = 3;
+  const folded = winners.length > SHOWN + 1 ? winners.slice(SHOWN) : [];
+  const winner = won
+    ? winners.slice(0, winners.length - folded.length).map(pill).join('')
+      + (folded.length ? `<details class="award-more">
+           <summary>+ ${folded.length} more tied</summary>
+           ${folded.map(pill).join('')}
+         </details>` : '')
     : `<div class="award-winner">Not awarded this week</div>`;
+  const note = won && !shared ? winners[0].note : null;
 
   return `<div class="award ${tone}">
     <div class="award-top">
@@ -246,8 +283,9 @@ function card(a){
         <div class="award-sub">${esc(a.subtitle)}</div>
       </div>
     </div>
+    ${shared ? `<div class="award-shared">Shared &middot; ${winners.length}-way tie</div>` : ''}
     ${winner}
-    ${won && a.note ? `<div class="award-note">${esc(a.note)}</div>` : ''}
+    ${note ? `<div class="award-note">${esc(note)}</div>` : ''}
   </div>`;
 }
 

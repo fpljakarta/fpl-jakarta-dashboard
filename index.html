@@ -251,6 +251,8 @@
   .spotlight-left .gw-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--lime-dim); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:8px;}
   .spotlight-left .name{ font-family:'Anton'; font-size: 30px; text-transform:uppercase; margin:0 0 4px; letter-spacing:.01em;}
   .spotlight-left .team{ color: var(--muted); font-size:14px; }
+  /* A shared week stacks each winner under the last. */
+  .spotlight-left .team + .name{ margin-top:14px; }
   .spotlight-right{ text-align:right; z-index:1; }
   .spotlight-right .score{ font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:44px; color: var(--lime); line-height:1;}
   .spotlight-right .score-label{ font-size:11.5px; color: var(--muted-dim); letter-spacing:.05em; text-transform:uppercase; margin-top:4px;}
@@ -639,6 +641,13 @@ function renderStandings(){
   mount.innerHTML = `<div class="table-card">${rows}</div>`;
 }
 
+/* Everyone sharing an award. Data written before ties were kept carries only
+   the single manager, so fall back to that. */
+function winnersOf(a){
+  if(Array.isArray(a?.winners)) return a.winners;
+  return a?.manager ? [{ manager:a.manager, team:a.team }] : [];
+}
+
 function renderMotm(){
   const mount = document.getElementById('motm-mount');
   const data = forActiveLeague(state.data?.motm);
@@ -646,10 +655,11 @@ function renderMotm(){
 
   mount.innerHTML = MONTH_ORDER.map(month => {
     const m = byMonth[month];
-    const won = m && m.manager;
+    const won = winnersOf(m).length > 0;
     // A month being played has no winner yet, but it is not the same as one
     // that has not started — the trophy is still up for grabs, not absent.
-    const label = won ? escapeHtml(m.manager)
+    // A tied month names everyone in the tie, one to a line.
+    const label = won ? winnersOf(m).map(w => escapeHtml(w.manager)).join('<br>')
                 : (m && m.started) ? 'In progress'
                 : 'Not played yet';
     return `
@@ -699,13 +709,16 @@ function renderMotw(){
   ).join('');
 
   const latest = state.motwGw === weeks[weeks.length - 1].gw;
+  const winners = winnersOf(week);
+  const shared = winners.length > 1;
 
   mount.innerHTML = `
     <div class="spotlight">
       <div class="spotlight-left">
-        <div class="gw-label">${latest ? '<span class="live-dot"></span> ' : ''}Gameweek ${week.gw} &middot; Top Gun</div>
-        <p class="name">${escapeHtml(week.manager)}</p>
-        <p class="team">${escapeHtml(week.team)}</p>
+        <div class="gw-label">${latest ? '<span class="live-dot"></span> ' : ''}Gameweek ${week.gw} &middot; Top Gun${shared ? ' &middot; shared' : ''}</div>
+        ${winners.map(w => `
+        <p class="name">${escapeHtml(w.manager)}</p>
+        <p class="team">${escapeHtml(w.team)}</p>`).join('')}
       </div>
       <div class="spotlight-right">
         <div class="score">${week.points}</div>
