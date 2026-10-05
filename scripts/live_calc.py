@@ -445,53 +445,64 @@ def estimate_rank(curve, total, players_total=None):
 # awards of the week
 # --------------------------------------------------------------------------
 
-def _card(key, title, subtitle, tone, icon, winner=None, value=None, note=None):
-    card = {
+def _card(key, title, subtitle, tone, icon, winners=None, value=None, note=None):
+    """
+    One award. `winners` is everyone who shares it -- a tie is a shared
+    trophy, never one name picked by sort order -- and `note` may be a
+    function of the winner when each one's note differs.
+
+    `entry`, `manager`, `team` and `note` repeat the first winner, for any
+    reader that only knows about one.
+    """
+    note_for = note if callable(note) else (lambda m: note)
+    listed = [{
+        "entry": m.get("entry"),
+        "manager": m.get("manager"),
+        "team": m.get("team"),
+        "note": note_for(m),
+    } for m in winners or []]
+    first = listed[0] if listed else {}
+    return {
         "key": key,
         "title": title,
         "subtitle": subtitle,
         "tone": tone,
         "icon": icon,
-        "value": value,
-        "note": note,
+        "value": value if listed else None,
+        "note": first.get("note"),
+        "entry": first.get("entry"),
+        "manager": first.get("manager"),
+        "team": first.get("team"),
+        "winners": listed,
     }
-    if winner:
-        card.update({
-            "entry": winner.get("entry"),
-            "manager": winner.get("manager"),
-            "team": winner.get("team"),
-        })
-    else:
-        card.update({"entry": None, "manager": None, "team": None})
-    return card
 
 
-def _best(managers, key, reverse=True, where=None):
+def _tied_best(managers, key, reverse=True, where=None):
+    """Everyone sharing the top of the field on `key`, in the order given."""
     pool = [m for m in managers if (where is None or where(m))]
     if not pool:
-        return None
-    return sorted(pool, key=key, reverse=reverse)[0]
+        return []
+    top = (max if reverse else min)(key(m) for m in pool)
+    return [m for m in pool if key(m) == top]
 
 
 def _extremes(managers, key, where=None):
-    """The best and the worst of a field -- but only if they differ.
+    """Everyone at the best and everyone at the worst -- if they differ.
 
     A best-and-worst pair says nothing while the whole field is level, and
     early in a gameweek it is: nobody's captain has kicked a ball, so every
-    haul is nought. Asking _best for the top and the bottom of that gives the
-    same manager twice, because sorting is stable, which is how one manager
-    came to hold both Captain Marvel and Armband Fail on 5 September 2026 --
-    best captain of the week and worst captain of the week, nought points each.
+    haul is nought. That is how one manager came to hold both Captain Marvel
+    and Armband Fail on 5 September 2026 -- best captain of the week and worst
+    captain of the week, nought points each.
 
-    A tie across the entire field means neither trophy is awarded yet.
+    A tie across the entire field means neither trophy is awarded yet. A tie
+    at either end alone shares that trophy between everyone in it.
     """
     pool = [m for m in managers if (where is None or where(m))]
-    if not pool:
-        return None, None
-    ranked = sorted(pool, key=key, reverse=True)
-    best, worst = ranked[0], ranked[-1]
-    if key(best) == key(worst):
-        return None, None
+    best = _tied_best(pool, key)
+    worst = _tied_best(pool, key, reverse=False)
+    if not pool or key(best[0]) == key(worst[0]):
+        return [], []
     return best, worst
 
 
@@ -511,7 +522,8 @@ def weekly_awards(managers, players, ownership=None):
     Each manager row is expected to carry the fields `fetch_live_data.py`
     builds: gw_points, bench_points, chip, value, hit, captain, rank_change,
     and picks. An award nobody qualifies for still returns its card, with no
-    winner, so the page keeps its shape from one week to the next.
+    winner, so the page keeps its shape from one week to the next. A tie
+    names every manager in it.
     """
     if not managers:
         return []
@@ -527,58 +539,64 @@ def weekly_awards(managers, players, ownership=None):
     top, low = _extremes(managers, lambda m: m["gw_points"])
     cards.append(_card(
         "top_gun", "Top Gun", "Highest Gameweek score", "good", "star",
-        top, f"{top['gw_points']} pts" if top else None,
+        top, f"{top[0]['gw_points']} pts" if top else None,
     ))
     cards.append(_card(
         "tough_week", "Tough Week", "Lowest Gameweek score", "bad", "layers",
-        low, f"{low['gw_points']} pts" if low else None,
+        low, f"{low[0]['gw_points']} pts" if low else None,
     ))
 
-    riser = _best(managers, lambda m: m.get("rank_change", 0))
-    up = riser.get("rank_change", 0) if riser else 0
+    risers = _tied_best(managers, lambda m: m.get("rank_change", 0))
+    up = risers[0].get("rank_change", 0) if risers else 0
     cards.append(_card(
         "rank_riser", "Rank Riser", "Biggest rank climb", "good", "chart",
-        riser if up > 0 else None, f"+{up}" if up > 0 else None,
+        risers if up > 0 else None, f"+{up}" if up > 0 else None,
     ))
 
-    faller = _best(managers, lambda m: m.get("rank_change", 0), reverse=False)
-    down = faller.get("rank_change", 0) if faller else 0
+    fallers = _tied_best(managers, lambda m: m.get("rank_change", 0), reverse=False)
+    down = fallers[0].get("rank_change", 0) if fallers else 0
     cards.append(_card(
         "rank_crasher", "Rank Crasher", "Biggest rank fall", "bad", "chart",
-        faller if down < 0 else None, str(down) if down < 0 else None,
+        fallers if down < 0 else None, str(down) if down < 0 else None,
     ))
 
-    chipped = _best(managers, lambda m: m["gw_points"], where=lambda m: m.get("chip"))
+    chipped = _tied_best(managers, lambda m: m["gw_points"], where=lambda m: m.get("chip"))
+    # Managers sharing the award may have played different chips; name each.
+    chips = list(dict.fromkeys(CHIP_NAMES.get(m["chip"], m["chip"]) for m in chipped))
     cards.append(_card(
         "chip_master",
         "Chip Master",
-        f"Best score with a chip ({CHIP_NAMES.get(chipped['chip'], chipped['chip'])})"
+        f"Best score with a chip ({', '.join(chips)})"
         if chipped else "Best score with a chip",
         "good", "trophy",
-        chipped, f"{chipped['gw_points']} pts" if chipped else None,
+        chipped, f"{chipped[0]['gw_points']} pts" if chipped else None,
     ))
 
-    clean = _best(managers, lambda m: m["gw_points"], where=lambda m: not m.get("chip"))
+    clean = _tied_best(managers, lambda m: m["gw_points"], where=lambda m: not m.get("chip"))
     cards.append(_card(
         "no_chip_warrior", "No-Chip Warrior", "Best score without playing a chip",
         "good", "trophy",
-        clean, f"{clean['gw_points']} pts" if clean else None,
+        clean, f"{clean[0]['gw_points']} pts" if clean else None,
     ))
 
-    rich = _best(managers, lambda m: m.get("value", 0))
+    rich = _tied_best(managers, lambda m: m.get("value", 0))
+    # Everyone opens the season on the same £100.0m; a league all level on
+    # value has no richest manager, the same as a level field has no Top Gun.
+    if len(rich) == len(managers) > 1:
+        rich = []
     cards.append(_card(
         "value_king", "Value King", "Highest Team Value", "good", "trophy",
-        rich, f"£{rich.get('value', 0)}m" if rich else None,
+        rich, f"£{rich[0].get('value', 0)}m" if rich else None,
     ))
 
-    wasteful = _best(
+    wasteful = _tied_best(
         managers, lambda m: m.get("bench_points", 0),
         where=lambda m: m.get("chip") != "bboost" and m.get("bench_points", 0) >= 20,
     )
     cards.append(_card(
         "bench_disaster", "Bench Disaster",
         "Left 20+ points on the bench (no Bench Boost)", "bad", "layers",
-        wasteful, f"{wasteful['bench_points']} pts" if wasteful else None,
+        wasteful, f"{wasteful[0]['bench_points']} pts" if wasteful else None,
     ))
 
     def captain_haul(m):
@@ -588,27 +606,28 @@ def weekly_awards(managers, players, ownership=None):
         mult = 3 if m.get("chip") == "3xc" else 2
         return pts(cap) * mult
 
+    def captained(m):
+        return f"Captained {name(m['captain'])}"
+
     skipper, flop = _extremes(managers, captain_haul,
                               where=lambda m: m.get("captain"))
     cards.append(_card(
         "captain_marvel", "Captain Marvel", "Best captain haul", "good", "star",
-        skipper, f"{captain_haul(skipper)} pts" if skipper else None,
-        f"Captained {name(skipper['captain'])}" if skipper else None,
+        skipper, f"{captain_haul(skipper[0])} pts" if skipper else None, captained,
     ))
     cards.append(_card(
         "armband_fail", "Armband Fail", "Worst captain haul", "bad", "star",
-        flop, f"{captain_haul(flop)} pts" if flop else None,
-        f"Captained {name(flop['captain'])}" if flop else None,
+        flop, f"{captain_haul(flop[0])} pts" if flop else None, captained,
     ))
 
-    hitter = _best(
-        managers, lambda m: (m.get("hit", 0), m["gw_points"]),
+    hitters = _tied_best(
+        managers, lambda m: m.get("hit", 0),
         where=lambda m: m.get("hit", 0) > 0,
     )
     cards.append(_card(
         "hit_man", "Hit Man", "Biggest points hit taken", "bad", "layers",
-        hitter, f"-{hitter['hit']}" if hitter else None,
-        f"Still scored {hitter['gw_points']} pts" if hitter else None,
+        hitters, f"-{hitters[0]['hit']}" if hitters else None,
+        lambda m: f"Still scored {m['gw_points']} pts",
     ))
 
     # A differential is a player almost nobody else in the league fielded --
@@ -625,19 +644,17 @@ def weekly_awards(managers, players, ownership=None):
         scored = [(pts(pid), pid) for pid in fielded if pid in rare]
         return max(scored) if scored else (0, None)
 
-    diff = _best(managers, lambda m: best_differential(m)[0],
-                 where=lambda m: best_differential(m)[0] > 0)
-    if diff:
-        diff_points, diff_pid = best_differential(diff)
-        note = (f"{name(diff_pid)}, owned by "
-                f"{owners.get(diff_pid, 0)} of {len(managers)}")
-    else:
-        diff_points, note = None, None
+    def differential_note(m):
+        pid = best_differential(m)[1]
+        return f"{name(pid)}, owned by {owners.get(pid, 0)} of {len(managers)}"
 
+    diff = _tied_best(managers, lambda m: best_differential(m)[0],
+                      where=lambda m: best_differential(m)[0] > 0)
     cards.append(_card(
         "differential_king", "Differential King",
         "Most points from a player almost nobody owns", "good", "chart",
-        diff, f"{diff_points} pts" if diff else None, note,
+        diff, f"{best_differential(diff[0])[0]} pts" if diff else None,
+        differential_note,
     ))
 
     return cards

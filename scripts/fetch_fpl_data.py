@@ -362,10 +362,13 @@ def winners_for(entries, phases, histories, events_by_id=None, now=None):
     A month with football still to come is reported with no winner: an award
     handed out halfway through the month would change hands as the month went
     on, which is worse than showing nothing.
+
+    A tie shares the award: `winners` lists every manager on the top score,
+    and `manager` and `team` repeat the first of them for older readers.
     """
     events_by_id = events_by_id or {}
     now = now or datetime.now(timezone.utc)
-    per_gw_best, per_phase_totals = {}, {}
+    per_gw_scores, per_phase_totals = {}, {}
 
     for entry in entries:
         hist = histories.get(entry["entry_id"])
@@ -376,23 +379,29 @@ def winners_for(entries, phases, histories, events_by_id=None, now=None):
             event = gw["event"]
             net = gw["points"] - gw.get("event_transfers_cost", 0)
 
-            best = per_gw_best.get(event)
-            if best is None or net > best["points"]:
-                per_gw_best[event] = {
-                    "gw": event,
-                    "manager": entry["manager"],
-                    "team": entry["team"],
-                    "points": net,
-                }
+            per_gw_scores.setdefault(event, {})[entry["entry_id"]] = net
 
             for phase in phases:
                 if phase["start_event"] <= event <= phase["stop_event"]:
                     bucket = per_phase_totals.setdefault(phase["name"], {})
                     bucket[entry["entry_id"]] = bucket.get(entry["entry_id"], 0) + net
 
-    motw = [per_gw_best[gw] for gw in sorted(per_gw_best)]
-
     lookup = {e["entry_id"]: e for e in entries}
+
+    def top_of(scores):
+        """Everyone on the best score, in standings order, and that score."""
+        best = max(scores.values())
+        tied = [lookup[eid] for eid in scores if scores[eid] == best]
+        winners = [{"manager": e["manager"], "team": e["team"]} for e in tied]
+        return {
+            "manager": winners[0]["manager"],
+            "team": winners[0]["team"],
+            "points": best,
+            "winners": winners,
+        }
+
+    motw = [{"gw": gw, **top_of(per_gw_scores[gw])} for gw in sorted(per_gw_scores)]
+
     motm = []
     for i, phase in enumerate(phases):
         bucket = per_phase_totals.get(phase["name"], {})
@@ -408,15 +417,10 @@ def winners_for(entries, phases, histories, events_by_id=None, now=None):
             "manager": None,
             "team": None,
             "points": None,
+            "winners": [],
         }
         if bucket and settled:
-            winner_id = max(bucket, key=bucket.get)
-            winner = lookup.get(winner_id, {})
-            card.update({
-                "manager": winner.get("manager"),
-                "team": winner.get("team"),
-                "points": bucket[winner_id],
-            })
+            card.update(top_of(bucket))
         motm.append(card)
 
     return motm, motw

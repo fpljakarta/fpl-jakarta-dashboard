@@ -693,17 +693,9 @@ def overall_ranks(entries, previous, gw, data_checked):
 # awards
 # --------------------------------------------------------------------------
 
-def store_awards(path, gw, gw_name, final, leagues, players, now):
-    """
-    Fold this gameweek's awards into the archive, leaving past weeks alone.
-
-    The current week is recomputed on every publish because it is still
-    moving. Weeks already written keep whatever they finished with.
-    """
-    archive = load_json_file(path) or {}
-    weeks = archive.get("gameweeks") or {}
-
-    weeks[str(gw)] = {
+def week_awards(gw, gw_name, final, leagues, players):
+    """One gameweek's entry in the awards archive, every league's cards."""
+    return {
         "gw": gw,
         "name": gw_name,
         "final": final,
@@ -718,9 +710,113 @@ def store_awards(path, gw, gw_name, final, leagues, players, now):
         },
     }
 
+
+def store_awards(path, gw, gw_name, final, leagues, players, now):
+    """
+    Fold this gameweek's awards into the archive, leaving past weeks alone.
+
+    The current week is recomputed on every publish because it is still
+    moving. Weeks already written keep whatever they finished with, until
+    rebuild_awards settles them on the final scores.
+    """
+    archive = load_json_file(path) or {}
+    weeks = archive.get("gameweeks") or {}
+    weeks[str(gw)] = week_awards(gw, gw_name, final, leagues, players)
+
     return {
         "generated_at": now.isoformat(timespec="seconds"),
         "current_gw": gw,
+        "gameweeks": weeks,
+    }
+
+
+def settled_managers(rows, gw, players, histories, cache):
+    """
+    A league's manager rows for a gameweek that is over, in the shape
+    collect_managers gives a live one.
+
+    Score, bench and both league places come from each manager's FPL history,
+    which is final, rather than from the live arithmetic: a finished week
+    should read exactly as FPL scored it. Managers level on points share a
+    place, so a tie never counts as a rank moved.
+    """
+    by_gw = {
+        r["entry"]: {h["event"]: h for h in (histories.get(r["entry"]) or {}).get("current", [])}
+        for r in rows
+    }
+
+    def places(event):
+        totals = {e: g[event]["total_points"] for e, g in by_gw.items() if event in g}
+        return {e: 1 + sum(1 for t in totals.values() if t > total)
+                for e, total in totals.items()}
+
+    now_place, before = places(gw), places(gw - 1)
+    shaped = []
+    for r in rows:
+        h = by_gw[r["entry"]].get(gw)
+        if not h:
+            continue
+        net = h["points"] - h.get("event_transfers_cost", 0)
+        shaped.append({
+            "entry": r["entry"],
+            "player_name": r["player_name"],
+            "entry_name": r["entry_name"],
+            "rank": now_place[r["entry"]],
+            "last_rank": before.get(r["entry"], 0),
+            "total": h["total_points"],
+            "event_total": net,
+        })
+
+    managers = collect_managers(shaped, gw, players, {}, cache)
+    official = {r["entry"]: by_gw[r["entry"]][gw] for r in shaped}
+    for m in managers:
+        h = official[m["entry"]]
+        m["gw_points"] = h["points"] - h.get("event_transfers_cost", 0)
+        m["bench_points"] = h.get("points_on_bench", m["bench_points"])
+        m["rank_change"] = (m["last_rank"] or m["rank"]) - m["rank"]
+    return managers
+
+
+def rebuild_awards(path, gws, bootstrap, now):
+    """
+    Work these gameweeks' awards out again from FPL's final scores.
+
+    A week's awards are otherwise frozen at its last live publish, which can
+    come before the bonus is confirmed -- so a tie, or a different winner, that
+    only the final scores show would never reach the page.
+    """
+    archive = load_json_file(path) or {}
+    weeks = archive.get("gameweeks") or {}
+    events = {e["id"]: e for e in bootstrap["events"]}
+
+    standings = {key: fetch_standings(cfg["id"])[0] for key, cfg in LEAGUES.items()}
+    histories = {}
+    for rows in standings.values():
+        for r in rows:
+            if r["entry"] not in histories:
+                histories[r["entry"]] = fetch_json(f"{BASE}/entry/{r['entry']}/history/")
+                time.sleep(REQUEST_PAUSE)
+
+    for gw in gws:
+        ev = events[gw]
+        live = fetch_json(f"{BASE}/event/{gw}/live/")
+        fixtures = fetch_json(f"{BASE}/fixtures/?event={gw}")
+        players = build_player_index(bootstrap, live, fixtures)
+        cache = {}
+        leagues = {
+            key: {"name": cfg["name"],
+                  "managers": settled_managers(standings[key], gw, players, histories, cache)}
+            for key, cfg in LEAGUES.items()
+        }
+        weeks[str(gw)] = week_awards(
+            gw, ev.get("name", f"Gameweek {gw}"), bool(ev.get("data_checked")),
+            leagues, players)
+        print(f"GW{gw}: awards rebuilt from the final scores "
+              f"({'final' if ev.get('data_checked') else 'not yet checked'}).")
+
+    return {
+        "generated_at": now.isoformat(timespec="seconds"),
+        "current_gw": archive.get("current_gw") or max(gws),
         "gameweeks": weeks,
     }
 
@@ -899,6 +995,16 @@ def main():
     with open("awards.json", "w", encoding="utf-8") as f:
         json.dump(awards, f, separators=(",", ":"))
 
+    # A new gameweek means the last one is over: settle its awards on the
+    # final scores. Nice to have, so a failure here never costs the publish.
+    if not same_gw and previous is not None and previous.get("gameweek"):
+        try:
+            awards = rebuild_awards("awards.json", [previous["gameweek"]], bootstrap, now)
+            with open("awards.json", "w", encoding="utf-8") as f:
+                json.dump(awards, f, separators=(",", ":"))
+        except (RuntimeError, KeyError) as e:
+            print(f"GW{previous['gameweek']}: awards left as they were: {e}")
+
     total = sum(len(lg["managers"]) for lg in out_leagues.values())
     print(f"GW{gw}: wrote live.json for {total} manager entries "
           f"({len(picks_cache)} unique), {done}/{len(fixtures)} fixtures finished.")
@@ -906,4 +1012,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if sys.argv[1:2] == ["--rebuild-awards"]:
+        # One-off: settle every finished week in the archive on final scores.
+        #   python scripts/fetch_live_data.py --rebuild-awards
+        boot = fetch_json(f"{BASE}/bootstrap-static/")
+        done = [e["id"] for e in boot["events"] if e.get("finished")]
+        out = rebuild_awards("awards.json", done, boot, datetime.now(timezone.utc))
+        with open("awards.json", "w", encoding="utf-8") as f:
+            json.dump(out, f, separators=(",", ":"))
+    else:
+        main()

@@ -546,6 +546,88 @@ class TestAwards(unittest.TestCase):
     def test_empty_league_produces_no_cards(self):
         self.assertEqual(weekly_awards([], self.players), [])
 
+    def test_a_clear_winner_is_the_only_one_listed(self):
+        self.assertEqual([w["manager"] for w in self.by_key["top_gun"]["winners"]],
+                         ["Ada"])
+
+    def test_an_unwon_award_lists_nobody(self):
+        for m in self.managers:
+            m["bench_points"] = 5
+        card = {c["key"]: c for c in weekly_awards(self.managers, self.players)}
+        self.assertEqual(card["bench_disaster"]["winners"], [])
+
+
+class TestTiedAwards(unittest.TestCase):
+    """A tie shares the trophy: every manager in it is named, not one of them.
+
+    GW4 of the 2026-27 Main league had two managers on 105 and the page gave
+    Top Gun to one, picked by nothing better than the order of the table.
+    """
+
+    PLAYERS = {
+        411: player("FWD", points=8, name="Haaland"),
+        165: player("FWD", points=2, name="João Pedro"),
+        7: player("MID", points=8, name="Saka"),
+    }
+
+    def cards(self, managers):
+        return {c["key"]: c for c in weekly_awards(managers, self.PLAYERS)}
+
+    def names(self, card):
+        return [w["manager"] for w in card["winners"]]
+
+    def test_top_gun_and_tough_week_are_shared(self):
+        managers = [award_manager(1, 105, 411), award_manager(2, 60, 165),
+                    award_manager(3, 105, 411), award_manager(4, 60, 165)]
+        cards = self.cards(managers)
+        self.assertEqual(self.names(cards["top_gun"]), ["M1", "M3"])
+        self.assertEqual(cards["top_gun"]["value"], "105 pts")
+        self.assertEqual(self.names(cards["tough_week"]), ["M2", "M4"])
+
+    def test_the_first_winner_is_still_on_the_card_itself(self):
+        managers = [award_manager(1, 105, 411), award_manager(2, 105, 411),
+                    award_manager(3, 50, 165)]
+        top = self.cards(managers)["top_gun"]
+        self.assertEqual((top["entry"], top["manager"]), (1, "M1"))
+
+    def test_shared_captain_trophy_notes_each_captain(self):
+        managers = [award_manager(1, 70, 411), award_manager(2, 70, 7),
+                    award_manager(3, 50, 165)]
+        card = self.cards(managers)["captain_marvel"]
+        self.assertEqual(self.names(card), ["M1", "M2"])
+        self.assertEqual([w["note"] for w in card["winners"]],
+                         ["Captained Haaland", "Captained Saka"])
+
+    def test_chip_master_names_every_chip_in_the_tie(self):
+        managers = [award_manager(1, 90, 411, chip="bboost"),
+                    award_manager(2, 90, 411, chip="3xc"),
+                    award_manager(3, 40, 165)]
+        card = self.cards(managers)["chip_master"]
+        self.assertEqual(self.names(card), ["M1", "M2"])
+        self.assertIn("BB, TC", card["subtitle"])
+
+    def test_hit_man_is_shared_by_equal_hits_whatever_they_scored(self):
+        managers = [award_manager(i, s, 411) for i, s in ((1, 40), (2, 70), (3, 50))]
+        managers[0]["hit"] = managers[1]["hit"] = 8
+        managers[2]["hit"] = 4
+        card = self.cards(managers)["hit_man"]
+        self.assertEqual(self.names(card), ["M1", "M2"])
+        self.assertEqual([w["note"] for w in card["winners"]],
+                         ["Still scored 40 pts", "Still scored 70 pts"])
+
+    def test_a_league_all_on_the_same_value_has_no_value_king(self):
+        managers = [award_manager(i, 50 + i, 411) for i in range(1, 4)]
+        self.assertEqual(self.cards(managers)["value_king"]["winners"], [])
+
+    def test_rank_and_value_ties_are_shared(self):
+        managers = [award_manager(i, 50 + i, 411) for i in range(1, 5)]
+        for m, change, value in zip(managers, (3, 3, -2, -2), (101.0, 101.0, 99.0, 98.0)):
+            m["rank_change"], m["value"] = change, value
+        cards = self.cards(managers)
+        self.assertEqual(self.names(cards["rank_riser"]), ["M1", "M2"])
+        self.assertEqual(self.names(cards["rank_crasher"]), ["M3", "M4"])
+        self.assertEqual(self.names(cards["value_king"]), ["M1", "M2"])
+
 
 class TestCounts(unittest.TestCase):
     def test_ownership_ignores_the_bench_unless_boosted(self):
@@ -671,26 +753,33 @@ class TestExtremes(unittest.TestCase):
 
     def test_a_level_field_awards_neither(self):
         pool = [{"n": 1, "v": 0}, {"n": 2, "v": 0}, {"n": 3, "v": 0}]
-        self.assertEqual(_extremes(pool, lambda m: m["v"]), (None, None))
+        self.assertEqual(_extremes(pool, lambda m: m["v"]), ([], []))
 
     def test_a_separated_field_gives_both_ends(self):
         pool = [{"n": 1, "v": 4}, {"n": 2, "v": 9}, {"n": 3, "v": 2}]
         best, worst = _extremes(pool, lambda m: m["v"])
-        self.assertEqual(best["n"], 2)
-        self.assertEqual(worst["n"], 3)
+        self.assertEqual([m["n"] for m in best], [2])
+        self.assertEqual([m["n"] for m in worst], [3])
+
+    def test_a_tie_at_either_end_keeps_everyone_in_it(self):
+        pool = [{"n": 1, "v": 9}, {"n": 2, "v": 4}, {"n": 3, "v": 9},
+                {"n": 4, "v": 2}, {"n": 5, "v": 2}]
+        best, worst = _extremes(pool, lambda m: m["v"])
+        self.assertEqual([m["n"] for m in best], [1, 3])
+        self.assertEqual([m["n"] for m in worst], [4, 5])
 
     def test_an_empty_pool_awards_neither(self):
-        self.assertEqual(_extremes([], lambda m: m["v"]), (None, None))
+        self.assertEqual(_extremes([], lambda m: m["v"]), ([], []))
 
     def test_the_where_filter_is_applied_before_comparing(self):
         pool = [{"v": 0, "ok": False}, {"v": 5, "ok": True}, {"v": 1, "ok": True}]
         best, worst = _extremes(pool, lambda m: m["v"], where=lambda m: m["ok"])
-        self.assertEqual(best["v"], 5)
-        self.assertEqual(worst["v"], 1)
+        self.assertEqual([m["v"] for m in best], [5])
+        self.assertEqual([m["v"] for m in worst], [1])
 
     def test_one_candidate_alone_is_not_a_pair(self):
         # A field of one is level with itself: it is neither best nor worst.
-        self.assertEqual(_extremes([{"v": 7}], lambda m: m["v"]), (None, None))
+        self.assertEqual(_extremes([{"v": 7}], lambda m: m["v"]), ([], []))
 
 
 def award_manager(entry, gw_points, captain, chip=None):

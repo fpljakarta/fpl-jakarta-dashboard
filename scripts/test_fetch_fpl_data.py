@@ -148,6 +148,29 @@ class TestWinnersFor(unittest.TestCase):
     def test_every_month_is_still_listed_while_unsettled(self):
         self.assertEqual(sorted(self.motm(NOW)), ["August", "September"])
 
+    def test_a_tied_week_names_every_manager_on_the_top_score(self):
+        # GW4 of the Main league in 2026: two managers on 105, and only one of
+        # them was shown. A tie shares the award.
+        self.histories[2]["current"][0]["event_transfers_cost"] = 7
+        _, motw = winners_for(self.entries, [AUGUST, SEPTEMBER],
+                              self.histories, self.events, NOW)
+        self.assertEqual([w["manager"] for w in motw[0]["winners"]], ["Ada", "Bo"])
+        self.assertEqual(motw[0]["points"], 47)
+
+    def test_a_clear_week_has_one_winner(self):
+        _, motw = winners_for(self.entries, [AUGUST, SEPTEMBER],
+                              self.histories, self.events, NOW)
+        self.assertEqual(motw[0]["winners"], [{"manager": "Ada", "team": "Ada FC"}])
+
+    def test_a_tied_month_names_every_manager_on_the_top_total(self):
+        self.histories[2]["current"][0]["event_transfers_cost"] = 7
+        august = self.motm(datetime(2026, 9, 12, 18, tzinfo=timezone.utc))["August"]
+        self.assertEqual([w["manager"] for w in august["winners"]], ["Ada", "Bo"])
+        self.assertEqual(august["points"], 47)
+
+    def test_an_unsettled_month_has_no_winners(self):
+        self.assertEqual(self.motm(NOW)["August"]["winners"], [])
+
 
 ROWS = [
     {"entry_id": 1, "manager": "Ada", "team": "Ada FC"},
