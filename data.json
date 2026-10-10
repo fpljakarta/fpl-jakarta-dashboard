@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T15:02:00+00:00",
+  "generated_at": "2026-10-10T15:10:45+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -174,8 +174,8 @@
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
-        "total": 357,
-        "event_total": 17
+        "total": 356,
+        "event_total": 16
       },
       {
         "rank": 19,
@@ -433,21 +433,21 @@
       },
       {
         "rank": 21,
-        "last_rank": 23,
-        "manager": "Ajay Yeleswaram",
-        "team": "Relegated",
-        "entry_id": 1257763,
-        "total": 376,
-        "event_total": 27
-      },
-      {
-        "rank": 21,
         "last_rank": 20,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
         "entry_id": 9279,
         "total": 376,
         "event_total": 20
+      },
+      {
+        "rank": 21,
+        "last_rank": 23,
+        "manager": "Ajay Yeleswaram",
+        "team": "Relegated",
+        "entry_id": 1257763,
+        "total": 376,
+        "event_total": 27
       },
       {
         "rank": 23,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 29,
-        "manager": "Indar Dhaliwal",
-        "team": "Daylight Brobbery",
-        "entry_id": 754628,
-        "total": 364,
-        "event_total": 22
-      },
-      {
-        "rank": 30,
         "last_rank": 21,
         "manager": "Rayan Hamza",
         "team": "Zarks",
         "entry_id": 2805634,
         "total": 364,
         "event_total": 12
+      },
+      {
+        "rank": 30,
+        "last_rank": 29,
+        "manager": "Indar Dhaliwal",
+        "team": "Daylight Brobbery",
+        "entry_id": 754628,
+        "total": 364,
+        "event_total": 22
       },
       {
         "rank": 32,
@@ -590,17 +590,8 @@
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
         "entry_id": 2123666,
-        "total": 357,
-        "event_total": 17
-      },
-      {
-        "rank": 39,
-        "last_rank": 36,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
-        "total": 354,
-        "event_total": 18
+        "total": 356,
+        "event_total": 16
       },
       {
         "rank": 39,
@@ -610,6 +601,15 @@
         "entry_id": 1165190,
         "total": 354,
         "event_total": 35
+      },
+      {
+        "rank": 39,
+        "last_rank": 36,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
+        "total": 354,
+        "event_total": 18
       },
       {
         "rank": 41,
