@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T19:56:28+00:00",
+  "generated_at": "2026-10-10T21:38:14+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 23,
-        "manager": "Ajay Yeleswaram",
-        "team": "Relegated",
-        "entry_id": 1257763,
-        "total": 413,
-        "event_total": 64
-      },
-      {
-        "rank": 19,
         "last_rank": 25,
         "manager": "Suraj Topandasani",
         "team": "Londonal FC",
         "entry_id": 431772,
         "total": 413,
         "event_total": 65
+      },
+      {
+        "rank": 19,
+        "last_rank": 23,
+        "manager": "Ajay Yeleswaram",
+        "team": "Relegated",
+        "entry_id": 1257763,
+        "total": 413,
+        "event_total": 64
       },
       {
         "rank": 21,
@@ -984,9 +984,9 @@
       },
       {
         "gw": 6,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "points": 72
       }
     ],
     "main": [
@@ -1022,9 +1022,9 @@
       },
       {
         "gw": 6,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "points": 72
       }
     ]
   },
