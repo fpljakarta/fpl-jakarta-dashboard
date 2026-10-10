@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T11:01:43+00:00",
+  "generated_at": "2026-10-10T11:34:08+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -379,6 +379,15 @@
       },
       {
         "rank": 15,
+        "last_rank": 16,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 360,
+        "event_total": 0
+      },
+      {
+        "rank": 15,
         "last_rank": 15,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
@@ -392,15 +401,6 @@
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
-        "total": 360,
-        "event_total": 0
-      },
-      {
-        "rank": 15,
-        "last_rank": 16,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
         "total": 360,
         "event_total": 0
       },
@@ -586,19 +586,19 @@
       },
       {
         "rank": 38,
-        "last_rank": 38,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
+        "last_rank": 39,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
         "total": 333,
         "event_total": 0
       },
       {
         "rank": 38,
-        "last_rank": 39,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
+        "last_rank": 38,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
         "total": 333,
         "event_total": 0
       },
