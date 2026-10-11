@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T16:00:35+00:00",
+  "generated_at": "2026-10-11T16:34:58+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -210,8 +210,8 @@
         "manager": "Mohit Mirpuri",
         "team": "LION CITY BALLERS",
         "entry_id": 3080011,
-        "total": 372,
-        "event_total": 62
+        "total": 371,
+        "event_total": 61
       },
       {
         "rank": 23,
@@ -316,21 +316,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 5,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "entry_id": 679630,
-        "total": 432,
-        "event_total": 55
-      },
-      {
-        "rank": 8,
         "last_rank": 14,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 432,
         "event_total": 69
+      },
+      {
+        "rank": 8,
+        "last_rank": 5,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "entry_id": 679630,
+        "total": 432,
+        "event_total": 55
       },
       {
         "rank": 10,
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 25,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 416,
-        "event_total": 68
-      },
-      {
-        "rank": 19,
         "last_rank": 23,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 416,
         "event_total": 67
+      },
+      {
+        "rank": 19,
+        "last_rank": 25,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 416,
+        "event_total": 68
       },
       {
         "rank": 21,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 35,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 395,
-        "event_total": 59
-      },
-      {
-        "rank": 33,
         "last_rank": 33,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 395,
         "event_total": 57
+      },
+      {
+        "rank": 33,
+        "last_rank": 35,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 395,
+        "event_total": 59
       },
       {
         "rank": 35,
@@ -667,12 +667,12 @@
       },
       {
         "rank": 47,
-        "last_rank": 50,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
+        "last_rank": 52,
+        "manager": "Ashwin Mulani",
+        "team": "Balon D'orgu",
+        "entry_id": 4294662,
         "total": 372,
-        "event_total": 62
+        "event_total": 64
       },
       {
         "rank": 47,
@@ -684,13 +684,13 @@
         "event_total": 63
       },
       {
-        "rank": 47,
-        "last_rank": 52,
-        "manager": "Ashwin Mulani",
-        "team": "Balon D'orgu",
-        "entry_id": 4294662,
-        "total": 372,
-        "event_total": 64
+        "rank": 49,
+        "last_rank": 50,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
+        "total": 371,
+        "event_total": 61
       },
       {
         "rank": 50,
