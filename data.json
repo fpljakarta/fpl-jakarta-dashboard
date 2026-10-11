@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T14:53:20+00:00",
+  "generated_at": "2026-10-11T15:26:10+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -572,17 +572,8 @@
         "manager": "Kevin Raymond",
         "team": "Gunners United",
         "entry_id": 5199728,
-        "total": 391,
-        "event_total": 55
-      },
-      {
-        "rank": 37,
-        "last_rank": 31,
-        "manager": "Edward Angkasa",
-        "team": "Juvenalis",
-        "entry_id": 371869,
-        "total": 388,
-        "event_total": 48
+        "total": 392,
+        "event_total": 56
       },
       {
         "rank": 37,
@@ -594,13 +585,13 @@
         "event_total": 57
       },
       {
-        "rank": 39,
-        "last_rank": 32,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 387,
-        "event_total": 47
+        "rank": 37,
+        "last_rank": 31,
+        "manager": "Edward Angkasa",
+        "team": "Juvenalis",
+        "entry_id": 371869,
+        "total": 388,
+        "event_total": 48
       },
       {
         "rank": 39,
@@ -610,6 +601,15 @@
         "entry_id": 3323643,
         "total": 387,
         "event_total": 68
+      },
+      {
+        "rank": 39,
+        "last_rank": 32,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 387,
+        "event_total": 47
       },
       {
         "rank": 41,
