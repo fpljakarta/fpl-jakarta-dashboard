@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T19:13:38+00:00",
+  "generated_at": "2026-10-12T19:47:52+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -35,21 +35,21 @@
       },
       {
         "rank": 3,
+        "last_rank": 5,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 442,
+        "event_total": 79
+      },
+      {
+        "rank": 4,
         "last_rank": 3,
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
         "entry_id": 29071,
         "total": 441,
         "event_total": 71
-      },
-      {
-        "rank": 4,
-        "last_rank": 5,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 438,
-        "event_total": 75
       },
       {
         "rank": 5,
@@ -325,6 +325,15 @@
       },
       {
         "rank": 9,
+        "last_rank": 14,
+        "manager": "Neeraj Narwani",
+        "team": "Gampang Bro",
+        "entry_id": 863474,
+        "total": 442,
+        "event_total": 79
+      },
+      {
+        "rank": 10,
         "last_rank": 8,
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
@@ -333,22 +342,13 @@
         "event_total": 71
       },
       {
-        "rank": 10,
+        "rank": 11,
         "last_rank": 3,
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
         "total": 438,
         "event_total": 60
-      },
-      {
-        "rank": 11,
-        "last_rank": 14,
-        "manager": "Neeraj Narwani",
-        "team": "Gampang Bro",
-        "entry_id": 863474,
-        "total": 438,
-        "event_total": 75
       },
       {
         "rank": 12,
@@ -541,6 +541,15 @@
       },
       {
         "rank": 33,
+        "last_rank": 35,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 405,
+        "event_total": 69
+      },
+      {
+        "rank": 34,
         "last_rank": 41,
         "manager": "Joanda Febrian",
         "team": "DBM FC",
@@ -549,7 +558,7 @@
         "event_total": 78
       },
       {
-        "rank": 34,
+        "rank": 35,
         "last_rank": 43,
         "manager": "Jonathan Lobo",
         "team": "Jonathan's Team",
@@ -558,7 +567,7 @@
         "event_total": 77
       },
       {
-        "rank": 35,
+        "rank": 36,
         "last_rank": 37,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
@@ -567,31 +576,13 @@
         "event_total": 68
       },
       {
-        "rank": 36,
+        "rank": 37,
         "last_rank": 40,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
         "entry_id": 2934189,
         "total": 402,
         "event_total": 71
-      },
-      {
-        "rank": 37,
-        "last_rank": 35,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 401,
-        "event_total": 65
-      },
-      {
-        "rank": 38,
-        "last_rank": 32,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 401,
-        "event_total": 61
       },
       {
         "rank": 38,
@@ -601,6 +592,15 @@
         "entry_id": 338097,
         "total": 401,
         "event_total": 59
+      },
+      {
+        "rank": 38,
+        "last_rank": 32,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 401,
+        "event_total": 61
       },
       {
         "rank": 40,
@@ -743,8 +743,8 @@
         "manager": "Jeremy Oberoi",
         "team": "Next Season FC",
         "entry_id": 4127500,
-        "total": 354,
-        "event_total": 58
+        "total": 358,
+        "event_total": 62
       },
       {
         "rank": 56,
