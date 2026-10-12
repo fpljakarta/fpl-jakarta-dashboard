@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T21:48:05+00:00",
+  "generated_at": "2026-10-12T00:53:34+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -379,21 +379,21 @@
       },
       {
         "rank": 15,
-        "last_rank": 10,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 429,
-        "event_total": 61
-      },
-      {
-        "rank": 15,
         "last_rank": 6,
         "manager": "S M",
         "team": "I Know Nothing",
         "entry_id": 2202,
         "total": 429,
         "event_total": 54
+      },
+      {
+        "rank": 15,
+        "last_rank": 10,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 429,
+        "event_total": 61
       },
       {
         "rank": 17,
