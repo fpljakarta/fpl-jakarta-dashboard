@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T18:39:58+00:00",
+  "generated_at": "2026-10-12T18:54:20+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -586,21 +586,21 @@
       },
       {
         "rank": 38,
-        "last_rank": 29,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 399,
-        "event_total": 57
-      },
-      {
-        "rank": 38,
         "last_rank": 32,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 399,
         "event_total": 59
+      },
+      {
+        "rank": 38,
+        "last_rank": 29,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 399,
+        "event_total": 57
       },
       {
         "rank": 40,
