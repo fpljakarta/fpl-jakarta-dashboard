@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T17:06:26+00:00",
+  "generated_at": "2026-10-12T17:37:37+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -71,21 +71,21 @@
       },
       {
         "rank": 7,
-        "last_rank": 11,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 422,
-        "event_total": 73
-      },
-      {
-        "rank": 7,
         "last_rank": 18,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
         "total": 422,
         "event_total": 89
+      },
+      {
+        "rank": 7,
+        "last_rank": 11,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 422,
+        "event_total": 73
       },
       {
         "rank": 9,
@@ -379,21 +379,21 @@
       },
       {
         "rank": 15,
-        "last_rank": 6,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "entry_id": 2202,
-        "total": 429,
-        "event_total": 54
-      },
-      {
-        "rank": 15,
         "last_rank": 10,
         "manager": "Rishabh Mehta",
         "team": "PepMasterclass",
         "entry_id": 4111970,
         "total": 429,
         "event_total": 61
+      },
+      {
+        "rank": 15,
+        "last_rank": 6,
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "entry_id": 2202,
+        "total": 429,
+        "event_total": 54
       },
       {
         "rank": 17,
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 22,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 422,
-        "event_total": 73
-      },
-      {
-        "rank": 19,
         "last_rank": 39,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
         "total": 422,
         "event_total": 89
+      },
+      {
+        "rank": 19,
+        "last_rank": 22,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 422,
+        "event_total": 73
       },
       {
         "rank": 21,
