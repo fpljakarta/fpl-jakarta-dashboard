@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T00:53:34+00:00",
+  "generated_at": "2026-10-12T01:07:46+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -71,21 +71,21 @@
       },
       {
         "rank": 7,
-        "last_rank": 11,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 422,
-        "event_total": 73
-      },
-      {
-        "rank": 7,
         "last_rank": 18,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
         "total": 422,
         "event_total": 89
+      },
+      {
+        "rank": 7,
+        "last_rank": 11,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 422,
+        "event_total": 73
       },
       {
         "rank": 9,
