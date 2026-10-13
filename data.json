@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T23:12:34+00:00",
+  "generated_at": "2026-10-13T01:12:27+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -71,21 +71,21 @@
       },
       {
         "rank": 7,
-        "last_rank": 11,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 424,
-        "event_total": 75
-      },
-      {
-        "rank": 7,
         "last_rank": 18,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
         "total": 424,
         "event_total": 91
+      },
+      {
+        "rank": 7,
+        "last_rank": 11,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 424,
+        "event_total": 75
       },
       {
         "rank": 9,
@@ -290,18 +290,18 @@
       {
         "rank": 5,
         "last_rank": 11,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
+        "manager": "Bharat Lakhwani",
+        "team": "Bpl",
+        "entry_id": 5717595,
         "total": 445,
         "event_total": 77
       },
       {
         "rank": 5,
         "last_rank": 11,
-        "manager": "Bharat Lakhwani",
-        "team": "Bpl",
-        "entry_id": 5717595,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
         "total": 445,
         "event_total": 77
       },
