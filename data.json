@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T01:44:16+00:00",
+  "generated_at": "2026-10-14T06:35:52+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -451,21 +451,21 @@
       },
       {
         "rank": 23,
-        "last_rank": 16,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "entry_id": 3712006,
-        "total": 421,
-        "event_total": 61
-      },
-      {
-        "rank": 23,
         "last_rank": 23,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 421,
         "event_total": 72
+      },
+      {
+        "rank": 23,
+        "last_rank": 16,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "entry_id": 3712006,
+        "total": 421,
+        "event_total": 61
       },
       {
         "rank": 25,
@@ -703,21 +703,21 @@
       },
       {
         "rank": 51,
-        "last_rank": 34,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 371,
-        "event_total": 33
-      },
-      {
-        "rank": 51,
         "last_rank": 54,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 371,
         "event_total": 72
+      },
+      {
+        "rank": 51,
+        "last_rank": 34,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 371,
+        "event_total": 33
       },
       {
         "rank": 53,
