@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T20:52:03+00:00",
+  "generated_at": "2026-10-14T22:09:57+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -89,21 +89,21 @@
       },
       {
         "rank": 9,
-        "last_rank": 11,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 424,
-        "event_total": 75
-      },
-      {
-        "rank": 9,
         "last_rank": 18,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
         "total": 424,
         "event_total": 91
+      },
+      {
+        "rank": 9,
+        "last_rank": 11,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 424,
+        "event_total": 75
       },
       {
         "rank": 11,
@@ -451,21 +451,21 @@
       },
       {
         "rank": 23,
-        "last_rank": 16,
-        "manager": "Kunal Manwani",
-        "team": "Kloppite_6",
-        "entry_id": 3712006,
-        "total": 421,
-        "event_total": 61
-      },
-      {
-        "rank": 23,
         "last_rank": 23,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 421,
         "event_total": 72
+      },
+      {
+        "rank": 23,
+        "last_rank": 16,
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "entry_id": 3712006,
+        "total": 421,
+        "event_total": 61
       },
       {
         "rank": 25,
