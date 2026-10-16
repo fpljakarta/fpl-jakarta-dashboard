@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T10:59:57+00:00",
+  "generated_at": "2026-10-16T12:15:58+00:00",
   "current_gameweek": 6,
   "next_gameweek": 7,
   "next_deadline": "2026-10-17T10:00:00Z",
@@ -640,21 +640,21 @@
       },
       {
         "rank": 44,
-        "last_rank": 50,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
-        "total": 389,
-        "event_total": 79
-      },
-      {
-        "rank": 44,
         "last_rank": 48,
         "manager": "Prakash Mahtani",
         "team": "400K Redemption Arc",
         "entry_id": 1004009,
         "total": 389,
         "event_total": 74
+      },
+      {
+        "rank": 44,
+        "last_rank": 50,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
+        "total": 389,
+        "event_total": 79
       },
       {
         "rank": 46,
@@ -703,21 +703,21 @@
       },
       {
         "rank": 51,
-        "last_rank": 54,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "entry_id": 3391935,
-        "total": 371,
-        "event_total": 72
-      },
-      {
-        "rank": 51,
         "last_rank": 34,
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
         "total": 371,
         "event_total": 33
+      },
+      {
+        "rank": 51,
+        "last_rank": 54,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "entry_id": 3391935,
+        "total": 371,
+        "event_total": 72
       },
       {
         "rank": 53,
