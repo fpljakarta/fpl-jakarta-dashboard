@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T12:31:43+00:00",
+  "generated_at": "2026-10-17T12:51:46+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -71,21 +71,21 @@
       },
       {
         "rank": 7,
-        "last_rank": 7,
-        "manager": "Sanjay Morani",
-        "team": "Xisco Inferno FC",
-        "entry_id": 3331264,
-        "total": 431,
-        "event_total": 2
-      },
-      {
-        "rank": 7,
         "last_rank": 6,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 431,
         "event_total": 1
+      },
+      {
+        "rank": 7,
+        "last_rank": 7,
+        "manager": "Sanjay Morani",
+        "team": "Xisco Inferno FC",
+        "entry_id": 3331264,
+        "total": 431,
+        "event_total": 2
       },
       {
         "rank": 9,
@@ -353,6 +353,15 @@
       {
         "rank": 12,
         "last_rank": 12,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
+        "total": 440,
+        "event_total": 2
+      },
+      {
+        "rank": 12,
+        "last_rank": 12,
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
@@ -360,12 +369,12 @@
         "event_total": 2
       },
       {
-        "rank": 12,
-        "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
-        "total": 440,
+        "rank": 14,
+        "last_rank": 15,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 434,
         "event_total": 2
       },
       {
@@ -376,15 +385,6 @@
         "entry_id": 3822923,
         "total": 434,
         "event_total": 1
-      },
-      {
-        "rank": 14,
-        "last_rank": 15,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 434,
-        "event_total": 2
       },
       {
         "rank": 16,
@@ -487,19 +487,19 @@
       },
       {
         "rank": 27,
-        "last_rank": 28,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
+        "last_rank": 27,
+        "manager": "Edward Angkasa",
+        "team": "Juvenalis",
+        "entry_id": 371869,
         "total": 413,
         "event_total": 1
       },
       {
         "rank": 27,
-        "last_rank": 27,
-        "manager": "Edward Angkasa",
-        "team": "Juvenalis",
-        "entry_id": 371869,
+        "last_rank": 28,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
         "total": 413,
         "event_total": 1
       },
@@ -641,18 +641,18 @@
       {
         "rank": 44,
         "last_rank": 44,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
+        "manager": "Mohit Mirpuri",
+        "team": "LION CITY BALLERS",
+        "entry_id": 3080011,
         "total": 390,
         "event_total": 1
       },
       {
         "rank": 44,
         "last_rank": 44,
-        "manager": "Mohit Mirpuri",
-        "team": "LION CITY BALLERS",
-        "entry_id": 3080011,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
         "total": 390,
         "event_total": 1
       },
@@ -757,6 +757,15 @@
       },
       {
         "rank": 57,
+        "last_rank": 58,
+        "manager": "Jasvin Seera",
+        "team": "Seera Squad",
+        "entry_id": 6526117,
+        "total": 346,
+        "event_total": 9
+      },
+      {
+        "rank": 58,
         "last_rank": 57,
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
@@ -765,22 +774,13 @@
         "event_total": 1
       },
       {
-        "rank": 58,
-        "last_rank": 58,
-        "manager": "Jasvin Seera",
-        "team": "Seera Squad",
-        "entry_id": 6526117,
-        "total": 338,
-        "event_total": 1
-      },
-      {
         "rank": 59,
         "last_rank": 59,
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
-        "total": 332,
-        "event_total": 5
+        "total": 331,
+        "event_total": 4
       }
     ]
   },
@@ -1016,8 +1016,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
