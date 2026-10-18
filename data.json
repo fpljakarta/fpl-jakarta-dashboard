@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T14:50:49+00:00",
+  "generated_at": "2026-10-18T15:23:59+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -335,18 +335,18 @@
       {
         "rank": 10,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 492,
         "event_total": 54
       },
       {
         "rank": 10,
         "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 492,
         "event_total": 54
       },
@@ -631,21 +631,21 @@
       },
       {
         "rank": 43,
-        "last_rank": 37,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 446,
-        "event_total": 43
-      },
-      {
-        "rank": 43,
         "last_rank": 40,
         "manager": "Ashwin Mulani",
         "team": "Balon D'orgu",
         "entry_id": 4294662,
         "total": 446,
         "event_total": 49
+      },
+      {
+        "rank": 43,
+        "last_rank": 37,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 446,
+        "event_total": 43
       },
       {
         "rank": 45,
@@ -1016,8 +1016,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
