@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T09:40:55+00:00",
+  "generated_at": "2026-10-18T10:12:04+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -379,15 +379,6 @@
       },
       {
         "rank": 15,
-        "last_rank": 17,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 466,
-        "event_total": 36
-      },
-      {
-        "rank": 15,
         "last_rank": 15,
         "manager": "Rishabh Mehta",
         "team": "PepMasterclass",
@@ -396,13 +387,13 @@
         "event_total": 34
       },
       {
-        "rank": 17,
-        "last_rank": 18,
-        "manager": "Sanjay Morani",
-        "team": "Xisco Inferno FC",
-        "entry_id": 3331264,
-        "total": 462,
-        "event_total": 33
+        "rank": 15,
+        "last_rank": 17,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 466,
+        "event_total": 36
       },
       {
         "rank": 17,
@@ -412,6 +403,15 @@
         "entry_id": 3822923,
         "total": 462,
         "event_total": 29
+      },
+      {
+        "rank": 17,
+        "last_rank": 18,
+        "manager": "Sanjay Morani",
+        "team": "Xisco Inferno FC",
+        "entry_id": 3331264,
+        "total": 462,
+        "event_total": 33
       },
       {
         "rank": 19,
