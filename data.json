@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T18:56:17+00:00",
+  "generated_at": "2026-10-18T20:29:45+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -406,21 +406,21 @@
       },
       {
         "rank": 18,
-        "last_rank": 14,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 497,
-        "event_total": 64
-      },
-      {
-        "rank": 18,
         "last_rank": 18,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 497,
         "event_total": 68
+      },
+      {
+        "rank": 18,
+        "last_rank": 14,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 497,
+        "event_total": 64
       },
       {
         "rank": 20,
@@ -559,12 +559,12 @@
       },
       {
         "rank": 35,
-        "last_rank": 35,
-        "manager": "Joanda Febrian",
-        "team": "DBM FC",
-        "entry_id": 822879,
+        "last_rank": 29,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
         "total": 470,
-        "event_total": 66
+        "event_total": 64
       },
       {
         "rank": 35,
@@ -577,12 +577,12 @@
       },
       {
         "rank": 35,
-        "last_rank": 29,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
+        "last_rank": 35,
+        "manager": "Joanda Febrian",
+        "team": "DBM FC",
+        "entry_id": 822879,
         "total": 470,
-        "event_total": 64
+        "event_total": 66
       },
       {
         "rank": 38,
@@ -990,9 +990,9 @@
       },
       {
         "gw": 7,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "points": 51
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "points": 88
       }
     ],
     "main": [
@@ -1034,9 +1034,9 @@
       },
       {
         "gw": 7,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "points": 51
+        "manager": "Sanchit Suri",
+        "team": "WinterisHere!",
+        "points": 88
       }
     ]
   },
