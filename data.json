@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T04:45:32+00:00",
+  "generated_at": "2026-10-18T05:38:32+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -353,18 +353,18 @@
       {
         "rank": 12,
         "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 472,
         "event_total": 34
       },
       {
         "rank": 12,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 472,
         "event_total": 34
       },
@@ -1016,8 +1016,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
