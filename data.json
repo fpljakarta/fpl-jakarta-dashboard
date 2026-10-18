@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T12:16:43+00:00",
+  "generated_at": "2026-10-18T12:48:52+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 9,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 458,
-        "event_total": 34
-      },
-      {
-        "rank": 10,
         "last_rank": 13,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
         "entry_id": 9279,
         "total": 458,
         "event_total": 43
+      },
+      {
+        "rank": 10,
+        "last_rank": 9,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 458,
+        "event_total": 34
       },
       {
         "rank": 12,
@@ -379,21 +379,21 @@
       },
       {
         "rank": 15,
-        "last_rank": 15,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 466,
-        "event_total": 34
-      },
-      {
-        "rank": 15,
         "last_rank": 17,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
         "entry_id": 693910,
         "total": 466,
         "event_total": 36
+      },
+      {
+        "rank": 15,
+        "last_rank": 15,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 466,
+        "event_total": 34
       },
       {
         "rank": 17,
