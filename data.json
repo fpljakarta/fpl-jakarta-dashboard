@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T21:20:09+00:00",
+  "generated_at": "2026-10-18T22:56:19+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -80,21 +80,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 9,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 493,
-        "event_total": 69
-      },
-      {
-        "rank": 8,
         "last_rank": 16,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 493,
         "event_total": 88
+      },
+      {
+        "rank": 8,
+        "last_rank": 9,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 493,
+        "event_total": 69
       },
       {
         "rank": 10,
@@ -326,18 +326,18 @@
       {
         "rank": 9,
         "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 513,
         "event_total": 75
       },
       {
         "rank": 9,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 513,
         "event_total": 75
       },
@@ -406,15 +406,6 @@
       },
       {
         "rank": 18,
-        "last_rank": 14,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 497,
-        "event_total": 64
-      },
-      {
-        "rank": 18,
         "last_rank": 18,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
@@ -423,13 +414,13 @@
         "event_total": 68
       },
       {
-        "rank": 20,
-        "last_rank": 21,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 493,
-        "event_total": 69
+        "rank": 18,
+        "last_rank": 14,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 497,
+        "event_total": 64
       },
       {
         "rank": 20,
@@ -439,6 +430,15 @@
         "entry_id": 6104023,
         "total": 493,
         "event_total": 88
+      },
+      {
+        "rank": 20,
+        "last_rank": 21,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 493,
+        "event_total": 69
       },
       {
         "rank": 22,
@@ -1016,8 +1016,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
