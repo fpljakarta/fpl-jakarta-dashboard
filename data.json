@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T09:09:46+00:00",
+  "generated_at": "2026-10-18T09:40:55+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -353,18 +353,18 @@
       {
         "rank": 12,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 472,
         "event_total": 34
       },
       {
         "rank": 12,
         "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 472,
         "event_total": 34
       },
@@ -379,15 +379,6 @@
       },
       {
         "rank": 15,
-        "last_rank": 15,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 466,
-        "event_total": 34
-      },
-      {
-        "rank": 15,
         "last_rank": 17,
         "manager": "Sherwin Lee",
         "team": "soteriapsalms",
@@ -396,13 +387,13 @@
         "event_total": 36
       },
       {
-        "rank": 17,
-        "last_rank": 14,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 462,
-        "event_total": 29
+        "rank": 15,
+        "last_rank": 15,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 466,
+        "event_total": 34
       },
       {
         "rank": 17,
@@ -412,6 +403,15 @@
         "entry_id": 3331264,
         "total": 462,
         "event_total": 33
+      },
+      {
+        "rank": 17,
+        "last_rank": 14,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 462,
+        "event_total": 29
       },
       {
         "rank": 19,
@@ -442,21 +442,21 @@
       },
       {
         "rank": 22,
-        "last_rank": 26,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 458,
-        "event_total": 43
-      },
-      {
-        "rank": 22,
         "last_rank": 21,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 458,
         "event_total": 34
+      },
+      {
+        "rank": 22,
+        "last_rank": 26,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 458,
+        "event_total": 43
       },
       {
         "rank": 24,
@@ -541,21 +541,21 @@
       },
       {
         "rank": 33,
-        "last_rank": 35,
-        "manager": "Joanda Febrian",
-        "team": "DBM FC",
-        "entry_id": 822879,
-        "total": 441,
-        "event_total": 37
-      },
-      {
-        "rank": 33,
         "last_rank": 39,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 441,
         "event_total": 40
+      },
+      {
+        "rank": 33,
+        "last_rank": 35,
+        "manager": "Joanda Febrian",
+        "team": "DBM FC",
+        "entry_id": 822879,
+        "total": 441,
+        "event_total": 37
       },
       {
         "rank": 35,
@@ -1016,8 +1016,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
