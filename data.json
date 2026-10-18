@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T17:56:44+00:00",
+  "generated_at": "2026-10-18T18:56:17+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -80,21 +80,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 9,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 493,
-        "event_total": 69
-      },
-      {
-        "rank": 8,
         "last_rank": 16,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 493,
         "event_total": 88
+      },
+      {
+        "rank": 8,
+        "last_rank": 9,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 493,
+        "event_total": 69
       },
       {
         "rank": 10,
@@ -152,21 +152,21 @@
       },
       {
         "rank": 16,
-        "last_rank": 18,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 470,
-        "event_total": 69
-      },
-      {
-        "rank": 16,
         "last_rank": 15,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
         "entry_id": 171383,
         "total": 470,
         "event_total": 64
+      },
+      {
+        "rank": 16,
+        "last_rank": 18,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 470,
+        "event_total": 69
       },
       {
         "rank": 18,
