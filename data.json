@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T22:56:19+00:00",
+  "generated_at": "2026-10-19T01:02:51+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -152,21 +152,21 @@
       },
       {
         "rank": 16,
-        "last_rank": 18,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 470,
-        "event_total": 69
-      },
-      {
-        "rank": 16,
         "last_rank": 15,
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
         "entry_id": 171383,
         "total": 470,
         "event_total": 64
+      },
+      {
+        "rank": 16,
+        "last_rank": 18,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 470,
+        "event_total": 69
       },
       {
         "rank": 18,
@@ -559,15 +559,6 @@
       },
       {
         "rank": 35,
-        "last_rank": 29,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 470,
-        "event_total": 64
-      },
-      {
-        "rank": 35,
         "last_rank": 35,
         "manager": "Joanda Febrian",
         "team": "DBM FC",
@@ -583,6 +574,15 @@
         "entry_id": 338097,
         "total": 470,
         "event_total": 69
+      },
+      {
+        "rank": 35,
+        "last_rank": 29,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 470,
+        "event_total": 64
       },
       {
         "rank": 38,
@@ -761,8 +761,8 @@
         "manager": "Jasvin Seera",
         "team": "Seera Squad",
         "entry_id": 6526117,
-        "total": 410,
-        "event_total": 73
+        "total": 412,
+        "event_total": 75
       },
       {
         "rank": 58,
