@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T20:59:22+00:00",
+  "generated_at": "2026-10-19T23:09:27+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -71,15 +71,15 @@
       },
       {
         "rank": 7,
-        "last_rank": 7,
-        "manager": "Sanjay Morani",
-        "team": "Xisco Inferno FC",
-        "entry_id": 3331264,
-        "total": 497,
-        "event_total": 68
+        "last_rank": 5,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 499,
+        "event_total": 69
       },
       {
-        "rank": 7,
+        "rank": 8,
         "last_rank": 16,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
@@ -88,13 +88,13 @@
         "event_total": 92
       },
       {
-        "rank": 9,
-        "last_rank": 5,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 496,
-        "event_total": 66
+        "rank": 8,
+        "last_rank": 7,
+        "manager": "Sanjay Morani",
+        "team": "Xisco Inferno FC",
+        "entry_id": 3331264,
+        "total": 497,
+        "event_total": 68
       },
       {
         "rank": 10,
@@ -111,8 +111,8 @@
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
-        "total": 487,
-        "event_total": 63
+        "total": 490,
+        "event_total": 66
       },
       {
         "rank": 12,
@@ -406,6 +406,15 @@
       },
       {
         "rank": 18,
+        "last_rank": 16,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 499,
+        "event_total": 69
+      },
+      {
+        "rank": 19,
         "last_rank": 33,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
@@ -414,7 +423,7 @@
         "event_total": 92
       },
       {
-        "rank": 18,
+        "rank": 19,
         "last_rank": 14,
         "manager": "Rohan Kalwani",
         "team": "-4 Builds Carrickter",
@@ -423,22 +432,13 @@
         "event_total": 64
       },
       {
-        "rank": 18,
+        "rank": 19,
         "last_rank": 18,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 497,
         "event_total": 68
-      },
-      {
-        "rank": 21,
-        "last_rank": 16,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 496,
-        "event_total": 66
       },
       {
         "rank": 22,
@@ -464,8 +464,8 @@
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
-        "total": 487,
-        "event_total": 63
+        "total": 490,
+        "event_total": 66
       },
       {
         "rank": 25,
@@ -568,21 +568,21 @@
       },
       {
         "rank": 36,
-        "last_rank": 35,
-        "manager": "Joanda Febrian",
-        "team": "DBM FC",
-        "entry_id": 822879,
-        "total": 470,
-        "event_total": 66
-      },
-      {
-        "rank": 36,
         "last_rank": 39,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 470,
         "event_total": 69
+      },
+      {
+        "rank": 36,
+        "last_rank": 35,
+        "manager": "Joanda Febrian",
+        "team": "DBM FC",
+        "entry_id": 822879,
+        "total": 470,
+        "event_total": 66
       },
       {
         "rank": 38,
@@ -595,6 +595,15 @@
       },
       {
         "rank": 39,
+        "last_rank": 47,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 467,
+        "event_total": 79
+      },
+      {
+        "rank": 40,
         "last_rank": 32,
         "manager": "Rayan Hamza",
         "team": "Zarks",
@@ -603,16 +612,7 @@
         "event_total": 60
       },
       {
-        "rank": 40,
-        "last_rank": 41,
-        "manager": "Hitesh Singh",
-        "team": "Not Too Xabi",
-        "entry_id": 3323643,
-        "total": 465,
-        "event_total": 72
-      },
-      {
-        "rank": 40,
+        "rank": 41,
         "last_rank": 42,
         "manager": "Rachman Witarlan",
         "team": "FC Milanello",
@@ -621,13 +621,13 @@
         "event_total": 73
       },
       {
-        "rank": 42,
-        "last_rank": 47,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 464,
-        "event_total": 76
+        "rank": 41,
+        "last_rank": 41,
+        "manager": "Hitesh Singh",
+        "team": "Not Too Xabi",
+        "entry_id": 3323643,
+        "total": 465,
+        "event_total": 72
       },
       {
         "rank": 43,
@@ -992,7 +992,7 @@
         "gw": 7,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
-        "points": 88
+        "points": 92
       }
     ],
     "main": [
@@ -1036,7 +1036,7 @@
         "gw": 7,
         "manager": "Sanchit Suri",
         "team": "WinterisHere!",
-        "points": 88
+        "points": 92
       }
     ]
   },
