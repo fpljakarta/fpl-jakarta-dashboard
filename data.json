@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T23:09:27+00:00",
+  "generated_at": "2026-10-20T00:12:50+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -80,21 +80,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 16,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 497,
-        "event_total": 92
-      },
-      {
-        "rank": 8,
         "last_rank": 7,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
         "entry_id": 3331264,
         "total": 497,
         "event_total": 68
+      },
+      {
+        "rank": 8,
+        "last_rank": 16,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 497,
+        "event_total": 92
       },
       {
         "rank": 10,
@@ -415,15 +415,6 @@
       },
       {
         "rank": 19,
-        "last_rank": 33,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 497,
-        "event_total": 92
-      },
-      {
-        "rank": 19,
         "last_rank": 14,
         "manager": "Rohan Kalwani",
         "team": "-4 Builds Carrickter",
@@ -439,6 +430,15 @@
         "entry_id": 3331264,
         "total": 497,
         "event_total": 68
+      },
+      {
+        "rank": 19,
+        "last_rank": 33,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 497,
+        "event_total": 92
       },
       {
         "rank": 22,
@@ -568,21 +568,21 @@
       },
       {
         "rank": 36,
-        "last_rank": 39,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 470,
-        "event_total": 69
-      },
-      {
-        "rank": 36,
         "last_rank": 35,
         "manager": "Joanda Febrian",
         "team": "DBM FC",
         "entry_id": 822879,
         "total": 470,
         "event_total": 66
+      },
+      {
+        "rank": 36,
+        "last_rank": 39,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 470,
+        "event_total": 69
       },
       {
         "rank": 38,
@@ -613,21 +613,21 @@
       },
       {
         "rank": 41,
-        "last_rank": 42,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 465,
-        "event_total": 73
-      },
-      {
-        "rank": 41,
         "last_rank": 41,
         "manager": "Hitesh Singh",
         "team": "Not Too Xabi",
         "entry_id": 3323643,
         "total": 465,
         "event_total": 72
+      },
+      {
+        "rank": 41,
+        "last_rank": 42,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 465,
+        "event_total": 73
       },
       {
         "rank": 43,
