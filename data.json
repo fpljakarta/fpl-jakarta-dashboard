@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T12:18:38+00:00",
+  "generated_at": "2026-10-20T16:41:51+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -80,12 +80,12 @@
       },
       {
         "rank": 8,
-        "last_rank": 9,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
+        "last_rank": 16,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
         "total": 497,
-        "event_total": 73
+        "event_total": 92
       },
       {
         "rank": 8,
@@ -98,12 +98,12 @@
       },
       {
         "rank": 8,
-        "last_rank": 16,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
+        "last_rank": 9,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
         "total": 497,
-        "event_total": 92
+        "event_total": 73
       },
       {
         "rank": 11,
@@ -299,18 +299,18 @@
       {
         "rank": 6,
         "last_rank": 12,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 517,
         "event_total": 79
       },
       {
         "rank": 6,
         "last_rank": 12,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 517,
         "event_total": 79
       },
@@ -343,21 +343,21 @@
       },
       {
         "rank": 11,
-        "last_rank": 8,
-        "manager": "Paras Lalwani",
-        "team": "FC Pain Chaud",
-        "entry_id": 679630,
-        "total": 512,
-        "event_total": 68
-      },
-      {
-        "rank": 11,
         "last_rank": 6,
         "manager": "Prashant Chainani",
         "team": "HighOnHouse",
         "entry_id": 2849972,
         "total": 512,
         "event_total": 67
+      },
+      {
+        "rank": 11,
+        "last_rank": 8,
+        "manager": "Paras Lalwani",
+        "team": "FC Pain Chaud",
+        "entry_id": 679630,
+        "total": 512,
+        "event_total": 68
       },
       {
         "rank": 13,
@@ -424,6 +424,15 @@
       },
       {
         "rank": 20,
+        "last_rank": 33,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 497,
+        "event_total": 92
+      },
+      {
+        "rank": 20,
         "last_rank": 21,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
@@ -439,15 +448,6 @@
         "entry_id": 3331264,
         "total": 497,
         "event_total": 68
-      },
-      {
-        "rank": 20,
-        "last_rank": 33,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 497,
-        "event_total": 92
       },
       {
         "rank": 23,
@@ -1016,8 +1016,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
