@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T09:57:14+00:00",
+  "generated_at": "2026-10-21T12:58:03+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -424,21 +424,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 33,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 497,
-        "event_total": 92
-      },
-      {
-        "rank": 20,
         "last_rank": 21,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 497,
         "event_total": 73
+      },
+      {
+        "rank": 20,
+        "last_rank": 33,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 497,
+        "event_total": 92
       },
       {
         "rank": 20,
@@ -613,21 +613,21 @@
       },
       {
         "rank": 41,
-        "last_rank": 42,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 465,
-        "event_total": 73
-      },
-      {
-        "rank": 41,
         "last_rank": 41,
         "manager": "Hitesh Singh",
         "team": "Not Too Xabi",
         "entry_id": 3323643,
         "total": 465,
         "event_total": 72
+      },
+      {
+        "rank": 41,
+        "last_rank": 42,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 465,
+        "event_total": 73
       },
       {
         "rank": 43,
