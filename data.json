@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T14:41:21+00:00",
+  "generated_at": "2026-10-22T15:04:07+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -343,21 +343,21 @@
       },
       {
         "rank": 11,
-        "last_rank": 6,
-        "manager": "Prashant Chainani",
-        "team": "HighOnHouse",
-        "entry_id": 2849972,
-        "total": 512,
-        "event_total": 67
-      },
-      {
-        "rank": 11,
         "last_rank": 8,
         "manager": "Paras Lalwani",
         "team": "FC Pain Chaud",
         "entry_id": 679630,
         "total": 512,
         "event_total": 68
+      },
+      {
+        "rank": 11,
+        "last_rank": 6,
+        "manager": "Prashant Chainani",
+        "team": "HighOnHouse",
+        "entry_id": 2849972,
+        "total": 512,
+        "event_total": 67
       },
       {
         "rank": 13,
@@ -424,12 +424,12 @@
       },
       {
         "rank": 20,
-        "last_rank": 33,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
+        "last_rank": 21,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
         "total": 497,
-        "event_total": 92
+        "event_total": 73
       },
       {
         "rank": 20,
@@ -442,12 +442,12 @@
       },
       {
         "rank": 20,
-        "last_rank": 21,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
+        "last_rank": 33,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
         "total": 497,
-        "event_total": 73
+        "event_total": 92
       },
       {
         "rank": 23,
@@ -613,21 +613,21 @@
       },
       {
         "rank": 41,
-        "last_rank": 42,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 465,
-        "event_total": 73
-      },
-      {
-        "rank": 41,
         "last_rank": 41,
         "manager": "Hitesh Singh",
         "team": "Not Too Xabi",
         "entry_id": 3323643,
         "total": 465,
         "event_total": 72
+      },
+      {
+        "rank": 41,
+        "last_rank": 42,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 465,
+        "event_total": 73
       },
       {
         "rank": 43,
