@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T10:14:23+00:00",
+  "generated_at": "2026-10-23T14:50:26+00:00",
   "current_gameweek": 7,
   "next_gameweek": 8,
   "next_deadline": "2026-10-23T17:30:00Z",
@@ -80,21 +80,21 @@
       },
       {
         "rank": 8,
-        "last_rank": 9,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 497,
-        "event_total": 73
-      },
-      {
-        "rank": 8,
         "last_rank": 16,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 497,
         "event_total": 92
+      },
+      {
+        "rank": 8,
+        "last_rank": 9,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 497,
+        "event_total": 73
       },
       {
         "rank": 8,
@@ -424,6 +424,15 @@
       },
       {
         "rank": 20,
+        "last_rank": 33,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 497,
+        "event_total": 92
+      },
+      {
+        "rank": 20,
         "last_rank": 18,
         "manager": "Sanjay Morani",
         "team": "Xisco Inferno FC",
@@ -439,15 +448,6 @@
         "entry_id": 479311,
         "total": 497,
         "event_total": 73
-      },
-      {
-        "rank": 20,
-        "last_rank": 33,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 497,
-        "event_total": 92
       },
       {
         "rank": 23,
