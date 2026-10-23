@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T19:15:48+00:00",
+  "generated_at": "2026-10-23T19:50:57+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -156,8 +156,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 473,
-        "event_total": 3
+        "total": 479,
+        "event_total": 9
       },
       {
         "rank": 17,
@@ -531,7 +531,16 @@
         "event_total": 1
       },
       {
-        "rank": 32,
+        "rank": 31,
+        "last_rank": 39,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 480,
+        "event_total": 10
+      },
+      {
+        "rank": 33,
         "last_rank": 23,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
@@ -540,7 +549,7 @@
         "event_total": 1
       },
       {
-        "rank": 33,
+        "rank": 34,
         "last_rank": 31,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
@@ -549,22 +558,13 @@
         "event_total": 0
       },
       {
-        "rank": 34,
+        "rank": 35,
         "last_rank": 37,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 475,
         "event_total": 1
-      },
-      {
-        "rank": 35,
-        "last_rank": 39,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 473,
-        "event_total": 3
       },
       {
         "rank": 36,
@@ -667,6 +667,15 @@
       },
       {
         "rank": 47,
+        "last_rank": 51,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
+        "total": 451,
+        "event_total": 10
+      },
+      {
+        "rank": 48,
         "last_rank": 44,
         "manager": "Mohit Mirpuri",
         "team": "LION CITY BALLERS",
@@ -675,22 +684,13 @@
         "event_total": 0
       },
       {
-        "rank": 48,
+        "rank": 49,
         "last_rank": 51,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 444,
         "event_total": 0
-      },
-      {
-        "rank": 49,
-        "last_rank": 51,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 444,
-        "event_total": 3
       },
       {
         "rank": 50,
@@ -712,6 +712,15 @@
       },
       {
         "rank": 52,
+        "last_rank": 49,
+        "manager": "Anoop Vaswani",
+        "team": "Beer Kings",
+        "entry_id": 3624633,
+        "total": 430,
+        "event_total": 14
+      },
+      {
+        "rank": 53,
         "last_rank": 53,
         "manager": "M Suudi",
         "team": "Cakdes FPL",
@@ -720,7 +729,7 @@
         "event_total": 0
       },
       {
-        "rank": 53,
+        "rank": 54,
         "last_rank": 50,
         "manager": "joachim chia",
         "team": "brotatogyokeres",
@@ -729,7 +738,7 @@
         "event_total": 1
       },
       {
-        "rank": 54,
+        "rank": 55,
         "last_rank": 55,
         "manager": "Jeremy Oberoi",
         "team": "Next Season FC",
@@ -738,7 +747,7 @@
         "event_total": 0
       },
       {
-        "rank": 55,
+        "rank": 56,
         "last_rank": 54,
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
@@ -747,22 +756,13 @@
         "event_total": 0
       },
       {
-        "rank": 56,
-        "last_rank": 49,
-        "manager": "Anoop Vaswani",
-        "team": "Beer Kings",
-        "entry_id": 3624633,
-        "total": 418,
-        "event_total": 2
-      },
-      {
         "rank": 57,
         "last_rank": 58,
         "manager": "Jasvin Seera",
         "team": "Seera Squad",
         "entry_id": 6526117,
-        "total": 413,
-        "event_total": 1
+        "total": 418,
+        "event_total": 6
       },
       {
         "rank": 58,
