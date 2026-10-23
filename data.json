@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T21:00:39+00:00",
+  "generated_at": "2026-10-23T22:59:08+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -996,9 +996,9 @@
       },
       {
         "gw": 8,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "points": 12
       }
     ],
     "main": [
@@ -1046,9 +1046,9 @@
       },
       {
         "gw": 8,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Anoop Vaswani",
+        "team": "Beer Kings",
+        "points": 15
       }
     ]
   },
