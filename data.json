@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T13:23:27+00:00",
+  "generated_at": "2026-10-24T13:55:57+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -117,18 +117,18 @@
       {
         "rank": 12,
         "last_rank": 8,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
         "total": 505,
         "event_total": 8
       },
       {
         "rank": 12,
         "last_rank": 8,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
         "total": 505,
         "event_total": 8
       },
@@ -470,18 +470,18 @@
       {
         "rank": 25,
         "last_rank": 20,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
         "total": 505,
         "event_total": 8
       },
       {
         "rank": 25,
         "last_rank": 20,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
         "total": 505,
         "event_total": 8
       },
@@ -761,8 +761,8 @@
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
-        "total": 429,
-        "event_total": 19
+        "total": 428,
+        "event_total": 18
       },
       {
         "rank": 58,
