@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T12:29:30+00:00",
+  "generated_at": "2026-10-25T13:01:18+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 23,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 513,
-        "event_total": 19
-      },
-      {
-        "rank": 31,
         "last_rank": 34,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 513,
         "event_total": 39
+      },
+      {
+        "rank": 31,
+        "last_rank": 23,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 513,
+        "event_total": 19
       },
       {
         "rank": 33,
