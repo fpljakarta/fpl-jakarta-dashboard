@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T18:50:44+00:00",
+  "generated_at": "2026-10-25T21:55:12+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -147,8 +147,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 525,
-        "event_total": 55
+        "total": 524,
+        "event_total": 54
       },
       {
         "rank": 16,
@@ -192,8 +192,8 @@
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
-        "total": 505,
-        "event_total": 61
+        "total": 504,
+        "event_total": 60
       },
       {
         "rank": 21,
@@ -246,8 +246,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 420,
-        "event_total": 31
+        "total": 422,
+        "event_total": 33
       }
     ],
     "main": [
@@ -299,18 +299,18 @@
       {
         "rank": 6,
         "last_rank": 6,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 564,
         "event_total": 47
       },
       {
         "rank": 6,
         "last_rank": 6,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 564,
         "event_total": 47
       },
@@ -527,8 +527,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 525,
-        "event_total": 55
+        "total": 524,
+        "event_total": 54
       },
       {
         "rank": 32,
@@ -613,21 +613,21 @@
       },
       {
         "rank": 41,
-        "last_rank": 48,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "entry_id": 3391935,
-        "total": 505,
-        "event_total": 61
-      },
-      {
-        "rank": 42,
         "last_rank": 40,
         "manager": "Rayan Hamza",
         "team": "Zarks",
         "entry_id": 2805634,
         "total": 505,
         "event_total": 38
+      },
+      {
+        "rank": 42,
+        "last_rank": 48,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "entry_id": 3391935,
+        "total": 504,
+        "event_total": 60
       },
       {
         "rank": 43,
@@ -698,8 +698,8 @@
         "manager": "Jeremy Oberoi",
         "team": "Next Season FC",
         "entry_id": 4127500,
-        "total": 485,
-        "event_total": 61
+        "total": 487,
+        "event_total": 63
       },
       {
         "rank": 51,
@@ -752,8 +752,8 @@
         "manager": "Sagar Sadarangani",
         "team": "cole me palmer",
         "entry_id": 3435396,
-        "total": 461,
-        "event_total": 39
+        "total": 462,
+        "event_total": 40
       },
       {
         "rank": 57,
@@ -779,8 +779,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 420,
-        "event_total": 31
+        "total": 422,
+        "event_total": 33
       }
     ]
   },
@@ -1022,8 +1022,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
