@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T23:41:01+00:00",
+  "generated_at": "2026-10-27T00:06:12+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -188,21 +188,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 19,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 504,
-        "event_total": 41
-      },
-      {
-        "rank": 20,
         "last_rank": 23,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 504,
         "event_total": 60
+      },
+      {
+        "rank": 20,
+        "last_rank": 19,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 504,
+        "event_total": 41
       },
       {
         "rank": 22,
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 18,
-        "manager": "Gautam Vassanmal",
-        "team": "GV9",
-        "entry_id": 24602,
-        "total": 538,
-        "event_total": 39
-      },
-      {
-        "rank": 19,
         "last_rank": 16,
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
         "entry_id": 754628,
         "total": 538,
         "event_total": 38
+      },
+      {
+        "rank": 19,
+        "last_rank": 18,
+        "manager": "Gautam Vassanmal",
+        "team": "GV9",
+        "entry_id": 24602,
+        "total": 538,
+        "event_total": 39
       },
       {
         "rank": 21,
@@ -640,21 +640,21 @@
       },
       {
         "rank": 44,
-        "last_rank": 48,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "entry_id": 3391935,
-        "total": 504,
-        "event_total": 60
-      },
-      {
-        "rank": 44,
         "last_rank": 43,
         "manager": "Prakash Mahtani",
         "team": "400K Redemption Arc",
         "entry_id": 1004009,
         "total": 504,
         "event_total": 41
+      },
+      {
+        "rank": 44,
+        "last_rank": 48,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "entry_id": 3391935,
+        "total": 504,
+        "event_total": 60
       },
       {
         "rank": 46,
