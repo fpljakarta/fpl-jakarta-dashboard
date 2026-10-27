@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T21:10:04+00:00",
+  "generated_at": "2026-10-27T23:57:30+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -188,21 +188,21 @@
       },
       {
         "rank": 20,
-        "last_rank": 19,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 504,
-        "event_total": 41
-      },
-      {
-        "rank": 20,
         "last_rank": 23,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 504,
         "event_total": 60
+      },
+      {
+        "rank": 20,
+        "last_rank": 19,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 504,
+        "event_total": 41
       },
       {
         "rank": 22,
@@ -290,18 +290,18 @@
       {
         "rank": 5,
         "last_rank": 6,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 565,
         "event_total": 48
       },
       {
         "rank": 5,
         "last_rank": 6,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 565,
         "event_total": 48
       },
@@ -640,21 +640,21 @@
       },
       {
         "rank": 44,
-        "last_rank": 43,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 504,
-        "event_total": 41
-      },
-      {
-        "rank": 44,
         "last_rank": 48,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 504,
         "event_total": 60
+      },
+      {
+        "rank": 44,
+        "last_rank": 43,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 504,
+        "event_total": 41
       },
       {
         "rank": 46,
@@ -1022,8 +1022,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
