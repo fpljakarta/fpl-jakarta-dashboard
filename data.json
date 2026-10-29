@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28T21:44:18+00:00",
+  "generated_at": "2026-10-29T01:16:46+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -640,21 +640,21 @@
       },
       {
         "rank": 44,
-        "last_rank": 43,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 504,
-        "event_total": 41
-      },
-      {
-        "rank": 44,
         "last_rank": 48,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
         "total": 504,
         "event_total": 60
+      },
+      {
+        "rank": 44,
+        "last_rank": 43,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 504,
+        "event_total": 41
       },
       {
         "rank": 46,
