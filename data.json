@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T20:57:30+00:00",
+  "generated_at": "2026-10-30T23:33:27+00:00",
   "current_gameweek": 8,
   "next_gameweek": 9,
   "next_deadline": "2026-10-31T11:00:00Z",
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 16,
-        "manager": "Indar Dhaliwal",
-        "team": "Daylight Brobbery",
-        "entry_id": 754628,
-        "total": 538,
-        "event_total": 38
-      },
-      {
-        "rank": 19,
         "last_rank": 18,
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
         "total": 538,
         "event_total": 39
+      },
+      {
+        "rank": 19,
+        "last_rank": 16,
+        "manager": "Indar Dhaliwal",
+        "team": "Daylight Brobbery",
+        "entry_id": 754628,
+        "total": 538,
+        "event_total": 38
       },
       {
         "rank": 21,
