@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T17:26:11+00:00",
+  "generated_at": "2026-10-31T17:35:08+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -107,21 +107,21 @@
       },
       {
         "rank": 11,
-        "last_rank": 15,
-        "manager": "Nikk Kadbet",
-        "team": "Anfield Legends",
-        "entry_id": 9279,
-        "total": 560,
-        "event_total": 34
-      },
-      {
-        "rank": 11,
         "last_rank": 14,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 560,
         "event_total": 31
+      },
+      {
+        "rank": 11,
+        "last_rank": 15,
+        "manager": "Nikk Kadbet",
+        "team": "Anfield Legends",
+        "entry_id": 9279,
+        "total": 560,
+        "event_total": 34
       },
       {
         "rank": 13,
@@ -161,21 +161,21 @@
       },
       {
         "rank": 17,
-        "last_rank": 12,
-        "manager": "Edward Angkasa",
-        "team": "Juvenalis",
-        "entry_id": 371869,
-        "total": 549,
-        "event_total": 19
-      },
-      {
-        "rank": 17,
         "last_rank": 17,
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
         "total": 549,
         "event_total": 29
+      },
+      {
+        "rank": 17,
+        "last_rank": 12,
+        "manager": "Edward Angkasa",
+        "team": "Juvenalis",
+        "entry_id": 371869,
+        "total": 549,
+        "event_total": 19
       },
       {
         "rank": 19,
@@ -280,21 +280,21 @@
       },
       {
         "rank": 4,
-        "last_rank": 12,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 600,
-        "event_total": 40
-      },
-      {
-        "rank": 4,
         "last_rank": 8,
         "manager": "Neeraj Narwani",
         "team": "Gampang Bro",
         "entry_id": 863474,
         "total": 600,
         "event_total": 36
+      },
+      {
+        "rank": 4,
+        "last_rank": 12,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 600,
+        "event_total": 40
       },
       {
         "rank": 6,
@@ -514,21 +514,21 @@
       },
       {
         "rank": 30,
-        "last_rank": 15,
-        "manager": "Rishabh Mehta",
-        "team": "PepMasterclass",
-        "entry_id": 4111970,
-        "total": 556,
-        "event_total": 10
-      },
-      {
-        "rank": 30,
         "last_rank": 29,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
         "entry_id": 6104023,
         "total": 556,
         "event_total": 25
+      },
+      {
+        "rank": 30,
+        "last_rank": 15,
+        "manager": "Rishabh Mehta",
+        "team": "PepMasterclass",
+        "entry_id": 4111970,
+        "total": 556,
+        "event_total": 10
       },
       {
         "rank": 32,
