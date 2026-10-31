@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T21:09:26+00:00",
+  "generated_at": "2026-10-31T21:17:29+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -299,18 +299,18 @@
       {
         "rank": 6,
         "last_rank": 5,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 614,
         "event_total": 49
       },
       {
         "rank": 6,
         "last_rank": 5,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 614,
         "event_total": 49
       },
@@ -595,21 +595,21 @@
       },
       {
         "rank": 39,
-        "last_rank": 44,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 560,
-        "event_total": 56
-      },
-      {
-        "rank": 39,
         "last_rank": 40,
         "manager": "Hitesh Singh",
         "team": "Not Too Xabi",
         "entry_id": 3323643,
         "total": 560,
         "event_total": 49
+      },
+      {
+        "rank": 39,
+        "last_rank": 44,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 560,
+        "event_total": 56
       },
       {
         "rank": 41,
@@ -1028,8 +1028,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
