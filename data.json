@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T12:49:46+00:00",
+  "generated_at": "2026-10-31T13:25:02+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -180,18 +180,18 @@
       {
         "rank": 19,
         "last_rank": 20,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
+        "manager": "Amrit Lakhiani",
+        "team": "Pomfriterole FC",
+        "entry_id": 3391935,
         "total": 506,
         "event_total": 2
       },
       {
         "rank": 19,
         "last_rank": 20,
-        "manager": "Amrit Lakhiani",
-        "team": "Pomfriterole FC",
-        "entry_id": 3391935,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
         "total": 506,
         "event_total": 2
       },
@@ -451,21 +451,21 @@
       },
       {
         "rank": 23,
-        "last_rank": 24,
-        "manager": "Sherwin Lee",
-        "team": "soteriapsalms",
-        "entry_id": 693910,
-        "total": 538,
-        "event_total": 3
-      },
-      {
-        "rank": 23,
         "last_rank": 23,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 538,
         "event_total": 2
+      },
+      {
+        "rank": 23,
+        "last_rank": 24,
+        "manager": "Sherwin Lee",
+        "team": "soteriapsalms",
+        "entry_id": 693910,
+        "total": 538,
+        "event_total": 3
       },
       {
         "rank": 25,
@@ -550,6 +550,15 @@
       },
       {
         "rank": 34,
+        "last_rank": 34,
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "entry_id": 338097,
+        "total": 522,
+        "event_total": 2
+      },
+      {
+        "rank": 34,
         "last_rank": 35,
         "manager": "Jevesh Vatvani",
         "team": "YNWA",
@@ -558,12 +567,12 @@
         "event_total": 3
       },
       {
-        "rank": 34,
-        "last_rank": 34,
-        "manager": "Charles Lesmana",
-        "team": "Les Intouchables",
-        "entry_id": 338097,
-        "total": 522,
+        "rank": 36,
+        "last_rank": 38,
+        "manager": "Ajay Yeleswaram",
+        "team": "Relegated",
+        "entry_id": 1257763,
+        "total": 517,
         "event_total": 2
       },
       {
@@ -574,15 +583,6 @@
         "entry_id": 2805634,
         "total": 517,
         "event_total": 1
-      },
-      {
-        "rank": 36,
-        "last_rank": 38,
-        "manager": "Ajay Yeleswaram",
-        "team": "Relegated",
-        "entry_id": 1257763,
-        "total": 517,
-        "event_total": 2
       },
       {
         "rank": 38,
@@ -743,8 +743,8 @@
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
-        "total": 469,
-        "event_total": 2
+        "total": 471,
+        "event_total": 4
       },
       {
         "rank": 56,
