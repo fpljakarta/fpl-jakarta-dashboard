@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T20:08:32+00:00",
+  "generated_at": "2026-10-31T20:34:59+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 5,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 614,
         "event_total": 49
       },
       {
         "rank": 4,
         "last_rank": 5,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 614,
         "event_total": 49
       },
@@ -469,21 +469,21 @@
       },
       {
         "rank": 25,
-        "last_rank": 27,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 569,
-        "event_total": 36
-      },
-      {
-        "rank": 25,
         "last_rank": 31,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 569,
         "event_total": 40
+      },
+      {
+        "rank": 25,
+        "last_rank": 27,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 569,
+        "event_total": 36
       },
       {
         "rank": 27,
@@ -734,8 +734,8 @@
         "manager": "Jasvin Seera",
         "team": "Seera Squad",
         "entry_id": 6526117,
-        "total": 504,
-        "event_total": 12
+        "total": 502,
+        "event_total": 10
       },
       {
         "rank": 55,
@@ -1028,8 +1028,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
