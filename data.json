@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T14:53:23+00:00",
+  "generated_at": "2026-11-01T16:27:44+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -179,21 +179,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 20,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 560,
-        "event_total": 56
-      },
-      {
-        "rank": 19,
         "last_rank": 19,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
         "entry_id": 1657008,
         "total": 560,
         "event_total": 58
+      },
+      {
+        "rank": 19,
+        "last_rank": 20,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 560,
+        "event_total": 56
       },
       {
         "rank": 21,
@@ -271,21 +271,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 4,
-        "manager": "Siddarth Kaul",
-        "team": "sidskids",
-        "entry_id": 11184,
-        "total": 625,
-        "event_total": 56
-      },
-      {
-        "rank": 3,
         "last_rank": 3,
         "manager": "Neel Dadlani",
         "team": "NDFC",
         "entry_id": 1427203,
         "total": 625,
         "event_total": 50
+      },
+      {
+        "rank": 3,
+        "last_rank": 4,
+        "manager": "Siddarth Kaul",
+        "team": "sidskids",
+        "entry_id": 11184,
+        "total": 625,
+        "event_total": 56
       },
       {
         "rank": 5,
@@ -604,21 +604,21 @@
       },
       {
         "rank": 40,
-        "last_rank": 43,
-        "manager": "Deepu Narwani",
-        "team": "FC BOSS THA",
-        "entry_id": 1657008,
-        "total": 560,
-        "event_total": 58
-      },
-      {
-        "rank": 40,
         "last_rank": 44,
         "manager": "Prakash Mahtani",
         "team": "400K Redemption Arc",
         "entry_id": 1004009,
         "total": 560,
         "event_total": 56
+      },
+      {
+        "rank": 40,
+        "last_rank": 43,
+        "manager": "Deepu Narwani",
+        "team": "FC BOSS THA",
+        "entry_id": 1657008,
+        "total": 560,
+        "event_total": 58
       },
       {
         "rank": 42,
