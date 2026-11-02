@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T13:19:29+00:00",
+  "generated_at": "2026-11-02T15:24:01+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -53,21 +53,21 @@
       },
       {
         "rank": 5,
-        "last_rank": 2,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "entry_id": 29071,
-        "total": 607,
-        "event_total": 43
-      },
-      {
-        "rank": 5,
         "last_rank": 5,
         "manager": "S M",
         "team": "I Know Nothing",
         "entry_id": 2202,
         "total": 607,
         "event_total": 49
+      },
+      {
+        "rank": 5,
+        "last_rank": 2,
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "entry_id": 29071,
+        "total": 607,
+        "event_total": 43
       },
       {
         "rank": 7,
