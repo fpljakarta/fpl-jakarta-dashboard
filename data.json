@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T11:17:48+00:00",
+  "generated_at": "2026-11-03T14:56:23+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -622,21 +622,21 @@
       },
       {
         "rank": 42,
-        "last_rank": 44,
-        "manager": "Prakash Mahtani",
-        "team": "400K Redemption Arc",
-        "entry_id": 1004009,
-        "total": 564,
-        "event_total": 60
-      },
-      {
-        "rank": 42,
         "last_rank": 40,
         "manager": "Hitesh Singh",
         "team": "Not Too Xabi",
         "entry_id": 3323643,
         "total": 564,
         "event_total": 53
+      },
+      {
+        "rank": 42,
+        "last_rank": 44,
+        "manager": "Prakash Mahtani",
+        "team": "400K Redemption Arc",
+        "entry_id": 1004009,
+        "total": 564,
+        "event_total": 60
       },
       {
         "rank": 44,
