@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T03:14:16+00:00",
+  "generated_at": "2026-11-04T08:53:10+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -280,21 +280,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 12,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 638,
-        "event_total": 78
-      },
-      {
-        "rank": 3,
         "last_rank": 5,
         "manager": "Draking Ngaditono",
         "team": "Enerzy",
         "entry_id": 2552235,
         "total": 638,
         "event_total": 73
+      },
+      {
+        "rank": 3,
+        "last_rank": 12,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 638,
+        "event_total": 78
       },
       {
         "rank": 6,
@@ -622,21 +622,21 @@
       },
       {
         "rank": 42,
-        "last_rank": 40,
-        "manager": "Hitesh Singh",
-        "team": "Not Too Xabi",
-        "entry_id": 3323643,
-        "total": 564,
-        "event_total": 53
-      },
-      {
-        "rank": 42,
         "last_rank": 44,
         "manager": "Prakash Mahtani",
         "team": "400K Redemption Arc",
         "entry_id": 1004009,
         "total": 564,
         "event_total": 60
+      },
+      {
+        "rank": 42,
+        "last_rank": 40,
+        "manager": "Hitesh Singh",
+        "team": "Not Too Xabi",
+        "entry_id": 3323643,
+        "total": 564,
+        "event_total": 53
       },
       {
         "rank": 44,
