@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T05:38:26+00:00",
+  "generated_at": "2026-11-05T12:03:46+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -280,21 +280,21 @@
       },
       {
         "rank": 3,
-        "last_rank": 12,
-        "manager": "Suraj Topandasani",
-        "team": "Londonal FC",
-        "entry_id": 431772,
-        "total": 638,
-        "event_total": 78
-      },
-      {
-        "rank": 3,
         "last_rank": 5,
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
         "total": 638,
         "event_total": 73
+      },
+      {
+        "rank": 3,
+        "last_rank": 12,
+        "manager": "Suraj Topandasani",
+        "team": "Londonal FC",
+        "entry_id": 431772,
+        "total": 638,
+        "event_total": 78
       },
       {
         "rank": 6,
