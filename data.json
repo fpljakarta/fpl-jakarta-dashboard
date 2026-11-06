@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T16:49:23+00:00",
+  "generated_at": "2026-11-06T17:18:09+00:00",
   "current_gameweek": 9,
   "next_gameweek": 10,
   "next_deadline": "2026-11-06T18:30:00Z",
@@ -271,6 +271,15 @@
       },
       {
         "rank": 3,
+        "last_rank": 5,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
+        "total": 638,
+        "event_total": 73
+      },
+      {
+        "rank": 3,
         "last_rank": 12,
         "manager": "Suraj Topandasani",
         "team": "Londonal FC",
@@ -284,15 +293,6 @@
         "manager": "Akshay Melwani",
         "team": "Test",
         "entry_id": 6889469,
-        "total": 638,
-        "event_total": 73
-      },
-      {
-        "rank": 3,
-        "last_rank": 5,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
         "total": 638,
         "event_total": 73
       },
@@ -397,21 +397,21 @@
       },
       {
         "rank": 17,
-        "last_rank": 25,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 602,
-        "event_total": 67
-      },
-      {
-        "rank": 17,
         "last_rank": 22,
         "manager": "Hitesh Mahbubani",
         "team": "Goalbusters",
         "entry_id": 2934189,
         "total": 602,
         "event_total": 65
+      },
+      {
+        "rank": 17,
+        "last_rank": 25,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 602,
+        "event_total": 67
       },
       {
         "rank": 19,
@@ -622,21 +622,21 @@
       },
       {
         "rank": 42,
-        "last_rank": 40,
-        "manager": "Hitesh Singh",
-        "team": "Not Too Xabi",
-        "entry_id": 3323643,
-        "total": 564,
-        "event_total": 53
-      },
-      {
-        "rank": 42,
         "last_rank": 44,
         "manager": "Prakash Mahtani",
         "team": "400K Redemption Arc",
         "entry_id": 1004009,
         "total": 564,
         "event_total": 60
+      },
+      {
+        "rank": 42,
+        "last_rank": 40,
+        "manager": "Hitesh Singh",
+        "team": "Not Too Xabi",
+        "entry_id": 3323643,
+        "total": 564,
+        "event_total": 53
       },
       {
         "rank": 44,
@@ -1028,8 +1028,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
