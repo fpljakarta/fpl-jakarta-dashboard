@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T17:02:36+00:00",
+  "generated_at": "2026-11-07T17:34:59+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -156,8 +156,8 @@
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
         "entry_id": 371869,
-        "total": 601,
-        "event_total": 21
+        "total": 602,
+        "event_total": 22
       },
       {
         "rank": 17,
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 668,
         "event_total": 30
       },
       {
         "rank": 4,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 668,
         "event_total": 30
       },
@@ -545,8 +545,8 @@
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
         "entry_id": 371869,
-        "total": 601,
-        "event_total": 21
+        "total": 602,
+        "event_total": 22
       },
       {
         "rank": 34,
@@ -694,21 +694,21 @@
       },
       {
         "rank": 50,
-        "last_rank": 52,
-        "manager": "Gajendra Khand",
-        "team": "Gajendra united",
-        "entry_id": 835924,
-        "total": 561,
-        "event_total": 24
-      },
-      {
-        "rank": 50,
         "last_rank": 49,
         "manager": "Mohit Mirpuri",
         "team": "LION CITY BALLERS",
         "entry_id": 3080011,
         "total": 561,
         "event_total": 14
+      },
+      {
+        "rank": 50,
+        "last_rank": 52,
+        "manager": "Gajendra Khand",
+        "team": "Gajendra united",
+        "entry_id": 835924,
+        "total": 561,
+        "event_total": 24
       },
       {
         "rank": 52,
@@ -1034,8 +1034,8 @@
       },
       {
         "gw": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
         "points": 105
       },
       {
