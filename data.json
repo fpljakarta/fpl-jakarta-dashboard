@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T18:09:33+00:00",
+  "generated_at": "2026-11-07T18:39:04+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -694,21 +694,21 @@
       },
       {
         "rank": 50,
-        "last_rank": 52,
-        "manager": "Gajendra Khand",
-        "team": "Gajendra united",
-        "entry_id": 835924,
-        "total": 564,
-        "event_total": 27
-      },
-      {
-        "rank": 50,
         "last_rank": 49,
         "manager": "Mohit Mirpuri",
         "team": "LION CITY BALLERS",
         "entry_id": 3080011,
         "total": 564,
         "event_total": 17
+      },
+      {
+        "rank": 50,
+        "last_rank": 52,
+        "manager": "Gajendra Khand",
+        "team": "Gajendra united",
+        "entry_id": 835924,
+        "total": 564,
+        "event_total": 27
       },
       {
         "rank": 52,
