@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T20:44:33+00:00",
+  "generated_at": "2026-11-07T22:01:31+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -62,21 +62,21 @@
       },
       {
         "rank": 6,
-        "last_rank": 8,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 630,
-        "event_total": 28
-      },
-      {
-        "rank": 6,
         "last_rank": 10,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 630,
         "event_total": 32
+      },
+      {
+        "rank": 6,
+        "last_rank": 8,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 630,
+        "event_total": 28
       },
       {
         "rank": 8,
@@ -379,21 +379,21 @@
       },
       {
         "rank": 15,
-        "last_rank": 17,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 630,
-        "event_total": 28
-      },
-      {
-        "rank": 15,
         "last_rank": 20,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 630,
         "event_total": 32
+      },
+      {
+        "rank": 15,
+        "last_rank": 17,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 630,
+        "event_total": 28
       },
       {
         "rank": 17,
@@ -1010,7 +1010,7 @@
         "gw": 10,
         "manager": "S M",
         "team": "I Know Nothing",
-        "points": 16
+        "points": 52
       }
     ],
     "main": [
@@ -1070,9 +1070,9 @@
       },
       {
         "gw": 10,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "points": 19
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "points": 52
       }
     ]
   },
