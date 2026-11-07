@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T02:39:33+00:00",
+  "generated_at": "2026-11-07T06:46:21+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -398,18 +398,18 @@
       {
         "rank": 17,
         "last_rank": 17,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
         "total": 602,
         "event_total": 0
       },
       {
         "rank": 17,
         "last_rank": 17,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
         "total": 602,
         "event_total": 0
       },
