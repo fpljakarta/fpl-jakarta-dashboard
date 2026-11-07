@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T22:56:04+00:00",
+  "generated_at": "2026-11-07T00:52:43+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -263,18 +263,18 @@
       {
         "rank": 2,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 654,
         "event_total": 16
       },
       {
         "rank": 2,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 654,
         "event_total": 16
       },
@@ -398,18 +398,18 @@
       {
         "rank": 17,
         "last_rank": 17,
-        "manager": "Hitesh Mahbubani",
-        "team": "Goalbusters",
-        "entry_id": 2934189,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
         "total": 602,
         "event_total": 0
       },
       {
         "rank": 17,
         "last_rank": 17,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
+        "manager": "Hitesh Mahbubani",
+        "team": "Goalbusters",
+        "entry_id": 2934189,
         "total": 602,
         "event_total": 0
       },
@@ -1008,9 +1008,9 @@
       },
       {
         "gw": 10,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "S M",
+        "team": "I Know Nothing",
+        "points": 16
       }
     ],
     "main": [
@@ -1034,8 +1034,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
@@ -1070,9 +1070,9 @@
       },
       {
         "gw": 10,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "points": 19
       }
     ]
   },
