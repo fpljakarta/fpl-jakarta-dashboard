@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T17:59:14+00:00",
+  "generated_at": "2026-11-08T18:34:12+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -779,8 +779,8 @@
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
-        "total": 521,
-        "event_total": 30
+        "total": 527,
+        "event_total": 36
       }
     ]
   },
