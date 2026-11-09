@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T09:42:37+00:00",
+  "generated_at": "2026-11-09T15:50:52+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 3,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 704,
         "event_total": 66
       },
       {
         "rank": 4,
         "last_rank": 3,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 704,
         "event_total": 66
       },
@@ -487,21 +487,21 @@
       },
       {
         "rank": 27,
-        "last_rank": 21,
-        "manager": "Rohan Kalwani",
-        "team": "-4 Builds Carrickter",
-        "entry_id": 3822923,
-        "total": 655,
-        "event_total": 58
-      },
-      {
-        "rank": 27,
         "last_rank": 30,
         "manager": "Kevin Raymond",
         "team": "Gunners United",
         "entry_id": 5199728,
         "total": 655,
         "event_total": 70
+      },
+      {
+        "rank": 27,
+        "last_rank": 21,
+        "manager": "Rohan Kalwani",
+        "team": "-4 Builds Carrickter",
+        "entry_id": 3822923,
+        "total": 655,
+        "event_total": 58
       },
       {
         "rank": 29,
@@ -743,8 +743,8 @@
         "manager": "Jasvin Seera",
         "team": "Seera Squad",
         "entry_id": 6526117,
-        "total": 580,
-        "event_total": 55
+        "total": 582,
+        "event_total": 57
       },
       {
         "rank": 56,
@@ -779,8 +779,8 @@
         "manager": "Sanjev Rama",
         "team": "Jippy's",
         "entry_id": 6924233,
-        "total": 527,
-        "event_total": 36
+        "total": 535,
+        "event_total": 44
       }
     ]
   },
@@ -1008,9 +1008,9 @@
       },
       {
         "gw": 10,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "points": 52
+        "manager": "Kunal Manwani",
+        "team": "Kloppite_6",
+        "points": 81
       }
     ],
     "main": [
@@ -1034,8 +1034,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
@@ -1070,9 +1070,9 @@
       },
       {
         "gw": 10,
-        "manager": "S M",
-        "team": "I Know Nothing",
-        "points": 52
+        "manager": "Joanda Febrian",
+        "team": "DBM FC",
+        "points": 101
       }
     ]
   },
