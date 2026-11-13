@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T16:01:53+00:00",
+  "generated_at": "2026-11-13T17:37:22+00:00",
   "current_gameweek": 10,
   "next_gameweek": 11,
   "next_deadline": "2026-11-21T11:00:00Z",
@@ -487,21 +487,21 @@
       },
       {
         "rank": 27,
-        "last_rank": 30,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
-        "total": 655,
-        "event_total": 70
-      },
-      {
-        "rank": 27,
         "last_rank": 21,
         "manager": "Rohan Kalwani",
         "team": "-4 Builds Carrickter",
         "entry_id": 3822923,
         "total": 655,
         "event_total": 58
+      },
+      {
+        "rank": 27,
+        "last_rank": 30,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
+        "total": 655,
+        "event_total": 70
       },
       {
         "rank": 29,
@@ -667,21 +667,21 @@
       },
       {
         "rank": 47,
-        "last_rank": 52,
-        "manager": "Gajendra Khand",
-        "team": "Gajendra united",
-        "entry_id": 835924,
-        "total": 612,
-        "event_total": 75
-      },
-      {
-        "rank": 47,
         "last_rank": 45,
         "manager": "Rachman Witarlan",
         "team": "FC Milanello",
         "entry_id": 1165190,
         "total": 612,
         "event_total": 55
+      },
+      {
+        "rank": 47,
+        "last_rank": 52,
+        "manager": "Gajendra Khand",
+        "team": "Gajendra united",
+        "entry_id": 835924,
+        "total": 612,
+        "event_total": 75
       },
       {
         "rank": 49,
