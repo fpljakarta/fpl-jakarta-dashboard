@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T19:25:37+00:00",
+  "generated_at": "2026-11-21T22:57:56+00:00",
   "current_gameweek": 11,
   "next_gameweek": 12,
   "next_deadline": "2026-11-27T18:30:00Z",
@@ -246,8 +246,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 588,
-        "event_total": 28
+        "total": 586,
+        "event_total": 26
       }
     ],
     "main": [
@@ -272,18 +272,18 @@
       {
         "rank": 3,
         "last_rank": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 730,
         "event_total": 26
       },
       {
         "rank": 3,
         "last_rank": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 730,
         "event_total": 26
       },
@@ -397,15 +397,6 @@
       },
       {
         "rank": 17,
-        "last_rank": 29,
-        "manager": "Abhishek Keswani",
-        "team": "Usual Suspects",
-        "entry_id": 26047,
-        "total": 696,
-        "event_total": 42
-      },
-      {
-        "rank": 18,
         "last_rank": 15,
         "manager": "Prashan Harjani",
         "team": "Pineapple Delight",
@@ -414,13 +405,22 @@
         "event_total": 28
       },
       {
-        "rank": 19,
+        "rank": 18,
         "last_rank": 19,
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
         "total": 695,
         "event_total": 31
+      },
+      {
+        "rank": 19,
+        "last_rank": 29,
+        "manager": "Abhishek Keswani",
+        "team": "Usual Suspects",
+        "entry_id": 26047,
+        "total": 695,
+        "event_total": 41
       },
       {
         "rank": 20,
@@ -460,21 +460,21 @@
       },
       {
         "rank": 24,
-        "last_rank": 27,
-        "manager": "Kevin Raymond",
-        "team": "Gunners United",
-        "entry_id": 5199728,
-        "total": 687,
-        "event_total": 32
-      },
-      {
-        "rank": 25,
         "last_rank": 30,
         "manager": "Juzer Saify",
         "team": "JS FC",
         "entry_id": 503301,
         "total": 687,
         "event_total": 37
+      },
+      {
+        "rank": 25,
+        "last_rank": 27,
+        "manager": "Kevin Raymond",
+        "team": "Gunners United",
+        "entry_id": 5199728,
+        "total": 686,
+        "event_total": 31
       },
       {
         "rank": 26,
@@ -577,21 +577,21 @@
       },
       {
         "rank": 37,
-        "last_rank": 43,
-        "manager": "Michael Kenneth",
-        "team": "Pool4life",
-        "entry_id": 8019077,
-        "total": 662,
-        "event_total": 41
-      },
-      {
-        "rank": 38,
         "last_rank": 32,
         "manager": "Deepu Narwani",
         "team": "FC BOSS THA",
         "entry_id": 1657008,
         "total": 661,
         "event_total": 15
+      },
+      {
+        "rank": 38,
+        "last_rank": 43,
+        "manager": "Michael Kenneth",
+        "team": "Pool4life",
+        "entry_id": 8019077,
+        "total": 661,
+        "event_total": 40
       },
       {
         "rank": 39,
@@ -613,21 +613,21 @@
       },
       {
         "rank": 41,
-        "last_rank": 44,
-        "manager": "M Suudi",
-        "team": "Cakdes FPL",
-        "entry_id": 17640,
-        "total": 657,
-        "event_total": 36
-      },
-      {
-        "rank": 42,
         "last_rank": 41,
         "manager": "Jonathan Lobo",
         "team": "Jonathan's Team",
         "entry_id": 14828,
         "total": 656,
         "event_total": 25
+      },
+      {
+        "rank": 42,
+        "last_rank": 44,
+        "manager": "M Suudi",
+        "team": "Cakdes FPL",
+        "entry_id": 17640,
+        "total": 656,
+        "event_total": 35
       },
       {
         "rank": 43,
@@ -680,8 +680,8 @@
         "manager": "Gajendra Khand",
         "team": "Gajendra united",
         "entry_id": 835924,
-        "total": 643,
-        "event_total": 31
+        "total": 642,
+        "event_total": 30
       },
       {
         "rank": 49,
@@ -761,8 +761,8 @@
         "manager": "Gaurav Yadav",
         "team": "Quantom of Tzolis",
         "entry_id": 5408140,
-        "total": 588,
-        "event_total": 28
+        "total": 586,
+        "event_total": 26
       },
       {
         "rank": 58,
@@ -1014,9 +1014,9 @@
       },
       {
         "gw": 11,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Xerxis Desai",
+        "team": "Bay City Ballers",
+        "points": 40
       }
     ],
     "main": [
@@ -1040,8 +1040,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
@@ -1082,9 +1082,9 @@
       },
       {
         "gw": 11,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Sagar Sadarangani",
+        "team": "cole me palmer",
+        "points": 43
       }
     ]
   },
