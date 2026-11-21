@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T12:55:44+00:00",
+  "generated_at": "2026-11-21T13:30:21+00:00",
   "current_gameweek": 11,
   "next_gameweek": 12,
   "next_deadline": "2026-11-27T18:30:00Z",
@@ -98,21 +98,21 @@
       },
       {
         "rank": 10,
-        "last_rank": 11,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 659,
-        "event_total": 2
-      },
-      {
-        "rank": 10,
         "last_rank": 10,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 659,
         "event_total": 1
+      },
+      {
+        "rank": 10,
+        "last_rank": 11,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 659,
+        "event_total": 2
       },
       {
         "rank": 12,
@@ -281,18 +281,18 @@
       {
         "rank": 4,
         "last_rank": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
-        "entry_id": 2552235,
+        "manager": "Akshay Melwani",
+        "team": "Test",
+        "entry_id": 6889469,
         "total": 706,
         "event_total": 2
       },
       {
         "rank": 4,
         "last_rank": 4,
-        "manager": "Akshay Melwani",
-        "team": "Test",
-        "entry_id": 6889469,
+        "manager": "Draking Ngaditono",
+        "team": "Enerzy",
+        "entry_id": 2552235,
         "total": 706,
         "event_total": 2
       },
@@ -415,21 +415,21 @@
       },
       {
         "rank": 19,
-        "last_rank": 19,
-        "manager": "Nitin Nathani",
-        "team": "Untouchables",
-        "entry_id": 3721681,
-        "total": 666,
-        "event_total": 2
-      },
-      {
-        "rank": 19,
         "last_rank": 20,
         "manager": "Kunal Manwani",
         "team": "Kloppite_6",
         "entry_id": 3712006,
         "total": 666,
         "event_total": 3
+      },
+      {
+        "rank": 19,
+        "last_rank": 19,
+        "manager": "Nitin Nathani",
+        "team": "Untouchables",
+        "entry_id": 3721681,
+        "total": 666,
+        "event_total": 2
       },
       {
         "rank": 21,
@@ -451,21 +451,21 @@
       },
       {
         "rank": 23,
-        "last_rank": 24,
-        "manager": "Vishal Lakhiani",
-        "team": "Vish Fish",
-        "entry_id": 1440618,
-        "total": 659,
-        "event_total": 2
-      },
-      {
-        "rank": 23,
         "last_rank": 23,
         "manager": "Sagar Paleja",
         "team": "Jai Shree Krishna",
         "entry_id": 479311,
         "total": 659,
         "event_total": 1
+      },
+      {
+        "rank": 23,
+        "last_rank": 24,
+        "manager": "Vishal Lakhiani",
+        "team": "Vish Fish",
+        "entry_id": 1440618,
+        "total": 659,
+        "event_total": 2
       },
       {
         "rank": 25,
@@ -668,18 +668,18 @@
       {
         "rank": 47,
         "last_rank": 47,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
+        "manager": "Gajendra Khand",
+        "team": "Gajendra united",
+        "entry_id": 835924,
         "total": 614,
         "event_total": 2
       },
       {
         "rank": 47,
         "last_rank": 47,
-        "manager": "Gajendra Khand",
-        "team": "Gajendra united",
-        "entry_id": 835924,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
         "total": 614,
         "event_total": 2
       },
@@ -752,8 +752,8 @@
         "manager": "Snehanshu Gupta",
         "team": "Snaydoooo",
         "entry_id": 6175948,
-        "total": 575,
-        "event_total": 3
+        "total": 576,
+        "event_total": 4
       },
       {
         "rank": 57,
@@ -1040,8 +1040,8 @@
       },
       {
         "gw": 4,
-        "manager": "Draking Ngaditono",
-        "team": "Enerzy",
+        "manager": "Akshay Melwani",
+        "team": "Test",
         "points": 105
       },
       {
