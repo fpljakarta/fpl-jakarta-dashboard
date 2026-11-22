@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T19:20:58+00:00",
+  "generated_at": "2026-11-22T23:52:39+00:00",
   "current_gameweek": 11,
   "next_gameweek": 12,
   "next_deadline": "2026-11-27T18:30:00Z",
@@ -1014,9 +1014,9 @@
       },
       {
         "gw": 11,
-        "manager": "Xerxis Desai",
-        "team": "Bay City Ballers",
-        "points": 40
+        "manager": "Gaurav Yadav",
+        "team": "Quantom of Tzolis",
+        "points": 46
       }
     ],
     "main": [
@@ -1082,9 +1082,9 @@
       },
       {
         "gw": 11,
-        "manager": "Sagar Sadarangani",
-        "team": "cole me palmer",
-        "points": 43
+        "manager": "Joanda Febrian",
+        "team": "DBM FC",
+        "points": 52
       }
     ]
   },
