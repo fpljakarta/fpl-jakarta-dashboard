@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T16:11:59+00:00",
+  "generated_at": "2026-11-23T16:43:30+00:00",
   "current_gameweek": 11,
   "next_gameweek": 12,
   "next_deadline": "2026-11-27T18:30:00Z",
@@ -586,21 +586,21 @@
       },
       {
         "rank": 38,
-        "last_rank": 37,
-        "manager": "Dayne De Melo",
-        "team": "Gross Misconduct",
-        "entry_id": 171383,
-        "total": 667,
-        "event_total": 26
-      },
-      {
-        "rank": 38,
         "last_rank": 38,
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
         "total": 667,
         "event_total": 27
+      },
+      {
+        "rank": 38,
+        "last_rank": 37,
+        "manager": "Dayne De Melo",
+        "team": "Gross Misconduct",
+        "entry_id": 171383,
+        "total": 667,
+        "event_total": 26
       },
       {
         "rank": 40,
