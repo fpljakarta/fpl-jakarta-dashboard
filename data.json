@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T21:47:42+00:00",
+  "generated_at": "2026-11-28T01:23:46+00:00",
   "current_gameweek": 12,
   "next_gameweek": 13,
   "next_deadline": "2026-12-01T18:30:00Z",
@@ -75,8 +75,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 708,
-        "event_total": 19
+        "total": 706,
+        "event_total": 17
       },
       {
         "rank": 8,
@@ -138,8 +138,8 @@
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
         "entry_id": 371869,
-        "total": 693,
-        "event_total": 17
+        "total": 691,
+        "event_total": 15
       },
       {
         "rank": 15,
@@ -183,8 +183,8 @@
         "manager": "Lavesh Punjabi",
         "team": "Punjabi United",
         "entry_id": 20654,
-        "total": 670,
-        "event_total": 19
+        "total": 668,
+        "event_total": 17
       },
       {
         "rank": 20,
@@ -392,8 +392,8 @@
         "manager": "Nitin Nathani",
         "team": "Untouchables",
         "entry_id": 3721681,
-        "total": 715,
-        "event_total": 15
+        "total": 713,
+        "event_total": 13
       },
       {
         "rank": 17,
@@ -419,8 +419,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 708,
-        "event_total": 19
+        "total": 706,
+        "event_total": 17
       },
       {
         "rank": 20,
@@ -469,21 +469,21 @@
       },
       {
         "rank": 25,
-        "last_rank": 34,
-        "manager": "Win Win",
-        "team": "Kalimasada FC",
-        "entry_id": 3005141,
-        "total": 697,
-        "event_total": 19
-      },
-      {
-        "rank": 26,
         "last_rank": 21,
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
         "entry_id": 754628,
         "total": 697,
         "event_total": 0
+      },
+      {
+        "rank": 26,
+        "last_rank": 34,
+        "manager": "Win Win",
+        "team": "Kalimasada FC",
+        "entry_id": 3005141,
+        "total": 695,
+        "event_total": 17
       },
       {
         "rank": 27,
@@ -523,21 +523,21 @@
       },
       {
         "rank": 31,
-        "last_rank": 33,
-        "manager": "Edward Angkasa",
-        "team": "Juvenalis",
-        "entry_id": 371869,
-        "total": 693,
-        "event_total": 17
-      },
-      {
-        "rank": 32,
         "last_rank": 24,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
         "entry_id": 26047,
         "total": 692,
         "event_total": 0
+      },
+      {
+        "rank": 32,
+        "last_rank": 33,
+        "manager": "Edward Angkasa",
+        "team": "Juvenalis",
+        "entry_id": 371869,
+        "total": 691,
+        "event_total": 15
       },
       {
         "rank": 33,
@@ -599,8 +599,8 @@
         "manager": "Lavesh Punjabi",
         "team": "Punjabi United",
         "entry_id": 20654,
-        "total": 670,
-        "event_total": 19
+        "total": 668,
+        "event_total": 17
       },
       {
         "rank": 40,
@@ -739,21 +739,21 @@
       },
       {
         "rank": 55,
-        "last_rank": 57,
-        "manager": "Snehanshu Gupta",
-        "team": "Snaydoooo",
-        "entry_id": 6175948,
-        "total": 619,
-        "event_total": 19
-      },
-      {
-        "rank": 56,
         "last_rank": 55,
         "manager": "Jasvin Seera",
         "team": "Seera Squad",
         "entry_id": 6526117,
+        "total": 621,
+        "event_total": 11
+      },
+      {
+        "rank": 56,
+        "last_rank": 57,
+        "manager": "Snehanshu Gupta",
+        "team": "Snaydoooo",
+        "entry_id": 6175948,
         "total": 616,
-        "event_total": 6
+        "event_total": 16
       },
       {
         "rank": 57,
@@ -1020,9 +1020,9 @@
       },
       {
         "gw": 12,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "points": 17
       }
     ],
     "main": [
@@ -1094,9 +1094,9 @@
       },
       {
         "gw": 12,
-        "manager": "Sanchit Suri",
-        "team": "WinterisHere!",
-        "points": 0
+        "manager": "Charles Lesmana",
+        "team": "Les Intouchables",
+        "points": 17
       }
     ]
   },
