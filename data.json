@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-28T18:54:50+00:00",
+  "generated_at": "2026-11-28T19:29:24+00:00",
   "current_gameweek": 12,
   "next_gameweek": 13,
   "next_deadline": "2026-12-01T18:30:00Z",
@@ -48,8 +48,8 @@
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
-        "total": 746,
-        "event_total": 27
+        "total": 748,
+        "event_total": 29
       },
       {
         "rank": 5,
@@ -66,8 +66,8 @@
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
         "entry_id": 29071,
-        "total": 740,
-        "event_total": 31
+        "total": 742,
+        "event_total": 33
       },
       {
         "rank": 7,
@@ -75,11 +75,20 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 729,
-        "event_total": 40
+        "total": 731,
+        "event_total": 42
       },
       {
         "rank": 8,
+        "last_rank": 8,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 723,
+        "event_total": 23
+      },
+      {
+        "rank": 9,
         "last_rank": 10,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
@@ -88,31 +97,22 @@
         "event_total": 26
       },
       {
-        "rank": 9,
-        "last_rank": 8,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 721,
-        "event_total": 21
+        "rank": 10,
+        "last_rank": 13,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 720,
+        "event_total": 32
       },
       {
-        "rank": 10,
+        "rank": 11,
         "last_rank": 14,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
         "entry_id": 1440618,
         "total": 718,
         "event_total": 34
-      },
-      {
-        "rank": 11,
-        "last_rank": 13,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 718,
-        "event_total": 30
       },
       {
         "rank": 12,
@@ -129,8 +129,8 @@
         "manager": "Juzer Saify",
         "team": "JS FC",
         "entry_id": 503301,
-        "total": 710,
-        "event_total": 13
+        "total": 712,
+        "event_total": 15
       },
       {
         "rank": 14,
@@ -138,8 +138,8 @@
         "manager": "Edward Angkasa",
         "team": "Juvenalis",
         "entry_id": 371869,
-        "total": 708,
-        "event_total": 32
+        "total": 710,
+        "event_total": 34
       },
       {
         "rank": 15,
@@ -174,8 +174,8 @@
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
         "entry_id": 171383,
-        "total": 682,
-        "event_total": 19
+        "total": 684,
+        "event_total": 21
       },
       {
         "rank": 19,
@@ -210,8 +210,8 @@
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
-        "total": 670,
-        "event_total": 7
+        "total": 671,
+        "event_total": 8
       },
       {
         "rank": 23,
@@ -219,8 +219,8 @@
         "manager": "Jonathan Lobo",
         "team": "Jonathan's Team",
         "entry_id": 14828,
-        "total": 668,
-        "event_total": 10
+        "total": 669,
+        "event_total": 11
       },
       {
         "rank": 24,
@@ -266,8 +266,8 @@
         "manager": "Siddarth Kaul",
         "team": "sidskids",
         "entry_id": 11184,
-        "total": 777,
-        "event_total": 35
+        "total": 779,
+        "event_total": 37
       },
       {
         "rank": 3,
@@ -338,8 +338,8 @@
         "manager": "Gautam Vassanmal",
         "team": "GV9",
         "entry_id": 24602,
-        "total": 746,
-        "event_total": 27
+        "total": 748,
+        "event_total": 29
       },
       {
         "rank": 11,
@@ -365,8 +365,8 @@
         "manager": "Xerxis Desai",
         "team": "Bay City Ballers",
         "entry_id": 29071,
-        "total": 740,
-        "event_total": 31
+        "total": 742,
+        "event_total": 33
       },
       {
         "rank": 14,
@@ -374,8 +374,8 @@
         "manager": "Charles Lesmana",
         "team": "Les Intouchables",
         "entry_id": 338097,
-        "total": 729,
-        "event_total": 40
+        "total": 731,
+        "event_total": 42
       },
       {
         "rank": 15,
@@ -406,6 +406,15 @@
       },
       {
         "rank": 18,
+        "last_rank": 19,
+        "manager": "Prashan Harjani",
+        "team": "Pineapple Delight",
+        "entry_id": 6104023,
+        "total": 723,
+        "event_total": 23
+      },
+      {
+        "rank": 19,
         "last_rank": 23,
         "manager": "Nikk Kadbet",
         "team": "Anfield Legends",
@@ -414,7 +423,7 @@
         "event_total": 26
       },
       {
-        "rank": 19,
+        "rank": 20,
         "last_rank": 21,
         "manager": "Indar Dhaliwal",
         "team": "Daylight Brobbery",
@@ -423,7 +432,7 @@
         "event_total": 25
       },
       {
-        "rank": 20,
+        "rank": 21,
         "last_rank": 14,
         "manager": "Joanda Febrian",
         "team": "DBM FC",
@@ -432,16 +441,16 @@
         "event_total": 4
       },
       {
-        "rank": 21,
-        "last_rank": 19,
-        "manager": "Prashan Harjani",
-        "team": "Pineapple Delight",
-        "entry_id": 6104023,
-        "total": 721,
-        "event_total": 21
+        "rank": 22,
+        "last_rank": 30,
+        "manager": "Sagar Paleja",
+        "team": "Jai Shree Krishna",
+        "entry_id": 479311,
+        "total": 720,
+        "event_total": 32
       },
       {
-        "rank": 22,
+        "rank": 23,
         "last_rank": 32,
         "manager": "Vishal Lakhiani",
         "team": "Vish Fish",
@@ -450,16 +459,7 @@
         "event_total": 34
       },
       {
-        "rank": 23,
-        "last_rank": 30,
-        "manager": "Sagar Paleja",
-        "team": "Jai Shree Krishna",
-        "entry_id": 479311,
-        "total": 718,
-        "event_total": 30
-      },
-      {
-        "rank": 23,
+        "rank": 24,
         "last_rank": 27,
         "manager": "Kevin Raymond",
         "team": "Gunners United",
@@ -487,30 +487,30 @@
       },
       {
         "rank": 27,
+        "last_rank": 22,
+        "manager": "Juzer Saify",
+        "team": "JS FC",
+        "entry_id": 503301,
+        "total": 712,
+        "event_total": 15
+      },
+      {
+        "rank": 28,
+        "last_rank": 33,
+        "manager": "Edward Angkasa",
+        "team": "Juvenalis",
+        "entry_id": 371869,
+        "total": 710,
+        "event_total": 34
+      },
+      {
+        "rank": 29,
         "last_rank": 24,
         "manager": "Abhishek Keswani",
         "team": "Usual Suspects",
         "entry_id": 26047,
         "total": 710,
         "event_total": 18
-      },
-      {
-        "rank": 27,
-        "last_rank": 22,
-        "manager": "Juzer Saify",
-        "team": "JS FC",
-        "entry_id": 503301,
-        "total": 710,
-        "event_total": 13
-      },
-      {
-        "rank": 29,
-        "last_rank": 33,
-        "manager": "Edward Angkasa",
-        "team": "Juvenalis",
-        "entry_id": 371869,
-        "total": 708,
-        "event_total": 32
       },
       {
         "rank": 30,
@@ -536,8 +536,8 @@
         "manager": "Ajay Yeleswaram",
         "team": "Relegated",
         "entry_id": 1257763,
-        "total": 701,
-        "event_total": 28
+        "total": 703,
+        "event_total": 30
       },
       {
         "rank": 32,
@@ -545,8 +545,8 @@
         "manager": "Rishabh Mehta",
         "team": "PepMasterclass",
         "entry_id": 4111970,
-        "total": 701,
-        "event_total": 13
+        "total": 703,
+        "event_total": 15
       },
       {
         "rank": 34,
@@ -599,8 +599,8 @@
         "manager": "Dayne De Melo",
         "team": "Gross Misconduct",
         "entry_id": 171383,
-        "total": 682,
-        "event_total": 19
+        "total": 684,
+        "event_total": 21
       },
       {
         "rank": 40,
@@ -622,6 +622,15 @@
       },
       {
         "rank": 42,
+        "last_rank": 49,
+        "manager": "Rachman Witarlan",
+        "team": "FC Milanello",
+        "entry_id": 1165190,
+        "total": 676,
+        "event_total": 35
+      },
+      {
+        "rank": 43,
         "last_rank": 47,
         "manager": "Lavesh Punjabi",
         "team": "Punjabi United",
@@ -630,7 +639,7 @@
         "event_total": 24
       },
       {
-        "rank": 43,
+        "rank": 44,
         "last_rank": 43,
         "manager": "Karan Khosla",
         "team": "Jinja's Safari",
@@ -639,22 +648,13 @@
         "event_total": 15
       },
       {
-        "rank": 44,
-        "last_rank": 49,
-        "manager": "Rachman Witarlan",
-        "team": "FC Milanello",
-        "entry_id": 1165190,
-        "total": 674,
-        "event_total": 33
-      },
-      {
         "rank": 45,
         "last_rank": 40,
         "manager": "Amrit Lakhiani",
         "team": "Pomfriterole FC",
         "entry_id": 3391935,
-        "total": 670,
-        "event_total": 7
+        "total": 671,
+        "event_total": 8
       },
       {
         "rank": 46,
@@ -662,8 +662,8 @@
         "manager": "Jonathan Lobo",
         "team": "Jonathan's Team",
         "entry_id": 14828,
-        "total": 668,
-        "event_total": 10
+        "total": 669,
+        "event_total": 11
       },
       {
         "rank": 47,
